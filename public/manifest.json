@@ -1,0 +1,16 @@
+{
+  "short_name": "KharifRice",
+  "name": "Maharashtra Kharif Rice Crop Failure Early Warning System",
+  "description": "Spatiotemporal Deep Learning (CNN-LSTM) Early Warning Platform for Maharashtra Kharif Rice",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#192116",
+  "theme_color": "#232A20",
+  "display": "standalone"
+}

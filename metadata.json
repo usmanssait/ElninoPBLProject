@@ -1,0 +1,6 @@
+{
+  "name": "Remix Remix Spatiotemporal CNN-LSTM Crop Failure Prediction",
+  "description": "Spatiotemporal CNN-LSTM Framework for Crop Failure Early Warning using Sentinel-2 Imagery and IMD Data during El Niño Events across Maharashtra districts.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
