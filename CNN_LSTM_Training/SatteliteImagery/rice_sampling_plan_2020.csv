@@ -1,0 +1,29 @@
+district_key,district,mean_rice_area_ha,district_area_km2,allocation_score,target_locations,rice_area_share_pct,allocation_basis
+bhandara,Bhandara,173456.965,4145.725245522448,0.9224073819919335,7,11.818791980874401,75% log(mean DES rice area) + 25% log(district area); 2-7 locations
+gadchiroli,Gadchiroli,161746.12375,14494.31390006731,1.0,7,11.020853445199036,75% log(mean DES rice area) + 25% log(district area); 2-7 locations
+chandrapur,Chandrapur,138717.05875,11365.114365394147,0.906286264469997,7,9.451728050038136,75% log(mean DES rice area) + 25% log(district area); 2-7 locations
+gondia,Gondia,157684.63125,5177.764349044828,0.8942438094384002,6,10.744116590098514,75% log(mean DES rice area) + 25% log(district area); 2-7 locations
+kolhapur,Kolhapur,105470.2025,7686.666466821405,0.7547043748110377,6,7.186395677614901,75% log(mean DES rice area) + 25% log(district area); 2-7 locations
+raigad,Raigad,103220.78375,6899.181855723446,0.7369518224222782,6,7.033127618969183,75% log(mean DES rice area) + 25% log(district area); 2-7 locations
+nagpur,Nagpur,95881.90625,9897.678599441711,0.7400115827756839,6,6.533080436974388,75% log(mean DES rice area) + 25% log(district area); 2-7 locations
+nashik,Nashik,76415.7075,15537.765146951731,0.7022540816750066,6,5.206717130176029,75% log(mean DES rice area) + 25% log(district area); 2-7 locations
+palghar,Palghar,76774.51375,5196.71947039624,0.6016562913952102,5,5.231165018043706,75% log(mean DES rice area) + 25% log(district area); 2-7 locations
+ratnagiri,Ratnagiri,74407.345,8294.283029184762,0.6272955509296464,5,5.069873858361093,75% log(mean DES rice area) + 25% log(district area); 2-7 locations
+sindhudurg,Sindhudurg,62598.6925,5105.895342155195,0.527855159060675,5,4.265270783056896,75% log(mean DES rice area) + 25% log(district area); 2-7 locations
+pune,Pune,57270.355,15649.44486900339,0.6022300329206229,5,3.902215240626574,75% log(mean DES rice area) + 25% log(district area); 2-7 locations
+satara,Satara,47740.635,10487.053364379464,0.5003380585798027,5,3.2528911946536816,75% log(mean DES rice area) + 25% log(district area); 2-7 locations
+thane,Thane,54930.36,4232.143234301974,0.4720536021343315,4,3.742775611659895,75% log(mean DES rice area) + 25% log(district area); 2-7 locations
+ahilyanagar,Ahilyanagar,17062.8075,17088.584434009594,0.30908987753018696,4,1.1626040640812756,75% log(mean DES rice area) + 25% log(district area); 2-7 locations
+nandurbar,Nandurbar,25777.06875,5957.295631564526,0.28691835250401065,3,1.7563654099041113,75% log(mean DES rice area) + 25% log(district area); 2-7 locations
+sangli,Sangli,16555.36875,8609.066364398686,0.23073463972431932,3,1.1280288423293852,75% log(mean DES rice area) + 25% log(district area); 2-7 locations
+amravati,Amravati,6776.855,12202.444238690603,0.1551305746162491,3,0.46175280150640585,75% log(mean DES rice area) + 25% log(district area); 2-7 locations
+dhule,Dhule,6312.19875,7185.477434341855,0.09880695556671981,2,0.43009263979792,75% log(mean DES rice area) + 25% log(district area); 2-7 locations
+dharashiv,Dharashiv,3342.3214285714284,7575.192022912592,0.06438761814265587,2,0.2277348833902673,75% log(mean DES rice area) + 25% log(district area); 2-7 locations
+chhatrapatisambhajinagar,Chhatrapati Sambhajinagar,2168.4166666666665,10149.336557888606,0.07523986615962923,2,0.14774884082166664,75% log(mean DES rice area) + 25% log(district area); 2-7 locations
+latur,Latur,1824.19,7200.261447757279,0.039088289141658475,2,0.12429435822073374,75% log(mean DES rice area) + 25% log(district area); 2-7 locations
+solapur,Solapur,807.3685714285714,14839.04661154938,0.0966603529439103,2,0.05501146176292213,75% log(mean DES rice area) + 25% log(district area); 2-7 locations
+nanded,Nanded,573.7574999999999,10513.894365689188,0.05599566436802702,2,0.03909396512251061,75% log(mean DES rice area) + 25% log(district area); 2-7 locations
+beed,Beed,87.875,10606.472244672243,0.04974899163022119,2,0.005987515954284903,75% log(mean DES rice area) + 25% log(district area); 2-7 locations
+parbhani,Parbhani,12.5,6124.9770860618355,0.0,2,0.0008517092395853348,75% log(mean DES rice area) + 25% log(district area); 2-7 locations
+jalna,Jalna,11.0,7665.851387049998,0.01820821586995314,2,0.0007495041308350946,75% log(mean DES rice area) + 25% log(district area); 2-7 locations
+buldhana,Buldhana,10.0,9740.910996576149,0.040164878245324664,2,0.0006813673916682678,75% log(mean DES rice area) + 25% log(district area); 2-7 locations

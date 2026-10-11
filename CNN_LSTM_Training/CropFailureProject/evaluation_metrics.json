@@ -1,0 +1,55 @@
+{
+  "district_seasons_evaluated": 20,
+  "positive_district_seasons": 2,
+  "negative_district_seasons": 18,
+  "accuracy_threshold_0_5": 0.9,
+  "balanced_accuracy_threshold_0_5": 0.7222222222222222,
+  "precision_threshold_0_5": 0.5,
+  "recall_threshold_0_5": 0.5,
+  "f1_threshold_0_5": 0.5,
+  "confusion_matrix_labels_0_1": [
+    [
+      17,
+      1
+    ],
+    [
+      1,
+      1
+    ]
+  ],
+  "roc_auc": 0.9166666666666666,
+  "average_precision": 0.5,
+  "baseline_majority_accuracy": 0.9,
+  "note": "Exploratory district-grouped holdout; small data and district-level labels repeated across sampled patches.",
+  "train_patch_rows": 218,
+  "test_patch_rows": 104,
+  "train_districts": [
+    "ahilyanagar",
+    "beed",
+    "bhandara",
+    "chandrapur",
+    "chhatrapati sambhajinagar",
+    "dhule",
+    "gadchiroli",
+    "nanded",
+    "nandurbar",
+    "pune",
+    "raigad",
+    "ratnagiri",
+    "satara",
+    "solapur",
+    "thane"
+  ],
+  "test_districts": [
+    "gondia",
+    "nagpur",
+    "nashik",
+    "palghar",
+    "sangli"
+  ],
+  "train_weighting": {
+    "pos_weight": 5.875,
+    "positive_district_seasons_train": 8,
+    "negative_district_seasons_train": 47
+  }
+}

@@ -153,10 +153,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
 
         <div className="mt-3 flex items-center justify-between text-[10px] font-mono text-[#586E64] px-1">
           <span>B.Tech PBL Project</span>
-          <span className="text-[#22C55E] flex items-center gap-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#22C55E] animate-pulse"></span>
-            Operational
-          </span>
+          <span className="text-[#7A9187]">Offline Research Engine</span>
         </div>
       </div>
     </div>

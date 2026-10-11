@@ -1,15 +1,112 @@
 # Spatiotemporal CNN-LSTM Crop Failure Prediction — Maharashtra Kharif Rice
-```bash
-# 1. Install dependencies
+
+## Project Workspace Structure
+
+The project has been reorganized into modular workspaces:
+
+```
+ElninoPBLProject-main/
+├── CNN_LSTM_Training/
+│   ├── CropFailureProject/                 # Model training & inference workspace
+│   │   ├── crop_failure_model.pt           # Trained PyTorch checkpoint
+│   │   ├── crop_model_output/              # Output bundle & evaluation reports
+│   │   ├── MH_Rice_S2_Patches_*.geojson   # Sentinel-2 multi-spectral patches (2019-2022)
+│   │   ├── des_rice_maharashtra_*.csv      # DES Kharif rice ground truth
+│   │   ├── imd_district_kharif_*.csv       # IMD district rainfall
+│   │   ├── predict_crop_failure.py         # PyTorch inference engine
+│   │   ├── train_crop_failure_model.py     # Compact CNN-LSTM training pipeline
+│   │   └── requirements.txt                # Python dependencies
+│   └── SatteliteImagery/                   # Satellite imagery & sampling workspace
+│       ├── classified-10m-India-2020-*.tif # Rice classification raster mask (local)
+│       ├── Maharashtra.Districts.geojson   # District boundary GeoJSON
+│       ├── make_rice_sampling_locations.py # Variable-allocation sampling generator
+│       └── scripts/                        # GEE export & validation scripts
+├── data/                                   # Dashboard data & integrated prediction artifacts
+│   ├── crop_failure_predictions.csv        # Integrated predictions for UI
+│   ├── des_rice_maharashtra_kharif_final.csv
+│   ├── imd_district_kharif_rainfall_2015_2022.csv
+│   ├── evaluation_metrics.json
+│   └── training_report.json
+├── scripts/
+│   ├── generate_predictions.py             # Bridge script to run model & refresh dashboard CSV
+│   └── prepare_sentinel2_dataset.py        # Local validation for GEE patch exports
+├── src/                                    # React + TypeScript dashboard application
+├── public/                                 # Static assets & PWA manifest
+├── package.json                            # Dashboard dependencies & scripts
+└── tsconfig.json                           # TypeScript configuration
+```
+
+---
+
+## Windows PowerShell Quickstart
+
+### 1. Dashboard Web Application
+
+From the project root (`ElninoPBLProject-main`):
+
+```powershell
+# Install Node dependencies
 npm install
 
-# 2. Start the local development server
+# Start local development server (port 3000)
 npm run dev
+
+# Typecheck and production build
+npm run lint
+npm run build
 ```
 
-Open your browser to:
+Open your browser to: `http://localhost:3000`
+
+---
+
+### 2. Regenerate Predictions for Dashboard
+
+To run inference using the trained PyTorch checkpoint and refresh `data/crop_failure_predictions.csv`:
+
+```powershell
+# From project root:
+py scripts\generate_predictions.py
 ```
-http://localhost:3000
+
+This automatically locates `CNN_LSTM_Training\CropFailureProject`, executes `predict_crop_failure.py`, maps district identifiers to canonical dashboard keys, validates risk scores, and writes the updated CSV to `data/crop_failure_predictions.csv`.
+
+---
+
+### 3. Model Training & Standalone Inference
+
+From `CNN_LSTM_Training\CropFailureProject`:
+
+```powershell
+cd CNN_LSTM_Training\CropFailureProject
+
+# Install Python requirements
+py -m pip install -r requirements.txt
+
+# Run inference across all supported satellite seasons (2019-2022)
+py predict_crop_failure.py --years 2019,2020,2021,2022
+
+# Run single season inference (e.g. 2022)
+py predict_crop_failure.py --years 2022
+
+# Retrain model (optional; preserves current checkpoint in crop_model_output)
+py train_crop_failure_model.py --epochs 16
+```
+
+---
+
+### 4. Satellite Sampling Plan Generator
+
+From `CNN_LSTM_Training\SatteliteImagery`:
+
+```powershell
+cd CNN_LSTM_Training\SatteliteImagery
+
+# Install geospatial dependencies (if running raster extraction)
+py -m pip install -r requirements.txt
+
+# Generate variable-allocation rice sampling locations
+py make_rice_sampling_locations.py
 ```
 
 ---
@@ -39,6 +136,7 @@ http://localhost:3000
 
 ## Offline & Standalone Guarantee
 
-- **No Gemini or External AI API dependencies**: Runs 100% locally with offline JavaScript/TypeScript and Web Standards.
-- **No Mock or Fabricated External Data**: Uses verified historical DES rice data (2015–2022), IMD rainfall series (2015–2022), and NOAA CPC ONI records.
-- **Model Checkpoints**: PyTorch neural network specifications and dataset pipelines are ready for training via `python train.py`. Exported checkpoints can be attached directly in the simulator.
+- **No External AI API dependencies**: Runs 100% locally with offline JavaScript/TypeScript and Web Standards.
+- **No Fabricated External Data**: Uses verified historical DES rice data (2015–2022), IMD rainfall series (2015–2022), and NOAA CPC ONI records.
+- **Model Checkpoints**: Compact CNN-LSTM weights saved as `crop_failure_model.pt` (11,081 trainable parameters), evaluated on 322 patch-year records.
+

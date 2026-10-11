@@ -1,0 +1,104 @@
+{
+  "status": "trained",
+  "model_file": "crop_failure_model.pt",
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022
+  ],
+  "des_source": "des_rice_maharashtra_kharif_final.csv",
+  "imd_source": "imd_district_kharif_rainfall_2015_2022.csv",
+  "patch_year_rows": 322,
+  "district_count": 20,
+  "district_season_count": 75,
+  "label_counts_patch_rows": {
+    "crop_failure": 38,
+    "no_crop_failure": 284
+  },
+  "label_counts_unique_district_seasons": {
+    "crop_failure": 10,
+    "no_crop_failure": 65
+  },
+  "valid_pixel_fraction_mean_by_window": {
+    "t01": 0.97826087474823,
+    "t02": 0.883152186870575,
+    "t03": 0.6645962595939636,
+    "t04": 0.8012422323226929,
+    "t05": 0.6791537404060364,
+    "t06": 0.7422360181808472
+  },
+  "oni_mean_by_year": {
+    "2019": 0.3,
+    "2020": -0.4,
+    "2021": -0.43,
+    "2022": -0.97
+  },
+  "any_selected_year_with_jun_aug_mean_oni_ge_0_5": false,
+  "evaluation": {
+    "district_seasons_evaluated": 20,
+    "positive_district_seasons": 2,
+    "negative_district_seasons": 18,
+    "accuracy_threshold_0_5": 0.9,
+    "balanced_accuracy_threshold_0_5": 0.7222222222222222,
+    "precision_threshold_0_5": 0.5,
+    "recall_threshold_0_5": 0.5,
+    "f1_threshold_0_5": 0.5,
+    "confusion_matrix_labels_0_1": [
+      [
+        17,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "roc_auc": 0.9166666666666666,
+    "average_precision": 0.5,
+    "baseline_majority_accuracy": 0.9,
+    "note": "Exploratory district-grouped holdout; small data and district-level labels repeated across sampled patches.",
+    "train_patch_rows": 218,
+    "test_patch_rows": 104,
+    "train_districts": [
+      "ahilyanagar",
+      "beed",
+      "bhandara",
+      "chandrapur",
+      "chhatrapati sambhajinagar",
+      "dhule",
+      "gadchiroli",
+      "nanded",
+      "nandurbar",
+      "pune",
+      "raigad",
+      "ratnagiri",
+      "satara",
+      "solapur",
+      "thane"
+    ],
+    "test_districts": [
+      "gondia",
+      "nagpur",
+      "nashik",
+      "palghar",
+      "sangli"
+    ],
+    "train_weighting": {
+      "pos_weight": 5.875,
+      "positive_district_seasons_train": 8,
+      "negative_district_seasons_train": 47
+    }
+  },
+  "final_training_weighting": {
+    "pos_weight": 6.5,
+    "positive_district_seasons_train": 10,
+    "negative_district_seasons_train": 65
+  },
+  "final_training_loss_first_last": [
+    1.2734757282517173,
+    0.32916454022580927
+  ],
+  "warning": "This is a working prototype, not validated El Ni\u00f1o-specific forecasting: the selected 2019-2022 June-August mean ONI values are all below +0.5 C, and there are few independent district-season labels. Holdout metrics are district-grouped and should be interpreted cautiously.",
+  "elapsed_seconds": 16.4
+}
