@@ -13,6 +13,7 @@ import {
   Sprout,
   Menu,
   X,
+  ArrowLeft,
 } from 'lucide-react';
 
 export type ActiveTab =
@@ -30,6 +31,7 @@ export type ActiveTab =
 interface SidebarProps {
   activeTab: ActiveTab;
   setActiveTab: (tab: ActiveTab) => void;
+  onBackToLanding?: () => void;
 }
 
 interface NavItem {
@@ -43,7 +45,7 @@ interface NavSection {
   items: NavItem[];
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
+export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onBackToLanding }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const sections: NavSection[] = [
@@ -140,6 +142,21 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
           </div>
         </div>
 
+        {/* Back to Project Landing Page Button */}
+        {onBackToLanding && (
+          <button
+            onClick={onBackToLanding}
+            className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold bg-[#0D241C] text-[#4ADE80] border border-[#164332] hover:bg-[#133328] hover:border-[#22C55E]/50 transition-all cursor-pointer shadow-xs group"
+            title="Return to Project Homepage"
+          >
+            <span className="flex items-center gap-2">
+              <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1 text-[#22C55E]" />
+              <span>Project Home</span>
+            </span>
+            <span className="text-[10px] font-mono text-[#71877E] uppercase tracking-wider group-hover:text-[#4ADE80]">Exit</span>
+          </button>
+        )}
+
         {/* Grouped Navigation Sections */}
         <nav className="space-y-5">
           {sections.map(sec => (
@@ -197,12 +214,23 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
           </span>
         </div>
 
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="p-1.5 rounded-lg bg-[#0C1914] text-[#A3B8AF] border border-[#162A21] hover:text-white cursor-pointer"
-        >
-          {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+        <div className="flex items-center gap-2">
+          {onBackToLanding && (
+            <button
+              onClick={onBackToLanding}
+              className="p-1.5 rounded-lg bg-[#0D241C] text-[#4ADE80] border border-[#164332] hover:bg-[#133328] cursor-pointer"
+              title="Back to Project Homepage"
+            >
+              <ArrowLeft className="w-4 h-4" />
+            </button>
+          )}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="p-1.5 rounded-lg bg-[#0C1914] text-[#A3B8AF] border border-[#162A21] hover:text-white cursor-pointer"
+          >
+            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Drawer Overlay */}

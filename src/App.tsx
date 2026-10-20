@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Sidebar, ActiveTab } from './components/Sidebar';
 import { DashboardProvider } from './context/DashboardContext';
+import { HomePage } from './pages/HomePage';
 import { OverviewPage } from './pages/OverviewPage';
 import { DistrictRiskMapPage } from './pages/DistrictRiskMapPage';
 import { HistoricalAnalysisPage } from './pages/HistoricalAnalysisPage';
@@ -13,13 +14,46 @@ import { DataSourcesPage } from './pages/DataSourcesPage';
 import { AboutProjectPage } from './pages/AboutProjectPage';
 
 export default function App() {
+  const [viewMode, setViewMode] = useState<'landing' | 'dashboard'>(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('view') === 'dashboard' || window.location.hash.includes('dashboard')) {
+        return 'dashboard';
+      }
+    }
+    return 'landing';
+  });
+
   const [activeTab, setActiveTab] = useState<ActiveTab>('overview');
+
+  const handleLaunchDashboard = (initialTab: ActiveTab = 'overview') => {
+    setActiveTab(initialTab);
+    setViewMode('dashboard');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleBackToLanding = () => {
+    setViewMode('landing');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  if (viewMode === 'landing') {
+    return (
+      <DashboardProvider>
+        <HomePage onLaunchDashboard={handleLaunchDashboard} />
+      </DashboardProvider>
+    );
+  }
 
   return (
     <DashboardProvider>
       <div className="min-h-screen bg-[#060D0A] text-[#E8EFEB] flex flex-col lg:flex-row font-sans selection:bg-[#22C55E]/30 selection:text-[#4ADE80] overflow-x-hidden">
-        {/* Grouped Sidebar matching Mockup */}
-        <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+        {/* Grouped Sidebar with Return to Home Button */}
+        <Sidebar
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          onBackToLanding={handleBackToLanding}
+        />
 
         {/* Main Analytics Viewport */}
         <div className="flex-1 min-w-0 flex flex-col overflow-y-auto">
