@@ -28,10 +28,10 @@
 }
 
 /* ========================================================================= */
-/* Comprehensive Dark Mode Theme Overrides (Old Color Scheme)                */
+/* Comprehensive Polished Dark Mode Overrides (Apple Pro Obsidian Aesthetic) */
 /* ========================================================================= */
 
-/* Canvases & Outer Layouts */
+/* Canvases & Outer Backgrounds */
 .dark .bg-\[\#EAECE4\],
 .dark .bg-\[\#EAECE4\]\/90,
 .dark .bg-\[\#EAECE4\]\/80,
@@ -39,35 +39,49 @@
   background-color: #040B08 !important;
 }
 
+/* Sidebar Canvas */
 .dark .bg-\[\#E0E4D8\] {
-  background-color: #060D0A !important;
+  background-color: #060E0B !important;
+  border-color: #152A1F !important;
 }
 
-/* Primary Card Surfaces */
+/* Primary Card Surfaces - Rich Obsidian Glass */
 .dark .bg-\[\#E2E6DC\] {
-  background-color: #091410 !important;
+  background-color: #0B1712 !important;
+  border-color: #1A3427 !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px -1px rgba(0, 0, 0, 0.4);
 }
 
-/* Secondary Tiles, Metric Bands & Soft Backgrounds */
+/* Secondary Tiles & Soft Backgrounds */
 .dark .bg-\[\#E5E8DF\],
 .dark .bg-\[\#DCE0D4\],
 .dark .bg-\[\#D8DED0\],
 .dark .bg-\[\#D0D6C6\],
 .dark .bg-\[\#D4D9CC\],
 .dark .bg-\[\#D9DECFA0\] {
-  background-color: #0B1813 !important;
+  background-color: #0E2018 !important;
+  border-color: #1B382B !important;
+}
+
+/* Inner metric boxes & nested tiles */
+.dark .bg-\[\#EAECE4\]:not(body):not(header) {
+  background-color: #07120D !important;
+  border-color: #14281E !important;
 }
 
 /* White Tiles, Popovers, Table Containers & Inputs */
 .dark .bg-white {
-  background-color: #060D0A !important;
+  background-color: #07120D !important;
+  border-color: #172F23 !important;
 }
 
 /* Hover States */
 .dark .hover\:bg-\[\#F4F6F2\]:hover,
+.dark .hover\:bg-\[\#F2F4EE\]:hover,
 .dark .hover\:bg-\[\#D9DED3\]:hover,
-.dark .hover\:bg-\[\#DDE2D6\]:hover {
-  background-color: #0E1F18 !important;
+.dark .hover\:bg-\[\#DDE2D6\]:hover,
+.dark .hover\:bg-\[\#D4D9CC\]:hover {
+  background-color: #12281D !important;
 }
 
 /* Borders & Separators */
@@ -78,21 +92,21 @@
 .dark .border-\[\#C5CDC0\],
 .dark .border-\[\#BDC4B4\],
 .dark .border-\[\#CCD2C2\] {
-  border-color: #14261F !important;
+  border-color: #172F23 !important;
 }
 
 .dark .divide-\[\#CCD2C4\] > :not([hidden]) ~ :not([hidden]),
 .dark .divide-\[\#D5D9CE\] > :not([hidden]) ~ :not([hidden]) {
-  border-color: #14261F !important;
+  border-color: #172F23 !important;
 }
 
 /* Primary Text */
 .dark .text-\[\#16221B\],
 .dark .text-\[\#1B2A22\] {
-  color: #E8EFEB !important;
+  color: #FFFFFF !important;
 }
 
-/* Secondary & Muted Text */
+/* Secondary & Muted Text - High Legibility in Dark */
 .dark .text-\[\#526458\],
 .dark .text-\[\#46574D\],
 .dark .text-\[\#506257\],
@@ -101,29 +115,40 @@
 .dark .text-\[\#2F4238\],
 .dark .text-\[\#35483D\],
 .dark .text-\[\#607368\] {
-  color: #80978E !important;
+  color: #92A69A !important;
+}
+
+/* Sidebar Navigation Text */
+.dark .text-\[\#3E5146\] {
+  color: #A8BDAF !important;
+}
+.dark .text-\[\#506659\] {
+  color: #799183 !important;
+}
+.dark .hover\:text-\[\#16221B\]:hover {
+  color: #FFFFFF !important;
 }
 
 /* Tertiary / Subtle Text */
 .dark .text-\[\#718277\],
 .dark .text-\[\#889B8F\] {
-  color: #5C7267 !important;
+  color: #647C6F !important;
 }
 
 /* Green Brand Accents & Icons */
 .dark .text-\[\#12382B\],
 .dark .text-\[\#1B4D3E\] {
-  color: #22C55E !important;
+  color: #4ADE80 !important;
 }
 
-/* Active Buttons & Pills */
+/* Active Buttons & Navigation Pills */
 .dark .bg-\[\#12382B\] {
-  background-color: #0E281F !important;
-  border-color: #1B4B38 !important;
+  background-color: #0E2A1F !important;
+  border-color: #22C55E !important;
 }
 
 .dark .hover\:bg-\[\#1A4C3B\]:hover {
-  background-color: #16382A !important;
+  background-color: #163B2C !important;
 }
 
 .dark .bg-\[\#12382B\].text-white,
@@ -136,15 +161,61 @@
   color: #22C55E !important;
 }
 
+/* Selected row in table */
+.dark tr.bg-\[\#12382B\].text-white {
+  background-color: #143A29 !important;
+  color: #FFFFFF !important;
+}
+
+/* ========================================================================= */
+/* Jewel-Tone Badges in Dark Mode (Eliminating Washed-Out Pastels)            */
+/* ========================================================================= */
+
+.dark .bg-\[\#FEE2E2\] {
+  background-color: rgba(220, 38, 38, 0.18) !important;
+  border-color: rgba(220, 38, 38, 0.40) !important;
+  color: #F87171 !important;
+}
+
+.dark .bg-\[\#DCFCE7\] {
+  background-color: rgba(22, 163, 74, 0.18) !important;
+  border-color: rgba(22, 163, 74, 0.40) !important;
+  color: #4ADE80 !important;
+}
+
+.dark .bg-\[\#E0F2FE\] {
+  background-color: rgba(2, 132, 199, 0.18) !important;
+  border-color: rgba(2, 132, 199, 0.40) !important;
+  color: #38BDF8 !important;
+}
+
+.dark .bg-\[\#E0E7FF\] {
+  background-color: rgba(79, 70, 229, 0.18) !important;
+  border-color: rgba(79, 70, 229, 0.40) !important;
+  color: #818CF8 !important;
+}
+
+.dark .bg-\[\#FEF3C7\] {
+  background-color: rgba(217, 119, 6, 0.18) !important;
+  border-color: rgba(217, 119, 6, 0.40) !important;
+  color: #FBBF24 !important;
+}
+
+.dark .bg-\[\#D8DECFC0\] {
+  background-color: rgba(34, 197, 94, 0.15) !important;
+  border-color: rgba(34, 197, 94, 0.35) !important;
+  color: #4ADE80 !important;
+}
+
 /* Form selects & options */
 .dark select {
-  background-color: #060D0A !important;
-  color: #E8EFEB !important;
-  border-color: #14261F !important;
+  background-color: #07120D !important;
+  color: #FFFFFF !important;
+  border-color: #172F23 !important;
 }
 .dark select option {
-  background-color: #060D0A !important;
-  color: #E8EFEB !important;
+  background-color: #07120D !important;
+  color: #FFFFFF !important;
 }
 
 /* Scrollbars */
@@ -169,11 +240,11 @@
 }
 .dark::-webkit-scrollbar-thumb,
 .dark ::-webkit-scrollbar-thumb {
-  background: #14261F !important;
+  background: #172F23 !important;
 }
 .dark::-webkit-scrollbar-thumb:hover,
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: #1E3A2F !important;
+  background: #224332 !important;
 }
 
 .scrollbar-none::-webkit-scrollbar {

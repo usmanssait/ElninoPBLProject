@@ -319,23 +319,31 @@ export const DistrictDetailPanel: React.FC<DistrictDetailPanelProps> = ({
                     key={d.id}
                     onClick={() => setSelectedDistrictId(d.id)}
                     className={`cursor-pointer transition-colors ${
-                      isSelected ? 'bg-[#D9E2D5] font-semibold text-[#12382B]' : 'hover:bg-[#F2F4EE]'
+                      isSelected
+                        ? 'bg-[#12382B] text-white font-semibold shadow-xs'
+                        : 'hover:bg-[#F2F4EE]'
                     }`}
                   >
-                    <td className="py-1 px-2 text-[#16221B] font-medium">{d.name}</td>
-                    <td className="py-1 px-1.5 text-right text-[#526458]">
+                    <td className={`py-1 px-2 font-medium ${isSelected ? 'text-white' : 'text-[#16221B]'}`}>{d.name}</td>
+                    <td className={`py-1 px-1.5 text-right ${isSelected ? 'text-emerald-100' : 'text-[#526458]'}`}>
                       {metric?.yieldTonnesHa !== null && metric?.yieldTonnesHa !== undefined
                         ? metric.yieldTonnesHa.toFixed(2)
                         : '—'}
                     </td>
-                    <td className="py-1 px-1.5 text-right text-[#718277]">
+                    <td className={`py-1 px-1.5 text-right ${isSelected ? 'text-emerald-200/70' : 'text-[#718277]'}`}>
                       {metric?.baselineYieldTonnesHa !== null && metric?.baselineYieldTonnesHa !== undefined
                         ? metric.baselineYieldTonnesHa.toFixed(2)
                         : '—'}
                     </td>
                     <td
                       className={`py-1 px-1.5 text-right font-bold ${
-                        isFail ? 'text-[#DC2626]' : 'text-[#16A34A]'
+                        isSelected
+                          ? isFail
+                            ? 'text-red-300'
+                            : 'text-emerald-300'
+                          : isFail
+                          ? 'text-[#DC2626]'
+                          : 'text-[#16A34A]'
                       }`}
                     >
                       {metric?.yieldAnomalyPct !== null && metric?.yieldAnomalyPct !== undefined

@@ -283,6 +283,16 @@ export const DistrictChoropleth: React.FC<DistrictChoroplethProps> = ({
             willChange: isDragging || isWheeling ? 'transform' : 'auto',
           }}
         >
+          {/* SVG Definitions for Liquid Glass Filters and Glow */}
+          <defs>
+            <filter id="glass-selection-glow" x="-25%" y="-25%" width="150%" height="150%">
+              <feDropShadow dx="0" dy="0" stdDeviation="4.5" floodColor="#38BDF8" floodOpacity="0.85" />
+            </filter>
+            <filter id="glass-hover-glow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="0" stdDeviation="3.5" floodColor="#4ADE80" floodOpacity="0.70" />
+            </filter>
+          </defs>
+
           {/* Layer 0: High-Resolution GEE Sentinel-2 + DEM Satellite Terrain Background */}
           <g className="map-terrain-layer pointer-events-none" style={{ pointerEvents: 'none' }}>
             <image
@@ -293,13 +303,13 @@ export const DistrictChoropleth: React.FC<DistrictChoroplethProps> = ({
               height="2394.6"
               preserveAspectRatio="none"
               style={{
-                filter: 'saturate(0.96) contrast(1.08) brightness(0.90)',
+                filter: 'saturate(1.18) contrast(1.12) brightness(0.96)',
                 pointerEvents: 'none',
               }}
             />
           </g>
 
-          {/* Layer 1: District Polygons & Boundaries */}
+          {/* Layer 1: Apple-style Liquid Glass District Polygons */}
           <g className="map-polygons-layer">
             {MAHARASHTRA_GEOJSON_POLYGONS.map(poly => {
               const isSelected = selectedDistrictId === poly.id;
@@ -307,25 +317,49 @@ export const DistrictChoropleth: React.FC<DistrictChoroplethProps> = ({
               const fillColor = getDistrictFill(poly.id);
               const isNonRice = fillColor === '#14221C';
 
+              // Liquid Glass Transparency:
+              // Monitored districts: 0.30 base opacity so lush satellite terrain is seen through it
+              // Non-monitored: 0.06 subtle tint
+              // Hovered: 0.46
+              // Selected: 0.58
+              const fillOpacity = isSelected
+                ? 0.58
+                : isHovered
+                ? 0.46
+                : isNonRice
+                ? 0.06
+                : 0.30;
+
+              // Apple Liquid Glass Rim Stroke
+              let strokeColor = 'rgba(255, 255, 255, 0.22)';
+              let strokeWidth = 0.85;
+
+              if (isSelected) {
+                strokeColor = '#38BDF8';
+                strokeWidth = 2.8;
+              } else if (isHovered) {
+                strokeColor = fillColor === '#EF4444' ? '#FCA5A5' : '#86EFAC';
+                strokeWidth = 2.0;
+              } else if (!isNonRice) {
+                strokeColor = fillColor === '#EF4444' ? 'rgba(248, 113, 113, 0.90)' : 'rgba(74, 222, 128, 0.90)';
+                strokeWidth = 1.3;
+              }
+
               return (
                 <path
                   key={poly.id}
                   d={poly.path}
-                  fill={fillColor}
-                  fillOpacity={
-                    isSelected
-                      ? 0.84
-                      : isHovered
-                      ? 0.78
-                      : isNonRice
-                      ? 0.40
-                      : 0.68
-                  }
-                  stroke={isSelected ? '#38BDF8' : isHovered ? '#4ADE80' : 'rgba(5, 18, 12, 0.9)'}
-                  strokeWidth={isSelected ? 2.5 : isHovered ? 2.0 : 0.85}
+                  fill={isNonRice ? '#06120D' : fillColor}
+                  fillOpacity={fillOpacity}
+                  stroke={strokeColor}
+                  strokeWidth={strokeWidth}
                   strokeLinejoin="round"
                   strokeLinecap="round"
-                  className="transition-colors cursor-pointer"
+                  filter={isSelected ? 'url(#glass-selection-glow)' : isHovered ? 'url(#glass-hover-glow)' : undefined}
+                  style={{
+                    transition: 'fill-opacity 220ms ease, stroke 220ms ease, stroke-width 220ms ease',
+                  }}
+                  className="cursor-pointer"
                   onClick={e => {
                     e.stopPropagation();
                     if (!hasDraggedRef.current) {
