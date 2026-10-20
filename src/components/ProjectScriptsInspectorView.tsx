@@ -228,33 +228,33 @@ pause`
   const current = scriptsData[activeScript];
 
   return (
-    <div className="space-y-6 max-w-7xl mx-auto pb-12 text-[#F1E9D9]">
+    <div className="space-y-6 max-w-7xl mx-auto pb-12 text-[#16221B]">
       {/* Title Banner */}
-      <div className="border border-[#444D3E] bg-[#232A20] rounded-2xl p-6 shadow-xl">
+      <div className="border border-[#CCD2C4] bg-[#E2E6DC] rounded-2xl p-6 shadow-xs">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="space-y-1">
-            <div className="flex items-center gap-2 text-xs font-mono text-[#8B8C5A]">
+            <div className="flex items-center gap-2 text-xs font-mono text-[#12382B]">
               <span className="font-semibold tracking-wider uppercase">Local Execution Engine</span>
-              <span aria-hidden="true">·</span>
-              <span className="text-slate-400">Preprocessing, Mapping & Streamlit</span>
+              <span aria-hidden="true" className="text-[#889B8F]">·</span>
+              <span className="text-[#526458]">Preprocessing, Mapping & Streamlit</span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#16221B] font-serif">
               Project Python Scripts & Data Pipeline
             </h1>
-            <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#526458] max-w-3xl leading-relaxed">
               Standalone Python data engineering and spatial choropleth scripts built for local execution without external cloud dependencies.
             </p>
           </div>
 
           <div className="flex items-center gap-2 shrink-0">
-            <span className="px-3.5 py-2 rounded-xl bg-[#192116] border border-[#444D3E] text-xs font-mono text-[#8B8C5A] font-bold">
+            <span className="px-3.5 py-2 rounded-xl bg-white border border-[#CCD2C4] text-xs font-mono text-[#12382B] font-bold shadow-2xs">
               Standalone Python 3.11
             </span>
           </div>
         </div>
 
         {/* Script Selector Tabs */}
-        <div className="flex flex-wrap items-center gap-2 mt-6 pt-5 border-t border-[#3B4335]">
+        <div className="flex flex-wrap items-center gap-2 mt-6 pt-5 border-t border-[#CCD2C4]">
           {(Object.keys(scriptsData) as Array<keyof typeof scriptsData>).map(key => {
             const item = scriptsData[key];
             const isActive = activeScript === key;
@@ -264,8 +264,8 @@ pause`
                 onClick={() => setActiveScript(key)}
                 className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-mono transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-[#8B8C5A] text-[#192116] font-bold shadow-xs'
-                    : 'text-[#B5B0A4] hover:text-[#F1E9D9] bg-[#192116] border border-[#3B4335]'
+                    ? 'bg-[#12382B] text-white font-bold shadow-xs'
+                    : 'text-[#526458] hover:text-[#16221B] bg-white border border-[#CCD2C4]'
                 }`}
               >
                 <FileCode2 className="w-3.5 h-3.5" />
@@ -277,31 +277,31 @@ pause`
       </div>
 
       {/* Script Detail Card */}
-      <div className="p-6 rounded-2xl border border-[#444D3E] bg-[#232A20] shadow-xl space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#3B4335]">
+      <div className="p-6 rounded-2xl border border-[#CCD2C4] bg-[#E2E6DC] shadow-xs space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#CCD2C4]">
           <div>
             <div className="flex items-center gap-2">
-              <h3 className="text-base font-bold font-mono text-white flex items-center gap-2">
+              <h3 className="text-base font-bold font-mono text-[#16221B] flex items-center gap-2">
                 <span>{current.filename}</span>
               </h3>
-              <span className="text-[11px] font-mono text-slate-400">({current.path})</span>
+              <span className="text-[11px] font-mono text-[#718277]">({current.path})</span>
             </div>
-            <p className="text-xs text-slate-300 mt-1">{current.description}</p>
+            <p className="text-xs text-[#526458] mt-1">{current.description}</p>
           </div>
 
           <div className="flex items-center gap-2">
             <button
               onClick={() => copyToClipboard(current.code, activeScript)}
-              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-[#192116] hover:bg-[#2C3428] text-[#F1E9D9] border border-[#444D3E] transition-colors cursor-pointer shadow-xs"
+              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-white hover:bg-[#12382B] hover:text-white text-[#12382B] border border-[#CCD2C4] transition-colors cursor-pointer shadow-2xs"
             >
               {copied === activeScript ? (
                 <>
-                  <Check className="w-3.5 h-3.5 text-emerald-400" />
-                  <span className="text-emerald-300">Copied</span>
+                  <Check className="w-3.5 h-3.5 text-[#16A34A]" />
+                  <span className="text-[#16A34A]">Copied</span>
                 </>
               ) : (
                 <>
-                  <Copy className="w-3.5 h-3.5 text-[#8B8C5A]" />
+                  <Copy className="w-3.5 h-3.5 text-[#12382B]" />
                   <span>Copy Script</span>
                 </>
               )}
@@ -310,12 +310,12 @@ pause`
         </div>
 
         {/* Technical Highlights */}
-        <div className="p-4 rounded-xl bg-[#192116] border border-[#3B4335] text-xs">
-          <div className="text-xs font-bold text-white mb-2 flex items-center gap-1.5 font-mono">
-            <Layers className="w-3.5 h-3.5 text-[#8B8C5A]" />
+        <div className="p-4 rounded-xl bg-white border border-[#CCD2C4] text-xs shadow-2xs">
+          <div className="text-xs font-bold text-[#16221B] mb-2 flex items-center gap-1.5 font-mono">
+            <Layers className="w-3.5 h-3.5 text-[#12382B]" />
             <span>Key Computational Workflow:</span>
           </div>
-          <ul className="space-y-1 text-slate-300 pl-4 list-disc marker:text-[#8B8C5A]">
+          <ul className="space-y-1 text-[#526458] pl-4 list-disc marker:text-[#12382B]">
             {current.highlights.map((h, i) => (
               <li key={i}>{h}</li>
             ))}
@@ -323,15 +323,15 @@ pause`
         </div>
 
         {/* Code Content Box */}
-        <div className="relative rounded-xl overflow-hidden border border-[#3B4335] bg-[#141911]">
-          <div className="flex items-center justify-between px-4 py-2 bg-[#192116] border-b border-[#3B4335] text-[11px] font-mono text-slate-400">
+        <div className="relative rounded-xl overflow-hidden border border-[#CCD2C4] bg-[#0E1712]">
+          <div className="flex items-center justify-between px-4 py-2 bg-[#080E0B] border-b border-[#1A2E24] text-[11px] font-mono text-[#80978E]">
             <span className="flex items-center gap-1.5">
-              <Terminal className="w-3 h-3 text-[#8B8C5A]" />
+              <Terminal className="w-3 h-3 text-[#22C55E]" />
               <span>Python 3.11</span>
             </span>
             <span>{current.code.split('\n').length} lines</span>
           </div>
-          <pre className="p-4 text-xs font-mono text-slate-300 overflow-x-auto leading-relaxed max-h-[500px] overflow-y-auto">
+          <pre className="p-4 text-xs font-mono text-[#D4E2D9] overflow-x-auto leading-relaxed max-h-[500px] overflow-y-auto">
             <code>{current.code}</code>
           </pre>
         </div>

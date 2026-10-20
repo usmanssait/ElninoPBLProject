@@ -212,15 +212,15 @@ export const DistrictChoropleth: React.FC<DistrictChoroplethProps> = ({
 
   return (
     <div
-      className={`rounded-2xl bg-[#091410] border border-[#14261F] p-3.5 relative overflow-hidden shadow-xs ${className}`}
+      className={`rounded-2xl bg-[#E2E6DC] border border-[#CCD2C4] p-3.5 relative overflow-hidden shadow-xs ${className}`}
     >
       {/* Map Header & Legend Row */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-2.5 border-b border-[#14261F]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-2.5 border-b border-[#CCD2C4]">
         <div>
-          <h2 className="text-sm font-bold text-white tracking-tight">
+          <h2 className="text-sm font-bold text-[#16221B] tracking-tight">
             {title || `Maharashtra District Risk Map (Kharif ${cropYearStr})`}
           </h2>
-          <p className="text-[11px] text-[#80978E] mt-0.5">
+          <p className="text-[11px] text-[#526458] mt-0.5">
             District-wise classification based on &gt;10% yield deficit below historical 5-year baseline
           </p>
         </div>
@@ -229,19 +229,19 @@ export const DistrictChoropleth: React.FC<DistrictChoroplethProps> = ({
         <div className="flex items-center gap-3 text-xs font-medium shrink-0 flex-wrap">
           <div className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-[#EF4444]" />
-            <span className="text-[#F87171] font-mono text-[10px]">Failure (Deficit &gt; 10%)</span>
+            <span className="text-[#DC2626] font-mono text-[10px] font-semibold">Failure (&gt;10% Deficit)</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#10B981]" />
-            <span className="text-[#34D399] font-mono text-[10px]">Resilient (&le; 10%)</span>
+            <span className="w-2.5 h-2.5 rounded-full bg-[#16A34A]" />
+            <span className="text-[#16A34A] font-mono text-[10px] font-semibold">Resilient (&le;10%)</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#14221C] border border-[#23332A]" />
-            <span className="text-[#7A9187] font-mono text-[10px]">Non-Rice District</span>
+            <span className="w-2.5 h-2.5 rounded-full bg-[#CBD5E1] border border-[#94A3B8]" />
+            <span className="text-[#526458] font-mono text-[10px]">Non-Target District</span>
           </div>
-          <div className="flex items-center gap-1.5 pl-2 border-l border-[#14261F]">
-            <span className="w-2 h-2 rounded-full bg-[#38BDF8] animate-pulse" />
-            <span className="text-[#67E8F9] font-mono text-[10px]">Satellite Terrain Layer</span>
+          <div className="flex items-center gap-1.5 pl-2 border-l border-[#CCD2C4]">
+            <span className="w-2 h-2 rounded-full bg-[#0284C7] animate-pulse" />
+            <span className="text-[#0284C7] font-mono text-[10px] font-semibold">Satellite Terrain Layer</span>
           </div>
         </div>
       </div>

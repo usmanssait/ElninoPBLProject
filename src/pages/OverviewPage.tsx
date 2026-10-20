@@ -50,14 +50,14 @@ export const OverviewPage: React.FC = () => {
   };
 
   return (
-    <div className="space-y-3.5 w-full text-[#E8EFEB]">
+    <div className="space-y-3.5 w-full text-[#16221B]">
       {/* 1. Page Header with Title */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-[#14261F]/60">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-[#CCD2C4]">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
+          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-[#16221B] font-serif">
             Maharashtra District Risk &amp; Historical Intelligence
           </h1>
-          <p className="text-xs text-[#80978E] mt-0.5 font-medium">
+          <p className="text-xs text-[#526458] mt-0.5 font-medium">
             Spatiotemporal CNN-LSTM Framework for All-Kharif Crop Failure Prediction using Satellite Imagery and IMD Data
           </p>
         </div>

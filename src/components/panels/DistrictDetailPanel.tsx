@@ -92,11 +92,11 @@ export const DistrictDetailPanel: React.FC<DistrictDetailPanelProps> = ({
 
   return (
     <div
-      className={`rounded-2xl bg-[#091410] border border-[#14261F] p-3.5 space-y-3 shadow-xs flex flex-col justify-between ${className}`}
+      className={`rounded-2xl bg-[#E2E6DC] border border-[#CCD2C4] p-3.5 space-y-3 shadow-xs flex flex-col justify-between ${className}`}
     >
       {/* 1. Header: > District Insights with Year, Crop & District selectors */}
-      <div className="flex flex-wrap items-center justify-between gap-2 pb-2.5 border-b border-[#14261F]/60">
-        <div className="flex items-center gap-1.5 text-xs font-mono text-[#22C55E] font-bold">
+      <div className="flex flex-wrap items-center justify-between gap-2 pb-2.5 border-b border-[#CCD2C4]">
+        <div className="flex items-center gap-1.5 text-xs font-mono text-[#12382B] font-bold">
           <span>&gt; District Insights</span>
         </div>
 
@@ -112,10 +112,10 @@ export const DistrictDetailPanel: React.FC<DistrictDetailPanelProps> = ({
             <select
               value={selectedDistrictId}
               onChange={e => setSelectedDistrictId(e.target.value)}
-              className="bg-[#0B1A14] border border-[#173026] text-white rounded-xl px-2.5 py-2 text-xs font-mono cursor-pointer focus:outline-hidden hover:border-[#22C55E]/60 transition-colors"
+              className="bg-white border border-[#CCD2C4] text-[#16221B] rounded-xl px-2.5 py-2 text-xs font-mono cursor-pointer focus:outline-hidden hover:border-[#12382B] transition-colors shadow-xs"
             >
               {monitoredDistrictsForCrop.map(d => (
-                <option key={d.id} value={d.id} className="bg-[#08120E] text-white">
+                <option key={d.id} value={d.id} className="bg-white text-[#16221B]">
                   {d.name}
                 </option>
               ))}
@@ -126,10 +126,10 @@ export const DistrictDetailPanel: React.FC<DistrictDetailPanelProps> = ({
             <button
               onClick={onDownloadCsv}
               type="button"
-              className="p-2 rounded-xl bg-[#0B1A14] border border-[#173026] text-[#A4B8AF] hover:text-white hover:border-[#22C55E] transition-all cursor-pointer shadow-xs"
+              className="p-2 rounded-xl bg-white border border-[#CCD2C4] text-[#526458] hover:text-[#12382B] hover:border-[#12382B] transition-all cursor-pointer shadow-xs"
               title="Download CSV"
             >
-              <Download className="w-3.5 h-3.5 text-[#22C55E]" />
+              <Download className="w-3.5 h-3.5 text-[#12382B]" />
             </button>
           )}
         </div>
@@ -138,20 +138,20 @@ export const DistrictDetailPanel: React.FC<DistrictDetailPanelProps> = ({
       {/* 2. District Title & Status Badge */}
       <div className="flex items-start justify-between gap-2.5">
         <div>
-          <h3 className="text-xl font-bold text-white tracking-tight">
+          <h3 className="text-xl font-bold text-[#16221B] tracking-tight">
             {selectedDistrictInfo.name}
           </h3>
-          <span className="text-[11px] text-[#80978E] font-medium block mt-0.5">
+          <span className="text-[11px] text-[#526458] font-medium block mt-0.5">
             {selectedDistrictInfo.division} Division &bull; {selectedDistrictInfo.agroZone}
             {selectedDistrictMetric?.crop && (
-              <span className="text-[#22C55E] ml-1.5 font-mono">[{selectedDistrictMetric.crop}]</span>
+              <span className="text-[#12382B] ml-1.5 font-mono font-semibold">[{selectedDistrictMetric.crop}]</span>
             )}
           </span>
         </div>
 
         {/* Status Badge */}
         {!hasCropData ? (
-          <span className="px-2 py-0.5 rounded-lg text-[10px] font-mono font-bold flex items-center gap-1 shrink-0 bg-[#14221C] text-[#80978E] border border-[#23332A]" title="Crop not commercially monitored in this district">
+          <span className="px-2 py-0.5 rounded-lg text-[10px] font-mono font-bold flex items-center gap-1 shrink-0 bg-[#D2D8CA] text-[#526458] border border-[#CCD2C4]" title="Crop not commercially monitored in this district">
             <ShieldAlert className="w-3 h-3" />
             <span>NOT GROWN</span>
           </span>
@@ -159,8 +159,8 @@ export const DistrictDetailPanel: React.FC<DistrictDetailPanelProps> = ({
           <span
             className={`px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold flex items-center gap-1.5 shrink-0 ${
               isFailure
-                ? 'bg-[#2E1212] text-[#EF4444] border border-[#591C1C]'
-                : 'bg-[#0E281F] text-[#22C55E] border border-[#1B4B38]'
+                ? 'bg-[#FEE2E2] text-[#DC2626] border border-[#FECACA]'
+                : 'bg-[#DCFCE7] text-[#16A34A] border border-[#BBF7D0]'
             }`}
           >
             {isFailure ? <AlertCircle className="w-3 h-3" /> : <CheckCircle2 className="w-3 h-3" />}
@@ -172,83 +172,83 @@ export const DistrictDetailPanel: React.FC<DistrictDetailPanelProps> = ({
       {/* 3. 2x2 Metric Grid */}
       <div className="grid grid-cols-2 gap-2">
         {/* Metric 1: Observed Yield */}
-        <div className="p-2.5 rounded-xl bg-[#060D0A] border border-[#14261F]">
-          <span className="text-[9px] text-[#7A9187] uppercase font-mono block">
+        <div className="p-2.5 rounded-xl bg-[#EAECE4] border border-[#CCD2C4]">
+          <span className="text-[9px] text-[#526458] uppercase font-mono block">
             Observed Yield
           </span>
-          <span className="text-base font-bold font-mono text-white block mt-0.5">
+          <span className="text-base font-bold font-mono text-[#16221B] block mt-0.5">
             {selectedDistrictMetric?.yieldTonnesHa !== null && selectedDistrictMetric?.yieldTonnesHa !== undefined
               ? `${selectedDistrictMetric.yieldTonnesHa.toFixed(2)} t/ha`
               : 'N/A'}
           </span>
-          <span className="text-[9px] text-[#5A7167] font-mono block">
+          <span className="text-[9px] text-[#718277] font-mono block">
             Harvest yield (DES)
           </span>
         </div>
 
         {/* Metric 2: 5-Yr Baseline Yield */}
-        <div className="p-2.5 rounded-xl bg-[#060D0A] border border-[#14261F]">
-          <span className="text-[9px] text-[#7A9187] uppercase font-mono block">
+        <div className="p-2.5 rounded-xl bg-[#EAECE4] border border-[#CCD2C4]">
+          <span className="text-[9px] text-[#526458] uppercase font-mono block">
             5-Yr Baseline Yield
           </span>
-          <span className="text-base font-bold font-mono text-white block mt-0.5">
+          <span className="text-base font-bold font-mono text-[#16221B] block mt-0.5">
             {selectedDistrictMetric?.baselineYieldTonnesHa !== null && selectedDistrictMetric?.baselineYieldTonnesHa !== undefined
               ? `${selectedDistrictMetric.baselineYieldTonnesHa.toFixed(2)} t/ha`
               : 'N/A'}
           </span>
-          <span className="text-[9px] text-[#5A7167] font-mono block">
+          <span className="text-[9px] text-[#718277] font-mono block">
             Zero-leakage prior mean
           </span>
         </div>
 
         {/* Metric 3: Yield Departure */}
-        <div className="p-2.5 rounded-xl bg-[#060D0A] border border-[#14261F]">
-          <span className="text-[9px] text-[#7A9187] uppercase font-mono block">
+        <div className="p-2.5 rounded-xl bg-[#EAECE4] border border-[#CCD2C4]">
+          <span className="text-[9px] text-[#526458] uppercase font-mono block">
             Yield Departure
           </span>
           <span
             className={`text-base font-bold font-mono block mt-0.5 ${
               (selectedDistrictMetric?.yieldAnomalyPct ?? 0) < -10
-                ? 'text-[#D93838]'
-                : 'text-[#22C55E]'
+                ? 'text-[#DC2626]'
+                : 'text-[#16A34A]'
             }`}
           >
             {selectedDistrictMetric?.yieldAnomalyPct !== null && selectedDistrictMetric?.yieldAnomalyPct !== undefined
               ? `${selectedDistrictMetric.yieldAnomalyPct > 0 ? '+' : ''}${selectedDistrictMetric.yieldAnomalyPct.toFixed(1)}%`
               : 'N/A'}
           </span>
-          <span className="text-[9px] text-[#5A7167] font-mono block">
+          <span className="text-[9px] text-[#718277] font-mono block">
             vs. 5-yr baseline
           </span>
         </div>
 
         {/* Metric 4: Monsoon Rainfall */}
-        <div className="p-2.5 rounded-xl bg-[#060D0A] border border-[#14261F]">
-          <span className="text-[9px] text-[#7A9187] uppercase font-mono block">
+        <div className="p-2.5 rounded-xl bg-[#EAECE4] border border-[#CCD2C4]">
+          <span className="text-[9px] text-[#526458] uppercase font-mono block">
             Monsoon Rainfall
           </span>
-          <span className="text-base font-bold font-mono text-white block mt-0.5">
+          <span className="text-base font-bold font-mono text-[#16221B] block mt-0.5">
             {selectedDistrictMetric?.rainfallMm !== null && selectedDistrictMetric?.rainfallMm !== undefined
               ? `${Math.round(selectedDistrictMetric.rainfallMm).toLocaleString()} mm`
               : 'N/A'}
           </span>
-          <span className="text-[9px] text-[#5A7167] font-mono block">
+          <span className="text-[9px] text-[#718277] font-mono block">
             Gridded IMD 0.25°
           </span>
         </div>
       </div>
 
       {/* 4. Key Environmental Observations */}
-      <div className="space-y-1.5 pt-1.5 border-t border-[#14261F]/60">
-        <span className="text-[11px] font-bold text-white block">Environmental Observations</span>
+      <div className="space-y-1.5 pt-1.5 border-t border-[#CCD2C4]">
+        <span className="text-[11px] font-bold text-[#16221B] block">Environmental Observations</span>
         <div className="grid grid-cols-3 gap-2">
           {/* Rainfall Badge */}
-          <div className="p-2 rounded-xl bg-[#060D0A] border border-[#14261F] flex flex-col justify-between">
-            <div className="flex items-center gap-1 text-[#38BDF8]">
+          <div className="p-2 rounded-xl bg-[#EAECE4] border border-[#CCD2C4] flex flex-col justify-between">
+            <div className="flex items-center gap-1 text-[#0284C7]">
               <CloudRain className="w-3 h-3" />
               <span className="text-[9px] font-bold">Rainfall</span>
             </div>
-            <span className="text-[11px] font-mono text-white mt-0.5 font-bold">
+            <span className="text-[11px] font-mono text-[#16221B] mt-0.5 font-bold">
               {selectedDistrictMetric?.rainfallMm !== null && selectedDistrictMetric?.rainfallMm !== undefined
                 ? `${Math.round(selectedDistrictMetric.rainfallMm)} mm`
                 : 'N/A'}
@@ -256,12 +256,12 @@ export const DistrictDetailPanel: React.FC<DistrictDetailPanelProps> = ({
           </div>
 
           {/* El Niño Badge */}
-          <div className="p-2 rounded-xl bg-[#060D0A] border border-[#14261F] flex flex-col justify-between">
-            <div className="flex items-center gap-1 text-[#D93838]">
+          <div className="p-2 rounded-xl bg-[#EAECE4] border border-[#CCD2C4] flex flex-col justify-between">
+            <div className="flex items-center gap-1 text-[#DC2626]">
               <Thermometer className="w-3 h-3" />
-              <span className="text-[9px] font-bold">! Niño</span>
+              <span className="text-[9px] font-bold">El Niño</span>
             </div>
-            <span className="text-[11px] font-mono text-white mt-0.5 font-bold">
+            <span className="text-[11px] font-mono text-[#16221B] mt-0.5 font-bold">
               {oniInfo
                 ? `${oniInfo.meanEarlyWarningSstAnomaly > 0 ? '+' : ''}${oniInfo.meanEarlyWarningSstAnomaly.toFixed(1)}°C`
                 : 'N/A'}
@@ -269,12 +269,12 @@ export const DistrictDetailPanel: React.FC<DistrictDetailPanelProps> = ({
           </div>
 
           {/* Cropland Area Badge */}
-          <div className="p-2 rounded-xl bg-[#060D0A] border border-[#14261F] flex flex-col justify-between">
-            <div className="flex items-center gap-1 text-[#22C55E]">
+          <div className="p-2 rounded-xl bg-[#EAECE4] border border-[#CCD2C4] flex flex-col justify-between">
+            <div className="flex items-center gap-1 text-[#12382B]">
               <Sprout className="w-3 h-3" />
               <span className="text-[9px] font-bold">Cropland</span>
             </div>
-            <span className="text-[11px] font-mono text-white mt-0.5 font-bold">
+            <span className="text-[11px] font-mono text-[#16221B] mt-0.5 font-bold">
               {(selectedDistrictInfo.normalKharifAreaHa / 1000).toFixed(0)}k ha
             </span>
           </div>
@@ -282,24 +282,24 @@ export const DistrictDetailPanel: React.FC<DistrictDetailPanelProps> = ({
       </div>
 
       {/* 5. District Comparison Table */}
-      <div className="space-y-1.5 pt-1.5 border-t border-[#14261F]/60">
+      <div className="space-y-1.5 pt-1.5 border-t border-[#CCD2C4]">
         <div className="flex items-center justify-between">
-          <span className="text-[11px] font-bold text-white">District Comparison</span>
+          <span className="text-[11px] font-bold text-[#16221B]">District Comparison</span>
           <div className="relative w-32">
-            <Search className="w-3 h-3 text-[#7A9187] absolute left-2 top-1/2 -translate-y-1/2" />
+            <Search className="w-3 h-3 text-[#526458] absolute left-2 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={comparisonSearch}
               onChange={e => setComparisonSearch(e.target.value)}
               placeholder="Search..."
-              className="w-full pl-6 pr-2 py-0.5 bg-[#060D0A] border border-[#14261F] rounded-lg text-[10px] text-white focus:outline-hidden font-mono placeholder:text-[#5A7167]"
+              className="w-full pl-6 pr-2 py-0.5 bg-white border border-[#CCD2C4] rounded-lg text-[10px] text-[#16221B] focus:outline-hidden font-mono placeholder:text-[#889B8F]"
             />
           </div>
         </div>
 
-        <div className="overflow-x-auto max-h-36 border border-[#14261F] rounded-xl bg-[#060D0A]">
+        <div className="overflow-x-auto max-h-36 border border-[#CCD2C4] rounded-xl bg-white">
           <table className="w-full text-left text-[10px] font-mono">
-            <thead className="bg-[#091410] text-[#7A9187] sticky top-0 border-b border-[#14261F]">
+            <thead className="bg-[#EAECE4] text-[#526458] sticky top-0 border-b border-[#CCD2C4]">
               <tr>
                 <th className="py-1.5 px-2 font-sans font-semibold">District</th>
                 <th className="py-1.5 px-1.5 text-right">Yield</th>
@@ -308,7 +308,7 @@ export const DistrictDetailPanel: React.FC<DistrictDetailPanelProps> = ({
                 <th className="py-1.5 px-2 text-center">Status</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#14261F]">
+            <tbody className="divide-y divide-[#CCD2C4]">
               {comparisonDistricts.map(d => {
                 const metric = currentYearMetrics[d.id];
                 const isFail = metric?.failureEvent === 1;
@@ -319,23 +319,23 @@ export const DistrictDetailPanel: React.FC<DistrictDetailPanelProps> = ({
                     key={d.id}
                     onClick={() => setSelectedDistrictId(d.id)}
                     className={`cursor-pointer transition-colors ${
-                      isSelected ? 'bg-[#0E241B]' : 'hover:bg-[#091611]'
+                      isSelected ? 'bg-[#D9E2D5] font-semibold text-[#12382B]' : 'hover:bg-[#F2F4EE]'
                     }`}
                   >
-                    <td className="py-1 px-2 text-white font-medium">{d.name}</td>
-                    <td className="py-1 px-1.5 text-right text-[#A4B8AF]">
+                    <td className="py-1 px-2 text-[#16221B] font-medium">{d.name}</td>
+                    <td className="py-1 px-1.5 text-right text-[#526458]">
                       {metric?.yieldTonnesHa !== null && metric?.yieldTonnesHa !== undefined
                         ? metric.yieldTonnesHa.toFixed(2)
                         : '—'}
                     </td>
-                    <td className="py-1 px-1.5 text-right text-[#7A9187]">
+                    <td className="py-1 px-1.5 text-right text-[#718277]">
                       {metric?.baselineYieldTonnesHa !== null && metric?.baselineYieldTonnesHa !== undefined
                         ? metric.baselineYieldTonnesHa.toFixed(2)
                         : '—'}
                     </td>
                     <td
                       className={`py-1 px-1.5 text-right font-bold ${
-                        isFail ? 'text-[#D93838]' : 'text-[#22C55E]'
+                        isFail ? 'text-[#DC2626]' : 'text-[#16A34A]'
                       }`}
                     >
                       {metric?.yieldAnomalyPct !== null && metric?.yieldAnomalyPct !== undefined
@@ -346,8 +346,8 @@ export const DistrictDetailPanel: React.FC<DistrictDetailPanelProps> = ({
                       <span
                         className={`px-1 py-0.2 rounded text-[8.5px] font-bold ${
                           isFail
-                            ? 'bg-[#2E1212] text-[#D93838]'
-                            : 'bg-[#0E281F] text-[#22C55E]'
+                            ? 'bg-[#FEE2E2] text-[#DC2626]'
+                            : 'bg-[#DCFCE7] text-[#16A34A]'
                         }`}
                       >
                         {isFail ? 'Fail' : 'OK'}
@@ -362,15 +362,15 @@ export const DistrictDetailPanel: React.FC<DistrictDetailPanelProps> = ({
       </div>
 
       {/* 6. Region-wise Status Breakdown */}
-      <div className="space-y-1 pt-1.5 border-t border-[#14261F]/60">
-        <div className="flex items-center justify-between text-[11px] font-bold text-white">
+      <div className="space-y-1 pt-1.5 border-t border-[#CCD2C4]">
+        <div className="flex items-center justify-between text-[11px] font-bold text-[#16221B]">
           <span>Region-wise Status</span>
-          <div className="flex items-center gap-2 text-[9px] font-mono text-[#7A9187]">
+          <div className="flex items-center gap-2 text-[9px] font-mono text-[#526458]">
             <span className="flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#D93838]"></span> Fail
+              <span className="w-1.5 h-1.5 rounded-full bg-[#DC2626]"></span> Fail
             </span>
             <span className="flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#22C55E]"></span> Resilient
+              <span className="w-1.5 h-1.5 rounded-full bg-[#16A34A]"></span> Resilient
             </span>
           </div>
         </div>
@@ -380,13 +380,13 @@ export const DistrictDetailPanel: React.FC<DistrictDetailPanelProps> = ({
             const stats = getRegionStats(regionName);
             return (
               <div key={regionName} className="space-y-0.5">
-                <div className="flex justify-between text-[#A4B8AF] text-[9.5px]">
+                <div className="flex justify-between text-[#526458] text-[9.5px]">
                   <span>{regionName} ({stats.total})</span>
                   <span>{stats.failurePct}% Fail / {stats.resilientPct}% Resilient</span>
                 </div>
-                <div className="h-1.5 w-full rounded-full bg-[#060D0A] flex overflow-hidden border border-[#14261F]">
-                  <div className="h-full bg-[#D93838]" style={{ width: `${stats.failurePct}%` }} />
-                  <div className="h-full bg-[#22C55E]" style={{ width: `${stats.resilientPct}%` }} />
+                <div className="h-1.5 w-full rounded-full bg-[#CCD2C4] flex overflow-hidden border border-[#B8BFB0]">
+                  <div className="h-full bg-[#DC2626]" style={{ width: `${stats.failurePct}%` }} />
+                  <div className="h-full bg-[#16A34A]" style={{ width: `${stats.resilientPct}%` }} />
                 </div>
               </div>
             );
@@ -395,14 +395,14 @@ export const DistrictDetailPanel: React.FC<DistrictDetailPanelProps> = ({
       </div>
 
       {/* 7. Secondary Collapsibles */}
-      <div className="space-y-1.5 pt-1.5 border-t border-[#14261F]/60">
+      <div className="space-y-1.5 pt-1.5 border-t border-[#CCD2C4]">
         <Collapsible
           title={`Historical Multi-Year Trend (${selectedDistrictInfo.name})`}
           icon={<TrendingUp className="w-3.5 h-3.5" />}
           defaultOpen={false}
         >
           <div className="space-y-1 max-h-32 overflow-y-auto pr-1">
-            <div className="grid grid-cols-4 gap-1 text-[9px] font-mono text-[#7A9187] pb-1 border-b border-[#14261F]">
+            <div className="grid grid-cols-4 gap-1 text-[9px] font-mono text-[#526458] pb-1 border-b border-[#CCD2C4]">
               <span>Year</span>
               <span className="text-right">Yield</span>
               <span className="text-right">Rain</span>
@@ -412,7 +412,7 @@ export const DistrictDetailPanel: React.FC<DistrictDetailPanelProps> = ({
               <div
                 key={row.year}
                 className={`grid grid-cols-4 gap-1 text-[10px] font-mono py-0.5 ${
-                  row.year === selectedYear ? 'text-[#38BDF8] font-bold bg-[#0C1F2B]/30 px-1 rounded' : 'text-[#A4B8AF]'
+                  row.year === selectedYear ? 'text-[#0284C7] font-bold bg-[#0284C7]/10 px-1 rounded' : 'text-[#526458]'
                 }`}
               >
                 <span>{row.year}</span>
@@ -425,10 +425,10 @@ export const DistrictDetailPanel: React.FC<DistrictDetailPanelProps> = ({
                 <span
                   className={`text-right font-bold ${
                     row.yieldTonnesHa === null
-                      ? 'text-[#647C72]'
+                      ? 'text-[#718277]'
                       : row.failure
-                      ? 'text-[#EF4444]'
-                      : 'text-[#22C55E]'
+                      ? 'text-[#DC2626]'
+                      : 'text-[#16A34A]'
                   }`}
                 >
                   {row.yieldTonnesHa === null ? 'N/A' : row.failure ? 'Fail' : 'OK'}
@@ -444,21 +444,21 @@ export const DistrictDetailPanel: React.FC<DistrictDetailPanelProps> = ({
           defaultOpen={false}
         >
           <div className="space-y-1 text-[10px] font-mono">
-            <div className="flex justify-between py-0.5 border-b border-[#14261F]/60">
-              <span className="text-[#7A9187]">Tensor Dimensions:</span>
-              <span className="text-white font-bold">{TENSOR_SPEC.spatialTensorShape}</span>
+            <div className="flex justify-between py-0.5 border-b border-[#CCD2C4]/60">
+              <span className="text-[#526458]">Tensor Dimensions:</span>
+              <span className="text-[#16221B] font-bold">{TENSOR_SPEC.spatialTensorShape}</span>
             </div>
-            <div className="flex justify-between py-0.5 border-b border-[#14261F]/60">
-              <span className="text-[#7A9187]">Temporal Windows:</span>
-              <span className="text-white">6 bi-weekly (Jun 1 – Aug 31)</span>
+            <div className="flex justify-between py-0.5 border-b border-[#CCD2C4]/60">
+              <span className="text-[#526458]">Temporal Windows:</span>
+              <span className="text-[#16221B]">6 bi-weekly (Jun 1 – Aug 31)</span>
             </div>
-            <div className="flex justify-between py-0.5 border-b border-[#14261F]/60">
-              <span className="text-[#7A9187]">Channels (8 Bands):</span>
-              <span className="text-white">B2, B3, B4, B8, B11, B12, NDVI, NDWI</span>
+            <div className="flex justify-between py-0.5 border-b border-[#CCD2C4]/60">
+              <span className="text-[#526458]">Channels (8 Bands):</span>
+              <span className="text-[#16221B]">B2, B3, B4, B8, B11, B12, NDVI, NDWI</span>
             </div>
-            <div className="flex justify-between py-0.5 border-b border-[#14261F]/60">
-              <span className="text-[#7A9187]">Parcel Purity Mask:</span>
-              <span className="text-white">ESA WorldCover 10m Class 40</span>
+            <div className="flex justify-between py-0.5 border-b border-[#CCD2C4]/60">
+              <span className="text-[#526458]">Parcel Purity Mask:</span>
+              <span className="text-[#16221B]">ESA WorldCover 10m Class 40</span>
             </div>
           </div>
         </Collapsible>

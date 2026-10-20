@@ -10,27 +10,27 @@ export const DistrictRiskMapPage: React.FC = () => {
   const [mapLayer, setMapLayer] = useState<'historical' | 'rainfall' | 'yield'>('historical');
 
   return (
-    <div className="space-y-4 max-w-[1720px] mx-auto text-[#E8EFEB]">
+    <div className="space-y-4 max-w-[1720px] mx-auto text-[#16221B]">
       {/* Page Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-[#14261F]/60">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-[#CCD2C4]">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
-            District Risk & Spatiotemporal Map
+          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-[#16221B] font-serif">
+            District Risk &amp; Spatiotemporal Map
           </h1>
-          <p className="text-xs text-[#80978E] mt-0.5 font-medium">
+          <p className="text-xs text-[#526458] mt-0.5 font-medium">
             Full-state choropleth inspection across Kharif seasons with layer switches for crop failure events, rainfall, and harvest yield
           </p>
         </div>
 
         <div className="flex items-center gap-3 flex-wrap">
           {/* Layer Switcher */}
-          <div className="flex items-center p-1 rounded-xl bg-[#060D0A] border border-[#14261F]">
+          <div className="flex items-center p-1 rounded-xl bg-white border border-[#CCD2C4] shadow-xs">
             <button
               onClick={() => setMapLayer('historical')}
               className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-medium rounded-lg transition-all cursor-pointer ${
                 mapLayer === 'historical'
-                  ? 'bg-[#22C55E] text-[#051A11] font-bold shadow-xs'
-                  : 'text-[#849B90] hover:text-white'
+                  ? 'bg-[#12382B] text-white font-bold shadow-xs'
+                  : 'text-[#526458] hover:text-[#16221B]'
               }`}
             >
               <ShieldAlert className="w-3.5 h-3.5" />
@@ -40,8 +40,8 @@ export const DistrictRiskMapPage: React.FC = () => {
               onClick={() => setMapLayer('rainfall')}
               className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-medium rounded-lg transition-all cursor-pointer ${
                 mapLayer === 'rainfall'
-                  ? 'bg-[#22C55E] text-[#051A11] font-bold shadow-xs'
-                  : 'text-[#849B90] hover:text-white'
+                  ? 'bg-[#12382B] text-white font-bold shadow-xs'
+                  : 'text-[#526458] hover:text-[#16221B]'
               }`}
             >
               <CloudRain className="w-3.5 h-3.5" />
@@ -51,8 +51,8 @@ export const DistrictRiskMapPage: React.FC = () => {
               onClick={() => setMapLayer('yield')}
               className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-medium rounded-lg transition-all cursor-pointer ${
                 mapLayer === 'yield'
-                  ? 'bg-[#22C55E] text-[#051A11] font-bold shadow-xs'
-                  : 'text-[#849B90] hover:text-white'
+                  ? 'bg-[#12382B] text-white font-bold shadow-xs'
+                  : 'text-[#526458] hover:text-[#16221B]'
               }`}
             >
               <Sprout className="w-3.5 h-3.5" />

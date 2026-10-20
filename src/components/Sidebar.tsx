@@ -122,21 +122,21 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onBac
   };
 
   const navContent = (
-    <div className="flex flex-col h-full justify-between p-4 bg-[#08120E] text-[#E8EFEB] overflow-y-auto">
+    <div className="flex flex-col h-full justify-between p-4 bg-[#E0E4D8] text-[#16221B] overflow-y-auto">
       {/* Brand Header */}
       <div className="space-y-6">
         <div className="flex items-center gap-3 pt-1">
-          <div className="w-9 h-9 rounded-xl bg-[#0D241C] border border-[#164332] text-[#22C55E] flex items-center justify-center shrink-0 shadow-xs">
-            <Sprout className="w-5 h-5 text-[#22C55E]" />
+          <div className="w-9 h-9 rounded-xl bg-[#D0D6C6] border border-[#BDC4B4] text-[#12382B] flex items-center justify-center shrink-0 shadow-xs">
+            <Sprout className="w-5 h-5 text-[#12382B]" />
           </div>
           <div className="flex flex-col min-w-0">
-            <span className="text-sm font-bold tracking-tight text-white truncate">
+            <span className="text-sm font-bold tracking-tight text-[#16221B] truncate">
               Maharashtra
             </span>
-            <span className="text-xs font-semibold text-[#E1EAE5] tracking-tight truncate">
+            <span className="text-xs font-semibold text-[#35483D] tracking-tight truncate">
               Crop-Risk Analytics
             </span>
-            <span className="text-[10px] text-[#71877E] truncate font-mono mt-0.5">
+            <span className="text-[10px] text-[#607368] truncate font-mono mt-0.5">
               Spatiotemporal Analysis
             </span>
           </div>
@@ -146,14 +146,14 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onBac
         {onBackToLanding && (
           <button
             onClick={onBackToLanding}
-            className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold bg-[#0D241C] text-[#4ADE80] border border-[#164332] hover:bg-[#133328] hover:border-[#22C55E]/50 transition-all cursor-pointer shadow-xs group"
+            className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold bg-[#12382B] text-white hover:bg-[#1A4C3B] border border-[#0F3025] transition-all cursor-pointer shadow-xs group"
             title="Return to Project Homepage"
           >
             <span className="flex items-center gap-2">
-              <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1 text-[#22C55E]" />
+              <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1 text-[#4ADE80]" />
               <span>Project Home</span>
             </span>
-            <span className="text-[10px] font-mono text-[#71877E] uppercase tracking-wider group-hover:text-[#4ADE80]">Exit</span>
+            <span className="text-[10px] font-mono text-[#A3B8AF] uppercase tracking-wider group-hover:text-white">Exit</span>
           </button>
         )}
 
@@ -161,7 +161,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onBac
         <nav className="space-y-5">
           {sections.map(sec => (
             <div key={sec.title} className="space-y-1">
-              <span className="px-3 text-[10px] font-mono font-bold tracking-wider text-[#5A7367] uppercase block pb-1">
+              <span className="px-3 text-[10px] font-mono font-bold tracking-wider text-[#607368] uppercase block pb-1">
                 {sec.title}
               </span>
               {sec.items.map(item => {
@@ -172,11 +172,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onBac
                     onClick={() => handleSelectTab(item.id)}
                     className={`w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium transition-all text-left cursor-pointer ${
                       isActive
-                        ? 'bg-[#0E241C] text-white font-semibold border-l-2 border-[#22C55E] shadow-xs'
-                        : 'text-[#849B90] hover:text-white hover:bg-[#0B1813]'
+                        ? 'bg-[#12382B] text-white font-semibold shadow-xs'
+                        : 'text-[#3E5146] hover:text-[#16221B] hover:bg-[#D4D9CC]'
                     }`}
                   >
-                    <span className={isActive ? 'text-[#22C55E]' : 'text-[#647C72]'}>
+                    <span className={isActive ? 'text-[#4ADE80]' : 'text-[#506659]'}>
                       {item.icon}
                     </span>
                     <span className="truncate">{item.label}</span>
@@ -189,9 +189,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onBac
       </div>
 
       {/* Footer Info */}
-      <div className="mt-6 pt-4 border-t border-[#13241C] text-[10px] font-mono text-[#586E64] px-1 flex items-center justify-between">
+      <div className="mt-6 pt-4 border-t border-[#CCD2C4] text-[10px] font-mono text-[#607368] px-1 flex items-center justify-between">
         <span>B.Tech PBL</span>
-        <span className="text-[#7A9187]">Kharif Crop System</span>
+        <span className="text-[#35483D] font-bold">Kharif Crop System</span>
       </div>
     </div>
   );
@@ -199,17 +199,17 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onBac
   return (
     <>
       {/* Desktop Fixed Left Sidebar */}
-      <aside className="hidden lg:flex w-60 xl:w-64 shrink-0 flex-col h-screen sticky top-0 border-r border-[#13241C] z-30">
+      <aside className="hidden lg:flex w-60 xl:w-64 shrink-0 flex-col h-screen sticky top-0 border-r border-[#CCD2C4] z-30">
         {navContent}
       </aside>
 
       {/* Mobile Top Header with Hamburger Toggle */}
-      <div className="lg:hidden flex items-center justify-between px-4 py-3 bg-[#08120E] border-b border-[#13241C] sticky top-0 z-40">
+      <div className="lg:hidden flex items-center justify-between px-4 py-3 bg-[#E0E4D8] border-b border-[#CCD2C4] sticky top-0 z-40">
         <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-[#0D241C] border border-[#164332] text-[#22C55E] flex items-center justify-center">
-            <Sprout className="w-4 h-4 text-[#22C55E]" />
+          <div className="w-7 h-7 rounded-lg bg-[#D0D6C6] border border-[#BDC4B4] text-[#12382B] flex items-center justify-center">
+            <Sprout className="w-4 h-4 text-[#12382B]" />
           </div>
-          <span className="text-xs font-bold text-white">
+          <span className="text-xs font-bold text-[#16221B]">
             Maharashtra Crop-Risk Analytics
           </span>
         </div>
@@ -218,7 +218,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onBac
           {onBackToLanding && (
             <button
               onClick={onBackToLanding}
-              className="p-1.5 rounded-lg bg-[#0D241C] text-[#4ADE80] border border-[#164332] hover:bg-[#133328] cursor-pointer"
+              className="p-1.5 rounded-lg bg-[#12382B] text-white hover:bg-[#1A4C3B] cursor-pointer"
               title="Back to Project Homepage"
             >
               <ArrowLeft className="w-4 h-4" />
@@ -226,7 +226,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onBac
           )}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="p-1.5 rounded-lg bg-[#0C1914] text-[#A3B8AF] border border-[#162A21] hover:text-white cursor-pointer"
+            className="p-1.5 rounded-lg bg-[#D4D9CC] text-[#35483D] border border-[#CCD2C4] hover:text-[#16221B] cursor-pointer"
           >
             {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -237,7 +237,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onBac
       {mobileOpen && (
         <div className="lg:hidden fixed inset-0 z-50 flex">
           <div
-            className="fixed inset-0 bg-black/70 backdrop-blur-xs"
+            className="fixed inset-0 bg-black/50 backdrop-blur-xs"
             onClick={() => setMobileOpen(false)}
           />
           <div className="relative w-64 max-w-[80%] h-full z-10 shadow-2xl">

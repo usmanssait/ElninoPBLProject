@@ -36,19 +36,19 @@ export const ModelPredictionsPage: React.FC = () => {
   const resilientCount = readyDistricts.length - failureCount;
 
   return (
-    <div className="space-y-4 max-w-[1720px] mx-auto text-[#E8EFEB]">
+    <div className="space-y-4 max-w-[1720px] mx-auto text-[#16221B]">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-[#14261F]/60">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-[#CCD2C4]">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
+            <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-[#16221B] font-serif">
               CNN-LSTM Spatiotemporal In-Season Predictions
             </h1>
-            <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#1B382A] text-[#4ADE80] border border-[#22C55E]/40">
+            <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#DCE1D4] text-[#12382B] border border-[#CCD2C4]">
               All-Kharif Multi-Crop Model (17,449 params)
             </span>
           </div>
-          <p className="text-xs text-[#80978E] mt-0.5 font-medium">
+          <p className="text-xs text-[#526458] mt-0.5 font-medium">
             Trained PyTorch compact CNN-BiLSTM network evaluated across all Kharif crops (Rice, Soybean, Cotton, Bajra, Jowar, Tur) and Sentinel-2 monitored districts
           </p>
         </div>
@@ -61,12 +61,12 @@ export const ModelPredictionsPage: React.FC = () => {
       </div>
 
       {/* Active Model Inference Bar */}
-      <div className="px-4 py-2.5 rounded-xl border bg-[#091D15] border-[#164332] text-[#4ADE80] flex items-center justify-between gap-3 text-xs font-mono">
+      <div className="px-4 py-2.5 rounded-xl border bg-[#EAECE4] border-[#CCD2C4] text-[#16221B] flex items-center justify-between gap-3 text-xs font-mono shadow-2xs">
         <div className="flex items-center gap-2.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#22C55E] shrink-0 animate-pulse" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#16A34A] shrink-0 animate-pulse" />
           <span>
-            <strong className="text-white">Active Neural Model Inference (Kharif {cropYearStr} — {selectedCrop === 'ALL' ? 'All Kharif Crops Composite' : selectedCrop}):</strong>{' '}
-            Evaluated from trained PyTorch checkpoint (<code className="text-white">crop_failure_model.pt</code>). Ingests 6 bi-weekly 8-band Sentinel-2 patches ($[B, 6, 8, 32, 32]$) and 10-dimensional temporal vector (IMD rainfall, departure %, ONI anomaly, coverage, and crop-specific one-hot vector).
+            <strong className="text-[#12382B]">Active Neural Model Inference (Kharif {cropYearStr} — {selectedCrop === 'ALL' ? 'All Kharif Crops Composite' : selectedCrop}):</strong>{' '}
+            Evaluated from trained PyTorch checkpoint (<code className="text-[#12382B] font-bold">crop_failure_model.pt</code>). Ingests 6 bi-weekly 8-band Sentinel-2 patches ($[B, 6, 8, 32, 32]$) and 10-dimensional temporal vector (IMD rainfall, departure %, ONI anomaly, coverage, and crop-specific one-hot vector).
           </span>
         </div>
       </div>
@@ -74,28 +74,28 @@ export const ModelPredictionsPage: React.FC = () => {
       {/* 3 Metric Pills */}
       {isSupported && (
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <div className="p-3.5 rounded-xl bg-[#091410] border border-[#14261F] flex items-center justify-between">
+          <div className="p-3.5 rounded-xl bg-[#E2E6DC] border border-[#CCD2C4] flex items-center justify-between shadow-xs">
             <div>
-              <span className="text-[11px] text-[#7A9187] font-mono">Monitored In-Season ({selectedCrop})</span>
-              <div className="text-xl font-bold font-mono text-white mt-0.5">{readyDistricts.length} Districts</div>
+              <span className="text-[11px] text-[#526458] font-mono">Monitored In-Season ({selectedCrop})</span>
+              <div className="text-xl font-bold font-mono text-[#16221B] mt-0.5">{readyDistricts.length} Districts</div>
             </div>
-            <Layers className="w-5 h-5 text-[#38BDF8]" />
+            <Layers className="w-5 h-5 text-[#0284C7]" />
           </div>
 
-          <div className="p-3.5 rounded-xl bg-[#091410] border border-[#14261F] flex items-center justify-between">
+          <div className="p-3.5 rounded-xl bg-[#E2E6DC] border border-[#CCD2C4] flex items-center justify-between shadow-xs">
             <div>
-              <span className="text-[11px] text-[#7A9187] font-mono">Model Predicted Failure</span>
-              <div className="text-xl font-bold font-mono text-[#EF4444] mt-0.5">{failureCount} Districts</div>
+              <span className="text-[11px] text-[#526458] font-mono">Model Predicted Failure</span>
+              <div className="text-xl font-bold font-mono text-[#DC2626] mt-0.5">{failureCount} Districts</div>
             </div>
-            <ShieldAlert className="w-5 h-5 text-[#EF4444]" />
+            <ShieldAlert className="w-5 h-5 text-[#DC2626]" />
           </div>
 
-          <div className="p-3.5 rounded-xl bg-[#091410] border border-[#14261F] flex items-center justify-between">
+          <div className="p-3.5 rounded-xl bg-[#E2E6DC] border border-[#CCD2C4] flex items-center justify-between shadow-xs">
             <div>
-              <span className="text-[11px] text-[#7A9187] font-mono">Model Predicted Resilient</span>
-              <div className="text-xl font-bold font-mono text-[#22C55E] mt-0.5">{resilientCount} Districts</div>
+              <span className="text-[11px] text-[#526458] font-mono">Model Predicted Resilient</span>
+              <div className="text-xl font-bold font-mono text-[#16A34A] mt-0.5">{resilientCount} Districts</div>
             </div>
-            <CheckCircle2 className="w-5 h-5 text-[#22C55E]" />
+            <CheckCircle2 className="w-5 h-5 text-[#16A34A]" />
           </div>
         </div>
       )}
@@ -111,17 +111,17 @@ export const ModelPredictionsPage: React.FC = () => {
         </div>
 
         {/* Prediction Data Ledger */}
-        <div className="lg:col-span-5 rounded-2xl bg-[#091410] border border-[#14261F] p-4 sm:p-5 shadow-xs space-y-3">
-          <div className="flex items-center justify-between pb-2 border-b border-[#14261F]">
-            <h3 className="text-sm font-bold text-white">Neural Output Ledger</h3>
-            <span className="text-[10px] font-mono text-[#7A9187]">
+        <div className="lg:col-span-5 rounded-2xl bg-[#E2E6DC] border border-[#CCD2C4] p-4 sm:p-5 shadow-xs space-y-3">
+          <div className="flex items-center justify-between pb-2 border-b border-[#CCD2C4]">
+            <h3 className="text-sm font-bold text-[#16221B]">Neural Output Ledger</h3>
+            <span className="text-[10px] font-mono text-[#526458]">
               {readyDistricts.length} Monitored &middot; {selectedCrop}
             </span>
           </div>
 
-          <div className="overflow-x-auto max-h-[460px]">
+          <div className="overflow-x-auto max-h-[460px] bg-white rounded-xl border border-[#CCD2C4]">
             <table className="w-full text-left text-xs font-mono">
-              <thead className="bg-[#060D0A] text-[#7A9187] sticky top-0 border-b border-[#14261F]">
+              <thead className="bg-[#EAECE4] text-[#526458] sticky top-0 border-b border-[#CCD2C4]">
                 <tr>
                   <th className="py-2 px-2.5 font-sans font-semibold">District</th>
                   <th className="py-2 px-2 text-right">Risk Score</th>
@@ -129,7 +129,7 @@ export const ModelPredictionsPage: React.FC = () => {
                   <th className="py-2 px-2 text-right">Patches</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#14261F]">
+              <tbody className="divide-y divide-[#CCD2C4]">
                 {monitoredDistrictsForCrop.map(d => {
                   const pred = inSeasonModelPredictions[d.id];
                   const isSelected = selectedDistrictId === d.id;
@@ -140,11 +140,11 @@ export const ModelPredictionsPage: React.FC = () => {
                       key={d.id}
                       onClick={() => setSelectedDistrictId(d.id)}
                       className={`cursor-pointer transition-colors ${
-                        isSelected ? 'bg-[#0E281F] text-white' : 'hover:bg-[#0B1A14]/40'
+                        isSelected ? 'bg-[#D9E2D5] font-semibold text-[#12382B]' : 'hover:bg-[#F2F4EE]'
                       }`}
                     >
-                      <td className="py-2 px-2.5 font-sans font-medium text-white">{d.name}</td>
-                      <td className="py-2 px-2 text-right tabular-nums">
+                      <td className="py-2 px-2.5 font-sans font-medium text-[#16221B]">{d.name}</td>
+                      <td className="py-2 px-2 text-right tabular-nums text-[#16221B]">
                         {isReady && pred.failureProbability !== null
                           ? pred.failureProbability.toFixed(3)
                           : '—'}
@@ -153,18 +153,18 @@ export const ModelPredictionsPage: React.FC = () => {
                         <span
                           className={`px-1.5 py-0.5 rounded text-[9px] font-bold ${
                             !isReady
-                              ? 'bg-[#14221C] text-[#62776E]'
+                              ? 'bg-[#EAECE4] text-[#718277] border border-[#CCD2C4]'
                               : pred.riskCategory === 'High'
-                              ? 'bg-[#2E1212] text-[#EF4444]'
+                              ? 'bg-[#FEE2E2] text-[#DC2626] border border-[#FECACA]'
                               : pred.riskCategory === 'Moderate'
-                              ? 'bg-amber-950/40 text-amber-400'
-                              : 'bg-[#0E281F] text-[#22C55E]'
+                              ? 'bg-[#FEF3C7] text-amber-800 border border-[#FDE68A]'
+                              : 'bg-[#DCFCE7] text-[#16A34A] border border-[#BBF7D0]'
                           }`}
                         >
                           {isReady ? pred.riskCategory : 'Unmonitored'}
                         </span>
                       </td>
-                      <td className="py-2 px-2 text-right text-[#80978E] tabular-nums">
+                      <td className="py-2 px-2 text-right text-[#718277] tabular-nums">
                         {pred?.provenance?.sampledLocations ?? '—'}
                       </td>
                     </tr>

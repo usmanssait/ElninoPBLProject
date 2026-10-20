@@ -47,7 +47,7 @@ export default function App() {
 
   return (
     <DashboardProvider>
-      <div className="min-h-screen bg-[#060D0A] text-[#E8EFEB] flex flex-col lg:flex-row font-sans selection:bg-[#22C55E]/30 selection:text-[#4ADE80] overflow-x-hidden">
+      <div className="min-h-screen bg-[#EAECE4] text-[#16221B] flex flex-col lg:flex-row font-sans selection:bg-[#12382B] selection:text-white overflow-x-hidden">
         {/* Grouped Sidebar with Return to Home Button */}
         <Sidebar
           activeTab={activeTab}
