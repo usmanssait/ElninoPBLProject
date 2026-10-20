@@ -1,44 +1,116 @@
 import React, { useState } from 'react';
 import {
+  Home,
+  Map,
+  BarChart2,
+  TrendingUp,
+  Cpu,
   Layers,
-  Activity,
   ShieldCheck,
+  Compass,
   Database,
+  Info,
   Sprout,
   Menu,
   X,
 } from 'lucide-react';
 
-export type ActiveTab = 'map' | 'model' | 'loso' | 'data';
+export type ActiveTab =
+  | 'overview'
+  | 'risk_map'
+  | 'historical_analysis'
+  | 'rainfall_trends'
+  | 'model_predictions'
+  | 'model_architecture'
+  | 'loso_validation'
+  | 'future_elnino'
+  | 'data_sources'
+  | 'about_project';
 
 interface SidebarProps {
   activeTab: ActiveTab;
   setActiveTab: (tab: ActiveTab) => void;
 }
 
+interface NavItem {
+  id: ActiveTab;
+  label: string;
+  icon: React.ReactNode;
+}
+
+interface NavSection {
+  title: string;
+  items: NavItem[];
+}
+
 export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const navItems = [
+  const sections: NavSection[] = [
     {
-      id: 'map' as ActiveTab,
-      label: 'District Risk Map',
-      icon: <Layers className="w-4 h-4" />,
+      title: 'EXPLORATION',
+      items: [
+        {
+          id: 'overview',
+          label: 'Overview',
+          icon: <Home className="w-4 h-4" />,
+        },
+        {
+          id: 'risk_map',
+          label: 'District Risk Map',
+          icon: <Map className="w-4 h-4" />,
+        },
+        {
+          id: 'historical_analysis',
+          label: 'Historical Analysis',
+          icon: <BarChart2 className="w-4 h-4" />,
+        },
+        {
+          id: 'rainfall_trends',
+          label: 'Rainfall & Crop Trends',
+          icon: <TrendingUp className="w-4 h-4" />,
+        },
+      ],
     },
     {
-      id: 'model' as ActiveTab,
-      label: 'CNN-LSTM Network',
-      icon: <Activity className="w-4 h-4" />,
+      title: 'MODELLING & FORECASTING',
+      items: [
+        {
+          id: 'model_predictions',
+          label: 'CNN–LSTM Predictions',
+          icon: <Cpu className="w-4 h-4" />,
+        },
+        {
+          id: 'model_architecture',
+          label: 'Model & Architecture',
+          icon: <Layers className="w-4 h-4" />,
+        },
+        {
+          id: 'loso_validation',
+          label: 'LOSO Validation',
+          icon: <ShieldCheck className="w-4 h-4" />,
+        },
+        {
+          id: 'future_elnino',
+          label: 'Future El Niño',
+          icon: <Compass className="w-4 h-4" />,
+        },
+      ],
     },
     {
-      id: 'loso' as ActiveTab,
-      label: 'LOSO Validation',
-      icon: <ShieldCheck className="w-4 h-4" />,
-    },
-    {
-      id: 'data' as ActiveTab,
-      label: 'Data Sources & Links',
-      icon: <Database className="w-4 h-4" />,
+      title: 'PROJECT',
+      items: [
+        {
+          id: 'data_sources',
+          label: 'Data Sources',
+          icon: <Database className="w-4 h-4" />,
+        },
+        {
+          id: 'about_project',
+          label: 'About Project',
+          icon: <Info className="w-4 h-4" />,
+        },
+      ],
     },
   ];
 
@@ -48,7 +120,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
   };
 
   const navContent = (
-    <div className="flex flex-col h-full justify-between p-4 bg-[#08120E] text-[#E8EFEB]">
+    <div className="flex flex-col h-full justify-between p-4 bg-[#08120E] text-[#E8EFEB] overflow-y-auto">
       {/* Brand Header */}
       <div className="space-y-6">
         <div className="flex items-center gap-3 pt-1">
@@ -60,101 +132,49 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
               Maharashtra
             </span>
             <span className="text-xs font-semibold text-[#E1EAE5] tracking-tight truncate">
-              Crop-Risk CNN-LSTM
+              Crop-Risk Analytics
             </span>
             <span className="text-[10px] text-[#71877E] truncate font-mono mt-0.5">
-              Spatiotemporal Rice Failure Early Warning
+              Spatiotemporal Analysis
             </span>
           </div>
         </div>
 
-        {/* Navigation Items */}
-        <nav className="space-y-1">
-          {navItems.map(item => {
-            const isActive = activeTab === item.id;
-            return (
-              <button
-                key={item.id}
-                onClick={() => handleSelectTab(item.id)}
-                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium transition-all text-left cursor-pointer ${
-                  isActive
-                    ? 'bg-[#0E241C] text-white font-semibold border-l-2 border-[#22C55E] shadow-xs'
-                    : 'text-[#849B90] hover:text-white hover:bg-[#0B1813]'
-                }`}
-              >
-                <span
-                  className={`${
-                    isActive ? 'text-[#22C55E]' : 'text-[#647C72]'
-                  }`}
-                >
-                  {item.icon}
-                </span>
-                <span className="truncate">{item.label}</span>
-              </button>
-            );
-          })}
+        {/* Grouped Navigation Sections */}
+        <nav className="space-y-5">
+          {sections.map(sec => (
+            <div key={sec.title} className="space-y-1">
+              <span className="px-3 text-[10px] font-mono font-bold tracking-wider text-[#5A7367] uppercase block pb-1">
+                {sec.title}
+              </span>
+              {sec.items.map(item => {
+                const isActive = activeTab === item.id;
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => handleSelectTab(item.id)}
+                    className={`w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium transition-all text-left cursor-pointer ${
+                      isActive
+                        ? 'bg-[#0E241C] text-white font-semibold border-l-2 border-[#22C55E] shadow-xs'
+                        : 'text-[#849B90] hover:text-white hover:bg-[#0B1813]'
+                    }`}
+                  >
+                    <span className={isActive ? 'text-[#22C55E]' : 'text-[#647C72]'}>
+                      {item.icon}
+                    </span>
+                    <span className="truncate">{item.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+          ))}
         </nav>
       </div>
 
-      {/* Bottom Card with Mini Maharashtra Outline Graphic */}
-      <div className="mt-6 pt-4 border-t border-[#13241C]">
-        <div className="p-3.5 rounded-xl bg-[#0B1712] border border-[#14261E] relative overflow-hidden group">
-          {/* Subtle radar / terrain grid pattern in background */}
-          <div
-            className="absolute inset-0 opacity-15 pointer-events-none"
-            style={{
-              backgroundImage: `radial-gradient(circle at 75% 35%, #22C55E 0%, transparent 60%), linear-gradient(to bottom right, #091913, #050E0B)`,
-            }}
-          />
-
-          <div className="relative z-10 flex items-center gap-3">
-            {/* Stylized Mini Maharashtra Outline Graphic */}
-            <div className="w-12 h-10 shrink-0 relative flex items-center justify-center">
-              <svg
-                viewBox="0 0 100 85"
-                className="w-full h-full text-[#1E3A2F]"
-                fill="currentColor"
-              >
-                {/* Simplified Maharashtra Silhouette */}
-                <path
-                  d="M15,20 L35,10 L75,8 L95,22 L85,45 L78,65 L50,80 L35,75 L20,82 L10,65 L18,45 Z"
-                  fill="#112B21"
-                  stroke="#22C55E"
-                  strokeWidth="1.5"
-                  strokeOpacity="0.4"
-                />
-                {/* Pinpoint over Vidarbha */}
-                <circle cx="75" cy="30" r="3.5" fill="#22C55E" />
-                <circle
-                  cx="75"
-                  cy="30"
-                  r="7"
-                  fill="none"
-                  stroke="#22C55E"
-                  strokeWidth="1"
-                  strokeDasharray="2,2"
-                />
-              </svg>
-            </div>
-
-            <div className="flex flex-col min-w-0">
-              <span className="text-[11px] font-bold text-white tracking-tight truncate">
-                Maharashtra
-              </span>
-              <span className="text-[10px] text-[#A3B8AF] font-medium truncate">
-                Kharif Rice
-              </span>
-              <span className="text-[9px] font-mono text-[#62776E] mt-0.5">
-                2015 – 2022 DES Ground Truth
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-3 flex items-center justify-between text-[10px] font-mono text-[#586E64] px-1">
-          <span>B.Tech PBL Project</span>
-          <span className="text-[#7A9187]">Offline Research Engine</span>
-        </div>
+      {/* Footer Info */}
+      <div className="mt-6 pt-4 border-t border-[#13241C] text-[10px] font-mono text-[#586E64] px-1 flex items-center justify-between">
+        <span>B.Tech PBL</span>
+        <span className="text-[#7A9187]">Kharif Crop System</span>
       </div>
     </div>
   );
@@ -173,13 +193,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
             <Sprout className="w-4 h-4 text-[#22C55E]" />
           </div>
           <span className="text-xs font-bold text-white">
-            Maharashtra Crop-Risk CNN-LSTM
+            Maharashtra Crop-Risk Analytics
           </span>
         </div>
 
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="p-1.5 rounded-lg bg-[#0C1914] text-[#A3B8AF] border border-[#162A21] hover:text-white"
+          className="p-1.5 rounded-lg bg-[#0C1914] text-[#A3B8AF] border border-[#162A21] hover:text-white cursor-pointer"
         >
           {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>

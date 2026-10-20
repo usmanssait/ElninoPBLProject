@@ -1,55 +1,80 @@
 {
-  "district_seasons_evaluated": 20,
-  "positive_district_seasons": 2,
-  "negative_district_seasons": 18,
-  "accuracy_threshold_0_5": 0.9,
-  "balanced_accuracy_threshold_0_5": 0.7222222222222222,
-  "precision_threshold_0_5": 0.5,
-  "recall_threshold_0_5": 0.5,
-  "f1_threshold_0_5": 0.5,
-  "confusion_matrix_labels_0_1": [
-    [
-      17,
-      1
-    ],
-    [
-      1,
-      1
-    ]
+  "evaluation_mode": "Trained Multi-Crop PyTorch CNN-LSTM Architecture",
+  "crops_evaluated": [
+    "Rice",
+    "Soybean",
+    "Cotton",
+    "Bajra",
+    "Jowar",
+    "Tur"
   ],
-  "roc_auc": 0.9166666666666666,
-  "average_precision": 0.5,
-  "baseline_majority_accuracy": 0.9,
-  "note": "Exploratory district-grouped holdout; small data and district-level labels repeated across sampled patches.",
-  "train_patch_rows": 218,
-  "test_patch_rows": 104,
-  "train_districts": [
-    "ahilyanagar",
-    "beed",
-    "bhandara",
-    "chandrapur",
-    "chhatrapati sambhajinagar",
-    "dhule",
-    "gadchiroli",
-    "nanded",
-    "nandurbar",
-    "pune",
-    "raigad",
-    "ratnagiri",
-    "satara",
-    "solapur",
-    "thane"
+  "years_evaluated": [
+    2019,
+    2020,
+    2021,
+    2022
   ],
-  "test_districts": [
-    "gondia",
-    "nagpur",
-    "nashik",
-    "palghar",
-    "sangli"
-  ],
-  "train_weighting": {
-    "pos_weight": 5.875,
-    "positive_district_seasons_train": 8,
-    "negative_district_seasons_train": 47
+  "total_evaluated_samples": 1211,
+  "district_seasons_evaluated": 320,
+  "positive_district_seasons": 60,
+  "negative_district_seasons": 260,
+  "accuracy_threshold_0_5": 0.9479768786127167,
+  "balanced_accuracy_threshold_0_5": 0.96079955111526,
+  "f1_threshold_0_5": 0.8609271523178808,
+  "precision_threshold_0_5": 0.7677165354330708,
+  "recall_threshold_0_5": 0.9798994974874372,
+  "roc_auc": 0.9865533199594811,
+  "average_precision": 0.9148138787946374,
+  "brier_score": 0.043026991188526154,
+  "baseline_majority_accuracy": 0.8356729975227085,
+  "metrics_by_crop": {
+    "Rice": {
+      "samples": 264,
+      "accuracy": 0.9507575757575758,
+      "balanced_accuracy": 0.9722222222222222,
+      "f1_score": 0.821917808219178,
+      "roc_auc": 0.9685185185185186,
+      "pr_auc": 0.6701178821241096
+    },
+    "Soybean": {
+      "samples": 196,
+      "accuracy": 0.9438775510204082,
+      "balanced_accuracy": 0.9491780821917808,
+      "f1_score": 0.897196261682243,
+      "roc_auc": 0.9906849315068493,
+      "pr_auc": 0.968468790092837
+    },
+    "Cotton": {
+      "samples": 177,
+      "accuracy": 0.9774011299435028,
+      "balanced_accuracy": 0.9869281045751634,
+      "f1_score": 0.9230769230769231,
+      "roc_auc": 0.9926470588235294,
+      "pr_auc": 0.9392966549803774
+    },
+    "Bajra": {
+      "samples": 120,
+      "accuracy": 0.975,
+      "balanced_accuracy": 0.9862385321100917,
+      "f1_score": 0.88,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0
+    },
+    "Jowar": {
+      "samples": 185,
+      "accuracy": 0.8702702702702703,
+      "balanced_accuracy": 0.9013843201754386,
+      "f1_score": 0.8235294117647058,
+      "roc_auc": 0.9764254385964912,
+      "pr_auc": 0.933903914039381
+    },
+    "Tur": {
+      "samples": 269,
+      "accuracy": 0.9702602230483272,
+      "balanced_accuracy": 0.967018671564126,
+      "f1_score": 0.8666666666666667,
+      "roc_auc": 0.9846954392408936,
+      "pr_auc": 0.8028827490154097
+    }
   }
 }

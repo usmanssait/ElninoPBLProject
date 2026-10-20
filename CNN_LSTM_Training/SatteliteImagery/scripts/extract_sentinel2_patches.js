@@ -62,20 +62,20 @@ var EMPTY_IMAGE = ee.Image.constant([0, 0, 0, 0, 0, 0])
   .updateMask(ee.Image.constant(0));
 
 // ------------------------------ LOCATIONS -----------------------------------
+var rawLocations = ee.FeatureCollection(LOCATIONS_ASSET)
+  .filter(ee.Filter.notNull(['location_id', 'district', 'longitude', 'latitude']));
 
-var rawLocations = ee.FeatureCollection(LOCATIONS_ASSET);
-
-// Filter valid features and ensure Point geometries are populated
-var locations = rawLocations.filter(
-  ee.Filter.notNull(['location_id', 'district', 'rice_fraction'])
-);
+// Rebuild point geometry from explicit CSV coordinate columns. This works even
+// if the CSV was uploaded as a table without preserving point geometry.
+var locations = rawLocations.map(function (feature) {
+  var lon = ee.Number(feature.get('longitude'));
+  var lat = ee.Number(feature.get('latitude'));
+  return ee.Feature(ee.Geometry.Point([lon, lat]), feature.toDictionary());
+});
 
 print('Loaded sampling locations', locations.size());
-print(
-  'Locations with rice_fraction >= 0.20',
-  locations.filter(ee.Filter.gte('rice_fraction', 0.20)).size()
-);
-print('First location', locations.first());
+print('Locations with rice_fraction >= 0.20 (diagnostic only)',
+  locations.filter(ee.Filter.gte('rice_fraction', 0.20)).size());
 print('Output patch size', PATCH_SIZE + ' x ' + PATCH_SIZE + ' @ ' + PIXEL_SIZE_M + ' m');
 Map.addLayer(locations, {color: '00ffff'}, 'Rice sampling locations');
 Map.centerObject(locations, 6);

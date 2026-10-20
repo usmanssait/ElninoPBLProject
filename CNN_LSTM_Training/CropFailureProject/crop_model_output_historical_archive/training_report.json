@@ -1,0 +1,158 @@
+{
+  "status": "trained",
+  "model_file": "crop_failure_model.pt",
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022
+  ],
+  "des_source": "C:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\data\\standardized_maharashtra_kharif_rice_audited.csv",
+  "imd_source": "C:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\CNN_LSTM_Training\\CropFailureProject\\imd_district_kharif_rainfall_2015_2022.csv",
+  "patch_year_rows": 264,
+  "district_count": 19,
+  "district_season_count": 63,
+  "label_counts_patch_rows": {
+    "crop_failure": 30,
+    "no_crop_failure": 234
+  },
+  "label_counts_unique_district_seasons": {
+    "crop_failure": 8,
+    "no_crop_failure": 55
+  },
+  "valid_pixel_fraction_mean_by_window": {
+    "t01": 0.9924242496490479,
+    "t02": 0.9408143758773804,
+    "t03": 0.6818181872367859,
+    "t04": 0.7651515007019043,
+    "t05": 0.654356062412262,
+    "t06": 0.7159090638160706
+  },
+  "oni_mean_by_year": {
+    "2019": 0.3,
+    "2020": -0.4,
+    "2021": -0.43,
+    "2022": -0.97
+  },
+  "any_selected_year_with_jun_aug_mean_oni_ge_0_5": false,
+  "evaluation": {
+    "district_seasons_evaluated": 17,
+    "positive_district_seasons": 2,
+    "negative_district_seasons": 15,
+    "accuracy_threshold_0_5": 0.7647058823529411,
+    "balanced_accuracy_threshold_0_5": 0.8666666666666667,
+    "precision_threshold_0_5": 0.3333333333333333,
+    "recall_threshold_0_5": 1.0,
+    "f1_threshold_0_5": 0.5,
+    "confusion_matrix_labels_0_1": [
+      [
+        11,
+        4
+      ],
+      [
+        0,
+        2
+      ]
+    ],
+    "roc_auc": 0.8,
+    "average_precision": 0.325,
+    "baseline_majority_accuracy": 0.8823529411764706,
+    "note": "Exploratory district-grouped holdout; small data and district-level labels repeated across sampled patches.",
+    "train_patch_rows": 184,
+    "test_patch_rows": 80,
+    "train_districts": [
+      "ahilyanagar",
+      "beed",
+      "bhandara",
+      "dhule",
+      "gadchiroli",
+      "gondia",
+      "nagpur",
+      "nanded",
+      "nashik",
+      "palghar",
+      "pune",
+      "raigad",
+      "sangli",
+      "thane"
+    ],
+    "test_districts": [
+      "chandrapur",
+      "nandurbar",
+      "ratnagiri",
+      "satara",
+      "solapur"
+    ],
+    "train_weighting": {
+      "pos_weight": 6.666666666666667,
+      "positive_district_seasons_train": 6,
+      "negative_district_seasons_train": 40
+    },
+    "label_threshold_pct": 15,
+    "loso_overall": {
+      "district_seasons_evaluated": 63,
+      "positive_district_seasons": 8,
+      "negative_district_seasons": 55,
+      "accuracy_threshold_0_5": 0.8253968253968254,
+      "balanced_accuracy_threshold_0_5": 0.4727272727272727,
+      "precision_threshold_0_5": 0.0,
+      "recall_threshold_0_5": 0.0,
+      "f1_threshold_0_5": 0.0,
+      "confusion_matrix_labels_0_1": [
+        [
+          52,
+          3
+        ],
+        [
+          8,
+          0
+        ]
+      ],
+      "roc_auc": 0.2636363636363636,
+      "average_precision": 0.09260134033395889,
+      "baseline_majority_accuracy": 0.873015873015873,
+      "note": "Exploratory district-grouped holdout; small data and district-level labels repeated across sampled patches.",
+      "per_season_breakdown": [
+        {
+          "season": 2019,
+          "samples": 14,
+          "actual_failures": 6,
+          "accuracy": 0.5714285714285714,
+          "brier_score": 0.3676304538953903
+        },
+        {
+          "season": 2020,
+          "samples": 14,
+          "actual_failures": 2,
+          "accuracy": 0.8571428571428571,
+          "brier_score": 0.14494693438923803
+        },
+        {
+          "season": 2021,
+          "samples": 18,
+          "actual_failures": 0,
+          "accuracy": 0.8333333333333334,
+          "brier_score": 0.15361403278839672
+        },
+        {
+          "season": 2022,
+          "samples": 17,
+          "actual_failures": 0,
+          "accuracy": 1.0,
+          "brier_score": 0.023657800772252394
+        }
+      ]
+    }
+  },
+  "final_training_weighting": {
+    "pos_weight": 6.875,
+    "positive_district_seasons_train": 8,
+    "negative_district_seasons_train": 55
+  },
+  "final_training_loss_first_last": [
+    1.2514486445320978,
+    0.3336488952239354
+  ],
+  "warning": "This is a working prototype, not validated El Ni\u00f1o-specific forecasting: the selected 2019-2022 June-August mean ONI values are all below +0.5 C, and there are few independent district-season labels. Holdout metrics are district-grouped and should be interpreted cautiously.",
+  "elapsed_seconds": 29.8
+}

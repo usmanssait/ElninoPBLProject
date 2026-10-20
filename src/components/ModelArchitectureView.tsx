@@ -13,19 +13,19 @@ export const ModelArchitectureView: React.FC = () => {
             <div className="flex items-center gap-2 text-xs font-mono text-[#22C55E]">
               <span className="font-semibold uppercase tracking-wider">Model Architecture</span>
               <span aria-hidden="true" className="text-[#3A5046]">·</span>
-              <span className="text-[#80978E]">Spatiotemporal Multi-Modal Deep Learning</span>
+              <span className="text-[#80978E]">Multi-Crop Spatiotemporal Deep Learning</span>
             </div>
             <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
-              Spatiotemporal CNN-LSTM Network (PyTorch)
+              Multi-Crop Spatiotemporal CNN-LSTM Network (PyTorch)
             </h1>
             <p className="text-xs text-[#80978E] max-w-3xl leading-relaxed">
-              Extracts spatial crop canopy features from Sentinel-2 satellite imagery using a 2D-CNN, fuses them with IMD rainfall, rainfall departure %, NOAA ONI SST anomalies, and pixel coverage, and models temporal sequence dynamics with a Bidirectional LSTM to predict Kharif rice crop failure.
+              Extracts spatial crop canopy features from Sentinel-2 satellite imagery using a 2D-CNN, fuses them with IMD rainfall, rainfall departure %, NOAA ONI SST anomalies, pixel coverage, and one-hot crop identity (Rice, Soybean, Cotton, Bajra, Jowar, Tur), and models temporal sequence dynamics with a Bidirectional LSTM to predict Kharif crop failure.
             </p>
           </div>
 
           <div className="flex items-center gap-2 font-mono text-xs text-[#80978E] shrink-0">
             <span className="px-3 py-1.5 rounded-xl bg-[#060D0A] border border-[#14261F] text-[#22C55E] font-bold">
-              11,081 Trainable Parameters (PyTorch Verified)
+              17,449 Trainable Parameters (PyTorch Verified)
             </span>
           </div>
         </div>
@@ -36,7 +36,7 @@ export const ModelArchitectureView: React.FC = () => {
         <div className="flex items-center justify-between border-b border-[#14261F] pb-3 flex-wrap gap-2">
           <h3 className="text-sm font-bold text-white flex items-center gap-2">
             <Layers className="w-4 h-4 text-[#22C55E]" />
-            <span>Spatiotemporal Tensor Transformation Pipeline</span>
+            <span>Multi-Crop Spatiotemporal Tensor Transformation Pipeline</span>
           </h3>
           <span className="text-xs font-mono text-[#80978E]">
             Batch: B · Temporal Steps: T = 6 (Bi-weekly June 1 – August 31)
@@ -48,7 +48,7 @@ export const ModelArchitectureView: React.FC = () => {
           <div className="p-4 rounded-xl bg-[#060D0A] border border-[#14261F] flex flex-col justify-between">
             <div>
               <div className="text-[10px] font-mono text-[#22C55E] uppercase font-semibold">Stage 1: Multi-Modal Inputs</div>
-              <h4 className="text-sm font-bold text-white mt-1">Satellite & Climate</h4>
+              <h4 className="text-sm font-bold text-white mt-1">Satellite & Climate + Crop</h4>
               <div className="mt-3 space-y-2 text-xs font-mono">
                 <div className="p-2.5 rounded-lg bg-[#091410] border border-[#14261F]">
                   <span className="text-[#80978E] block text-[10px]">SENTINEL-2 SPATIAL TENSOR:</span>
@@ -56,9 +56,9 @@ export const ModelArchitectureView: React.FC = () => {
                   <span className="text-[#80978E] block text-[10px] mt-0.5">8 channels (B2-4, B8, B11-12, NDVI, NDWI)</span>
                 </div>
                 <div className="p-2.5 rounded-lg bg-[#091410] border border-[#14261F]">
-                  <span className="text-[#80978E] block text-[10px]">CLIMATE FEATURE TENSOR:</span>
-                  <span className="text-[#38BDF8] font-bold">[B, 6, 4]</span>
-                  <span className="text-[#80978E] block text-[10px] mt-0.5">Rainfall, Dep %, ONI Anomaly, Coverage</span>
+                  <span className="text-[#80978E] block text-[10px]">CLIMATE + CROP FEATURE TENSOR:</span>
+                  <span className="text-[#38BDF8] font-bold">[B, 6, 10]</span>
+                  <span className="text-[#80978E] block text-[10px] mt-0.5">Rainfall, Dep %, ONI, Coverage, 6 Crop Flags</span>
                 </div>
               </div>
             </div>
@@ -72,10 +72,10 @@ export const ModelArchitectureView: React.FC = () => {
           <div className="p-4 rounded-xl bg-[#060D0A] border border-[#14261F] flex flex-col justify-between">
             <div>
               <div className="text-[10px] font-mono text-[#22C55E] uppercase font-semibold">Stage 2: Spatial Encoder</div>
-              <h4 className="text-sm font-bold text-white mt-1">2D-CNN (4,648 params)</h4>
+              <h4 className="text-sm font-bold text-white mt-1">2D-CNN + BN (4,728 params)</h4>
               <div className="mt-3 space-y-1.5 text-[11px] font-mono text-[#80978E]">
-                <div className="p-2 rounded-lg bg-[#091410] border border-[#14261F]">Conv2d(8&rarr;16, 3x3) + MaxPool (1,168 params)</div>
-                <div className="p-2 rounded-lg bg-[#091410] border border-[#14261F]">Conv2d(16&rarr;24, 3x3) + MaxPool (3,480 params)</div>
+                <div className="p-2 rounded-lg bg-[#091410] border border-[#14261F]">Conv2d(8&rarr;16, 3x3) + BN + MaxPool (1,200 params)</div>
+                <div className="p-2 rounded-lg bg-[#091410] border border-[#14261F]">Conv2d(16&rarr;24, 3x3) + BN + MaxPool (3,528 params)</div>
                 <div className="p-2 rounded-lg bg-[#091410] border border-[#14261F]">AdaptiveAvgPool2d((1, 1)) + Flatten</div>
                 <div className="p-2 rounded-lg bg-[#091410] border border-[#14261F] text-[#22C55E] font-bold">
                   Spatial Vector: [B, 6, 24]
@@ -92,17 +92,17 @@ export const ModelArchitectureView: React.FC = () => {
           <div className="p-4 rounded-xl bg-[#060D0A] border border-[#14261F] flex flex-col justify-between">
             <div>
               <div className="text-[10px] font-mono text-[#22C55E] uppercase font-semibold">Stage 3: Sequence Core</div>
-              <h4 className="text-sm font-bold text-white mt-1">BiLSTM (5,888 params)</h4>
+              <h4 className="text-sm font-bold text-white mt-1">BiLSTM (11,520 params)</h4>
               <div className="mt-3 space-y-2 text-xs font-mono">
                 <div className="p-2.5 rounded-lg bg-[#091410] border border-[#14261F]">
                   <span className="text-[#80978E] block text-[10px]">TIME-STEP FUSED TENSOR:</span>
-                  <span className="text-white font-bold">[B, 6, 28]</span>
-                  <span className="text-[#80978E] block text-[10px] mt-0.5">24 spatial + 4 climate features</span>
+                  <span className="text-white font-bold">[B, 6, 34]</span>
+                  <span className="text-[#80978E] block text-[10px] mt-0.5">24 spatial + 10 climate/crop features</span>
                 </div>
                 <div className="p-2.5 rounded-lg bg-[#091410] border border-[#14261F]">
                   <span className="text-[#80978E] block text-[10px]">1-LAYER BiLSTM HIDDEN:</span>
-                  <span className="text-[#22C55E] font-bold">[B, 32]</span>
-                  <span className="text-[#80978E] block text-[10px] mt-0.5">hidden=16 bidirectional (16x2)</span>
+                  <span className="text-[#22C55E] font-bold">[B, 48]</span>
+                  <span className="text-[#80978E] block text-[10px] mt-0.5">hidden=24 bidirectional (24x2)</span>
                 </div>
               </div>
             </div>
@@ -116,12 +116,12 @@ export const ModelArchitectureView: React.FC = () => {
           <div className="p-4 rounded-xl bg-[#060D0A] border border-[#14261F] flex flex-col justify-between">
             <div>
               <div className="text-[10px] font-mono text-[#22C55E] uppercase font-semibold">Stage 4: Prediction Head</div>
-              <h4 className="text-sm font-bold text-white mt-1">Classification Head (545 params)</h4>
+              <h4 className="text-sm font-bold text-white mt-1">Classification Head (1,201 params)</h4>
               <div className="mt-3 space-y-2 text-xs font-mono">
                 <div className="p-2.5 rounded-lg bg-[#091410] border border-[#14261F]">
                   <span className="text-[#80978E] block text-[10px]">DENSE PROJECTION:</span>
-                  <span className="text-[#A4B8AF]">Linear(32&rarr;16) + Dropout(0.20)</span>
-                  <span className="text-[#A4B8AF] block">Linear(16&rarr;1) Logits</span>
+                  <span className="text-[#A4B8AF]">Linear(48&rarr;24) + ReLU + Dropout(0.30)</span>
+                  <span className="text-[#A4B8AF] block">Linear(24&rarr;1) Logits</span>
                 </div>
                 <div className="p-2.5 rounded-lg bg-[#091410] border border-[#173D2C] text-white">
                   <span className="text-[#22C55E] block text-[10px] font-bold">MODEL OUTPUT:</span>

@@ -1,0 +1,54 @@
+{
+  "district_seasons_evaluated": 75,
+  "positive_district_seasons": 10,
+  "negative_district_seasons": 65,
+  "accuracy_threshold_0_5": 0.8,
+  "balanced_accuracy_threshold_0_5": 0.46153846153846156,
+  "precision_threshold_0_5": 0.0,
+  "recall_threshold_0_5": 0.0,
+  "f1_threshold_0_5": 0.0,
+  "confusion_matrix_labels_0_1": [
+    [
+      60,
+      5
+    ],
+    [
+      10,
+      0
+    ]
+  ],
+  "roc_auc": 0.3046153846153846,
+  "average_precision": 0.1095990918189855,
+  "baseline_majority_accuracy": 0.8666666666666667,
+  "note": "Exploratory district-grouped holdout; small data and district-level labels repeated across sampled patches.",
+  "per_season_breakdown": [
+    {
+      "season": 2019,
+      "samples": 20,
+      "actual_failures": 9,
+      "accuracy": 0.55,
+      "brier_score": 0.4036955960816112
+    },
+    {
+      "season": 2020,
+      "samples": 20,
+      "actual_failures": 1,
+      "accuracy": 0.85,
+      "brier_score": 0.09998503979093461
+    },
+    {
+      "season": 2021,
+      "samples": 18,
+      "actual_failures": 0,
+      "accuracy": 0.8333333333333334,
+      "brier_score": 0.11045477644508082
+    },
+    {
+      "season": 2022,
+      "samples": 17,
+      "actual_failures": 0,
+      "accuracy": 1.0,
+      "brier_score": 0.006285658557453417
+    }
+  ]
+}

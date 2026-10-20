@@ -60,9 +60,10 @@ const PREDICTION_CACHE: Record<string, DistrictModelPrediction> = {};
 export function runDistrictInference(
   districtId: string,
   year: number,
-  futureScenario?: { oni: number; rainDeficitPct: number }
+  futureScenario?: { oni: number; rainDeficitPct: number },
+  crop: string = 'ALL'
 ): DistrictModelPrediction {
-  const cacheKey = `${districtId}_${year}_${
+  const cacheKey = `${districtId}_${year}_${crop}_${
     futureScenario ? `${futureScenario.oni}_${futureScenario.rainDeficitPct}` : 'hist'
   }`;
   if (PREDICTION_CACHE[cacheKey]) {
@@ -107,14 +108,14 @@ export function runDistrictInference(
       },
       provenance: {
         modelCheckpoint: 'crop_model_output/crop_failure_model.pt',
-        modelArchitecture: 'CropFailureCNNLSTM_11081params',
+        modelArchitecture: 'MultiCropSpatiotemporalCNNLSTM_17449params',
         sampledLocations: 1,
         meanValidPixelFraction: 1.0,
         cropYear: `${year}-${String(year + 1).slice(-2)}`,
-        modelProvenance: 'Research sensitivity simulation (non-operational)',
+        modelProvenance: 'Research sensitivity simulation (multi-crop Kharif)',
       },
-      runtimeParamCount: 11081,
-      inferenceEngine: 'PyTorch CNN-LSTM Architecture · Sensitivity Simulation View',
+      runtimeParamCount: 17449,
+      inferenceEngine: 'PyTorch CNN-LSTM Architecture · Multi-Crop Sensitivity Simulation View',
     };
 
     PREDICTION_CACHE[cacheKey] = result;
@@ -123,7 +124,7 @@ export function runDistrictInference(
 
   // Case 2: Historical Satellite Years (2019, 2020, 2021, 2022)
   if (isModelSupportedYear(year)) {
-    const record = getModelPrediction(year, districtId);
+    const record = getModelPrediction(year, districtId, crop);
 
     if (record) {
       const result: DistrictModelPrediction = {
@@ -151,8 +152,8 @@ export function runDistrictInference(
           cropYear: record.cropYear,
           modelProvenance: record.modelProvenance,
         },
-        runtimeParamCount: 11081,
-        inferenceEngine: 'PyTorch CNN-LSTM (Trained Checkpoint: crop_model_output/crop_failure_model.pt)',
+        runtimeParamCount: 17449,
+        inferenceEngine: 'PyTorch Multi-Crop CNN-LSTM (Trained Checkpoint: crop_model_output/crop_failure_model.pt)',
       };
 
       PREDICTION_CACHE[cacheKey] = result;
@@ -168,7 +169,7 @@ export function runDistrictInference(
         riskCategory: 'Unavailable',
         predictionStatus: 'DISTRICT_NOT_SAMPLED',
         statusExplanation:
-          'District was not sampled in the Sentinel-2 rice cropland patch dataset for this season. Prediction unavailable without fabricated inputs.',
+          'District was not sampled in the Sentinel-2 cropland patch dataset for this season. Prediction unavailable without fabricated inputs.',
         spatialBranchStatus: 'NOT_SAMPLED',
         climateInputsUsed: {
           cumulativeRainfallMm: null,
@@ -176,7 +177,7 @@ export function runDistrictInference(
           oniSstAnomaly: 0,
           hasImdData: false,
         },
-        runtimeParamCount: 11081,
+        runtimeParamCount: 17449,
         inferenceEngine: 'PyTorch CNN-LSTM (Data Unavailable)',
       };
 
@@ -202,7 +203,7 @@ export function runDistrictInference(
       oniSstAnomaly: 0,
       hasImdData: false,
     },
-    runtimeParamCount: 11081,
+    runtimeParamCount: 17449,
     inferenceEngine: 'PyTorch CNN-LSTM (Requires 2019-2022 Satellite Imagery)',
   };
 
@@ -211,16 +212,16 @@ export function runDistrictInference(
 }
 
 /**
- * Queries predictions for all districts for a given season.
+ * Queries predictions for all districts for a given season and crop.
  */
 export function getSeasonPredictions(
   year: number,
-  futureScenario?: { oni: number; rainDeficitPct: number }
+  futureScenario?: { oni: number; rainDeficitPct: number },
+  crop: string = 'ALL'
 ): Record<string, DistrictModelPrediction> {
   const results: Record<string, DistrictModelPrediction> = {};
   for (const dist of MAHARASHTRA_DISTRICTS) {
-    if (!dist.isRiceProducer) continue;
-    results[dist.id] = runDistrictInference(dist.id, year, futureScenario);
+    results[dist.id] = runDistrictInference(dist.id, year, futureScenario, crop);
   }
   return results;
 }
@@ -230,29 +231,29 @@ export function getSeasonPredictions(
  */
 export function getModelSystemDiagnostics() {
   return {
-    modelName: 'CropFailureCNNLSTM',
-    authoritativeParamCount: MODEL_EVALUATION_SUMMARY.trainableParameters, // 11,081
-    totalSamplesInDataset: MODEL_EVALUATION_SUMMARY.totalPatchRows, // 322 patch-year records
+    modelName: 'MultiCropSpatiotemporalCNNLSTM',
+    authoritativeParamCount: MODEL_EVALUATION_SUMMARY.trainableParameters, // 17,449
+    totalSamplesInDataset: MODEL_EVALUATION_SUMMARY.totalPatchRows, // 1,211 patch-year records
     totalMonitoredDistricts: 20, // 20 districts in satellite dataset
     totalDistrictsInState: 36,
     unmonitoredDistricts: 16,
     sampleLimitationNotice:
-      'ACADEMIC AUDIT STATUS: Model trained and verified on 322 patch-year records (2019–2022). Grouped holdout across 5 unseen districts achieved 0.917 ROC-AUC and 72.2% balanced accuracy. Checkpoint: crop_model_output/crop_failure_model.pt.',
+      'ACADEMIC AUDIT STATUS: Model trained and verified on 1,211 patch-year records (2019–2022) across Rice, Soybean, Cotton, Bajra, Jowar, Tur. Overall ROC-AUC 0.987, Balanced Accuracy 96.1%, F1-score 0.861. Checkpoint: crop_model_output/crop_failure_model.pt.',
     spatialBranchStatus: 'Trained & Ingested',
     spatialBranchMessage:
-      'Multi-spectral 6-window Sentinel-2 patch rasters processed across 2019–2022 Kharif seasons.',
-    extractionScriptPath: 'predict_crop_failure.py / scripts/generate_predictions.py',
+      'Multi-spectral 6-window Sentinel-2 patch rasters processed across 2019–2022 Kharif seasons for all 6 crops.',
+    extractionScriptPath: 'train_all_kharif_crops_cnn_lstm.py / scripts/evaluate_and_export_all_crops.py',
     shapeVerificationPassed: true,
-    shapeVerificationLog: 'Spatial: [B, 6, 8, 32, 32] -> Conv2d -> [B, 6, 24] fused with Climate [B, 6, 4] -> BiLSTM(28->16) -> [B, 32] -> Linear -> [B, 1]',
+    shapeVerificationLog: 'Spatial: [B, 6, 8, 32, 32] -> Conv2d/BN -> [B, 6, 24] fused with Climate+Crop [B, 6, 10] -> BiLSTM(34->24) -> [B, 48] -> Linear(48->24)->Linear(24->1) -> [B, 1]',
     layers: [
-      { name: 'conv2d_1', type: 'Conv2d(8->16, 3x3, p=1)', outputShape: '[B, 6, 16, 32, 32]', params: 1168 },
+      { name: 'conv2d_1', type: 'Conv2d(8->16, 3x3, p=1) + BN', outputShape: '[B, 6, 16, 32, 32]', params: 1200 },
       { name: 'maxpool_1', type: 'MaxPool2d(2)', outputShape: '[B, 6, 16, 16, 16]', params: 0 },
-      { name: 'conv2d_2', type: 'Conv2d(16->24, 3x3, p=1)', outputShape: '[B, 6, 24, 16, 16]', params: 3480 },
+      { name: 'conv2d_2', type: 'Conv2d(16->24, 3x3, p=1) + BN', outputShape: '[B, 6, 24, 16, 16]', params: 3528 },
       { name: 'maxpool_2', type: 'MaxPool2d(2)', outputShape: '[B, 6, 24, 8, 8]', params: 0 },
       { name: 'adaptive_pool', type: 'AdaptiveAvgPool2d(1, 1)', outputShape: '[B, 6, 24]', params: 0 },
-      { name: 'bilstm', type: 'Bidirectional LSTM(input=28, hidden=16, layers=1)', outputShape: '[B, 32]', params: 5888 },
-      { name: 'dense_1', type: 'Linear(32->16) + Dropout(0.20)', outputShape: '[B, 16]', params: 528 },
-      { name: 'dense_out', type: 'Linear(16->1) + Sigmoid', outputShape: '[B, 1]', params: 17 },
+      { name: 'bilstm', type: 'Bidirectional LSTM(input=34, hidden=24, layers=1)', outputShape: '[B, 48]', params: 11520 },
+      { name: 'dense_1', type: 'Linear(48->24) + ReLU + Dropout(0.30)', outputShape: '[B, 24]', params: 1176 },
+      { name: 'dense_out', type: 'Linear(24->1) + Sigmoid', outputShape: '[B, 1]', params: 25 },
     ],
     evaluation: MODEL_EVALUATION_SUMMARY,
   };

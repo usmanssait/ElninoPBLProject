@@ -137,7 +137,69 @@ export const LosoValidationView: React.FC = () => {
         </div>
       </div>
 
-      {/* 4. Held-out Test District Predictions Table */}
+      {/* 4. Multi-Crop Kharif Validation Performance Breakdown */}
+      {metrics.metricsByCrop && (
+        <div className="p-4 sm:p-5 rounded-2xl bg-[#091410] border border-[#14261F] space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#14261F]">
+            <div>
+              <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                <Sprout className="w-4 h-4 text-[#22C55E]" />
+                <span>Multi-Crop Kharif Generalization Performance (All 6 Crops)</span>
+              </h3>
+              <p className="text-xs text-[#80978E] mt-0.5">
+                Evaluation across 1,211 multi-spectral patch-year samples spanning Rice, Soybean, Cotton, Bajra, Jowar, and Tur
+              </p>
+            </div>
+            <span className="px-2.5 py-1 rounded-xl bg-[#0E281F] text-[#4ADE80] border border-[#1F4535] text-xs font-mono font-bold">
+              Overall ROC-AUC: {(metrics.rocAuc * 100).toFixed(1)}% &middot; F1: {metrics.f1Score.toFixed(3)}
+            </span>
+          </div>
+
+          <div className="overflow-x-auto border border-[#14261F] rounded-xl bg-[#060D0A]">
+            <table className="w-full text-left text-xs font-mono">
+              <thead className="bg-[#091410] text-[#7A9187] border-b border-[#14261F]">
+                <tr>
+                  <th className="py-2.5 px-3">Crop</th>
+                  <th className="py-2.5 px-3 text-right">Samples Evaluated</th>
+                  <th className="py-2.5 px-3 text-right">Accuracy</th>
+                  <th className="py-2.5 px-3 text-right">Balanced Accuracy</th>
+                  <th className="py-2.5 px-3 text-right">F1-Score</th>
+                  <th className="py-2.5 px-3 text-right">ROC-AUC</th>
+                  <th className="py-2.5 px-3 text-right">PR-AUC</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-[#0F1E18]">
+                {Object.entries(metrics.metricsByCrop).map(([cropName, cMetrics]) => (
+                  <tr key={cropName} className="hover:bg-[#0A1612]">
+                    <td className="py-2 px-3 text-white font-medium flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-[#22C55E]" />
+                      <span>{cropName}</span>
+                    </td>
+                    <td className="py-2 px-3 text-right text-[#A4B8AF] tabular-nums">{cMetrics.samples}</td>
+                    <td className="py-2 px-3 text-right text-white font-bold tabular-nums">
+                      {(cMetrics.accuracy * 100).toFixed(1)}%
+                    </td>
+                    <td className="py-2 px-3 text-right text-[#38BDF8] tabular-nums">
+                      {(cMetrics.balanced_accuracy * 100).toFixed(1)}%
+                    </td>
+                    <td className="py-2 px-3 text-right text-amber-400 tabular-nums">
+                      {cMetrics.f1_score.toFixed(3)}
+                    </td>
+                    <td className="py-2 px-3 text-right text-[#22C55E] font-bold tabular-nums">
+                      {(cMetrics.roc_auc * 100).toFixed(1)}%
+                    </td>
+                    <td className="py-2 px-3 text-right text-[#A4B8AF] tabular-nums">
+                      {(cMetrics.pr_auc * 100).toFixed(1)}%
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {/* 5. Held-out Test District Predictions Table */}
       <div className="p-4 sm:p-5 rounded-2xl bg-[#091410] border border-[#14261F] space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#14261F]">
           <div>
@@ -158,7 +220,7 @@ export const LosoValidationView: React.FC = () => {
               className="bg-[#0B1A14] border border-[#173026] text-white rounded-lg px-2.5 py-1 text-xs font-mono cursor-pointer focus:outline-hidden"
             >
               <option value="all">All 5 Test Districts</option>
-              {metrics.testDistricts.map(d => (
+              {(metrics.testDistricts || []).map(d => (
                 <option key={d} value={d} className="bg-[#08120E] text-white">
                   {d.toUpperCase()}
                 </option>

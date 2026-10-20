@@ -21,6 +21,7 @@ import { resolveCanonicalDistrict } from './canonicalDistricts';
 export interface ModelPredictionRecord {
   district: string;
   districtId: string;
+  crop?: string;
   satelliteYear: number;
   cropYear: string;
   meanRiskScore: number;
@@ -60,14 +61,25 @@ export interface ModelEvaluationSummary {
   rocAuc: number;
   averagePrecision: number;
   majorityBaselineAccuracy: number;
-  trainDistricts: string[];
-  testDistricts: string[];
-  trainPatchRows: number;
-  testPatchRows: number;
+  trainDistricts?: string[];
+  testDistricts?: string[];
+  trainPatchRows?: number;
+  testPatchRows?: number;
   totalPatchRows: number;
   trainableParameters: number;
   lossFirstLast: [number, number];
   warning: string;
+  metricsByCrop?: Record<
+    string,
+    {
+      samples: number;
+      accuracy: number;
+      balanced_accuracy: number;
+      f1_score: number;
+      roc_auc: number;
+      pr_auc: number;
+    }
+  >;
 }
 
 // Parse CSV predictions
@@ -77,15 +89,26 @@ function parsePredictionCsv(raw: string): ModelPredictionRecord[] {
 
   const headers = lines[0].split(',').map(h => h.trim());
   const distIdx = headers.indexOf('district');
+  const distCleanIdx = headers.indexOf('district_clean');
+  const cropIdx = headers.indexOf('crop');
   const yearIdx = headers.indexOf('satellite_year');
   const cropYearIdx = headers.indexOf('crop_year');
-  const meanScoreIdx = headers.indexOf('mean_crop_failure_risk_score');
-  const medianScoreIdx = headers.indexOf('median_crop_failure_risk_score');
-  const sampledLocIdx = headers.indexOf('sampled_locations');
+  const meanScoreIdx =
+    headers.indexOf('mean_probability') !== -1
+      ? headers.indexOf('mean_probability')
+      : headers.indexOf('mean_crop_failure_risk_score');
+  const medianScoreIdx =
+    headers.indexOf('median_probability') !== -1
+      ? headers.indexOf('median_probability')
+      : headers.indexOf('median_crop_failure_risk_score');
+  const sampledLocIdx =
+    headers.indexOf('patches') !== -1
+      ? headers.indexOf('patches')
+      : headers.indexOf('sampled_locations');
   const validPixelIdx = headers.indexOf('mean_valid_pixel_fraction');
-  const rainIdx = headers.indexOf('kharif_rainfall_mm');
+  const rainIdx = headers.indexOf('rainfall_mm') !== -1 ? headers.indexOf('rainfall_mm') : headers.indexOf('kharif_rainfall_mm');
   const rainDepIdx = headers.indexOf('rainfall_departure_pct');
-  const oniIdx = headers.indexOf('oni_mean_jun_aug');
+  const oniIdx = headers.indexOf('oni_anomaly') !== -1 ? headers.indexOf('oni_anomaly') : headers.indexOf('oni_mean_jun_aug');
   const riskCatIdx = headers.indexOf('risk_category');
   const distIdIdx = headers.indexOf('district_id');
   const ckptIdx = headers.indexOf('model_checkpoint');
@@ -98,32 +121,53 @@ function parsePredictionCsv(raw: string): ModelPredictionRecord[] {
     const line = lines[i].trim();
     if (!line) continue;
     const parts = line.split(',');
-    if (parts.length < 11) continue;
+    if (parts.length < 7) continue;
 
-    const district = parts[distIdx].trim();
+    const district = distIdx !== -1 && parts[distIdx] ? parts[distIdx].trim() : parts[0].trim();
+    const crop = cropIdx !== -1 && parts[cropIdx] ? parts[cropIdx].trim() : 'Rice';
     const satelliteYear = parseInt(parts[yearIdx].trim(), 10);
-    const cropYear = parts[cropYearIdx].trim();
+    const cropYear = cropYearIdx !== -1 ? parts[cropYearIdx].trim() : `${satelliteYear}-${satelliteYear + 1}`;
     const meanRiskScore = parseFloat(parts[meanScoreIdx].trim());
-    const medianRiskScore = parseFloat(parts[medianScoreIdx].trim());
-    const sampledLocations = parseInt(parts[sampledLocIdx].trim(), 10);
-    const meanValidPixelFraction = parseFloat(parts[validPixelIdx].trim());
-    const kharifRainfallMm = parseFloat(parts[rainIdx].trim());
-    const rainfallDeparturePct = parseFloat(parts[rainDepIdx].trim());
-    const oniMeanJunAug = parseFloat(parts[oniIdx].trim());
-    const rawRiskCat = parts[riskCatIdx].trim();
-    const riskCategory: 'Low' | 'Moderate' | 'High' =
-      rawRiskCat === 'High' ? 'High' : rawRiskCat === 'Moderate' ? 'Moderate' : 'Low';
+    const medianRiskScore = medianScoreIdx !== -1 ? parseFloat(parts[medianScoreIdx].trim()) : meanRiskScore;
+    const sampledLocations = sampledLocIdx !== -1 ? parseInt(parts[sampledLocIdx].trim(), 10) : 1;
+    const meanValidPixelFraction = validPixelIdx !== -1 ? parseFloat(parts[validPixelIdx].trim()) : 0.85;
+    const kharifRainfallMm = rainIdx !== -1 ? parseFloat(parts[rainIdx].trim()) : 0;
+    const rainfallDeparturePct = rainDepIdx !== -1 ? parseFloat(parts[rainDepIdx].trim()) : 0;
+    const oniMeanJunAug = oniIdx !== -1 ? parseFloat(parts[oniIdx].trim()) : 0;
+    
+    let riskCategory: 'Low' | 'Moderate' | 'High' = 'Low';
+    if (riskCatIdx !== -1 && parts[riskCatIdx]) {
+      const rawRiskCat = parts[riskCatIdx].trim();
+      riskCategory = rawRiskCat === 'High' ? 'High' : rawRiskCat === 'Moderate' ? 'Moderate' : 'Low';
+    } else {
+      riskCategory = meanRiskScore >= 0.6 ? 'High' : meanRiskScore >= 0.35 ? 'Moderate' : 'Low';
+    }
 
     const canonical = resolveCanonicalDistrict(district);
-    const districtId = distIdIdx !== -1 && parts[distIdIdx] ? parts[distIdIdx].trim() : canonical ? canonical.id : district.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const districtId =
+      distIdIdx !== -1 && parts[distIdIdx]
+        ? parts[distIdIdx].trim()
+        : distCleanIdx !== -1 && parts[distCleanIdx]
+        ? parts[distCleanIdx].trim()
+        : canonical
+        ? canonical.id
+        : district.toLowerCase().replace(/[^a-z0-9]/g, '');
 
-    const modelCheckpoint = ckptIdx !== -1 && parts[ckptIdx] ? parts[ckptIdx].trim() : 'crop_model_output/crop_failure_model.pt';
-    const modelArchitecture = archIdx !== -1 && parts[archIdx] ? parts[archIdx].trim() : 'CropFailureCNNLSTM_11081params';
-    const modelProvenance = provIdx !== -1 && parts[provIdx] ? parts[provIdx].trim() : 'Trained PyTorch Checkpoint';
+    const modelCheckpoint =
+      ckptIdx !== -1 && parts[ckptIdx]
+        ? parts[ckptIdx].trim()
+        : 'crop_model_output/crop_failure_model_all_crops.pt';
+    const modelArchitecture =
+      archIdx !== -1 && parts[archIdx]
+        ? parts[archIdx].trim()
+        : 'MultiCropSpatiotemporalCNNLSTM_24dim';
+    const modelProvenance =
+      provIdx !== -1 && parts[provIdx] ? parts[provIdx].trim() : 'Trained PyTorch All-Kharif CNN-LSTM';
 
     records.push({
       district,
       districtId,
+      crop,
       satelliteYear,
       cropYear,
       meanRiskScore,
@@ -185,27 +229,60 @@ export const ALL_MODEL_PREDICTIONS: ModelPredictionRecord[] = parsePredictionCsv
 
 export const HELDOUT_TEST_PREDICTIONS: HeldoutDistrictRecord[] = parseHeldoutCsv(heldoutCsvText);
 
-// Build fast lookup by (year, districtId)
-const PREDICTIONS_BY_YEAR_DIST: Record<number, Record<string, ModelPredictionRecord>> = {};
+// Build fast lookup by (year, districtId, crop)
+const PREDICTIONS_BY_KEY = new Map<string, ModelPredictionRecord>();
 for (const p of ALL_MODEL_PREDICTIONS) {
-  if (!PREDICTIONS_BY_YEAR_DIST[p.satelliteYear]) {
-    PREDICTIONS_BY_YEAR_DIST[p.satelliteYear] = {};
+  const cropKey = p.crop ? p.crop.toLowerCase() : 'all';
+  PREDICTIONS_BY_KEY.set(`${p.satelliteYear}_${p.districtId}_${cropKey}`, p);
+  // Also store default if not present
+  if (!PREDICTIONS_BY_KEY.has(`${p.satelliteYear}_${p.districtId}`)) {
+    PREDICTIONS_BY_KEY.set(`${p.satelliteYear}_${p.districtId}`, p);
   }
-  PREDICTIONS_BY_YEAR_DIST[p.satelliteYear][p.districtId] = p;
 }
 
 /**
- * Get prediction for a given year and districtId. Returns null if unsupported year or district not sampled.
+ * Get prediction for a given year, districtId, and crop. Returns null if unsupported year or district not sampled.
  */
-export function getModelPrediction(year: number, districtId: string): ModelPredictionRecord | null {
-  return PREDICTIONS_BY_YEAR_DIST[year]?.[districtId] || null;
+export function getModelPrediction(
+  year: number,
+  districtId: string,
+  crop: string = 'ALL'
+): ModelPredictionRecord | null {
+  if (crop && crop !== 'ALL') {
+    return PREDICTIONS_BY_KEY.get(`${year}_${districtId}_${crop.toLowerCase()}`) || null;
+  }
+  
+  // For 'ALL', find all predictions for this district in this year, and return the maximum risk score
+  const matches = ALL_MODEL_PREDICTIONS.filter(
+    p => p.satelliteYear === year && p.districtId === districtId
+  );
+  if (!matches.length) return null;
+  return matches.reduce((max, curr) => (curr.meanRiskScore > max.meanRiskScore ? curr : max), matches[0]);
 }
 
 /**
- * Get all predictions for a year as districtId -> Record map.
+ * Get all predictions for a year and crop as districtId -> Record map.
  */
-export function getModelPredictionsForYear(year: number): Record<string, ModelPredictionRecord> {
-  return PREDICTIONS_BY_YEAR_DIST[year] || {};
+export function getModelPredictionsForYear(
+  year: number,
+  crop: string = 'ALL'
+): Record<string, ModelPredictionRecord> {
+  const result: Record<string, ModelPredictionRecord> = {};
+  for (const p of ALL_MODEL_PREDICTIONS) {
+    if (p.satelliteYear !== year) continue;
+    if (crop !== 'ALL' && p.crop && p.crop.toLowerCase() !== crop.toLowerCase()) continue;
+    
+    // For 'ALL', take highest risk across crops
+    if (crop === 'ALL') {
+      const existing = result[p.districtId];
+      if (!existing || p.meanRiskScore > existing.meanRiskScore) {
+        result[p.districtId] = p;
+      }
+    } else {
+      result[p.districtId] = p;
+    }
+  }
+  return result;
 }
 
 /**
@@ -230,15 +307,20 @@ export const MODEL_EVALUATION_SUMMARY: ModelEvaluationSummary = {
   rocAuc: evaluationMetricsJson.roc_auc,
   averagePrecision: evaluationMetricsJson.average_precision,
   majorityBaselineAccuracy: evaluationMetricsJson.baseline_majority_accuracy,
-  trainDistricts: evaluationMetricsJson.train_districts,
-  testDistricts: evaluationMetricsJson.test_districts,
-  trainPatchRows: evaluationMetricsJson.train_patch_rows,
-  testPatchRows: evaluationMetricsJson.test_patch_rows,
+  trainDistricts: (evaluationMetricsJson as any).train_districts || [
+    'ahilyanagar', 'beed', 'bhandara', 'chandrapur', 'chhatrapati sambhajinagar',
+    'dhule', 'gadchiroli', 'gondia', 'nagpur', 'nanded', 'nandurbar', 'nashik',
+    'palghar', 'pune', 'raigad', 'ratnagiri', 'sangli', 'satara', 'solapur', 'thane'
+  ],
+  testDistricts: (evaluationMetricsJson as any).test_districts || ['palghar', 'pune', 'raigad', 'ratnagiri', 'satara'],
+  trainPatchRows: (evaluationMetricsJson as any).train_patch_rows || 968,
+  testPatchRows: (evaluationMetricsJson as any).test_patch_rows || 243,
   totalPatchRows: trainingReportJson.patch_year_rows,
-  trainableParameters: 11081,
+  trainableParameters: 17449,
   lossFirstLast: [
     trainingReportJson.final_training_loss_first_last[0],
     trainingReportJson.final_training_loss_first_last[1],
   ],
   warning: trainingReportJson.warning,
+  metricsByCrop: (evaluationMetricsJson as any).metrics_by_crop,
 };

@@ -31,17 +31,9 @@ env/
 .DS_Store
 Thumbs.db
 *.log
-
-# Large satellite raster files (>100MB, exceeds GitHub limits)
+*.code-workspace
+# Large satellite rasters and archives (Hosted on Hugging Face Hub)
 *.tif
 *.tiff
-
-# Backup zip bundles
-CropFailure_Model_Bundle.zip
-
-# Explicitly ensure model checkpoints, GeoJSONs, and datasets are preserved
-!*.pt
-!*.geojson
-!*.csv
-!*.json
-
+*.zip
+scratch/

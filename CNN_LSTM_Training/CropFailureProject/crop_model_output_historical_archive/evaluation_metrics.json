@@ -1,0 +1,109 @@
+{
+  "district_seasons_evaluated": 17,
+  "positive_district_seasons": 2,
+  "negative_district_seasons": 15,
+  "accuracy_threshold_0_5": 0.7647058823529411,
+  "balanced_accuracy_threshold_0_5": 0.8666666666666667,
+  "precision_threshold_0_5": 0.3333333333333333,
+  "recall_threshold_0_5": 1.0,
+  "f1_threshold_0_5": 0.5,
+  "confusion_matrix_labels_0_1": [
+    [
+      11,
+      4
+    ],
+    [
+      0,
+      2
+    ]
+  ],
+  "roc_auc": 0.8,
+  "average_precision": 0.325,
+  "baseline_majority_accuracy": 0.8823529411764706,
+  "note": "Exploratory district-grouped holdout; small data and district-level labels repeated across sampled patches.",
+  "train_patch_rows": 184,
+  "test_patch_rows": 80,
+  "train_districts": [
+    "ahilyanagar",
+    "beed",
+    "bhandara",
+    "dhule",
+    "gadchiroli",
+    "gondia",
+    "nagpur",
+    "nanded",
+    "nashik",
+    "palghar",
+    "pune",
+    "raigad",
+    "sangli",
+    "thane"
+  ],
+  "test_districts": [
+    "chandrapur",
+    "nandurbar",
+    "ratnagiri",
+    "satara",
+    "solapur"
+  ],
+  "train_weighting": {
+    "pos_weight": 6.666666666666667,
+    "positive_district_seasons_train": 6,
+    "negative_district_seasons_train": 40
+  },
+  "label_threshold_pct": 15,
+  "loso_overall": {
+    "district_seasons_evaluated": 63,
+    "positive_district_seasons": 8,
+    "negative_district_seasons": 55,
+    "accuracy_threshold_0_5": 0.8253968253968254,
+    "balanced_accuracy_threshold_0_5": 0.4727272727272727,
+    "precision_threshold_0_5": 0.0,
+    "recall_threshold_0_5": 0.0,
+    "f1_threshold_0_5": 0.0,
+    "confusion_matrix_labels_0_1": [
+      [
+        52,
+        3
+      ],
+      [
+        8,
+        0
+      ]
+    ],
+    "roc_auc": 0.2636363636363636,
+    "average_precision": 0.09260134033395889,
+    "baseline_majority_accuracy": 0.873015873015873,
+    "note": "Exploratory district-grouped holdout; small data and district-level labels repeated across sampled patches.",
+    "per_season_breakdown": [
+      {
+        "season": 2019,
+        "samples": 14,
+        "actual_failures": 6,
+        "accuracy": 0.5714285714285714,
+        "brier_score": 0.3676304538953903
+      },
+      {
+        "season": 2020,
+        "samples": 14,
+        "actual_failures": 2,
+        "accuracy": 0.8571428571428571,
+        "brier_score": 0.14494693438923803
+      },
+      {
+        "season": 2021,
+        "samples": 18,
+        "actual_failures": 0,
+        "accuracy": 0.8333333333333334,
+        "brier_score": 0.15361403278839672
+      },
+      {
+        "season": 2022,
+        "samples": 17,
+        "actual_failures": 0,
+        "accuracy": 1.0,
+        "brier_score": 0.023657800772252394
+      }
+    ]
+  }
+}

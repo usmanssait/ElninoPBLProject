@@ -8,6 +8,7 @@ export interface DistrictYearMetric {
   division: string;
   year: number;
   cropYearStr: string; // e.g. "2015-16"
+  crop: string;
   rainfallMm: number | null; // NULL if missing; NO SILENT 850mm DEFAULTS
   yieldTonnesHa: number | null; // NULL if missing; NO SILENT FABRICATIONS
   baselineYieldTonnesHa: number | null;
@@ -19,10 +20,11 @@ export interface DistrictYearMetric {
   isRiceProducer: boolean;
   hasDesRecord: boolean;
   hasImdRecord: boolean;
+  cropsGrownHere?: string[];
 }
 
 // Compute district-year metrics for all 36 districts across 2015-2022
-export function buildDistrictYearMetrics(): Record<number, Record<string, DistrictYearMetric>> {
+export function buildDistrictYearMetrics(cropFilter: import('./authoritativeData').KharifCropType = 'ALL'): Record<number, Record<string, DistrictYearMetric>> {
   const years = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022];
   const metricsByYear: Record<number, Record<string, DistrictYearMetric>> = {};
 
@@ -31,7 +33,7 @@ export function buildDistrictYearMetrics(): Record<number, Record<string, Distri
     const oni = NOAA_CPC_ONI_RECORDS.find(r => r.year === year);
 
     for (const dist of MAHARASHTRA_DISTRICTS) {
-      const obs = getJoinedObservation(dist.id, year);
+      const obs = getJoinedObservation(dist.id, year, cropFilter);
 
       // Compound Risk Score: weights rainfall deficit + ONI anomaly + yield anomaly (only when inputs exist)
       let compoundRiskScore: number | null = null;
@@ -49,6 +51,7 @@ export function buildDistrictYearMetrics(): Record<number, Record<string, Distri
         division: dist.division,
         year,
         cropYearStr: obs.cropYearStr,
+        crop: obs.crop,
         rainfallMm: obs.rainfallMm,
         yieldTonnesHa: obs.yieldTonnesHa,
         baselineYieldTonnesHa: obs.baselineYieldTonnesHa,
@@ -57,9 +60,10 @@ export function buildDistrictYearMetrics(): Record<number, Record<string, Distri
         ensoPhase: oni ? oni.ensoPhase : 'Neutral',
         oniSstAnomaly: oni ? oni.meanEarlyWarningSstAnomaly : 0,
         compoundRiskScore,
-        isRiceProducer: dist.isRiceProducer,
+        isRiceProducer: obs.isRiceProducer,
         hasDesRecord: obs.hasDesRecord,
         hasImdRecord: obs.hasImdRecord,
+        cropsGrownHere: obs.cropsGrownHere,
       };
     }
   }
@@ -67,7 +71,7 @@ export function buildDistrictYearMetrics(): Record<number, Record<string, Distri
   return metricsByYear;
 }
 
-export const ALL_YEAR_METRICS = buildDistrictYearMetrics();
+export const ALL_YEAR_METRICS = buildDistrictYearMetrics('ALL');
 
 // Color interpolation matching Python colormaps:
 // RAIN_CMAP: ["#ECE8F2", "#C7BCD7", "#A99BBE", "#71658C"]

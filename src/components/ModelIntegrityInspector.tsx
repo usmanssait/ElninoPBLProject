@@ -23,7 +23,7 @@ export const ModelIntegrityInspector: React.FC = () => {
               </span>
             </div>
             <p className="text-xs text-[#80978E] mt-0.5 font-medium">
-              Authoritative parameters (11,081), tensor flow verification, and offline PyTorch inference audit
+              Authoritative parameters ({diagnostics.authoritativeParamCount.toLocaleString()}), tensor flow verification, and offline PyTorch inference audit
             </p>
           </div>
         </div>

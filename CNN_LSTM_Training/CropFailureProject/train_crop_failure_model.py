@@ -54,7 +54,9 @@ def year_start(value):
 def find_csv(data_dir: Path, explicit: str | None, patterns: list[str], label: str) -> Path:
     if explicit:
         p = Path(explicit)
-        if not p.is_absolute(): p = data_dir / p
+        if p.exists(): return p.resolve()
+        if (data_dir / p).exists(): return (data_dir / p).resolve()
+        if (data_dir.parent.parent / p).exists(): return (data_dir.parent.parent / p).resolve()
         if not p.exists(): raise FileNotFoundError(f'{label} CSV not found: {p}')
         return p
     matches=[]
@@ -71,12 +73,25 @@ def find_csv(data_dir: Path, explicit: str | None, patterns: list[str], label: s
     return matches[0]
 
 
-def load_lookup_tables(data_dir: Path, des_file: str | None = None, imd_file: str | None = None):
-    des_path = find_csv(data_dir, des_file,
-                        ['des_rice_maharashtra_kharif_final*.csv', '*des*rice*.csv'], 'DES')
+def load_lookup_tables(data_dir: Path, des_file: str | None = None, imd_file: str | None = None, label_threshold: int = 15):
+    patterns = [
+        'standardized_maharashtra_kharif_rice_audited*.csv',
+        '*standardized*rice*.csv',
+        'des_rice_maharashtra_kharif_final*.csv',
+        '*des*rice*.csv'
+    ]
+    des_path = find_csv(data_dir, des_file, patterns, 'DES')
     imd_path = find_csv(data_dir, imd_file,
                         ['imd_district_kharif_rainfall_2015_2022*.csv', '*imd*rainfall*.csv'], 'IMD')
     des = pd.read_csv(des_path)
+    
+    # Map audited threshold labels if present
+    target_col = f'crop_failure_label_{label_threshold}pct'
+    if target_col in des.columns:
+        des['crop_failure_initial'] = des[target_col]
+    elif 'crop_failure_initial' not in des.columns and 'crop_failure_label_15pct' in des.columns:
+        des['crop_failure_initial'] = des['crop_failure_label_15pct']
+        
     required_des = {'district', 'year', 'crop_failure_initial'}
     if not required_des.issubset(des.columns):
         raise ValueError(f'DES file needs columns {sorted(required_des)}; found {list(des.columns)}')
@@ -110,6 +125,21 @@ def load_lookup_tables(data_dir: Path, des_file: str | None = None, imd_file: st
 
 def load_satellite_rows(data_dir: Path, labels, rainfall, rain_baseline, years=YEARS):
     sat_rows=[]; climate_rows=[]; coverage_rows=[]; records=[]; missing_label=[]; shape_errors=[]
+    geotiff_dirs = [
+        data_dir.parent / 'SatteliteImagery' / 'Maharashtra_Sentinel2_Rice_Patches_2019',
+        data_dir.parent.parent / 'data' / 'Maharashtra_Sentinel2_Rice_Patches-20261020T184020Z-1-001' / 'Maharashtra_Sentinel2_Rice_Patches',
+    ]
+    geotiff_files = {}
+    for gtd in geotiff_dirs:
+        if gtd.exists():
+            for tif in gtd.glob('*.tif'):
+                m = re.search(r's2_(mh_\d+)_(\d{4})_rice_patch', tif.name.lower())
+                if m:
+                    loc_tag = m.group(1).upper()
+                    yr_tag = int(m.group(2))
+                    geotiff_files[(loc_tag, yr_tag)] = tif
+    if geotiff_files:
+        print(f'Discovered {len(geotiff_files)} direct Sentinel-2 GeoTIFF patches on disk to prioritize.', flush=True)
     for year in years:
         path = data_dir / f'MH_Rice_S2_Patches_{year}.geojson'
         if not path.exists():
@@ -135,30 +165,47 @@ def load_satellite_rows(data_dir: Path, labels, rainfall, rain_baseline, years=Y
             if yr not in ONI_MEAN_BY_YEAR:
                 continue
 
-            # [time, channel, row, col]. The GeoJSON has empty geometries; pixels and
-            # district/location properties are sufficient for the model.
+            # Prioritize freshly exported 48-band GeoTIFFs if available
             patch = np.full((6, 8, PATCH_SIZE, PATCH_SIZE), np.nan, dtype=np.float32)
             cov = np.zeros(6, dtype=np.float32)
-            valid_arrays = True
-            for ti, w in enumerate(WINDOWS):
-                for ci, band in enumerate(CHANNELS):
-                    key = f'{w}_{band}'
-                    value = props.get(key)
-                    if not isinstance(value, list):
-                        valid_arrays = False
-                        continue
-                    arr = np.asarray(value, dtype=np.float32)
-                    if arr.shape != (PATCH_SIZE, PATCH_SIZE):
-                        shape_errors.append((path.name, loc_id, key, tuple(arr.shape)))
-                        valid_arrays = False
-                        continue
-                    arr = arr.copy()
-                    arr[(~np.isfinite(arr)) | (arr <= -9998.0)] = np.nan
-                    # Spectral reflectance / indices should not have extreme values.
-                    arr[np.abs(arr) > 3.0] = np.nan
-                    patch[ti, ci] = arr
-                b2 = patch[ti, 0]
-                cov[ti] = float(np.isfinite(b2).mean())
+            valid_arrays = False
+            
+            gt_key = (loc_id.upper(), yr)
+            if gt_key in geotiff_files:
+                try:
+                    import rasterio
+                    with rasterio.open(geotiff_files[gt_key]) as src:
+                        raw_arr = src.read()
+                        if raw_arr.shape == (48, PATCH_SIZE, PATCH_SIZE):
+                            patch = raw_arr.reshape(6, 8, PATCH_SIZE, PATCH_SIZE).astype(np.float32)
+                            patch[(~np.isfinite(patch)) | (patch <= -9998.0)] = np.nan
+                            patch[np.abs(patch) > 3.0] = np.nan
+                            cov = np.ones(6, dtype=np.float32)
+                            valid_arrays = True
+                except Exception:
+                    valid_arrays = False
+
+            if not valid_arrays:
+                valid_arrays = True
+                for ti, w in enumerate(WINDOWS):
+                    for ci, band in enumerate(CHANNELS):
+                        key = f'{w}_{band}'
+                        value = props.get(key)
+                        if not isinstance(value, list):
+                            valid_arrays = False
+                            continue
+                        arr = np.asarray(value, dtype=np.float32)
+                        if arr.shape != (PATCH_SIZE, PATCH_SIZE):
+                            shape_errors.append((path.name, loc_id, key, tuple(arr.shape)))
+                            valid_arrays = False
+                            continue
+                        arr = arr.copy()
+                        arr[(~np.isfinite(arr)) | (arr <= -9998.0)] = np.nan
+                        # Spectral reflectance / indices should not have extreme values.
+                        arr[np.abs(arr) > 3.0] = np.nan
+                        patch[ti, ci] = arr
+                    b2 = patch[ti, 0]
+                    cov[ti] = float(np.isfinite(b2).mean())
             if not valid_arrays:
                 continue
             if float(cov.sum()) <= 0:
@@ -176,7 +223,9 @@ def load_satellite_rows(data_dir: Path, labels, rainfall, rain_baseline, years=Y
             coverage_rows.append(cov)
             records.append({
                 'location_id': loc_id, 'district': district, 'district_key': district_key,
-                'satellite_year': yr, 'crop_year': f'{yr}-{yr+1}',
+                'satellite_year': yr, 'source_year': yr, 'mask_year': 2020,
+                'composite_method': 'geotiff_seasonal_gapfill' if (gt_key in geotiff_files) else 'geojson_mean_imputed',
+                'crop_year': f'{yr}-{yr+1}',
                 'crop_failure_initial': int(labels[label_key]),
                 'kharif_rainfall_mm': rain, 'rainfall_departure_pct_vs_district_mean': rain_departure,
                 'oni_mean_jun_aug': oni, 'valid_pixel_fraction_mean': float(cov.mean()),
@@ -349,6 +398,66 @@ def metrics_from_group_predictions(group_df: pd.DataFrame):
     return out
 
 
+def evaluate_climate_baseline(records: pd.DataFrame, train_idx: np.ndarray, test_idx: np.ndarray):
+    from sklearn.linear_model import LogisticRegression
+    features = ['kharif_rainfall_mm', 'rainfall_departure_pct_vs_district_mean', 'oni_mean_jun_aug']
+    tr_df = records.iloc[train_idx].drop_duplicates(['district_key', 'satellite_year'])
+    te_df = records.iloc[test_idx].drop_duplicates(['district_key', 'satellite_year']).copy()
+    
+    X_tr = tr_df[features].to_numpy()
+    y_tr = tr_df['crop_failure_initial'].to_numpy()
+    X_te = te_df[features].to_numpy()
+    y_te = te_df['crop_failure_initial'].to_numpy()
+    
+    if len(np.unique(y_tr)) < 2:
+        maj = int(round(float(np.mean(y_tr)))) if len(y_tr) else 0
+        prob = np.full(len(y_te), 1.0 if maj == 1 else 0.0)
+    else:
+        clf = LogisticRegression(class_weight='balanced', random_state=42, max_iter=200)
+        clf.fit(X_tr, y_tr)
+        prob = clf.predict_proba(X_te)[:, 1]
+        
+    te_df['probability'] = prob
+    te_df['actual'] = y_te
+    return metrics_from_group_predictions(te_df)
+
+
+def evaluate_climate_baseline_df(records: pd.DataFrame, train_idx: np.ndarray, test_idx: np.ndarray):
+    from sklearn.linear_model import LogisticRegression
+    features = ['kharif_rainfall_mm', 'rainfall_departure_pct_vs_district_mean', 'oni_mean_jun_aug']
+    tr_df = records.iloc[train_idx].drop_duplicates(['district_key', 'satellite_year'])
+    te_df = records.iloc[test_idx].drop_duplicates(['district_key', 'satellite_year']).copy()
+    
+    X_tr = tr_df[features].to_numpy()
+    y_tr = tr_df['crop_failure_initial'].to_numpy()
+    X_te = te_df[features].to_numpy()
+    y_te = te_df['crop_failure_initial'].to_numpy()
+    
+    if len(np.unique(y_tr)) < 2:
+        maj = int(round(float(np.mean(y_tr)))) if len(y_tr) else 0
+        prob = np.full(len(y_te), 1.0 if maj == 1 else 0.0)
+    else:
+        clf = LogisticRegression(class_weight='balanced', random_state=42, max_iter=200)
+        clf.fit(X_tr, y_tr)
+        prob = clf.predict_proba(X_te)[:, 1]
+        
+    te_df['probability'] = prob
+    te_df['actual'] = y_te
+    return te_df
+
+
+def evaluate_majority_baseline(records: pd.DataFrame, train_idx: np.ndarray, test_idx: np.ndarray):
+    tr_df = records.iloc[train_idx].drop_duplicates(['district_key', 'satellite_year'])
+    te_df = records.iloc[test_idx].drop_duplicates(['district_key', 'satellite_year']).copy()
+    y_tr = tr_df['crop_failure_initial'].to_numpy()
+    y_te = te_df['crop_failure_initial'].to_numpy()
+    
+    maj_prob = float(np.mean(y_tr)) if len(y_tr) else 0.0
+    te_df['probability'] = maj_prob
+    te_df['actual'] = y_te
+    return metrics_from_group_predictions(te_df)
+
+
 def main():
     script_dir = Path(__file__).resolve().parent
     ap = argparse.ArgumentParser(description=__doc__)
@@ -357,6 +466,7 @@ def main():
     ap.add_argument('--imd-file', default=None, help='Optional IMD CSV filename/path.')
     ap.add_argument('--output-dir', default='crop_model_output', help='Folder for model and reports.')
     ap.add_argument('--epochs', type=int, default=16, help='Training epochs per fit (default: 16).')
+    ap.add_argument('--label-threshold', type=int, default=15, choices=[15, 20], help='Yield failure anomaly cutoff percentage (15 or 20).')
     args = ap.parse_args()
     start=time.time(); seed_everything(42)
     data_dir=Path(args.data_dir).resolve()
@@ -364,8 +474,9 @@ def main():
     if not outdir.is_absolute():
         outdir = data_dir / outdir
     outdir.mkdir(parents=True, exist_ok=True)
-    labels, rainfall, rain_baseline, des_path, imd_path = load_lookup_tables(data_dir, args.des_file, args.imd_file)
-    print(f'DES: {des_path.name}; IMD: {imd_path.name}', flush=True)
+    labels, rainfall, rain_baseline, des_path, imd_path = load_lookup_tables(
+        data_dir, args.des_file, args.imd_file, label_threshold=args.label_threshold)
+    print(f'DES: {des_path.name}; IMD: {imd_path.name}; Label Threshold: -{args.label_threshold}%', flush=True)
     Xraw, C3, coverage, y, records = load_satellite_rows(data_dir, labels, rainfall, rain_baseline)
     print(f'Usable patch-year samples: {len(y)}; positive patches: {int(y.sum())}; negative patches: {int((y==0).sum())}', flush=True)
     grp = records.drop_duplicates(['district_key'])[['district_key','district']].copy()
@@ -387,13 +498,83 @@ def main():
     test_probs = predict_probabilities(eval_model, Xnorm[test_idx], Cnorm[test_idx])
     test_groups = aggregate_group_predictions(records, y, test_probs, test_idx)
     metrics = metrics_from_group_predictions(test_groups)
+    
+    # Baselines for Spatial Holdout
+    climate_base = evaluate_climate_baseline(records, train_idx, test_idx)
+    majority_base = evaluate_majority_baseline(records, train_idx, test_idx)
+    metrics['spatial_holdout_baselines'] = {
+        'majority_class': majority_base,
+        'climate_only_logistic_regression': climate_base
+    }
+    print(f'Spatial Holdout - Multimodal CNN-LSTM ROC-AUC: {metrics.get("roc_auc")}, F1: {metrics.get("f1_threshold_0_5")}', flush=True)
+    print(f'Spatial Holdout - Climate-Only Baseline ROC-AUC: {climate_base.get("roc_auc")}, F1: {climate_base.get("f1_threshold_0_5")}', flush=True)
     metrics.update({
         'train_patch_rows': int(len(train_idx)), 'test_patch_rows': int(len(test_idx)),
         'train_districts': sorted(map(str, train_districts)),
         'test_districts': sorted(map(str, test_districts)),
         'train_weighting': eval_weight_info,
+        'label_threshold_pct': args.label_threshold,
     })
     test_groups.to_csv(outdir / 'heldout_district_predictions.csv', index=False)
+    
+    # --- Leave-One-Season-Out (LOSO) Cross-Validation across all available seasons ---
+    print('\n--- Running Leave-One-Season-Out (LOSO) Temporal Cross-Validation ---', flush=True)
+    loso_results = []
+    loso_preds_list = []
+    loso_climate_list = []
+    loso_majority_list = []
+    all_years = sorted(records['satellite_year'].unique())
+    for test_year in all_years:
+        loso_train_idx = np.where((records['satellite_year'] != test_year).to_numpy())[0]
+        loso_test_idx = np.where((records['satellite_year'] == test_year).to_numpy())[0]
+        if len(loso_train_idx) == 0 or len(loso_test_idx) == 0:
+            continue
+        loso_scaler = fit_normalizers(Xraw, C3, coverage, loso_train_idx)
+        X_loso_tr, C_loso_tr = transform_inputs(Xraw, C3, coverage, loso_scaler)
+        loso_model, _, _ = train_model(X_loso_tr, C_loso_tr, y, records, loso_train_idx, epochs=args.epochs, seed=42+int(test_year), verbose=False)
+        test_p = predict_probabilities(loso_model, X_loso_tr[loso_test_idx], C_loso_tr[loso_test_idx])
+        test_grp = aggregate_group_predictions(records, y, test_p, loso_test_idx)
+        test_grp['heldout_season'] = int(test_year)
+        loso_preds_list.append(test_grp)
+        y_true_yr = test_grp['actual'].to_numpy()
+        y_prob_yr = test_grp['probability'].to_numpy()
+        y_pred_yr = (y_prob_yr >= 0.5).astype(int)
+        yr_acc = float(accuracy_score(y_true_yr, y_pred_yr))
+        yr_brier = float(np.mean((y_prob_yr - y_true_yr) ** 2))
+        print(f'  LOSO Season {test_year}: N={len(test_grp)}, Positives={int(y_true_yr.sum())}, Accuracy={yr_acc:.3f}, Brier={yr_brier:.4f}', flush=True)
+        loso_results.append({
+            'season': int(test_year),
+            'samples': int(len(test_grp)),
+            'actual_failures': int(y_true_yr.sum()),
+            'accuracy': yr_acc,
+            'brier_score': yr_brier
+        })
+        
+        # Baselines for LOSO
+        loso_climate_list.append(evaluate_climate_baseline_df(records, loso_train_idx, loso_test_idx))
+        te_maj = records.iloc[loso_test_idx].drop_duplicates(['district_key', 'satellite_year']).copy()
+        tr_maj = records.iloc[loso_train_idx].drop_duplicates(['district_key', 'satellite_year'])
+        te_maj['probability'] = float(np.mean(tr_maj['crop_failure_initial']))
+        te_maj['actual'] = te_maj['crop_failure_initial']
+        loso_majority_list.append(te_maj)
+
+    if loso_preds_list:
+        combined_loso = pd.concat(loso_preds_list, ignore_index=True)
+        combined_loso.to_csv(outdir / 'loso_district_predictions.csv', index=False)
+        loso_metrics = metrics_from_group_predictions(combined_loso)
+        loso_metrics['per_season_breakdown'] = loso_results
+        (outdir / 'loso_evaluation_metrics.json').write_text(json.dumps(loso_metrics, indent=2), encoding='utf-8')
+        metrics['loso_overall'] = loso_metrics
+        print(f'Overall LOSO ROC-AUC: {loso_metrics.get("roc_auc")}, F1: {loso_metrics.get("f1_threshold_0_5")}', flush=True)
+
+    if loso_climate_list:
+        combined_cl = pd.concat(loso_climate_list, ignore_index=True)
+        metrics['loso_climate_only_baseline'] = metrics_from_group_predictions(combined_cl)
+        print(f'Overall LOSO Climate-Only ROC-AUC: {metrics["loso_climate_only_baseline"].get("roc_auc")}, F1: {metrics["loso_climate_only_baseline"].get("f1_threshold_0_5")}', flush=True)
+    if loso_majority_list:
+        combined_maj = pd.concat(loso_majority_list, ignore_index=True)
+        metrics['loso_majority_class_baseline'] = metrics_from_group_predictions(combined_maj)
+        
     (outdir / 'evaluation_metrics.json').write_text(json.dumps(metrics, indent=2), encoding='utf-8')
 
     # Train the deliverable model on all joined rows. Save scalers inside checkpoint.
@@ -457,6 +638,20 @@ def main():
         f.write('Important limitation: this dataset does not contain a June-August mean ONI >= +0.5 C for 2019-2022.\n')
         f.write('The file is a working prototype and cannot establish performance specifically during true El Niño conditions.\n')
         f.write('Small district-season sample count and repeated district labels also limit generalization.\n')
+    # Sync deliverables to top-level data/ folder for dashboard consumption
+    top_data = script_dir.parent.parent / 'data'
+    if top_data.exists():
+        import shutil
+        for f_name in ['crop_failure_model.pt', 'evaluation_metrics.json', 'heldout_district_predictions.csv', 
+                       'training_report.json', 'matched_training_manifest.csv', 
+                       'loso_district_predictions.csv', 'loso_evaluation_metrics.json']:
+            src_f = outdir / f_name
+            if src_f.exists():
+                shutil.copy2(src_f, top_data / f_name)
+        if (outdir / 'in_sample_demo_predictions.csv').exists():
+            shutil.copy2(outdir / 'in_sample_demo_predictions.csv', top_data / 'crop_failure_predictions.csv')
+        print(f'Synchronized trained outputs to {top_data}', flush=True)
+
     print('\n=== TRAINING COMPLETE ===', flush=True)
     print(f'Model: {outdir / "crop_failure_model.pt"}', flush=True)
     print(f'Report: {outdir / "training_report.json"}', flush=True)
