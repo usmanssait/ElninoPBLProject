@@ -92,11 +92,11 @@ def main():
         )
         print(f"\n[SUCCESS] Upload completed successfully! View your files at:")
         if args.repo_type == "dataset":
-            print(f"    👉 https://huggingface.co/datasets/{args.repo_id}")
+            print(f"    -> https://huggingface.co/datasets/{args.repo_id}")
         elif args.repo_type == "model":
-            print(f"    👉 https://huggingface.co/{args.repo_id}")
+            print(f"    -> https://huggingface.co/{args.repo_id}")
         else:
-            print(f"    👉 https://huggingface.co/spaces/{args.repo_id}")
+            print(f"    -> https://huggingface.co/spaces/{args.repo_id}")
     except Exception as e:
         print(f"[ERROR] Upload failed: {e}")
         sys.exit(1)
