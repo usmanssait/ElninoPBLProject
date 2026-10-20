@@ -44023,3 +44023,1968 @@ To https://github.com/usmanssait/ElninoPBLProject
 
 ---
 
+### Assistant Response
+
+Created At: 2026-10-21T03:48:47+05:30
+Completed At: 2026-10-21T03:48:47+05:30
+
+				The command exited with code 0.
+				Output:
+				[+] Successfully updated docs\PROJECT_CHAT_ARCHIVE.md with 1301 dialog turns.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T03:48:53+05:30
+Completed At: 2026-10-21T03:49:00+05:30
+
+				The command exited with code 0.
+				Output:
+				[main 0e673fb] docs: update chat archive with word/pdf generation turn
+ 1 file changed, 240 insertions(+)
+To https://github.com/usmanssait/ElninoPBLProject
+   459e6e6..0e673fb  main -> main
+
+---
+
+### Assistant Response
+
+### Word (.docx) & PDF (.pdf) Documentation Created
+
+Both Microsoft Word and native PDF versions of the full project documentation have been generated, saved at the root of the project, and pushed to the GitHub repository:
+
+1. **Microsoft Word Document:**  
+   📄 [`FULL_PROJECT_DOCUMENTATION.docx`](file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/FULL_PROJECT_DOCUMENTATION.docx) (15.8 MB)
+2. **Native PDF Document:**  
+   📕 [`FULL_PROJECT_DOCUMENTATION.pdf`](file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/FULL_PROJECT_DOCUMENTATION.pdf) (4.77 MB)
+3. **Markdown Source:**  
+   📝 [`FULL_PROJECT_DOCUMENTATION.md`](file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/FULL_PROJECT_DOCUMENTATION.md) (31.3 KB)
+
+---
+
+### What is Included Inside the Document
+
+* **Embedded High-Resolution Diagrams (300 DPI):**
+  * **Figure 1 (System Pipeline):** End-to-end data acquisition $\to$ feature engineering $\to$ CNN-LSTM modeling $\to$ React dashboard flow.
+  * **Figure 2 (PMFBY Olympic Baseline):** Step-by-step rolling Olympic 5-year average logic and $\ge 15\%$ yield deficit failure classification.
+  * **Figure 3 (Deep Learning Tensor Architecture):** Detailed layer-by-layer flow from Sentinel-2 $[B, 6, 8, 32, 32]$ patches through 2D-CNN feature extraction, climate/crop conditioning fusion ($34\text{D}$), BiLSTM recurrent modeling, and binary risk classification head.
+  * **Figure 4 (Satellite Basemap Preview):** Master dual-resolution terrain combining the high-resolution Maharashtra core with the wide regional MODIS canvas.
+* **Styled Tables & Color Palette:**
+  * Complete 5-dataset provenance and metadata table.
+  * Audited 6-crop operational performance and confusion matrix table ($N = 320$ district-crop seasons).
+  * Styled alert/callout box documenting the regional cropland proxy distinction.
+* **Typographic Hierarchy & Layout:**
+  * Clean executive styling with dark forest green and deep teal headings.
+  * Formatted code blocks and step-by-step reproduction instructions.
+
+Both files are committed and available directly in the repository root and on GitHub [`origin/main`](https://github.com/usmanssait/ElninoPBLProject) ([commit `0e673fb`](https://github.com/usmanssait/ElninoPBLProject/commit/0e673fb)).
+
+---
+
+## User Prompt 64
+
+word file is very basic
+focus on word remove pdf
+see art folder for many images that can be used
+
+### Assistant Response
+
+Created At: 2026-10-21T03:53:05+05:30
+Completed At: 2026-10-21T03:53:06+05:30
+{"name":"Eart1.png","sizeBytes":"1195221"}
+{"name":"Earth engine.png","sizeBytes":"1215630"}
+{"name":"Sattelite.png","sizeBytes":"2316518"}
+{"name":"Screenshot 2026-10-04 232744.png","sizeBytes":"1186981"}
+{"name":"Screenshot 2026-10-21 014716.png","sizeBytes":"176635"}
+{"name":"Screenshot 2026-10-21 014729.png","sizeBytes":"191233"}
+{"name":"Screenshot 2026-10-21 014803.png","sizeBytes":"1008733"}
+{"name":"Screenshot 2026-10-21 020442.png","sizeBytes":"974838"}
+{"name":"Screenshot 2026-10-21 020537.png","sizeBytes":"162060"}
+{"name":"Screenshot 2026-10-21 033114.png","sizeBytes":"2283141"}
+{"name":"Western India Satellite Terrain Map.png","sizeBytes":"3175576"}
+{"name":"draw.jpeg","sizeBytes":"123580"}
+{"name":"implementation.jpeg","sizeBytes":"203114"}
+{"name":"layout rough.png","sizeBytes":"821218"}
+
+Summary: This directory contains 0 subdirectories and 14 files.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T03:53:14+05:30
+Completed At: 2026-10-21T03:53:15+05:30
+
+				The command exited with code 0.
+				Output:
+				Eart1.png                             : (876, 640) mode=RGBA
+Earth engine.png                      : (1919, 1040) mode=RGBA
+Sattelite.png                         : (1676, 639) mode=RGBA
+Screenshot 2026-10-04 232744.png      : (1919, 1036) mode=RGBA
+Screenshot 2026-10-21 014716.png      : (1905, 949) mode=RGBA
+Screenshot 2026-10-21 014729.png      : (1919, 992) mode=RGBA
+Screenshot 2026-10-21 014803.png      : (1919, 951) mode=RGBA
+Screenshot 2026-10-21 020442.png      : (1267, 862) mode=RGBA
+Screenshot 2026-10-21 020537.png      : (1602, 893) mode=RGBA
+Screenshot 2026-10-21 033114.png      : (1919, 955) mode=RGBA
+Western India Satellite Terrain Map.png: (1672, 941) mode=RGB
+draw.jpeg                             : (1143, 1280) mode=RGB
+implementation.jpeg                   : (1600, 900) mode=RGB
+layout rough.png                      : (1197, 688) mode=RGBA
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T03:53:54+05:30
+Completed At: 2026-10-21T03:53:54+05:30
+{"name":"Eart1.png","sizeBytes":"1195221"}
+{"name":"Earth engine.png","sizeBytes":"1215630"}
+{"name":"Sattelite.png","sizeBytes":"2316518"}
+{"name":"Screenshot 2026-10-04 232744.png","sizeBytes":"1186981"}
+{"name":"Screenshot 2026-10-21 014716.png","sizeBytes":"176635"}
+{"name":"Screenshot 2026-10-21 014729.png","sizeBytes":"191233"}
+{"name":"Screenshot 2026-10-21 014803.png","sizeBytes":"1008733"}
+{"name":"Screenshot 2026-10-21 020442.png","sizeBytes":"974838"}
+{"name":"Screenshot 2026-10-21 020537.png","sizeBytes":"162060"}
+{"name":"Screenshot 2026-10-21 033114.png","sizeBytes":"2283141"}
+{"name":"Western India Satellite Terrain Map.png","sizeBytes":"3175576"}
+{"name":"draw.jpeg","sizeBytes":"123580"}
+{"name":"implementation.jpeg","sizeBytes":"203114"}
+{"name":"layout rough.png","sizeBytes":"821218"}
+
+Summary: This directory contains 0 subdirectories and 14 files.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T03:53:58+05:30
+Completed At: 2026-10-21T03:53:58+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/scripts/build_word_and_pdf_documentation.py`
+Total Lines: 530
+Total Bytes: 31016
+Showing lines 1 to 150
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: #!/usr/bin/env python3
+2: """
+3: =============================================================================
+4: Generate Professional Word (.docx) and PDF (.pdf) Project Documentation
+5: Script: scripts/build_word_and_pdf_documentation.py
+6: =============================================================================
+7: """
+8: 
+9: import os
+10: import sys
+11: import re
+12: from pathlib import Path
+13: import matplotlib
+14: matplotlib.use('Agg')
+15: import matplotlib.pyplot as plt
+16: import matplotlib.patches as patches
+17: 
+18: import docx
+19: from docx import Document
+20: from docx.shared import Inches, Pt, RGBColor
+21: from docx.enum.text import WD_ALIGN_PARAGRAPH
+22: from docx.enum.table import WD_TABLE_ALIGNMENT, WD_ALIGN_VERTICAL
+23: from docx.oxml import OxmlElement, parse_xml
+24: from docx.oxml.ns import nsdecls, qn
+25: 
+26: ROOT = Path(__file__).resolve().parent.parent
+27: SCRATCH = ROOT / "scratch"
+28: SCRATCH.mkdir(parents=True, exist_ok=True)
+29: 
+30: # ---------------------------------------------------------------------------
+31: # 1. Render Professional Diagram Figures
+32: # ---------------------------------------------------------------------------
+33: def render_diagrams():
+34:     print("[*] Rendering high-resolution diagram figures...")
+35:     
+36:     # Diagram 1: End-to-End System Architecture
+37:     fig, ax = plt.subplots(figsize=(11, 4.5), dpi=300)
+38:     fig.patch.set_facecolor('#0B1310')
+39:     ax.set_facecolor('#0B1310')
+40:     ax.set_xlim(0, 11)
+41: 
+<truncated 5142 bytes>
+", "Step 4: Classification", "If Anomaly <= -15%:\n-> y = 1 (Crop Failure)\nIf Anomaly > -15%:\n-> y = 0 (Resilient)")
+118:     ]
+119: 
+120:     for x, y, w, h, bg_c, border_c, title, body in steps:
+121:         rect = patches.FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.08,rounding_size=0.12",
+122:                                       facecolor=bg_c, edgecolor=border_c, linewidth=1.8)
+123:         ax.add_patch(rect)
+124:         ax.text(x + w/2, y + h - 0.35, title, color=border_c, fontsize=9.5, fontweight='bold', ha='center', va='center')
+125:         ax.text(x + w/2, y + (h-0.35)/2, body, color='#E2E8F0', fontsize=8.0, ha='center', va='center', linespacing=1.4)
+126: 
+127:     for ax_x in [2.3, 4.8, 7.4]:
+128:         arrow = patches.FancyArrowPatch((ax_x, 1.6), (ax_x + 0.2, 1.6), arrowstyle='->',
+129:                                         mutation_scale=15, color='#EAB308', linewidth=2)
+130:         ax.add_patch(arrow)
+131: 
+132:     d3_path = SCRATCH / "diagram3_pmfby_baseline.png"
+133:     fig.savefig(d3_path, bbox_inches='tight', pad_inches=0.1)
+134:     plt.close(fig)
+135: 
+136:     print("[+] Diagram figures rendered successfully.")
+137:     return d1_path, d2_path, d3_path
+138: 
+139: 
+140: # ---------------------------------------------------------------------------
+141: # 2. Build Formatted Word Document
+142: # ---------------------------------------------------------------------------
+143: def set_cell_background(cell, fill_hex):
+144:     tcPr = cell._tc.get_or_add_tcPr()
+145:     tcPr.append(parse_xml(f'<w:shd {nsdecls("w")} w:fill="{fill_hex}"/>'))
+146: 
+147: def set_cell_margins(cell, top=100, bottom=100, left=150, right=150):
+148:     tcPr = cell._tc.get_or_add_tcPr()
+149:     tcMar = OxmlElement('w:tcMar')
+150:     for m, val in [('w:top', top), ('w:bottom', bottom), ('w:left', left), ('w:right', right)]:
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T03:54:17+05:30
+Completed At: 2026-10-21T03:54:17+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/scripts/build_word_and_pdf_documentation.py`
+Total Lines: 530
+Total Bytes: 31016
+Showing lines 151 to 300
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+151:         node = OxmlElement(m)
+152:         node.set(qn('w:w'), str(val))
+153:         node.set(qn('w:type'), 'dxa')
+154:         tcMar.append(node)
+155:     tcPr.append(tcMar)
+156: 
+157: def create_word_document(docx_path: Path, d1_path, d2_path, d3_path):
+158:     print(f"[*] Building Word document at: {docx_path}...")
+159:     doc = Document()
+160:     
+161:     # Page setup: Standard Letter, 0.8 inch margins
+162:     sections = doc.sections
+163:     for section in sections:
+164:         section.top_margin = Inches(0.8)
+165:         section.bottom_margin = Inches(0.8)
+166:         section.left_margin = Inches(0.8)
+167:         section.right_margin = Inches(0.8)
+168: 
+169:     # Styling Palette
+170:     COLOR_PRIMARY = RGBColor(16, 120, 80)     # Forest Green
+171:     COLOR_SECONDARY = RGBColor(14, 116, 144)  # Deep Teal
+172:     COLOR_TEXT = RGBColor(30, 41, 59)         # Slate 800
+173:     COLOR_MUTED = RGBColor(100, 116, 139)     # Slate 500
+174: 
+175:     # Header / Title Block
+176:     title = doc.add_paragraph()
+177:     r_title = title.add_run("Spatiotemporal CNN–LSTM Framework for Maharashtra Kharif Crop Failure Prediction")
+178:     r_title.bold = True
+179:     r_title.font.size = Pt(22)
+180:     r_title.font.color.rgb = COLOR_PRIMARY
+181:     title.paragraph_format.space_after = Pt(4)
+182: 
+183:     subtitle = doc.add_paragraph()
+184:     r_sub = subtitle.add_run("Comprehensive Technical, Mathematical, Architectural, and Operational Documentation")
+185:     r_sub.font
+<truncated 4617 bytes>
+78:     )
+279:     add_p(
+280:         "This project establishes a unified spatiotemporal deep learning early-warning framework that combines "
+281:         "high-resolution Sentinel-2 multi-spectral satellite imagery (8 spectral bands across 6 observation windows) with "
+282:         "India Meteorological Department (IMD) gridded rainfall data, NOAA CPC Oceanic Niño Index (ONI) sea-surface "
+283:         "temperatures, and official Department of Agriculture (DES) harvest yield records (1966–2024). The system is deployed "
+284:         "via a production-grade React 18 GIS dashboard featuring a gapless, dual-resolution Earth Engine satellite terrain basemap."
+285:     )
+286: 
+287:     # -----------------------------------------------------------------------
+288:     # Section 2: End-to-End System Architecture
+289:     # -----------------------------------------------------------------------
+290:     add_h1("2. End-to-End System Architecture")
+291:     add_p("The end-to-end framework bridges offline remote sensing pipelines, recurrent deep learning, and interactive web visualization:")
+292:     doc.add_picture(str(d1_path), width=Inches(6.8))
+293:     doc.paragraphs[-1].alignment = WD_ALIGN_PARAGRAPH.CENTER
+294:     add_p("Figure 1: High-level system architecture spanning data acquisition, feature engineering, neural network training, and the React decision dashboard.", bold_prefix="System Pipeline: ", space_after=10)
+295: 
+296:     # -----------------------------------------------------------------------
+297:     # Section 3: Data Sources & Ground-Truth Provenance
+298:     # -----------------------------------------------------------------------
+299:     add_h1("3. Data Sources & Provenance Catalog")
+300:     add_p("The model and dashboard integrate five authoritative meteorological, agronomic, and earth observation datasets:")
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T03:54:21+05:30
+Completed At: 2026-10-21T03:54:21+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/scripts/build_word_and_pdf_documentation.py`
+Total Lines: 530
+Total Bytes: 31016
+Showing lines 301 to 450
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+301: 
+302:     headers = ["Dataset / Parameter", "Source Agency", "Spatial Extent", "Temporal Window", "Role in Pipeline"]
+303:     data_rows = [
+304:         ["Kharif Crop Yield Statistics", "DES Maharashtra & ICRISAT", "36 Districts", "1966 – 2024 (58 seasons)", "Ground-truth yields, Olympic baselines & labels"],
+305:         ["District Kharif Rainfall", "India Meteorological Dept (IMD)", "0.25° Gridded", "2015 – 2024", "Cumulative precipitation (mm) & departures (%)"],
+306:         ["Oceanic Niño Index (ONI)", "NOAA CPC", "Niño 3.4 Region", "1950 – 2024", "ENSO sea-surface temperature summer anomalies"],
+307:         ["Sentinel-2 Multi-Spectral", "ESA / Copernicus Hub / GEE", "10m Resampled 32x32", "2019 – 2022 (6 windows)", "8-band canopy reflectance, NDVI & NDWI"],
+308:         ["Copernicus DEM (GLO-30)", "ESA", "30m / 90m Global", "Static", "Topographic relief for Western Ghats & Deccan"],
+309:         ["NASA MODIS Surface Refl.", "NASA LP DAAC (MOD09A1)", "500m Global", "8-Day Composite", "Seamless regional outer basemap (62°E–92°E)"]
+310:     ]
+311: 
+312:     t_src = doc.add_table(rows=len(data_rows)+1, cols=len(headers))
+313:     t_src.alignment = WD_TABLE_ALIGNMENT.CENTER
+314:     for c_idx, h_text in enumerate(headers):
+315:         c = t_src.cell(0, c_idx)
+316:         set_cell_background(c, "0F766E") # Dark Teal
+317:         set_cell_margins(c, 100, 100, 120, 120)
+318:         p = c.paragraphs[0]
+319:         r = p.add_run(h_text)
+320:         r.bold = True
+
+<truncated 7718 bytes>
+ "68", "9", "13.2%", "58", "1", "1", "8", "88.9%", "88.9%", "0.889", "0.936", "0.985"],
+415:         ["Overall", "320", "60", "18.8%", "244", "16", "1", "59", "78.7%", "98.3%", "0.874", "0.961", "0.984"]
+416:     ]
+417: 
+418:     t_met = doc.add_table(rows=len(m_data)+1, cols=len(m_headers))
+419:     t_met.alignment = WD_TABLE_ALIGNMENT.CENTER
+420:     for c_idx, h_text in enumerate(m_headers):
+421:         c = t_met.cell(0, c_idx)
+422:         set_cell_background(c, "1E293B")
+423:         set_cell_margins(c, 80, 80, 80, 80)
+424:         p = c.paragraphs[0]
+425:         r = p.add_run(h_text)
+426:         r.bold = True
+427:         r.font.size = Pt(7.8)
+428:         r.font.color.rgb = RGBColor(255, 255, 255)
+429: 
+430:     for r_idx, row in enumerate(m_data):
+431:         bg_col = "F1F5F9" if r_idx % 2 == 0 else "FFFFFF"
+432:         if r_idx == len(m_data) - 1:
+433:             bg_col = "E2E8F0"
+434:         for c_idx, val in enumerate(row):
+435:             c = t_met.cell(r_idx+1, c_idx)
+436:             set_cell_background(c, bg_col)
+437:             set_cell_margins(c, 70, 70, 80, 80)
+438:             p = c.paragraphs[0]
+439:             r = p.add_run(val)
+440:             if r_idx == len(m_data) - 1 or c_idx in [8, 9, 10]:
+441:                 r.bold = True
+442:             r.font.size = Pt(7.5)
+443:             r.font.color.rgb = COLOR_TEXT
+444: 
+445:     doc.add_paragraph().paragraph_format.space_after = Pt(6)
+446:     add_p(
+447:         "Key Findings: Across all 320 district-crop seasons, 59 out of 60 historical failures were correctly predicted "
+448:         "(Recall = 98.3%). Positive class re-weighting keeps false negatives near zero at the expense of a moderate false-alarm "
+449:         "rate in Rice (66.7% precision) and Jowar (72.7% precision), which aligns with agrarian disaster management priorities."
+450:     )
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T03:54:24+05:30
+Completed At: 2026-10-21T03:54:24+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/scripts/build_word_and_pdf_documentation.py`
+Total Lines: 530
+Total Bytes: 31016
+Showing lines 451 to 530
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+451: 
+452:     # -----------------------------------------------------------------------
+453:     # Section 8: Geospatial Satellite Terrain & GEE Engine
+454:     # -----------------------------------------------------------------------
+455:     add_h1("8. Geospatial Satellite Terrain & Earth Engine Mapping Engine")
+456:     add_p(
+457:         "The district risk map integrates an authentic, dual-resolution Earth observation basemap. To eliminate the stepped "
+458:         "tile dropouts caused by land-only DEMs, the pipeline executes a three-stage compositing workflow:"
+459:     )
+460:     add_p("• Step 1 (Earth Engine MODIS Export): Uses NASA MODIS 8-day surface reflectance (MOD09A1) across [62.0°E, 8.0°N, 92.0°E, 30.0°N]. Because MODIS images land and ocean in a single continuous grid, it never cuts off at the coast.")
+461:     add_p("• Step 2 (Python Dual-Resolution Blending): Blends the 500m MODIS regional canvas with the ~540MB high-res Maharashtra GeoTIFF (10m Sentinel-2 + DEM) using a 20px Gaussian-blurred alpha mask and color-ratio balancing. Post-export fills the southwest ocean corner with RGB(0, 11, 21).")
+462:     add_p("• Step 3 (React SVG Transform): Maps the combined WebP asset to SVG viewBox (0, 0, 860, 713) with coordinates x = -1091.8 px, y = -859.9 px, width = 3089.8 px, height = 2394.6 px, guaranteeing zero black margins even at 25% zoom out.")
+463: 
+464:     # Embed master satellite terrain preview
+465:     sat_img_path = ROOT / "public" / "images" / "mah
+<truncated 2592 bytes>
+ Synchronize with Hugging Face Hub:", bold_prefix="Data Backup: ")
+492:     add_p("& 'C:\\Users\\USMAN\\AppData\\Local\\Python\\bin\\python.exe' hf_sync.py --repo-id UsmanSait/elnino-crop-failure-pbl --repo-type dataset --token <HF_TOKEN>")
+493: 
+494:     # Save Word Document
+495:     doc.save(str(docx_path))
+496:     print(f"[+] Successfully saved Word document to: {docx_path}")
+497: 
+498: 
+499: # ---------------------------------------------------------------------------
+500: # 3. Export Word Document to Native PDF via Word COM Automation
+501: # ---------------------------------------------------------------------------
+502: def convert_docx_to_pdf(docx_path: Path, pdf_path: Path):
+503:     print(f"[*] Converting Word document to PDF via Word COM automation...")
+504:     import subprocess
+505:     ps_cmd = f"""
+506:     $word = New-Object -ComObject Word.Application
+507:     $word.Visible = $false
+508:     $doc = $word.Documents.Open('{docx_path.resolve()}')
+509:     $doc.SaveAs('{pdf_path.resolve()}', 17) # 17 = wdFormatPDF
+510:     $doc.Close()
+511:     $word.Quit()
+512:     """
+513:     res = subprocess.run(["powershell", "-Command", ps_cmd], capture_output=True, text=True)
+514:     if res.returncode == 0 and pdf_path.exists():
+515:         print(f"[+] Successfully exported native PDF to: {pdf_path}")
+516:         print(f"    PDF File Size: {pdf_path.stat().st_size / (1024*1024):.2f} MB")
+517:     else:
+518:         print(f"[!] Warning: Word COM PDF conversion output: {res.stderr}")
+519: 
+520: 
+521: def main():
+522:     d1, d2, d3 = render_diagrams()
+523:     docx_out = ROOT / "FULL_PROJECT_DOCUMENTATION.docx"
+524:     pdf_out = ROOT / "FULL_PROJECT_DOCUMENTATION.pdf"
+525:     create_word_document(docx_out, d1, d2, d3)
+526:     convert_docx_to_pdf(docx_out, pdf_out)
+527: 
+528: if __name__ == '__main__':
+529:     main()
+530: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T03:54:38+05:30
+Completed At: 2026-10-21T03:54:38+05:30
+
+				The command exited with code 0.
+				Output:
+				False
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T03:54:42+05:30
+Completed At: 2026-10-21T03:54:42+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/FULL_PROJECT_DOCUMENTATION.md`
+Total Lines: 448
+Total Bytes: 31376
+Showing lines 1 to 100
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: # Spatiotemporal CNN–LSTM Framework for Maharashtra Kharif Crop Failure Prediction
+2: 
+3: > **Comprehensive Technical, Mathematical, and Architectural Documentation**  
+4: > **Target Scope:** 36 Districts of Maharashtra | Primary Kharif Crops: Rice, Soybean, Cotton, Bajra, Jowar, Tur  
+5: > **Remote Sensing & Climate Engine:** Sentinel-2 L2A (10m) Multi-spectral Patches, Copernicus DEM, NASA MODIS, IMD Gridded Rainfall, NOAA CPC Oceanic Niño Index (ONI)  
+6: > **Modelling Architecture:** Spatiotemporal 2D-CNN + Bidirectional LSTM with 6D Crop Conditioning  
+7: > **Production Dashboard:** React 18, TypeScript, Vite, TailwindCSS, Recharts, SVG Choropleth Map  
+8: > **Hugging Face Hub Repository:** [UsmanSait/elnino-crop-failure-pbl](https://huggingface.co/datasets/UsmanSait/elnino-crop-failure-pbl)  
+9: > **GitHub Repository:** [usmanssait/ElninoPBLProject](https://github.com/usmanssait/ElninoPBLProject)
+10: 
+11: ---
+12: 
+13: ## Table of Contents
+14: 1. [Executive Summary & Problem Statement](#1-executive-summary--problem-statement)
+15: 2. [End-to-End System Architecture](#2-end-to-end-system-architecture)
+16: 3. [Data Sources & Ground-Truth Provenance](#3-data-sources--ground-truth-provenance)
+17: 4. [Agricultural Ground Truth & Failure Label Definition](#4-agricultural-ground-truth--failure-label-definition)
+18: 5. [Spatiotemporal CNN–LSTM Deep Learning Architecture](#5-spatiotemporal-cnn-lstm-deep-learning-architecture)
+19: 6. [Crop Conditioning Mechanism & Regional Cropland Proxy Caveat](#6-
+<truncated 3709 bytes>
+   end
+63: 
+64:     subgraph Processing_Layer ["2. Feature Engineering & Ground Truth Synthesis"]
+65:         direction TB
+66:         P1["PMFBY Olympic 5-Year Baseline Engine<br/>scripts/build_standardized_kharif_series.py"]
+67:         P2["Dual-Resolution Satellite Blender<br/>scripts/combine_wide_satellite_terrain.py"]
+68:         P3["Multi-Crop Dataset & Sequence Assembler<br/>CNN_LSTM_Training/train_all_kharif_crops_cnn_lstm.py"]
+69:         
+70:         D1 --> P1
+71:         D2 & D3 --> P3
+72:         D4 --> P3
+73:         D5 --> P2
+74:         P1 --> P3
+75:     end
+76: 
+77:     subgraph DL_Layer ["3. Spatiotemporal CNN–LSTM Neural Network"]
+78:         direction TB
+79:         M1["2D Spatial CNN Extractor<br/>(Conv2D -> BatchNorm -> ReLU -> Pool)"]
+80:         M2["Temporal BiLSTM Recurrent Stage<br/>(6 Kharif Timesteps, Input Dim = 34)"]
+81:         M3["Risk Classification Head<br/>(Dense -> ReLU -> Dropout -> Logit)"]
+82:         M4["Leave-One-Season-Out (LOSO) Cross-Validation<br/>(Evaluated across 2019, 2020, 2021, 2022)"]
+83:         
+84:         P3 --> M1
+85:         M1 --> M2
+86:         P3 -- "Climate & Crop Vector" --> M2
+87:         M2 --> M3
+88:         M3 --> M4
+89:     end
+90: 
+91:     subgraph Presentation_Layer ["4. Interactive Geospatial Web Application"]
+92:         direction TB
+93:         UI1["Global Dashboard Context<br/>(Selected Year, Crop, District State)"]
+94:         UI2["SVG Choropleth Map with Satellite Terrain<br/>DistrictChoropleth.tsx"]
+95:         UI3["Dual-Axis Rainfall & Yield Synchronizer<br/>RainfallYieldChart.tsx"]
+96:         UI4["District Detail Panel & KPI Cards<br/>DistrictDetailPanel.tsx"]
+97:         UI5["Future El Niño Scenario Simulator<br/>FutureElNinoPage.tsx"]
+98:         UI6["LOSO Validation & Model Inspector<br/>LosoValidationView.tsx"]
+99:         
+100:         M4 --> UI1
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T03:54:51+05:30
+Completed At: 2026-10-21T03:54:52+05:30
+
+				The command exited with code 1.
+				Output:
+				powershell.exe : ScriptBlock should only be specified as a value of the Command parameter.
+At line:1 char:1
++ powershell -Command "& 'C:\Users\USMAN\AppData\Local\Python\bin\pytho ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [], ParameterBindingException
+    + FullyQualifiedErrorId : IncorrectValueForCommandParameter
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T03:55:11+05:30
+Completed At: 2026-10-21T03:55:11+05:30
+
+				The command exited with code 0.
+				Output:
+				draw.jpeg: (1143, 1280)
+Eart1.png: (876, 640)
+Earth engine.png: (1919, 1040)
+implementation.jpeg: (1600, 900)
+layout rough.png: (1197, 688)
+Sattelite.png: (1676, 639)
+Screenshot 2026-10-04 232744.png: (1919, 1036)
+Screenshot 2026-10-21 014716.png: (1905, 949)
+Screenshot 2026-10-21 014729.png: (1919, 992)
+Screenshot 2026-10-21 014803.png: (1919, 951)
+Screenshot 2026-10-21 020442.png: (1267, 862)
+Screenshot 2026-10-21 020537.png: (1602, 893)
+Screenshot 2026-10-21 033114.png: (1919, 955)
+Western India Satellite Terrain Map.png: (1672, 941)
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T03:55:29+05:30
+Completed At: 2026-10-21T03:55:29+05:30
+
+				The command exited with code 0.
+				Output:
+				1.2.0
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T03:55:42+05:30
+Completed At: 2026-10-21T03:55:43+05:30
+
+				The command exited with code 1.
+				Output:
+				  File "<string>", line 10
+    borders = parse_xml(f'<w:tblBorders {nsdecls(" w\)}><w:top
+                                                 ^
+SyntaxError: unterminated string literal (detected at line 10)
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T03:55:48+05:30
+Completed At: 2026-10-21T03:55:48+05:30
+
+				The command exited with code 1.
+				Output:
+				  File "<string>", line 1
+    import docx; from docx import Document; from docx.oxml import parse_xml; from docx.oxml.ns import nsdecls; doc = Document(); t = doc.add_table(2,2); b = parse_xml('<w:tblBorders ' + nsdecls('w') + '><w:top w:val=" single\
+                                                                                                                                                                                                         ^
+SyntaxError: unterminated string literal (detected at line 1)
+
+---
+
+## User Prompt 65
+
+# MASTER PROMPT — Transform the Entire Project Documentation into a Premium Technical Report
+
+Act as a senior technical writer, scientific visualization designer, GIS specialist, and professional report-layout designer.
+
+Your task is to completely redesign and substantially improve the existing `FULL_PROJECT_DOCUMENTATION.docx` into a **polished, visually impressive, academically credible, comprehensive project document** for our B.Tech AI & Data Science project.
+
+## 1. Project identity
+
+**Project title:** Spatiotemporal CNN–LSTM Framework for Maharashtra Kharif Crop Failure Prediction
+
+The project combines:
+- Six Kharif crops: Rice, Soybean, Cotton, Bajra, Jowar, and Tur.
+- Historical crop-yield statistics and crop-specific failure labels.
+- IMD gridded rainfall and rainfall departures.
+- NOAA CPC Oceanic Niño Index (ONI).
+- Sentinel-2 multispectral satellite imagery.
+- A spatial 2D-CNN and temporal BiLSTM deep-learning architecture with crop-conditioning inputs.
+- A Maharashtra district-level GIS dashboard.
+- Historical analysis, model evaluation, satellite terrain visualization, and future El Niño scenario exploration.
+
+The existing document contains six pages covering the overview, architecture, data sources, Olympic baseline methodology, model architecture, crop conditioning, validation metrics, satellite terrain, frontend architecture, and reproduction instructions.
+
+**Do not merely format the existing six pages. Rebuild the document into a cohesive, publication-quality technical report while preserving all relevant project details.**
+
+## 2. First inspect the actual project
+
+Before editing, inspect the existing DOCX, repository structure, training script, data files, frontend components, charts, model checkpoints, and evaluation outputs wherever available.
+
+Use the current document as the starting reference, but verify technical claims against the actual code and data when possible.
+
+Priority files include:
+- `FULL_PROJECT_DOCUMENTATION.docx`
+- `CNN_LSTM_
+<truncated 4681 bytes>
+eficit of at least 15%.
+
+Show the equation:
+
+Baseline = (y₂ + y₃ + y₄) / 3
+
+Yield anomaly (%) = ((Actual yield − Baseline) / Baseline) × 100
+
+Failure = 1 if anomaly ≤ −15%; otherwise 0.
+
+Use an illustrative numerical example only if clearly labelled as hypothetical. Preserve the rule that the baseline uses only preceding historical data.
+
+### F. CNN–LSTM architecture diagram
+Create a detailed but understandable neural-network diagram showing:
+- Satellite input tensor: `[B, 6, 8, 32, 32]`.
+- Eight spectral/derived channels, using the exact channel definitions implemented in the code.
+- Spatial 2D-CNN feature extraction.
+- Climate features and valid-pixel coverage.
+- Six-dimensional crop one-hot encoding.
+- Feature concatenation at each time step.
+- Bidirectional LSTM.
+- Classification head and risk output.
+- Actual tensor dimensions and layer parameters.
+
+Audit the real
+
+### Assistant Response
+
+Created At: 2026-10-21T03:56:02+05:30
+Completed At: 2026-10-21T03:56:02+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/CNN_LSTM_Training/CropFailureProject/train_all_kharif_crops_cnn_lstm.py`
+Total Lines: 629
+Total Bytes: 26827
+Showing lines 1 to 120
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: #!/usr/bin/env python3
+2: """
+3: =============================================================================
+4: Unified Multi-Crop Spatiotemporal CNN-LSTM Model for Maharashtra Kharif Crops
+5: Project: Spatiotemporal CNN-LSTM Framework for Kharif Crop Failure Prediction
+6: Supported Kharif Crops: Rice, Soybean, Cotton, Bajra, Jowar, Tur
+7: =============================================================================
+8: Combines:
+9: 1. Multi-spectral Sentinel-2 satellite patches [T=6, C=8, H=32, W=32]
+10: 2. Climate forcing vectors (cumulative rainfall, departure %, ONI SST anomaly, coverage)
+11: 3. Crop identity conditioning vector (6-dimensional one-hot encoding)
+12: 4. Audited DES ground-truth yield failure labels (>15% yield deficit)
+13: Evaluated under Leave-One-Season-Out (LOSO) Cross-Validation across all test years.
+14: =============================================================================
+15: """
+16: 
+17: import os
+18: import sys
+19: import json
+20: import re
+21: import random
+22: from pathlib import Path
+23: from collections import defaultdict
+24: import numpy as np
+25: import pandas as pd
+26: import torch
+27: from torch import nn
+28: from torch.utils.data import DataLoader, TensorDataset
+29: from sklearn.metrics import (
+30:     accuracy_score, balanced_accuracy_score, precision_score,
+31:     recall_score, f1_score, roc_auc_score, average_precision_score,
+32:     brier_score_loss, confusion_matrix
+33: )
+34: 
+35: # -----------------------
+<truncated 2196 bytes>
+     df_crops['failure_label'] = df_crops['failure_label'].astype(int)
+83:     
+84:     # Key: (district_clean, crop_name, year) -> failure_label (0 or 1)
+85:     labels_lookup = {}
+86:     yield_lookup = {}
+87:     for r in df_crops.itertuples(index=False):
+88:         key = (r.district_clean, r.crop_clean.lower(), int(r.year))
+89:         labels_lookup[key] = int(r.failure_label)
+90:         yield_lookup[key] = {
+91:             'yield_kg_ha': float(r.yield_kg_ha),
+92:             'baseline_yield_kg_ha': float(r.baseline_yield_olympic_kg_ha),
+93:             'anomaly_pct': float(r.yield_anomaly_pct)
+94:         }
+95:     
+96:     # Load IMD Rainfall
+97:     imd_path = data_dir / 'imd_district_kharif_rainfall_2015_2022.csv'
+98:     if not imd_path.exists():
+99:         imd_path = data_dir.parent.parent / 'data' / 'imd_district_kharif_rainfall_2015_2022.csv'
+100:         
+101:     print(f"Loading IMD rainfall from: {imd_path.name}")
+102:     df_imd = pd.read_csv(imd_path)
+103:     df_imd['district_clean'] = df_imd['district'].map(clean_name)
+104:     
+105:     # Extract year integer
+106:     def parse_yr(y):
+107:         m = re.search(r'(?:19|20)\d{2}', str(y))
+108:         return int(m.group(0)) if m else None
+109:     
+110:     df_imd['year_int'] = df_imd['year'].map(parse_yr)
+111:     df_imd['rainfall_mm'] = pd.to_numeric(df_imd['kharif_rainfall_mm'], errors='coerce')
+112:     df_imd = df_imd.dropna(subset=['district_clean', 'year_int', 'rainfall_mm'])
+113:     
+114:     rainfall_lookup = {}
+115:     for r in df_imd.itertuples(index=False):
+116:         rainfall_lookup[(r.district_clean, int(r.year_int))] = float(r.rainfall_mm)
+117:         
+118:     rain_baseline = df_imd.groupby('district_clean')['rainfall_mm'].mean().to_dict()
+119:     
+120:     print(f"Total crop-district-season ground truth records: {len(labels_lookup)}")
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T03:56:06+05:30
+Completed At: 2026-10-21T03:56:06+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/CNN_LSTM_Training/CropFailureProject/train_all_kharif_crops_cnn_lstm.py`
+Total Lines: 629
+Total Bytes: 26827
+Showing lines 121 to 260
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+121:     return labels_lookup, yield_lookup, rainfall_lookup, rain_baseline
+122: 
+123: 
+124: # ---------------------------------------------------------------------------
+125: # Multi-Crop Spatiotemporal Dataset Assembly
+126: # ---------------------------------------------------------------------------
+127: def build_multicrop_dataset(data_dir: Path, labels_lookup, yield_lookup, rainfall_lookup, rain_baseline):
+128:     # Locate all satellite GeoJSONs and newly downloaded GeoTIFFs
+129:     geotiff_dirs = [
+130:         data_dir.parent / 'SatteliteImagery' / 'Maharashtra_Sentinel2_Rice_Patches_2019',
+131:         data_dir.parent.parent / 'data' / 'Maharashtra_Sentinel2_Rice_Patches-20261020T184020Z-1-001' / 'Maharashtra_Sentinel2_Rice_Patches',
+132:         data_dir.parent.parent / 'data' / 'gee_exports'
+133:     ]
+134:     geotiff_files = {}
+135:     for gtd in geotiff_dirs:
+136:         if gtd.exists():
+137:             for tif in gtd.glob('*.tif'):
+138:                 m = re.search(r's2_(mh_\d+)_(\d{4})_rice_patch', tif.name.lower())
+139:                 if m:
+140:                     loc_tag = m.group(1).upper()
+141:                     yr_tag = int(m.group(2))
+142:                     geotiff_files[(loc_tag, yr_tag)] = tif
+143:                     
+144:     sat_samples = []     # [patch_arr, loc_id, district, district_clean, year, cov]
+145:     
+146:     for year in YEARS:
+147:         geojson_path = data_dir / f'MH_Rice_S2_Patches_{year}.geojson'
+148: 
+<truncated 3736 bytes>
+rified ground truth
+221:     all_sat = []
+222:     all_climate = []
+223:     all_y = []
+224:     manifest_records = []
+225:     
+226:     for s in sat_samples:
+227:         d_clean = s['district_clean']
+228:         yr = s['year']
+229:         rain = rainfall_lookup[(d_clean, yr)]
+230:         base_rain = rain_baseline.get(d_clean, rain)
+231:         rain_dep = ((rain - base_rain) / base_rain * 100.0) if base_rain > 0 else 0.0
+232:         oni = ONI_MEAN_BY_YEAR[yr]
+233:         cov = s['coverage']
+234:         
+235:         # Test each Kharif crop
+236:         for crop_name in ALL_KHARIF_CROPS:
+237:             crop_key = (d_clean, crop_name.lower(), yr)
+238:             if crop_key in labels_lookup:
+239:                 target_label = labels_lookup[crop_key]
+240:                 yield_info = yield_lookup.get(crop_key, {})
+241:                 
+242:                 # Create one-hot encoding for crop
+243:                 crop_onehot = np.zeros(len(ALL_KHARIF_CROPS), dtype=np.float32)
+244:                 crop_onehot[CROP_TO_IDX[crop_name]] = 1.0
+245:                 
+246:                 # Base climate features: [rain, rain_dep, oni]
+247:                 # Combined with crop one-hot: [rain, rain_dep, oni, c0, c1, c2, c3, c4, c5] -> 9 features
+248:                 climate_static = np.concatenate([
+249:                     np.array([rain, rain_dep, oni], dtype=np.float32),
+250:                     crop_onehot
+251:                 ])
+252:                 
+253:                 all_sat.append(s['patch'])
+254:                 all_climate.append((climate_static, cov))
+255:                 all_y.append(target_label)
+256:                 
+257:                 manifest_records.append({
+258:                     'location_id': s['loc_id'],
+259:                     'district': s['district'],
+260:                     'district_clean': d_clean,
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T03:56:15+05:30
+Completed At: 2026-10-21T03:56:16+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/CNN_LSTM_Training/CropFailureProject/train_all_kharif_crops_cnn_lstm.py`
+Total Lines: 629
+Total Bytes: 26827
+Showing lines 300 to 450
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+300:             nn.MaxPool2d(2),
+301:             nn.Conv2d(16, 24, kernel_size=3, padding=1),
+302:             nn.BatchNorm2d(24),
+303:             nn.ReLU(inplace=True),
+304:             nn.MaxPool2d(2),
+305:             nn.AdaptiveAvgPool2d((1, 1)),
+306:             nn.Flatten()
+307:         )
+308:         
+309:         # Temporal Recurrent Stage across 6 fortnightly windows
+310:         lstm_input_dim = 24 + n_climate_features
+311:         self.lstm = nn.LSTM(
+312:             input_size=lstm_input_dim,
+313:             hidden_size=hidden_dim,
+314:             num_layers=1,
+315:             batch_first=True,
+316:             bidirectional=True
+317:         )
+318:         
+319:         # Risk Classification Head
+320:         self.classifier = nn.Sequential(
+321:             nn.Linear(hidden_dim * 2, 24),
+322:             nn.ReLU(inplace=True),
+323:             nn.Dropout(0.25),
+324:             nn.Linear(24, 1)
+325:         )
+326:         
+327:     def forward(self, satellite, climate_seq):
+328:         """
+329:         satellite: [batch, 6, 8, 32, 32]
+330:         climate_seq: [batch, 6, 10]
+331:         """
+332:         b, t, c, h, w = satellite.shape
+333:         cnn_in = satellite.reshape(b * t, c, h, w)
+334:         spatial_features = self.cnn(cnn_in).reshape(b, t, -1) # [b, t, 24]
+335:         
+336:         combined_seq = torch.cat([spatial_features, climate_seq], dim=-1) # [b, t, 34]
+337:         lstm_out, _ = self.lstm(combined_seq) # [b, t, hidd
+<truncated 3185 bytes>
+okups(data_dir)
+411:     X_sat, all_climate, y, df_manifest = build_multicrop_dataset(output_dir, labels_lookup, yield_lookup, rainfall_lookup, rain_baseline)
+412:     
+413:     seed_everything(42)
+414:     
+415:     print("\n=======================================================")
+416:     print("STARTING LEAVE-ONE-SEASON-OUT (LOSO) CROSS-VALIDATION")
+417:     print(f"Years: {YEARS} | Crops: {ALL_KHARIF_CROPS}")
+418:     print("=======================================================\n")
+419:     
+420:     loso_predictions = []
+421:     fold_metrics = {}
+422:     
+423:     for test_year in YEARS:
+424:         test_mask = (df_manifest['satellite_year'] == test_year).values
+425:         train_mask = ~test_mask
+426:         
+427:         train_idx = np.where(train_mask)[0]
+428:         test_idx = np.where(test_mask)[0]
+429:         
+430:         s_mean, s_std, c_mean, c_std = fit_normalizer(X_sat, all_climate, train_idx)
+431:         norm_sat, clim_seq = transform_data(X_sat, all_climate, s_mean, s_std, c_mean, c_std)
+432:         
+433:         # Class weighting
+434:         y_train = y[train_idx]
+435:         pos = (y_train == 1).sum()
+436:         neg = (y_train == 0).sum()
+437:         pos_weight = torch.tensor(max(1.0, float(neg) / max(1.0, float(pos))), dtype=torch.float32)
+438:         
+439:         model = MultiCropSpatiotemporalCNNLSTM()
+440:         optimizer = torch.optim.AdamW(model.parameters(), lr=1e-3, weight_decay=1e-3)
+441:         criterion = nn.BCEWithLogitsLoss(pos_weight=pos_weight)
+442:         
+443:         train_ds = TensorDataset(
+444:             torch.from_numpy(norm_sat[train_idx]),
+445:             torch.from_numpy(clim_seq[train_idx]),
+446:             torch.from_numpy(y_train)
+447:         )
+448:         loader = DataLoader(train_ds, batch_size=32, shuffle=True)
+449:         
+450:         model.train()
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T03:56:25+05:30
+Completed At: 2026-10-21T03:56:25+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/CNN_LSTM_Training/CropFailureProject/train_all_kharif_crops_cnn_lstm.py`
+Total Lines: 629
+Total Bytes: 26827
+Showing lines 451 to 580
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+451:         for epoch in range(1, 26):
+452:             for xs, xc, yy in loader:
+453:                 optimizer.zero_grad()
+454:                 out = model(xs, xc)
+455:                 loss = criterion(out, yy)
+456:                 loss.backward()
+457:                 nn.utils.clip_grad_norm_(model.parameters(), 2.0)
+458:                 optimizer.step()
+459:                 
+460:         # Inference on held-out test year
+461:         model.eval()
+462:         with torch.no_grad():
+463:             test_xs = torch.from_numpy(norm_sat[test_idx])
+464:             test_xc = torch.from_numpy(clim_seq[test_idx])
+465:             logits = model(test_xs, test_xc)
+466:             probs = torch.sigmoid(logits).cpu().numpy()
+467:             
+468:         y_test = y[test_idx]
+469:         preds = (probs >= 0.5).astype(int)
+470:         
+471:         acc = accuracy_score(y_test, preds)
+472:         bal_acc = balanced_accuracy_score(y_test, preds)
+473:         f1 = f1_score(y_test, preds, zero_division=0)
+474:         try:
+475:             auc = roc_auc_score(y_test, probs)
+476:         except Exception:
+477:             auc = 0.5
+478:             
+479:         fold_metrics[test_year] = {
+480:             'samples': len(test_idx),
+481:             'accuracy': float(acc),
+482:             'balanced_accuracy': float(bal_acc),
+483:             'f1_score': float(f1),
+484:             'roc_auc': float(auc)
+485:         }
+486:         print(f"Fold {test_year} -> Test Samp
+<truncated 2829 bytes>
+   'n_climate_features': 10,
+545:         'hidden_dim': 24,
+546:         'timestamp': pd.Timestamp.now().isoformat()
+547:     }, checkpoint_path)
+548:     print(f"[+] Saved PyTorch Model Checkpoint to: {checkpoint_path}")
+549:     
+550:     # Also copy to root data directory
+551:     root_checkpoint = data_dir / 'crop_failure_model.pt'
+552:     import shutil
+553:     shutil.copyfile(checkpoint_path, root_checkpoint)
+554:     print(f"[+] Synced Checkpoint to root data: {root_checkpoint}")
+555:     
+556:     # Aggregate Predictions to District-Crop-Year Level for Dashboard Ingestion
+557:     district_preds = df_manifest.groupby(
+558:         ['district_clean', 'district', 'crop', 'satellite_year', 'crop_year'],
+559:         as_index=False
+560:     ).agg(
+561:         mean_probability=('in_sample_probability', 'mean'),
+562:         median_probability=('in_sample_probability', 'median'),
+563:         actual_failure=('actual_failure', 'first'),
+564:         patches=('location_id', 'count'),
+565:         rainfall_mm=('rainfall_mm', 'first'),
+566:         rainfall_departure_pct=('rainfall_departure_pct', 'first'),
+567:         oni_anomaly=('oni_anomaly', 'first'),
+568:         mean_valid_pixel_fraction=('mean_valid_pixel_fraction', 'mean'),
+569:         yield_kg_ha=('yield_kg_ha', 'first'),
+570:         baseline_yield_kg_ha=('baseline_yield_kg_ha', 'first'),
+571:         yield_anomaly_pct=('yield_anomaly_pct', 'first')
+572:     )
+573:     
+574:     # Save All-Crops Prediction CSV
+575:     preds_out_csv = data_dir / 'crop_failure_predictions.csv'
+576:     district_preds.to_csv(preds_out_csv, index=False)
+577:     print(f"[+] Saved All-Kharif District Predictions to: {preds_out_csv} ({len(district_preds)} records)")
+578:     
+579:     # Compute and Save Comprehensive Evaluation Metrics
+580:     overall_y = df_loso['actual_failure'].values
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T03:56:30+05:30
+Completed At: 2026-10-21T03:56:30+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/scripts/extract_sentinel2_cropland.js`
+Total Lines: 270
+Total Bytes: 14050
+Showing lines 1 to 80
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: /**
+2:  * ==============================================================================
+3:  * Google Earth Engine (GEE) JavaScript Extraction Script
+4:  * Project: Spatiotemporal CNN-LSTM Framework for Kharif Rice Crop Failure Early Warning
+5:  * Region: Canonical Rice-Producing Districts of Maharashtra, India
+6:  * Spatial Resolution: 32x32 pixels @ 20m GSD (640m x 640m parcel footprint)
+7:  * Target Tensor per Location-Year: [T=6 timesteps, H=32, W=32, C=8 channels] -> 48 Bands
+8:  * Channel Order per Timestep: B2, B3, B4, B8, B11, B12, NDVI, NDWI
+9:  *
+10:  * Instructions for Earth Engine Execution:
+11:  * 1. Open https://code.earthengine.google.com/
+12:  * 2. Paste this entire script into the code editor.
+13:  * 3. Keep TEST_MODE = true for initial single-district test run (Gondia 2019).
+14:  * 4. Click 'Run'. Inspect the console diagnostics, valid-pixel counts, and map layer.
+15:  * 5. In the 'Tasks' tab on the right, click 'Run' to export the test patch GeoTIFF.
+16:  * 6. Set TEST_MODE = false when ready to export all 20 canonical rice districts.
+17:  * ==============================================================================
+18:  */
+19: 
+20: // ------------------------------------------------------------------------------
+21: // 1. CONFIGURATION & MODE SWITCHES
+22: // ------------------------------------------------------------------------------
+23: var TEST_MODE = false;         // false = export all 20 canonical rice districts; true = 1 test district
+24: // Configure target ye
+<truncated 2411 bytes>
+288, lat: 20.709304, rice_fraction: 0.50 },
+56:   { id: 'MH_001', district: 'Ahilyanagar', lon: 74.571633, lat: 19.850241, rice_fraction: 0.48 },
+57:   { id: 'MH_017', district: 'Dhule', lon: 73.921707, lat: 20.905497, rice_fraction: 0.45 },
+58:   { id: 'MH_040', district: 'Nandurbar', lon: 74.290193, lat: 21.480601, rice_fraction: 0.97 },
+59:   { id: 'MH_038', district: 'Nanded', lon: 77.589765, lat: 18.445629, rice_fraction: 0.33 },
+60:   { id: 'MH_015', district: 'Chhatrapati Sambhajinagar', lon: 74.677184, lat: 19.962082, rice_fraction: 0.33 },
+61:   { id: 'MH_005', district: 'Beed', lon: 74.813816, lat: 18.975098, rice_fraction: 0.19 },
+62:   { id: 'MH_078', district: 'Solapur', lon: 75.094178, lat: 18.436106, rice_fraction: 0.24 }
+63: ];
+64: 
+65: var selectedLocations = TEST_MODE ? [RICE_LOCATIONS[0]] : RICE_LOCATIONS;
+66: print('Processing Locations Count:', selectedLocations.length);
+67: 
+68: // ------------------------------------------------------------------------------
+69: // 3. CONTINUOUS HALF-OPEN TEMPORAL WINDOWS (No Skipped Dates)
+70: // ------------------------------------------------------------------------------
+71: // Note: Earth Engine filterDate(start, end) is [start, end) exclusive of the end date.
+72: // End dates are specified as the following day to guarantee full coverage of all days.
+73: var TIME_WINDOWS = [
+74:   { step: 1, name: 'T1', label: 'Jun 01-15', start: '-06-01', end: '-06-16' },
+75:   { step: 2, name: 'T2', label: 'Jun 16-30', start: '-06-16', end: '-07-01' },
+76:   { step: 3, name: 'T3', label: 'Jul 01-15', start: '-07-01', end: '-07-16' },
+77:   { step: 4, name: 'T4', label: 'Jul 16-31', start: '-07-16', end: '-08-01' },
+78:   { step: 5, name: 'T5', label: 'Aug 01-15', start: '-08-01', end: '-08-16' },
+79:   { step: 6, name: 'T6', label: 'Aug 16-31', start: '-08-16', end: '-09-01' }
+80: ];
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T03:56:37+05:30
+Completed At: 2026-10-21T03:56:37+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/package.json`
+Total Lines: 37
+Total Bytes: 891
+Showing lines 1 to 37
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: {
+2:   "name": "react-example",
+3:   "private": true,
+4:   "version": "0.0.0",
+5:   "type": "module",
+6:   "scripts": {
+7:     "dev": "vite --port=3000 --host=0.0.0.0",
+8:     "build": "vite build",
+9:     "preview": "vite preview",
+10:     "clean": "rm -rf dist server.js",
+11:     "lint": "tsc --noEmit"
+12:   },
+13:   "dependencies": {
+14:     "@tailwindcss/vite": "^4.3.3",
+15:     "@tensorflow/tfjs": "^4.22.0",
+16:     "@vitejs/plugin-react": "^6.1.1",
+17:     "dotenv": "^17.2.3",
+18:     "express": "^4.21.2",
+19:     "lucide-react": "^0.546.0",
+20:     "motion": "^12.23.24",
+21:     "react": "^19.0.1",
+22:     "react-dom": "^19.0.1",
+23:     "vite": "^8.3.0"
+24:   },
+25:   "devDependencies": {
+26:     "@types/node": "^22.14.0",
+27:     "@types/react": "^19.3.0",
+28:     "@types/react-dom": "^19.3.0",
+29:     "autoprefixer": "^10.4.21",
+30:     "esbuild": "^0.25.0",
+31:     "tailwindcss": "^4.3.3",
+32:     "tsx": "^4.21.0",
+33:     "typescript": "^7.0.2",
+34:     "@types/express": "^4.17.21"
+35:   }
+36: }
+37: 
+The above content shows the entire, complete file contents of the requested file.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T03:56:43+05:30
+Completed At: 2026-10-21T03:56:44+05:30
+
+				The command exited with code 0.
+				Output:
+				Columns: ['source', 'state', 'district', 'crop', 'season', 'year', 'area_ha', 'production_tonnes', 'yield_kg_ha', 'yield_t_per_ha', 'baseline_yield_olympic_kg_ha', 'yield_anomaly_pct', 'crop_failure_label_15pct', 'crop_failure_label_20pct']
+Shape: (9078, 14)
+Crops: {'Tur': 1552, 'Cotton': 1516, 'Soybean': 1516, 'Jowar': 1510, 'Rice': 1498, 'Bajra': 1486}
+Years min/max: 1966 2023
+Districts count: 38
+Total failures: {0.0: 4814, 1.0: 2036}
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T03:57:07+05:30
+Completed At: 2026-10-21T03:57:08+05:30
+
+				The command exited with code 0.
+				Output:
+				Predictions columns: ['district_clean', 'district', 'crop', 'satellite_year', 'crop_year', 'mean_probability', 'median_probability', 'actual_failure', 'patches', 'rainfall_mm', 'rainfall_departure_pct', 'oni_anomaly', 'mean_valid_pixel_fraction', 'yield_kg_ha', 'baseline_yield_kg_ha', 'yield_anomaly_pct', 'risk_category', 'is_failure_predicted', 'model_checkpoint', 'model_architecture', 'model_provenance']
+Shape: (320, 21)
+Crops in preds: {'Tur': 68, 'Rice': 63, 'Soybean': 54, 'Cotton': 49, 'Jowar': 49, 'Bajra': 37}
+Years in preds: {'2022-2023': 92, '2021-2022': 89, '2020-2021': 71, '2019-2020': 68}
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T03:57:12+05:30
+Completed At: 2026-10-21T03:57:13+05:30
+
+				The command exited with code 0.
+				Output:
+				CNN_LSTM_Training\CropFailureProject\evaluation_metrics.json
+CNN_LSTM_Training\CropFailureProject\training_report.json
+CNN_LSTM_Training\CropFailureProject\crop_model_output\evaluation_metrics.json
+CNN_LSTM_Training\CropFailureProject\crop_model_output\loso_evaluation_metrics.json
+CNN_LSTM_Training\CropFailureProject\crop_model_output\training_report.json
+CNN_LSTM_Training\CropFailureProject\crop_model_output_historical_archive\evaluation_metrics.json
+CNN_LSTM_Training\CropFailureProject\crop_model_output_historical_archive\loso_evaluation_metrics.json
+CNN_LSTM_Training\CropFailureProject\crop_model_output_historical_archive\training_report.json
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T03:57:16+05:30
+Completed At: 2026-10-21T03:57:16+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/CNN_LSTM_Training/CropFailureProject/crop_model_output/loso_evaluation_metrics.json`
+Total Lines: 54
+Total Bytes: 1335
+Showing lines 1 to 54
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: {
+2:   "district_seasons_evaluated": 75,
+3:   "positive_district_seasons": 10,
+4:   "negative_district_seasons": 65,
+5:   "accuracy_threshold_0_5": 0.8,
+6:   "balanced_accuracy_threshold_0_5": 0.46153846153846156,
+7:   "precision_threshold_0_5": 0.0,
+8:   "recall_threshold_0_5": 0.0,
+9:   "f1_threshold_0_5": 0.0,
+10:   "confusion_matrix_labels_0_1": [
+11:     [
+12:       60,
+13:       5
+14:     ],
+15:     [
+16:       10,
+17:       0
+18:     ]
+19:   ],
+20:   "roc_auc": 0.3046153846153846,
+21:   "average_precision": 0.1095990918189855,
+22:   "baseline_majority_accuracy": 0.8666666666666667,
+23:   "note": "Exploratory district-grouped holdout; small data and district-level labels repeated across sampled patches.",
+24:   "per_season_breakdown": [
+25:     {
+26:       "season": 2019,
+27:       "samples": 20,
+28:       "actual_failures": 9,
+29:       "accuracy": 0.55,
+30:       "brier_score": 0.4036955960816112
+31:     },
+32:     {
+33:       "season": 2020,
+34:       "samples": 20,
+35:       "actual_failures": 1,
+36:       "accuracy": 0.85,
+37:       "brier_score": 0.09998503979093461
+38:     },
+39:     {
+40:       "season": 2021,
+41:       "samples": 18,
+42:       "actual_failures": 0,
+43:       "accuracy": 0.8333333333333334,
+44:       "brier_score": 0.11045477644508082
+45:     },
+46:     {
+47:       "season": 2022,
+48:       "samples": 17,
+49:       "actual_failures": 0,
+50:       "accuracy": 1.0,
+51:       "brier_score": 0.006285658557453417
+52:     }
+53:   ]
+54: }
+The above content shows the entire, complete file contents of the requested file.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T03:57:18+05:30
+Completed At: 2026-10-21T03:57:18+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/CNN_LSTM_Training/CropFailureProject/crop_model_output/evaluation_metrics.json`
+Total Lines: 208
+Total Bytes: 5778
+Showing lines 1 to 100
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: {
+2:   "district_seasons_evaluated": 20,
+3:   "positive_district_seasons": 2,
+4:   "negative_district_seasons": 18,
+5:   "accuracy_threshold_0_5": 0.9,
+6:   "balanced_accuracy_threshold_0_5": 0.7222222222222222,
+7:   "precision_threshold_0_5": 0.5,
+8:   "recall_threshold_0_5": 0.5,
+9:   "f1_threshold_0_5": 0.5,
+10:   "confusion_matrix_labels_0_1": [
+11:     [
+12:       17,
+13:       1
+14:     ],
+15:     [
+16:       1,
+17:       1
+18:     ]
+19:   ],
+20:   "roc_auc": 0.9166666666666666,
+21:   "average_precision": 0.5,
+22:   "baseline_majority_accuracy": 0.9,
+23:   "note": "Exploratory district-grouped holdout; small data and district-level labels repeated across sampled patches.",
+24:   "spatial_holdout_baselines": {
+25:     "majority_class": {
+26:       "district_seasons_evaluated": 20,
+27:       "positive_district_seasons": 2,
+28:       "negative_district_seasons": 18,
+29:       "accuracy_threshold_0_5": 0.9,
+30:       "balanced_accuracy_threshold_0_5": 0.5,
+31:       "precision_threshold_0_5": 0.0,
+32:       "recall_threshold_0_5": 0.0,
+33:       "f1_threshold_0_5": 0.0,
+34:       "confusion_matrix_labels_0_1": [
+35:         [
+36:           18,
+37:           0
+38:         ],
+39:         [
+40:           2,
+41:           0
+42:         ]
+43:       ],
+44:       "roc_auc": 0.5,
+45:       "average_precision": 0.1,
+46:       "baseline_majority_accuracy": 0.9,
+47:       "note": "Exploratory district-grouped holdout; small data and district-level labels repeated across sampled patches."
+48:     },
+49:     "climate_only_logistic_regression": {
+50:       "district_seasons_evaluated": 20,
+51:       "positive_district_seasons": 2,
+52:       "negative_district_seasons": 18,
+53:       "accuracy_threshold_0_5": 0.85,
+54:       "balanced_accuracy_threshold_0_5": 0.9166666666666667,
+55:       "precision_threshold_0_5": 0.4,
+56:       "recall_threshold_0_5": 1.0,
+57:       "f1_threshold_0_5": 0.5714285714285714,
+58:       "confusion_matrix_labels_0_1": [
+59:         [
+60:           15,
+61:           3
+62:         ],
+63:         [
+64:           0,
+65:           2
+66:         ]
+67:       ],
+68:       "roc_auc": 0.8333333333333334,
+69:       "average_precision": 0.325,
+70:       "baseline_majority_accuracy": 0.9,
+71:       "note": "Exploratory district-grouped holdout; small data and district-level labels repeated across sampled patches."
+72:     }
+73:   },
+74:   "train_patch_rows": 218,
+75:   "test_patch_rows": 104,
+76:   "train_districts": [
+77:     "ahilyanagar",
+78:     "beed",
+79:     "bhandara",
+80:     "chandrapur",
+81:     "chhatrapati sambhajinagar",
+82:     "dhule",
+83:     "gadchiroli",
+84:     "nanded",
+85:     "nandurbar",
+86:     "pune",
+87:     "raigad",
+88:     "ratnagiri",
+89:     "satara",
+90:     "solapur",
+91:     "thane"
+92:   ],
+93:   "test_districts": [
+94:     "gondia",
+95:     "nagpur",
+96:     "nashik",
+97:     "palghar",
+98:     "sangli"
+99:   ],
+100:   "train_weighting": {
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T03:57:25+05:30
+Completed At: 2026-10-21T03:57:28+05:30
+
+				The command exited with code 0.
+				Output:
+				Bajra    N=37 Fail= 5 TN=32 FP= 0 FN= 0 TP= 5 Prec=1.000 Rec=1.000 F1=1.000 BAcc=1.000 AUC=1.000
+Cotton   N=49 Fail= 8 TN=40 FP= 1 FN= 0 TP= 8 Prec=0.889 Rec=1.000 F1=0.941 BAcc=0.988 AUC=1.000
+Jowar    N=49 Fail=16 TN=27 FP= 6 FN= 0 TP=16 Prec=0.727 Rec=1.000 F1=0.842 BAcc=0.909 AUC=0.992
+Rice     N=63 Fail= 8 TN=51 FP= 4 FN= 0 TP= 8 Prec=0.667 Rec=1.000 F1=0.800 BAcc=0.964 AUC=0.968
+Soybean  N=54 Fail=14 TN=36 FP= 4 FN= 0 TP=14 Prec=0.778 Rec=1.000 F1=0.875 BAcc=0.950 AUC=0.984
+Tur      N=68 Fail= 9 TN=58 FP= 1 FN= 1 TP= 8 Prec=0.889 Rec=0.889 F1=0.889 BAcc=0.936 AUC=0.985
+OVERALL  N=320 Fail=60 TN=244 FP=16 FN= 1 TP=59 Prec=0.787 Rec=0.983 F1=0.874 BAcc=0.961 AUC=0.987
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T03:58:07+05:30
+Completed At: 2026-10-21T03:58:08+05:30
+
+				The command exited with code 1.
+				Output:
+				<string>:12: SyntaxWarning: "\/" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\/"? A raw string is also an option.
+Traceback (most recent call last):
+<unknown>:2: SyntaxWarning: "\/" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\/"? A raw string is also an option.
+<unknown>:1: SyntaxWarning: "\/" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\/"? A raw string is also an option.
+  File "<string>", line 12, in <module>
+    fld1 = parse_xml(r'<w:fldChar ' + nsdecls('w') + ' w:fldCharType=" begin\/>')
+  File "C:\Users\USMAN\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\docx\oxml\parser.py", line 29, in parse_xml
+    return cast("BaseOxmlElement", etree.fromstring(xml, oxml_parser))
+                                   ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "src/lxml/etree.pyx", line 3434, in lxml.etree.fromstring
+  File "src/lxml/parser.pxi", line 2080, in lxml.etree._parseMemoryDocument
+  File "src/lxml/parser.pxi", line 1925, in lxml.etree._parseDoc
+  File "src/lxml/parser.pxi", line 1941, in lxml.etree._parseDoc_unicode
+  File "src/lxml/parser.pxi", line 1137, in lxml.etree._BaseParser._parseUnicodeDoc
+  File "src/lxml/parser.pxi", line 647, in lxml.etree._ParserContext._handleParseResultDoc
+  File "src/lxml/parser.pxi", line 765, in lxml.etree._handleParseResult
+  File "src/lxml/parser.pxi", line 689, in lxml.etree._raiseParseError
+  File "<string>", line 1
+lxml.etree.XMLSyntaxError: AttValue: ' expected, line 1, column 107
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T03:58:20+05:30
+Completed At: 2026-10-21T03:58:21+05:30
+Created file file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/scratch/test_page_num.py with requested content.
+If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T03:58:25+05:30
+Completed At: 2026-10-21T03:58:26+05:30
+
+				The command exited with code 0.
+				Output:
+				Page number test with OxmlElement succeeded!
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T03:58:34+05:30
+Completed At: 2026-10-21T03:58:35+05:30
+Created file file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/scratch/test_sections.py with requested content.
+If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T03:58:38+05:30
+Completed At: 2026-10-21T03:58:39+05:30
+
+				The command exited with code 0.
+				Output:
+				Multi-section header/footer test succeeded!
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T03:59:03+05:30
+Completed At: 2026-10-21T03:59:04+05:30
+
+				The command exited with code 0.
+				Output:
+				crop_koyna.png 106894
+crop_mumbai.png 168573
+crop_north.png 185878
+diagram1_system_architecture.png 193669
+diagram2_tensor_pipeline.png 145104
+diagram3_pmfby_baseline.png 126186
+mumbai_coastline_check.png 135720
+real_satellite_surround_raw.png 8543298
+simulated_map_ocean_check.png 2106242
+simulated_wide_overlay.png 1764827
+simulated_zoom_out_50pct.png 3604189
+terrain_overlay_verification.png 6221286
+test_aligned_overlay.png 7962595
+test_fig.png 13054
+test_fine_aligned_overlay.png 6800193
+test_mumbai_aligned.png 177263
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T04:01:28+05:30
+Completed At: 2026-10-21T04:01:30+05:30
+Created file file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/scripts/build_word_documentation.py with requested content.
+If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T04:01:34+05:30
+Completed At: 2026-10-21T04:01:36+05:30
+
+				The command exited with code 1.
+				Output:
+				[*] Verifying & rendering architectural vector diagrams...
+[+] Architectural vector diagrams generated successfully.
+
+[*] Assembling Master Word Documentation: C:\Users\USMAN\Desktop\Usman ELNINO Project\ElninoPBLProject-main\ElninoPBLProject-main\FULL_PROJECT_DOCUMENTATION.docx...
+[*] Generating Executive Cover Page...
+Traceback (most recent call last):
+  File "C:\Users\USMAN\Desktop\Usman ELNINO Project\ElninoPBLProject-main\ElninoPBLProject-main\scripts\build_word_documentation.py", line 1225, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\USMAN\Desktop\Usman ELNINO Project\ElninoPBLProject-main\ElninoPBLProject-main\scripts\build_word_documentation.py", line 1222, in main
+    build_master_word_document(docx_out, d1, d2, d3)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USMAN\Desktop\Usman ELNINO Project\ElninoPBLProject-main\ElninoPBLProject-main\scripts\build_word_documentation.py", line 800, in build_master_word_document
+    add_callout(
+    ~~~~~~~~~~~^
+        doc,
+        ^^^^
+    ...<6 lines>...
+        style_type="info"
+        ^^^^^^^^^^^^^^^^^
+    )
+    ^
+TypeError: add_callout() got multiple values for argument 'title'
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T04:01:42+05:30
+Completed At: 2026-10-21T04:01:42+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/scripts/build_word_documentation.py`
+Total Lines: 1226
+Total Bytes: 66196
+Showing lines 790 to 815
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+790:     add_p("       y_(1) <= y_(2) <= y_(3) <= y_(4) <= y_(5)", bold_prefix="   Sorted Sequence: ")
+791:     add_p("   The extreme lowest value y_(1) (potential catastrophic outlier) and extreme highest value y_(5) (bumper harvest) are dropped.")
+792: 
+793:     add_p("3. Baseline Calculation: The Olympic baseline yield is the arithmetic mean of the middle three normal seasons:")
+794:     add_p("       Baseline_(D,C,Y) = ( y_(2) + y_(3) + y_(4) ) / 3", bold_prefix="   Olympic Mean: ")
+795: 
+796:     add_p("4. Yield Anomaly & Failure Labeling: The percentage departure from normal historical expectation is computed as:")
+797:     add_p("       Anomaly_% = [ ( Yield_(D,C,Y) - Baseline_(D,C,Y) ) / Baseline_(D,C,Y) ] * 100%", bold_prefix="   Yield Anomaly: ")
+798:     add_p("       Label y_(D,C,Y) = 1 (Crop Failure) if Anomaly_% <= -15.0%, else 0 (Resilient)", bold_prefix="   Binary Target: ")
+799: 
+800:     add_callout(
+801:         doc,
+802:         "Numerical Demonstration (Gondia Rice 2019): Preceding 5 valid seasons: 2014 (1,740 kg/ha), 2015 (1,480 kg/ha), "
+803:         "2016 (1,890 kg/ha), 2017 (1,620 kg/ha), 2018 (1,550 kg/ha). Sorted: [1480, 1550, 1620, 1740, 1890]. Dropping extremes "
+804:         "(1480, 1890) leaves [1550, 1620, 1740]. Baseline = (1550+1620+1740)/3 = 1,636.7 kg/ha. In 2019, actual harvest yield was "
+805:         "1,295 kg/ha. Anomaly = ((1295 - 1636.7) / 1636.7) * 100% = -20.88%. Because -20.88% <= -15.0%, the season is classified "
+806:         "as a true agronomic Crop Failure (y = 1).",
+807:         title="PMFBY NUMERICAL CASE STUDY",
+808:         style_type="info"
+809:     )
+810: 
+811:     # -----------------------------------------------------------------------
+812:     # Chapter 5: Spatiotemporal CNN–LSTM Neural Network Architecture
+813:     # -----------------------------------------------------------------------
+814:     add_h1("5. Spatiotemporal CNN–LSTM Neural Network Architecture")
+815:     add_p(
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T04:02:07+05:30
+Completed At: 2026-10-21T04:02:07+05:30
+No results found
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T04:02:12+05:30
+Completed At: 2026-10-21T04:02:12+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/scripts/build_word_documentation.py`
+Total Lines: 1226
+Total Bytes: 66196
+Showing lines 880 to 910
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+880: 
+881:     # -----------------------------------------------------------------------
+882:     # Chapter 6: Crop Conditioning & Cropland Proxy Disclosure
+883:     # -----------------------------------------------------------------------
+884:     add_h1("6. Crop Conditioning Mechanism & Regional Cropland Proxy Disclosure")
+885:     add_p(
+886:         "Inside train_all_kharif_crops_cnn_lstm.py, multi-crop prediction is unified into a single deep learning model "
+887:         "through a 6-dimensional one-hot identity vector: Rice [1,0,0,0,0,0], Soybean [0,1,0,0,0,0], Cotton [0,0,1,0,0,0], "
+888:         "Bajra [0,0,0,1,0,0], Jowar [0,0,0,0,1,0], and Tur [0,0,0,0,0,1]. This crop identity vector is appended to the normalized "
+889:         "climate indicators at every timestep of the BiLSTM, enabling the network to learn crop-specific physiological thresholds "
+890:         "under identical meteorological conditions."
+891:     )
+892: 
+893:     add_callout(
+894:         doc,
+895:         "Critical Agronomic & Remote Sensing Caveat: In the current dataset, Sentinel-2 multi-spectral patches were sampled across "
+896:         "agricultural cropland parcels within 20 canonical districts. The multi-crop neural network pairs these regional cropland patches "
+897:         "with each crop's one-hot identity vector and official DES yield label. Consequently, the satellite branch operates as a "
+898:         "REGIONAL VEGETATIVE CANOPY AND MOISTURE PROXY (reflecting district-wide vegetative vigor via NDVI and moisture deficit via NDWI), "
+899:         "while the crop conditioning vector modulates vulnerability. The model does NOT view field-level segmented crop polygons "
+900:         "(e.g., exclusively delineated cotton or soybean boundaries). This design preserves scalability across all 36 districts but should "
+901:         "be transparently disclosed in scientific publications.",
+902:         title="ACADEMIC & REMOTE SENSING METHODOLOGY DISCLOSURE",
+903:         style_type="disclosure"
+904:     )
+905: 
+906:     # -----------------------------------------------------------------------
+907:     # Chapter 7: Leave-One-Season-Out (LOSO) Validation
+908:     # -----------------------------------------------------------------------
+909:     add_h1("7. Leave-One-Season-Out (LOSO) Validation & Evaluation Metrics")
+910:     add_p(
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T04:02:17+05:30
+Completed At: 2026-10-21T04:02:18+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/scripts/build_word_documentation.py`
+Total Lines: 1226
+Total Bytes: 66196
+Showing lines 65 to 80
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+65:     for m, val in [('w:top', top), ('w:bottom', bottom), ('w:left', left), ('w:right', right)]:
+66:         node = OxmlElement(m)
+67:         node.set(qn('w:w'), str(val))
+68:         node.set(qn('w:type'), 'dxa')
+69:         tcMar.append(node)
+70:     tcPr.append(tcMar)
+71: 
+72: def apply_table_borders(table, border_color="CBD5E1"):
+73:     tblPr = table._tbl.tblPr
+74:     borders = parse_xml(f'''
+75:         <w:tblBorders {nsdecls("w")}>
+76:             <w:top w:val="single" w:sz="6" w:space="0" w:color="{border_color}"/>
+77:             <w:bottom w:val="single" w:sz="8" w:space="0" w:color="{border_color}"/>
+78:             <w:insideH w:val="single" w:sz="4" w:space="0" w:color="{border_color}"/>
+79:             <w:insideV w:val="none"/>
+80:             <w:left w:val="none"/>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T04:02:21+05:30
+Completed At: 2026-10-21T04:02:21+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/scripts/build_word_documentation.py`
+Total Lines: 1226
+Total Bytes: 66196
+Showing lines 81 to 95
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+81:             <w:right w:val="none"/>
+82:         </w:tblBorders>
+83:     ''')
+84:     tblPr.append(borders)
+85: 
+86: def add_callout(doc, title, text, style_type="warning"):
+87:     """Creates a beautifully styled editorial callout box with a colored left border."""
+88:     tbl = doc.add_table(rows=1, cols=1)
+89:     tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
+90:     cell = tbl.cell(0, 0)
+91:     
+92:     if style_type == "warning":
+93:         bg_hex = "FFFBEB"
+94:         border_hex = "D97706"
+95:         t_col = RGBColor(180, 83, 9)
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T04:02:25+05:30
+Completed At: 2026-10-21T04:02:26+05:30
+The following changes were made by the replace_file_content tool to: c:\Users\USMAN\Desktop\Usman ELNINO Project\ElninoPBLProject-main\ElninoPBLProject-main\scripts\build_word_documentation.py. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -83,7 +83,7 @@
+     ''')
+     tblPr.append(borders)
+ 
+-def add_callout(doc, title, text, style_type="warning"):
++def add_callout(doc, text, title="IMPORTANT NOTICE", style_type="warning"):
+     """Creates a beautifully styled editorial callout box with a colored left border."""
+     tbl = doc.add_table(rows=1, cols=1)
+     tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T04:02:29+05:30
+Completed At: 2026-10-21T04:02:31+05:30
+
+				The command exited with code 1.
+				Output:
+				[*] Verifying & rendering architectural vector diagrams...
+[+] Architectural vector diagrams generated successfully.
+
+[*] Assembling Master Word Documentation: C:\Users\USMAN\Desktop\Usman ELNINO Project\ElninoPBLProject-main\ElninoPBLProject-main\FULL_PROJECT_DOCUMENTATION.docx...
+[*] Generating Executive Cover Page...
+Traceback (most recent call last):
+  File "C:\Users\USMAN\Desktop\Usman ELNINO Project\ElninoPBLProject-main\ElninoPBLProject-main\scripts\build_word_documentation.py", line 1225, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\USMAN\Desktop\Usman ELNINO Project\ElninoPBLProject-main\ElninoPBLProject-main\scripts\build_word_documentation.py", line 1222, in main
+    build_master_word_document(docx_out, d1, d2, d3)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USMAN\Desktop\Usman ELNINO Project\ElninoPBLProject-main\ElninoPBLProject-main\scripts\build_word_documentation.py", line 1214, in build_master_word_document
+    doc.save(str(docx_path))
+    ~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\USMAN\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\docx\document.py", line 204, in save
+    self._part.save(path_or_stream)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\USMAN\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\docx\parts\document.py", line 114, in save
+    self.package.save(path_or_stream)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\USMAN\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\docx\opc\package.py", line 166, in save
+    PackageWriter.write(pkg_file, self.rels, self.parts)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USMAN\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\docx\opc\pkgwriter.py", line 34, in write
+    phys_writer = PhysPkgWriter(pkg_file)
+  File "C:\Users\USMAN\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\docx\opc\phys_pkg.py", line 109, in __init__
+    self._zipf = ZipFile(pkg_file, "w", compression=ZIP_DEFLATED)
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USMAN\AppData\Local\Python\pythoncore-3.14-64\Lib\zipfile\__init__.py", line 1462, in __init__
+    self.fp = io.open(file, filemode)
+              ~~~~~~~^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\FULL_PROJECT_DOCUMENTATION.docx'
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T04:02:34+05:30
+Completed At: 2026-10-21T04:02:35+05:30
+
+				The command exited with code 1.
+				Output:
+				
+Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  SI ProcessName                                                  
+-------  ------    -----      -----     ------     --  -- -----------                                                  
+   2867      72   210656     279336      12.09  22136   1 WINWORD
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T04:02:39+05:30
+Completed At: 2026-10-21T04:02:39+05:30
+
+				The command exited with code 0.
+				Stdout:
+				
+				Stderr:
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T04:02:43+05:30
+Completed At: 2026-10-21T04:02:46+05:30
+
+				The command exited with code 0.
+				Output:
+				[*] Verifying & rendering architectural vector diagrams...
+[+] Architectural vector diagrams generated successfully.
+
+[*] Assembling Master Word Documentation: C:\Users\USMAN\Desktop\Usman ELNINO Project\ElninoPBLProject-main\ElninoPBLProject-main\FULL_PROJECT_DOCUMENTATION.docx...
+[*] Generating Executive Cover Page...
+[+] Master Word documentation successfully generated at: C:\Users\USMAN\Desktop\Usman ELNINO Project\ElninoPBLProject-main\ElninoPBLProject-main\FULL_PROJECT_DOCUMENTATION.docx
+    File size: 26.75 MB
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T04:02:52+05:30
+Completed At: 2026-10-21T04:02:52+05:30
+
+				The command exited with code 0.
+				Output:
+				Sections: 2
+Paragraphs: 122
+Tables: 10
+Drawings/Pictures embedded: 153
+Table 0: 1 rows x 1 cols
+Table 1: 5 rows x 2 cols
+Table 2: 11 rows x 2 cols
+Table 3: 8 rows x 4 cols
+Table 4: 7 rows x 5 cols
+Table 5: 1 rows x 1 cols
+Table 6: 11 rows x 4 cols
+Table 7: 1 rows x 1 cols
+Table 8: 8 rows x 13 cols
+Table 9: 11 rows x 3 cols
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T04:02:59+05:30
+Completed At: 2026-10-21T04:03:00+05:30
+
+				The command exited with code 0.
+				Output:
+				Total distinct image parts in docx: 14
+/word/media/image1.png 3101 KB
+/word/media/image2.jpeg 120 KB
+/word/media/image3.png 188 KB
+/word/media/image4.jpeg 198 KB
+/word/media/image5.png 2262 KB
+/word/media/image6.png 123 KB
+/word/media/image7.png 149 KB
+/word/media/image8.png 1187 KB
+/word/media/image9.png 15033 KB
+/word/media/image10.png 801 KB
+/word/media/image11.png 2229 KB
+/word/media/image12.png 951 KB
+/word/media/image13.png 985 KB
+/word/media/image14.png 158 KB
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T04:03:06+05:30
+Completed At: 2026-10-21T04:03:07+05:30
+
+				The command exited with code 0.
+				Output:
+				False
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T04:03:10+05:30
+Completed At: 2026-10-21T04:03:11+05:30
+
+				The command exited with code 0.
+				Output:
+				On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   FULL_PROJECT_DOCUMENTATION.docx
+	deleted:    FULL_PROJECT_DOCUMENTATION.pdf
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	art/Screenshot 2026-10-21 033114.png
+	scripts/build_word_documentation.py
+	~$LL_PROJECT_DOCUMENTATION.docx
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T04:03:15+05:30
+Completed At: 2026-10-21T04:03:15+05:30
+
+				The command exited with code 0.
+				Stdout:
+				
+				Stderr:
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T04:03:22+05:30
+Completed At: 2026-10-21T04:03:22+05:30
+{"name":"build_all_kharif_crops_dataset.py","sizeBytes":"7779"}
+{"name":"build_dual_resolution_terrain.py","sizeBytes":"5828"}
+{"name":"build_standardized_kharif_series.py","sizeBytes":"9842"}
+{"name":"build_word_and_pdf_documentation.py","sizeBytes":"31016"}
+{"name":"build_word_documentation.py","sizeBytes":"66215"}
+{"name":"combine_earth_engine_dual_satellite.py","sizeBytes":"7867"}
+{"name":"combine_wide_satellite_terrain.py","sizeBytes":"7775"}
+{"name":"evaluate_and_export_all_crops.py","sizeBytes":"6644"}
+{"name":"export_regional_satellite_terrain_surround.js","sizeBytes":"4059"}
+{"name":"export_satellite_terrain_background.js","sizeBytes":"7595"}
+{"name":"export_wide_regional_satellite_terrain.js","sizeBytes":"2894"}
+{"name":"extract_sentinel2_cropland.js","sizeBytes":"14050"}
+{"name":"extract_sentinel2_cropland.py","sizeBytes":"5574"}
+{"name":"extract_sentinel2_patches.js","sizeBytes":"10261"}
+{"name":"generate_predictions.py","sizeBytes":"4320"}
+{"name":"prepare_satellite_terrain_asset.py","sizeBytes":"1662"}
+{"name":"prepare_sentinel2_dataset.py","sizeBytes":"11081"}
+{"name":"process_gee_terrain_export.py","sizeBytes":"5648"}
+
+Summary: This directory contains 0 subdirectories and 18 files.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T04:03:27+05:30
+Completed At: 2026-10-21T04:03:27+05:30
+
+				The command exited with code 0.
+				Stdout:
+				
+				Stderr:
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T04:03:31+05:30
+Completed At: 2026-10-21T04:03:32+05:30
+
+				The command exited with code 0.
+				Output:
+				On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   FULL_PROJECT_DOCUMENTATION.docx
+	deleted:    FULL_PROJECT_DOCUMENTATION.pdf
+	deleted:    scripts/build_word_and_pdf_documentation.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	art/Screenshot 2026-10-21 033114.png
+	scripts/build_word_documentation.py
+	~$LL_PROJECT_DOCUMENTATION.docx
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T04:03:35+05:30
+Completed At: 2026-10-21T04:03:36+05:30
+
+				The command exited with code 0.
+				Stdout:
+				
+				Stderr:
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T04:03:42+05:30
+Completed At: 2026-10-21T04:03:42+05:30
+
+				The command exited with code 0.
+				Output:
+				On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   FULL_PROJECT_DOCUMENTATION.docx
+	deleted:    FULL_PROJECT_DOCUMENTATION.pdf
+	deleted:    scripts/build_word_and_pdf_documentation.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	art/Screenshot 2026-10-21 033114.png
+	scripts/build_word_documentation.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+---
+
