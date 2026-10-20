@@ -59794,3 +59794,462 @@ To https://github.com/usmanssait/ElninoPBLProject
 
 ---
 
+### Assistant Response
+
+Created At: 2026-10-21T05:18:32+05:30
+Completed At: 2026-10-21T05:18:37+05:30
+
+				The command exited with code 0.
+				Output:
+				[+] Successfully updated docs\PROJECT_CHAT_ARCHIVE.md with 1679 dialog turns.
+[main 43fd805] Update chat archive
+ 1 file changed, 28 insertions(+)
+To https://github.com/usmanssait/ElninoPBLProject
+   0a28c10..43fd805  main -> main
+
+---
+
+### Assistant Response
+
+All three requested enhancements have been implemented and pushed:
+
+---
+
+### 1. Apple-Style "Liquid Glass" District Overlay ([src/components/map/DistrictChoropleth.tsx](file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/map/DistrictChoropleth.tsx))
+- **Translucent Lens Fills**: Reduced solid paint opacity (`0.68–0.84`) down to a **translucent `0.30` liquid glass fill** (`0.46` on hover, `0.58` on selection, `0.06` for non-target districts).
+- **Visible Satellite Terrain**: Rivers, elevation contours, Western Ghats forests, and topography are now clearly visible beneath the district risk colors.
+- **Glass Rim Strokes**:
+  - Failure districts: Radiant coral-red glass rim `rgba(248, 113, 113, 0.90)` (1.3px).
+  - Resilient districts: Luminous emerald glass rim `rgba(74, 222, 128, 0.90)` (1.3px).
+  - Selected district: Electric cyan glass rim `#38BDF8` (2.8px) with drop-shadow glow filter (`#glass-selection-glow`).
+  - Hovered district: Neon green sheen `#4ADE80` (2.0px) with hover glow filter (`#glass-hover-glow`).
+
+---
+
+### 2. Lush Green Satellite Terrain Filter ([public/images/maharashtra_satellite_terrain_sentinel2_dem.webp](file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/public/images/maharashtra_satellite_terrain_sentinel2_dem.webp))
+- **Vegetation Enhancement**: Applied a spectral transformation to the Sentinel-2 + DEM terrain raster that targets the dry yellow/ochre Deccan soil and shifts it into **verdant, lush emerald green**.
+- **Water Preservation**: Retains and enriches the **deep oceanic teal and navy blue** of the Arabian Sea and coastal estuaries.
+- **Contrast & Saturation**: Balanced at `saturate(1.18) contrast(1.12) brightness(0.96)` for high-definition relief visualization.
+
+---
+
+### 3. Elevated Dark Theme Polish ([src/index.css](file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/index.css), [src/components/panels/DistrictDetailPanel.tsx](file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/panels/DistrictDetailPanel.tsx))
+- **Obsidian Glass Surfaces**: Replaced flat `#091410` cards with rich obsidian glass `#0B1712`, `#1A3427` borders, and subtle depth shadows.
+- **Jewel-Tone KPI Badges**: Replaced washed-out pastel icon boxes with deep jewel-tone glass badges (ruby red for failures, emerald for resilience, sapphire for rainfall, and amethyst for forecast lead time).
+- **Sidebar Contrast**: Elevated dimmed navigation links (`#3E5146`) to crisp silvery-sage (`#A8BDAF`) with bright `#FFFFFF` on hover, and vibrant `#22C55E` active pills.
+- **Fixed Table Row Selection**: Replaced the light grey stripe in the comparison table with a deep forest green selection (`#143A29` with crisp white and emerald text).
+
+---
+
+### Verification
+- `npm run lint` & `npm run build` completed with **0 errors**.
+- `sync_chat.py` executed to update `docs/PROJECT_CHAT_ARCHIVE.md`.
+- All changes committed and pushed to GitHub (`origin/main`).
+
+---
+
+## User Prompt 71
+
+what is thiss??😭
+see refference
+
+### Assistant Response
+
+Created At: 2026-10-21T05:20:17+05:30
+Completed At: 2026-10-21T05:20:18+05:30
+The following is the entire, complete content of the requested file.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T05:20:36+05:30
+Completed At: 2026-10-21T05:20:38+05:30
+
+				The command exited with code 0.
+				Output:
+				Saved test_reference_match.jpg
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T05:20:45+05:30
+Completed At: 2026-10-21T05:20:45+05:30
+The following is the entire, complete content of the requested file.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T05:21:01+05:30
+Completed At: 2026-10-21T05:21:04+05:30
+
+				The command exited with code 0.
+				Output:
+				Successfully saved perfectly graded satellite image!
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T05:21:21+05:30
+Completed At: 2026-10-21T05:21:21+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/map/MapControls.tsx`
+Total Lines: 85
+Total Bytes: 3704
+Showing lines 1 to 60
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: import React from 'react';
+2: import { ZoomIn, ZoomOut, RotateCcw } from 'lucide-react';
+3: 
+4: interface MapControlsProps {
+5:   zoomLevel: number;
+6:   onZoomIn: () => void;
+7:   onZoomOut: () => void;
+8:   onReset: () => void;
+9: }
+10: 
+11: export const MapControls: React.FC<MapControlsProps> = ({
+12:   zoomLevel,
+13:   onZoomIn,
+14:   onZoomOut,
+15:   onReset,
+16: }) => {
+17:   const scaledKm = Math.max(10, Math.round(200 / zoomLevel));
+18: 
+19:   return (
+20:     <>
+21:       {/* Top-Left Zoom & Reset Buttons */}
+22:       <div className="absolute top-3.5 left-3.5 flex flex-col gap-1.5 z-20">
+23:         <button
+24:           type="button"
+25:           onClick={onZoomIn}
+26:           className="w-8 h-8 rounded-lg bg-white/95 hover:bg-white border border-[#CCD2C4] text-[#16221B] flex items-center justify-center transition-colors cursor-pointer shadow-md"
+27:           title="Zoom In"
+28:         >
+29:           <ZoomIn className="w-4 h-4 text-[#12382B]" />
+30:         </button>
+31:         <button
+32:           type="button"
+33:           onClick={onZoomOut}
+34:           className="w-8 h-8 rounded-lg bg-white/95 hover:bg-white border border-[#CCD2C4] text-[#16221B] flex items-center justify-center transition-colors cursor-pointer shadow-md"
+35:           title="Zoom Out"
+36:         >
+37:           <ZoomOut className="w-4 h-4 text-[#12382B]" />
+38:         </button>
+39:         <button
+40:           type="button"
+41:           onClick={onReset}
+42:           className="w-8 h-8 rounded-lg bg-white/95 hover:bg-white border border-[#CCD2C4] text-[#16221B] flex items-center justify-center transition-colors cursor-pointer shadow-md"
+43:           title="Reset Position"
+44:         >
+45:           <RotateCcw className="w-3.5 h-3.5 text-[#12382B]" />
+46:         </button>
+47:         <div className="px-1 py-0.5 rounded-md bg-white/95 border border-[#CCD2C4] text-[9px] font-mono text-[#526458] text-center select-none shadow-xs font-semibold">
+48:           {Math.round(zoomLevel * 100)}%
+49:         </div>
+50:       </div>
+51: 
+52:       {/* Top-Right North Arrow & Instruction Badge */}
+53:       <div className="absolute top-3.5 right-3.5 z-20 pointer-events-none select-none flex items-center gap-2.5">
+54:         <div className="hidden sm:flex items-center gap-2 px-2.5 py-1 rounded-lg bg-white/95 border border-[#CCD2C4] text-[10px] font-mono text-[#16221B] backdrop-blur-xs shadow-md">
+55:           <span className="text-[#12382B] font-semibold">Pan: Drag</span>
+56:           <span className="text-[#A4B0A4]">·</span>
+57:           <span>Zoom: Scroll Wheel</span>
+58:           <span className="text-[#A4B0A4]">·</span>
+59:           <span>Select: Click District</span>
+60:         </div>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T05:21:36+05:30
+Completed At: 2026-10-21T05:21:36+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/map/DistrictChoropleth.tsx`
+Total Lines: 424
+Total Bytes: 16439
+Showing lines 150 to 220
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+150:   // Dynamic Fill calculation based on monitored crop districts
+151:   const getDistrictFill = useCallback(
+152:     (distId: string): string => {
+153:       const isMonitored = monitoredDistrictsForCrop.some(d => d.id === distId);
+154:       if (!isMonitored) return '#14221C'; // Excluded / Not grown in district
+155: 
+156:       if (mode === 'model_pred') {
+157:         const pred = inSeasonModelPredictions[distId];
+158:         if (!pred || pred.predictionStatus !== 'READY') return '#14221C';
+159:         if (pred.riskCategory === 'High' || (pred.failureProbability !== null && pred.failureProbability >= 0.5)) {
+160:           return '#EF4444'; // Red
+161:         }
+162:         if (pred.riskCategory === 'Moderate') {
+163:           return '#F59E0B'; // Amber
+164:         }
+165:         return '#10B981'; // Green
+166:       }
+167: 
+168:       if (mode === 'rainfall') {
+169:         const m = currentYearMetrics[distId];
+170:         if (!m || m.rainfallMm === null) return '#14221C';
+171:         if (m.rainfallMm < 700) return '#EF4444';
+172:         if (m.rainfallMm < 1100) return '#F59E0B';
+173:         return '#0284C7';
+174:       }
+175: 
+176:       if (mode === 'yield') {
+177:         const m = currentYearMetrics[distId];
+178:         if (!m || m.yieldTonnesHa === null) return '#14221C';
+179:         if (m.yieldTonnesHa < 1.0) return '#EF4444';
+180:         if (m.yieldTonnesHa < 1.8) return '#F59E0B';
+181:         return '#10B981';
+182:       }
+183: 
+184:       // Default: historical failure event
+185:       const metric = currentYearMetrics[distId];
+186:       if (!metric || metric.failureEvent === null) return '#14221C';
+187:       return metric.failureEvent === 1 ? '#EF4444' : '#10B981';
+188:     },
+189:     [mode, currentYearMetrics, inSeasonModelPredictions, monitoredDistrictsForCrop]
+190:   );
+191: 
+192:   // Label formatting and collision resolution
+193:   const getDistrictLabel = (poly: GeoDistrictPolygon, zoom: number) => {
+194:     if (poly.id === 'mumbai_city') {
+195:       if (zoom < 1.6) return null;
+196:       return { text: 'Mumbai City', x: poly.center[0], y: poly.center[1] + 4 };
+197:     }
+198:     if (poly.id === 'mumbai_suburban') {
+199:       if (zoom < 1.6) return { text: 'Mumbai', x: 25, y: 332 };
+200:       return { text: 'Mumbai Sub.', x: poly.center[0], y: poly.center[1] - 4 };
+201:     }
+202: 
+203:     let displayName = poly.name;
+204:     if (poly.name === 'Chhatrapati Sambhajinagar') {
+205:       displayName = 'Chh. Sambhajinagar';
+206:     }
+207:     if (poly.id === 'jalna') {
+208:       return { text: displayName, x: 360, y: 238 };
+209:     }
+210:     return { text: displayName, x: poly.center[0], y: poly.center[1] };
+211:   };
+212: 
+213:   return (
+214:     <div
+215:       className={`rounded-2xl bg-[#E2E6DC] border border-[#CCD2C4] p-3.5 relative overflow-hidden shadow-xs ${className}`}
+216:     >
+217:       {/* Map Header & Legend Row */}
+218:       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-2.5 border-b border-[#CCD2C4]">
+219:         <div>
+220:           <h2 className="text-sm font-bold text-[#16221B] tracking-tight">
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T05:21:43+05:30
+Completed At: 2026-10-21T05:21:43+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/map/DistrictChoropleth.tsx`
+Total Lines: 424
+Total Bytes: 16439
+Showing lines 220 to 255
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+220:           <h2 className="text-sm font-bold text-[#16221B] tracking-tight">
+221:             {title || `Maharashtra District Risk Map (Kharif ${cropYearStr})`}
+222:           </h2>
+223:           <p className="text-[11px] text-[#526458] mt-0.5">
+224:             District-wise classification based on &gt;10% yield deficit below historical 5-year baseline
+225:           </p>
+226:         </div>
+227: 
+228:         {/* Legend matching mockup */}
+229:         <div className="flex items-center gap-3 text-xs font-medium shrink-0 flex-wrap">
+230:           <div className="flex items-center gap-1.5">
+231:             <span className="w-2.5 h-2.5 rounded-full bg-[#EF4444]" />
+232:             <span className="text-[#DC2626] font-mono text-[10px] font-semibold">Failure (&gt;10% Deficit)</span>
+233:           </div>
+234:           <div className="flex items-center gap-1.5">
+235:             <span className="w-2.5 h-2.5 rounded-full bg-[#16A34A]" />
+236:             <span className="text-[#16A34A] font-mono text-[10px] font-semibold">Resilient (&le;10%)</span>
+237:           </div>
+238:           <div className="flex items-center gap-1.5">
+239:             <span className="w-2.5 h-2.5 rounded-full bg-[#CBD5E1] border border-[#94A3B8]" />
+240:             <span className="text-[#526458] font-mono text-[10px]">Non-Target District</span>
+241:           </div>
+242:           <div className="flex items-center gap-1.5 pl-2 border-l border-[#CCD2C4]">
+243:             <span className="w-2 h-2 rounded-full bg-[#0284C7] animate-pulse" />
+244:             <span className="text-[#0284C7] font-mono text-[10px] font-semibold">Satellite Terrain Layer</span>
+245:           </div>
+246:         </div>
+247:       </div>
+248: 
+249:       {/* Map Canvas */}
+250:       <div
+251:         ref={containerRef}
+252:         onMouseDown={handleMouseDown}
+253:         className={`w-full relative flex items-center justify-center py-1 px-1 overflow-hidden rounded-xl my-1.5 select-none ${heightClass} ${
+254:           isDragging ? 'cursor-grabbing' : 'cursor-grab'
+255:         }`}
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T05:21:49+05:30
+Completed At: 2026-10-21T05:21:50+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/map/DistrictChoropleth.tsx`
+Total Lines: 424
+Total Bytes: 16439
+Showing lines 350 to 424
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+350:                   key={poly.id}
+351:                   d={poly.path}
+352:                   fill={isNonRice ? '#06120D' : fillColor}
+353:                   fillOpacity={fillOpacity}
+354:                   stroke={strokeColor}
+355:                   strokeWidth={strokeWidth}
+356:                   strokeLinejoin="round"
+357:                   strokeLinecap="round"
+358:                   filter={isSelected ? 'url(#glass-selection-glow)' : isHovered ? 'url(#glass-hover-glow)' : undefined}
+359:                   style={{
+360:                     transition: 'fill-opacity 220ms ease, stroke 220ms ease, stroke-width 220ms ease',
+361:                   }}
+362:                   className="cursor-pointer"
+363:                   onClick={e => {
+364:                     e.stopPropagation();
+365:                     if (!hasDraggedRef.current) {
+366:                       setSelectedDistrictId(poly.id);
+367:                     }
+368:                   }}
+369:                   onPointerUp={e => {
+370:                     if (e.button === 0 && !hasDraggedRef.current) {
+371:                       setSelectedDistrictId(poly.id);
+372:                     }
+373:                   }}
+374:                   onMouseEnter={() => {
+375:                     if (!hasDraggedRef.current) setHoveredDistrictId(poly.id);
+376:                   }}
+377:                   onMouseLeave={() => {
+378:                     if (!hasDraggedRef.current) setHoveredDistrictId(null);
+379:                   }}
+380:         
+<truncated 5 bytes>
+   />
+381:               );
+382:             })}
+383:           </g>
+384: 
+385:           {/* Layer 2: District Text Labels (Rendered OVER all polygons and borders) */}
+386:           <g className="map-labels-layer pointer-events-none" style={{ pointerEvents: 'none' }}>
+387:             {MAHARASHTRA_GEOJSON_POLYGONS.map(poly => {
+388:               const isSelected = selectedDistrictId === poly.id;
+389:               const isHovered = hoveredDistrictId === poly.id;
+390:               const labelInfo = getDistrictLabel(poly, zoomLevel);
+391:               if (!labelInfo) return null;
+392: 
+393:               return (
+394:                 <text
+395:                   key={`label-${poly.id}`}
+396:                   x={labelInfo.x}
+397:                   y={labelInfo.y}
+398:                   fill={isSelected ? '#38BDF8' : isHovered ? '#4ADE80' : '#FFFFFF'}
+399:                   fontSize={isSelected ? '14' : isHovered ? '13' : '11.5'}
+400:                   fontWeight={isSelected || isHovered ? '800' : '700'}
+401:                   fontFamily="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+402:                   textAnchor="middle"
+403:                   dominantBaseline="middle"
+404:                   pointerEvents="none"
+405:                   stroke="#05120C"
+406:                   strokeWidth="3.2"
+407:                   strokeLinejoin="round"
+408:                   strokeLinecap="round"
+409:                   style={{
+410:                     paintOrder: 'stroke fill',
+411:                     filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.85))',
+412:                   }}
+413:                 >
+414:                   {labelInfo.text}
+415:                 </text>
+416:               );
+417:             })}
+418:           </g>
+419:         </svg>
+420:       </div>
+421:     </div>
+422:   );
+423: };
+424: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T05:22:23+05:30
+Completed At: 2026-10-21T05:22:26+05:30
+Created file file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/map/DistrictChoropleth.tsx with requested content.
+If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T05:22:31+05:30
+Completed At: 2026-10-21T05:22:34+05:30
+
+				The command exited with code 0.
+				Output:
+				
+> react-example@0.0.0 lint
+> tsc --noEmit
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T05:22:41+05:30
+Completed At: 2026-10-21T05:22:43+05:30
+
+				The command exited with code 0.
+				Output:
+				
+> react-example@0.0.0 build
+> vite build
+
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - `__dirname` (vite.config.ts:11:27). Use `import.meta.dirname` instead
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+vite v8.3.2 building client environment for production...
+transforming...
+✓ 1707 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                     1.54 kB │ gzip:   0.73 kB
+dist/assets/index-BWR1YxCz.css     64.17 kB │ gzip:  12.45 kB
+dist/assets/index-BTjVIvKE.js   1,709.75 kB │ gzip: 416.65 kB
+
+✓ built in 643ms
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T05:22:49+05:30
+Completed At: 2026-10-21T05:22:50+05:30
+
+				The command exited with code 0.
+				Output:
+				 M public/images/maharashtra_satellite_terrain_sentinel2_dem.webp
+ M src/components/map/DistrictChoropleth.tsx
+
+---
+
