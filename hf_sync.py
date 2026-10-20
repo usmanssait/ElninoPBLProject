@@ -1,29 +1,45 @@
 """
+=============================================================================
 Hugging Face Hub Sync Script
-Allows uploading or syncing the El Niño PBL Project, including large satellite rasters (*.tif)
-and PyTorch models (*.pt), to a Hugging Face Hub repository (Dataset or Model).
-
+Project: Spatiotemporal CNN-LSTM Framework for Maharashtra Kharif Crop Failure
+Repository: UsmanSait/elnino-crop-failure-pbl
+=============================================================================
+Uploads and synchronizes all project datasets, multi-spectral rasters (*.tif),
+PyTorch deep learning checkpoints (*.pt), and documentation to the Hugging
+Face Hub Dataset repository with Git LFS tracking.
+=============================================================================
 Usage:
-    & "C:\\Users\\USMAN\\AppData\\Local\\Python\\bin\\python.exe" hf_sync.py --repo-id <username/repo-name> --repo-type dataset --token <hf_token>
+    & "C:\\Users\\USMAN\\AppData\\Local\\Python\\bin\\python.exe" hf_sync.py
+    (Uses cached Hugging Face token automatically, or specify --token <token>)
+=============================================================================
 """
 
 import os
 import sys
 import argparse
-from huggingface_hub import HfApi, login
+from pathlib import Path
 
 def main():
     parser = argparse.ArgumentParser(description="Upload project data and models to Hugging Face Hub.")
-    parser.add_argument("--repo-id", type=str, required=True, help="HF Repo ID in format: username/repo-name")
+    parser.add_argument("--repo-id", type=str, default="UsmanSait/elnino-crop-failure-pbl", help="HF Repo ID in format: username/repo-name")
     parser.add_argument("--repo-type", type=str, choices=["dataset", "model", "space"], default="dataset", help="Repository type on Hugging Face")
     parser.add_argument("--token", type=str, default=None, help="Hugging Face User Access Token (write permission)")
     parser.add_argument("--private", action="store_true", help="Create repository as private if it does not exist")
     
     args = parser.parse_args()
     
-    token = args.token or os.environ.get("HF_TOKEN")
+    try:
+        from huggingface_hub import HfApi, login, get_token
+    except ImportError:
+        print("[!] Error: 'huggingface_hub' is not installed. Run: pip install huggingface_hub")
+        sys.exit(1)
+    
+    token = args.token or os.environ.get("HF_TOKEN") or get_token()
     if token:
         login(token=token)
+        print(f"[+] Authenticated with Hugging Face Hub (token: {token[:6]}...)")
+    else:
+        print("[!] Warning: No Hugging Face token found. Provide --token or set HF_TOKEN environment variable.")
     
     api = HfApi()
     
@@ -42,7 +58,7 @@ def main():
     # Root directory of this project
     root_dir = os.path.dirname(os.path.abspath(__file__))
     
-    # Patterns to ignore during upload (temporary / build files)
+    # Patterns to ignore during upload (temporary / build / private files)
     ignore_patterns = [
         "node_modules/**",
         ".git/**",
@@ -57,7 +73,10 @@ def main():
         ".DS_Store",
         "Thumbs.db",
         ".pytest_cache/**",
-        ".ipynb_checkpoints/**"
+        ".ipynb_checkpoints/**",
+        "scratch/**",
+        "docs/PROJECT_CHAT_ARCHIVE.md",  # Avoid HF secret scanner false alarms
+        "FULL_PROJECT_DOCUMENTATION.pdf"
     ]
     
     print(f"[*] Uploading folder '{root_dir}' to {args.repo_id}...")
@@ -69,15 +88,15 @@ def main():
             repo_id=args.repo_id,
             repo_type=args.repo_type,
             ignore_patterns=ignore_patterns,
-            commit_message="Upload complete El Niño project data and models via HF Hub sync"
+            commit_message="Update Maharashtra Kharif Crop Failure dataset, documentation, and models"
         )
-        print(f"[SUCCESS] Upload completed successfully! View your files at:")
+        print(f"\n[SUCCESS] Upload completed successfully! View your files at:")
         if args.repo_type == "dataset":
-            print(f"    https://huggingface.co/datasets/{args.repo_id}")
+            print(f"    👉 https://huggingface.co/datasets/{args.repo_id}")
         elif args.repo_type == "model":
-            print(f"    https://huggingface.co/{args.repo_id}")
+            print(f"    👉 https://huggingface.co/{args.repo_id}")
         else:
-            print(f"    https://huggingface.co/spaces/{args.repo_id}")
+            print(f"    👉 https://huggingface.co/spaces/{args.repo_id}")
     except Exception as e:
         print(f"[ERROR] Upload failed: {e}")
         sys.exit(1)
