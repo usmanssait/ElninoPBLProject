@@ -15,6 +15,7 @@ import {
   X,
   ArrowLeft,
 } from 'lucide-react';
+import { ThemeToggle } from './common/ThemeToggle';
 
 export type ActiveTab =
   | 'overview'
@@ -188,8 +189,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onBac
         </nav>
       </div>
 
+      {/* Theme Switcher in Sidebar */}
+      <div className="mt-4 pt-3 border-t border-[#CCD2C4]">
+        <ThemeToggle className="w-full justify-center" />
+      </div>
+
       {/* Footer Info */}
-      <div className="mt-6 pt-4 border-t border-[#CCD2C4] text-[10px] font-mono text-[#607368] px-1 flex items-center justify-between">
+      <div className="mt-3 pt-2 text-[10px] font-mono text-[#607368] px-1 flex items-center justify-between">
         <span>B.Tech PBL</span>
         <span className="text-[#35483D] font-bold">Kharif Crop System</span>
       </div>
@@ -215,6 +221,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onBac
         </div>
 
         <div className="flex items-center gap-2">
+          <ThemeToggle showLabel={false} />
           {onBackToLanding && (
             <button
               onClick={onBackToLanding}

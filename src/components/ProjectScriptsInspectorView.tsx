@@ -4,11 +4,9 @@ import { useAppTheme } from '../context/ThemeContext';
 import { PYTHON_VISUALIZE_RESULTS_PY, PYTHON_STREAMLIT_APP_PY } from '../data/pythonEventCode';
 
 export const ProjectScriptsInspectorView: React.FC = () => {
-  const { theme } = useAppTheme();
+  const { isDark } = useAppTheme();
   const [activeScript, setActiveScript] = useState<'process_rainfall' | 'app' | 'visualize' | 'compare' | 'check' | 'bat'>('process_rainfall');
   const [copied, setCopied] = useState<string | null>(null);
-
-  const isAgri = theme === 'agricultural';
 
   const copyToClipboard = (text: string, id: string) => {
     navigator.clipboard.writeText(text);

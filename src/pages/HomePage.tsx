@@ -15,6 +15,7 @@ import {
   FileText
 } from 'lucide-react';
 import { ActiveTab } from '../components/Sidebar';
+import { ThemeToggle } from '../components/common/ThemeToggle';
 
 interface HomePageProps {
   onLaunchDashboard: (initialTab?: ActiveTab) => void;
@@ -73,6 +74,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onLaunchDashboard }) => {
             <span>Source</span>
             <ExternalLink className="w-3 h-3 text-[#62756A]" />
           </a>
+
+          {/* Theme Mode Toggle (Light/Dark) */}
+          <ThemeToggle />
 
           {/* Standout Launch CTA */}
           <button

@@ -12,10 +12,142 @@
     background-color: #EAECE4;
     color: #16221B;
     overflow-x: hidden;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  /* Root dark mode class */
+  .dark, [data-theme="dark"] {
+    color-scheme: dark;
+  }
+
+  .dark body,
+  [data-theme="dark"] body {
+    background-color: #040B08;
+    color: #E8EFEB;
   }
 }
 
-/* Custom subtle scrollbar in light editorial theme */
+/* ========================================================================= */
+/* Comprehensive Dark Mode Theme Overrides (Old Color Scheme)                */
+/* ========================================================================= */
+
+/* Canvases & Outer Layouts */
+.dark .bg-\[\#EAECE4\],
+.dark .bg-\[\#EAECE4\]\/90,
+.dark .bg-\[\#EAECE4\]\/80,
+.dark header.bg-\[\#EAECE4\]\/90 {
+  background-color: #040B08 !important;
+}
+
+.dark .bg-\[\#E0E4D8\] {
+  background-color: #060D0A !important;
+}
+
+/* Primary Card Surfaces */
+.dark .bg-\[\#E2E6DC\] {
+  background-color: #091410 !important;
+}
+
+/* Secondary Tiles, Metric Bands & Soft Backgrounds */
+.dark .bg-\[\#E5E8DF\],
+.dark .bg-\[\#DCE0D4\],
+.dark .bg-\[\#D8DED0\],
+.dark .bg-\[\#D0D6C6\],
+.dark .bg-\[\#D4D9CC\],
+.dark .bg-\[\#D9DECFA0\] {
+  background-color: #0B1813 !important;
+}
+
+/* White Tiles, Popovers, Table Containers & Inputs */
+.dark .bg-white {
+  background-color: #060D0A !important;
+}
+
+/* Hover States */
+.dark .hover\:bg-\[\#F4F6F2\]:hover,
+.dark .hover\:bg-\[\#D9DED3\]:hover,
+.dark .hover\:bg-\[\#DDE2D6\]:hover {
+  background-color: #0E1F18 !important;
+}
+
+/* Borders & Separators */
+.dark .border-\[\#CCD2C4\],
+.dark .border-\[\#CCD2C4\]\/70,
+.dark .border-\[\#CCD2C4\]\/60,
+.dark .border-\[\#D5D9CE\],
+.dark .border-\[\#C5CDC0\],
+.dark .border-\[\#BDC4B4\],
+.dark .border-\[\#CCD2C2\] {
+  border-color: #14261F !important;
+}
+
+.dark .divide-\[\#CCD2C4\] > :not([hidden]) ~ :not([hidden]),
+.dark .divide-\[\#D5D9CE\] > :not([hidden]) ~ :not([hidden]) {
+  border-color: #14261F !important;
+}
+
+/* Primary Text */
+.dark .text-\[\#16221B\],
+.dark .text-\[\#1B2A22\] {
+  color: #E8EFEB !important;
+}
+
+/* Secondary & Muted Text */
+.dark .text-\[\#526458\],
+.dark .text-\[\#46574D\],
+.dark .text-\[\#506257\],
+.dark .text-\[\#5C6E64\],
+.dark .text-\[\#62756A\],
+.dark .text-\[\#2F4238\],
+.dark .text-\[\#35483D\],
+.dark .text-\[\#607368\] {
+  color: #80978E !important;
+}
+
+/* Tertiary / Subtle Text */
+.dark .text-\[\#718277\],
+.dark .text-\[\#889B8F\] {
+  color: #5C7267 !important;
+}
+
+/* Green Brand Accents & Icons */
+.dark .text-\[\#12382B\],
+.dark .text-\[\#1B4D3E\] {
+  color: #22C55E !important;
+}
+
+/* Active Buttons & Pills */
+.dark .bg-\[\#12382B\] {
+  background-color: #0E281F !important;
+  border-color: #1B4B38 !important;
+}
+
+.dark .hover\:bg-\[\#1A4C3B\]:hover {
+  background-color: #16382A !important;
+}
+
+.dark .bg-\[\#12382B\].text-white,
+.dark button.bg-\[\#12382B\] {
+  color: #22C55E !important;
+}
+
+.dark .border-\[\#16221B\] {
+  border-color: #22C55E !important;
+  color: #22C55E !important;
+}
+
+/* Form selects & options */
+.dark select {
+  background-color: #060D0A !important;
+  color: #E8EFEB !important;
+  border-color: #14261F !important;
+}
+.dark select option {
+  background-color: #060D0A !important;
+  color: #E8EFEB !important;
+}
+
+/* Scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -29,6 +161,19 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #B5BCAB;
+}
+
+.dark::-webkit-scrollbar-track,
+.dark ::-webkit-scrollbar-track {
+  background: #040B08 !important;
+}
+.dark::-webkit-scrollbar-thumb,
+.dark ::-webkit-scrollbar-thumb {
+  background: #14261F !important;
+}
+.dark::-webkit-scrollbar-thumb:hover,
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #1E3A2F !important;
 }
 
 .scrollbar-none::-webkit-scrollbar {

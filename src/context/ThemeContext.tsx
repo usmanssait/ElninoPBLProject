@@ -1,47 +1,61 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-export type AppTheme = 'scientific' | 'agricultural';
+export type AppTheme = 'light' | 'dark';
 
 interface ThemeContextType {
   theme: AppTheme;
+  isDark: boolean;
   setTheme: (theme: AppTheme) => void;
   toggleTheme: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextType>({
-  theme: 'agricultural',
+  theme: 'light',
+  isDark: false,
   setTheme: () => {},
   toggleTheme: () => {},
 });
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setThemeState] = useState<AppTheme>(() => {
-    const saved = localStorage.getItem('kharif_app_theme');
-    return (saved === 'scientific' || saved === 'agricultural') ? saved : 'agricultural';
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('kharif_app_theme');
+      if (saved === 'dark' || saved === 'scientific') return 'dark';
+      if (saved === 'light' || saved === 'agricultural') return 'light';
+    }
+    return 'light';
   });
 
   const setTheme = (newTheme: AppTheme) => {
     setThemeState(newTheme);
-    localStorage.setItem('kharif_app_theme', newTheme);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('kharif_app_theme', newTheme);
+    }
   };
 
   const toggleTheme = () => {
-    setTheme(theme === 'agricultural' ? 'scientific' : 'agricultural');
+    setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
   useEffect(() => {
     const root = document.documentElement;
-    if (theme === 'agricultural') {
-      root.classList.add('theme-agricultural');
-      root.classList.remove('theme-scientific');
+    if (theme === 'dark') {
+      root.classList.add('dark');
+      root.classList.add('theme-dark');
+      root.classList.remove('theme-light');
+      root.setAttribute('data-theme', 'dark');
     } else {
-      root.classList.add('theme-scientific');
-      root.classList.remove('theme-agricultural');
+      root.classList.remove('dark');
+      root.classList.remove('theme-dark');
+      root.classList.add('theme-light');
+      root.setAttribute('data-theme', 'light');
     }
   }, [theme]);
 
+  const isDark = theme === 'dark';
+
   return (
-    <ThemeContext.Provider value={{ theme, setTheme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, isDark, setTheme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
