@@ -19,6 +19,7 @@ import { ALL_YEAR_METRICS } from '../../data/maharashtraMapData';
 import { TENSOR_SPEC } from '../../data/satelliteSpec';
 import { YearSelect } from '../common/YearSelect';
 import { CropSelect } from '../common/CropSelect';
+import { CustomSelect } from '../common/CustomSelect';
 
 interface DistrictDetailPanelProps {
   className?: string;
@@ -122,27 +123,18 @@ export const DistrictDetailPanel: React.FC<DistrictDetailPanelProps> = ({
           <YearSelect />
 
           {/* District Dropdown Selector */}
-          <div className="relative">
-            <select
-              value={selectedDistrictId}
-              onChange={e => setSelectedDistrictId(e.target.value)}
-              className={`rounded-xl px-2.5 py-2 text-xs font-mono cursor-pointer focus:outline-hidden transition-colors shadow-xs ${
-                isDark
-                  ? 'bg-[#060D0A] border border-[#14261F] text-white hover:border-[#22C55E]'
-                  : 'bg-white border border-[#CCD2C4] text-[#16221B] hover:border-[#12382B]'
-              }`}
-            >
-              {monitoredDistrictsForCrop.map(d => (
-                <option
-                  key={d.id}
-                  value={d.id}
-                  className={isDark ? 'bg-[#060D0A] text-white' : 'bg-white text-[#16221B]'}
-                >
-                  {d.name}
-                </option>
-              ))}
-            </select>
-          </div>
+          <CustomSelect<string>
+            value={selectedDistrictId}
+            onChange={setSelectedDistrictId}
+            options={monitoredDistrictsForCrop.map(d => ({
+              value: d.id,
+              label: d.name,
+              sublabel: d.division ? `${d.division} Div.` : undefined,
+            }))}
+            label="DISTRICT"
+            align="right"
+            title="Select District for Deep-Dive Analysis"
+          />
 
           {onDownloadCsv && (
             <button

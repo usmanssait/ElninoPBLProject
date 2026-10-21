@@ -12,22 +12,22 @@ export const DistrictRiskMapPage: React.FC = () => {
   const [mapLayer, setMapLayer] = useState<'historical' | 'rainfall' | 'yield'>('historical');
 
   return (
-    <div className={`space-y-4 max-w-[1720px] mx-auto ${isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'}`}>
+    <div className={`space-y-4 max-w-[1720px] mx-auto ${isDark ? 'text-[#E8EFEB]' : 'text-[#16221B]'}`}>
       {/* Page Header */}
       <div
-        className={`flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b ${
-          isDark ? 'border-[#294338]' : 'border-[#CCD2C4]'
+        className={`flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b ${
+          isDark ? 'border-[#14261F]' : 'border-[#CCD2C4]'
         }`}
       >
         <div>
           <h1
             className={`text-xl sm:text-2xl font-bold tracking-tight font-serif ${
-              isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+              isDark ? 'text-white' : 'text-[#16221B]'
             }`}
           >
             District Risk &amp; Spatiotemporal Map
           </h1>
-          <p className={`text-xs mt-0.5 font-medium ${isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'}`}>
+          <p className={`text-xs mt-0.5 font-medium ${isDark ? 'text-[#7A9187]' : 'text-[#526458]'}`}>
             Full-state choropleth inspection across Kharif seasons with layer switches for crop failure events, rainfall, and harvest yield
           </p>
         </div>
@@ -36,7 +36,7 @@ export const DistrictRiskMapPage: React.FC = () => {
           {/* Layer Switcher */}
           <div
             className={`flex items-center p-1 rounded-xl shadow-xs border ${
-              isDark ? 'bg-[#14271F] border-[#294338]' : 'bg-white border-[#CCD2C4]'
+              isDark ? 'bg-[#091410] border-[#14261F]' : 'bg-white border-[#CCD2C4]'
             }`}
           >
             <button
@@ -44,10 +44,10 @@ export const DistrictRiskMapPage: React.FC = () => {
               className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-medium rounded-lg transition-all cursor-pointer ${
                 mapLayer === 'historical'
                   ? isDark
-                    ? 'bg-[#102019] text-[#39B8C4] border border-[#39B8C4]/60 font-bold shadow-xs'
+                    ? 'bg-[#0E241C] text-[#22C55E] border border-[#22C55E]/40 font-bold shadow-xs'
                     : 'bg-[#12382B] text-white font-bold shadow-xs'
                   : isDark
-                  ? 'text-[#9BAFA4] hover:text-[#E5EEE8]'
+                  ? 'text-[#7A9187] hover:text-white'
                   : 'text-[#526458] hover:text-[#16221B]'
               }`}
             >
@@ -59,10 +59,10 @@ export const DistrictRiskMapPage: React.FC = () => {
               className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-medium rounded-lg transition-all cursor-pointer ${
                 mapLayer === 'rainfall'
                   ? isDark
-                    ? 'bg-[#102019] text-[#39B8C4] border border-[#39B8C4]/60 font-bold shadow-xs'
+                    ? 'bg-[#0E241C] text-[#22C55E] border border-[#22C55E]/40 font-bold shadow-xs'
                     : 'bg-[#12382B] text-white font-bold shadow-xs'
                   : isDark
-                  ? 'text-[#9BAFA4] hover:text-[#E5EEE8]'
+                  ? 'text-[#7A9187] hover:text-white'
                   : 'text-[#526458] hover:text-[#16221B]'
               }`}
             >
@@ -74,10 +74,10 @@ export const DistrictRiskMapPage: React.FC = () => {
               className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-medium rounded-lg transition-all cursor-pointer ${
                 mapLayer === 'yield'
                   ? isDark
-                    ? 'bg-[#102019] text-[#39B8C4] border border-[#39B8C4]/60 font-bold shadow-xs'
+                    ? 'bg-[#0E241C] text-[#22C55E] border border-[#22C55E]/40 font-bold shadow-xs'
                     : 'bg-[#12382B] text-white font-bold shadow-xs'
                   : isDark
-                  ? 'text-[#9BAFA4] hover:text-[#E5EEE8]'
+                  ? 'text-[#7A9187] hover:text-white'
                   : 'text-[#526458] hover:text-[#16221B]'
               }`}
             >
