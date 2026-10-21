@@ -65040,3 +65040,5693 @@ I have staged the theme and raster fixes and pushed the commit to GitHub. I will
 
 ---
 
+### Assistant Response
+
+Created At: 2026-10-21T05:50:06+05:30
+Completed At: 2026-10-21T05:50:06+05:30
+
+				The command exited with code 0.
+				Output:
+				[+] Successfully updated docs\PROJECT_CHAT_ARCHIVE.md with 1854 dialog turns.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T05:50:12+05:30
+Completed At: 2026-10-21T05:50:19+05:30
+
+				The command exited with code 0.
+				Output:
+				[main db661b2] docs: sync chat archive
+ 1 file changed, 2843 insertions(+)
+To https://github.com/usmanssait/ElninoPBLProject
+   9a96d00..db661b2  main -> main
+
+---
+
+### Assistant Response
+
+# Dark Theme & Satellite Raster Refinement Summary
+
+We have completed the targeted refinement across the satellite background raster, map controls, and analytics visualizations to fix the green raster tint and eliminate all light-theme UI leakages in dark mode.
+
+---
+
+### 1. Root Cause & Fix of the Satellite Raster Green Cast
+
+- **Cause Identified**: In the previous raster generation pass (`scripts/generate_master_seamless_terrain.py`), an aggressive land colour-matrix transformation boosted the green channel by $+18\%$ while suppressing the red channel across the entire land surface. This tinted all soil, plateau, and non-vegetated terrain unnaturally green like a blanket filter.
+- **Correction Applied**:
+  - Rewrote the colour-grading pipeline in [`scripts/generate_master_seamless_terrain.py`](file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/scripts/generate_master_seamless_terrain.py) to restore **authentic, neutral NASA Earth Engine surface reflectance**:
+    - Land maintains natural topographical tones: true vegetation along the Western Ghats and river corridors, natural Deccan soils and plateau, and clear relief.
+    - Water bodies (Arabian Sea, Koyna, Ujjani, Jayakwadi) feature deep sapphire/teal marine tones without affecting land pixels.
+  - Re-exported the master high-efficiency raster assets:
+    - [`public/images/maharashtra_satellite_terrain_sentinel2_dem.webp`](file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/public/images/maharashtra_satellite_terrain_sentinel2_dem.webp) (**1.47 MB**)
+    - [`public/images/maharashtra_satellite_terrain_sentinel2_dem.png`](file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/public/images/maharashtra_satellite_terrain_sentinel2_dem.png)
+  - The map container maintains `overflow-hidden` with zero CSS blanket filters or container hue rotations.
+
+---
+
+### 2. Complete Dark-Theme Styling for All Map Controls
+
+All floating map
+<truncated 2347 bytes>
+Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/charts/RainfallYieldChart.tsx)):
+  - Outer card: `bg-[#102019] border-[#294338]`.
+  - Gridlines & reference lines: subtle `border-[#294338]/60`.
+  - Yield value annotations and year ticks: `#38BDF8` when active, `#44A07A` / `#9BAFA4` when inactive.
+- **KPI Cards & Climate Metrics** ([`KpiCards.tsx`](file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/panels/KpiCards.tsx), [`SeasonalClimateCard.tsx`](file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/panels/SeasonalClimateCard.tsx)):
+  - All cards adopt elevated `#102019` surfaces with `#294338` borders and dark-jeweled badges (`#D46A64/20`, `#44A07A/20`, `#14271F`).
+- **Global CSS Fallbacks** ([`src/index.css`](file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/index.css)):
+  - Added specific dark-mode overrides for Tailwind opacity variants (`.dark .bg-white/95`, `.dark .border-[#B8BFB0]`, `.dark .border-[#B0B8A6]`, etc.) to prevent any utility-class leaks.
+
+---
+
+### 4. Semantic District Fills & Both Themes Preserved
+
+- **Failure**: Soft Coral Red (`#D46A64`, opacity 0.72)
+- **Resilient**: Soft Jade/Seafoam (`#44A07A`, opacity 0.72)
+- **Non-Target**: Slate Charcoal (`#525D67`, opacity 0.65)
+- **Selected District**: Electric Cyan (`#38BDF8`) with glowing highlight stroke
+- Switching between Light and Dark mode using the top-right `ThemeToggle` smoothly transitions all panels, cards, and inputs while keeping the Light theme pristine.
+
+---
+
+### 5. Verification & Git Sync
+- `npm run build` completed cleanly in **609 ms** (0 errors).
+- All changes committed and pushed to GitHub main branch ([`9a96d00`](https://github.com/usmanssait/ElninoPBLProject/commit/9a96d00)).
+- Chat archive synchronized via `sync_chat.py` ([`db661b2`](https://github.com/usmanssait/ElninoPBLProject/commit/db661b2)).
+
+---
+
+## User Prompt 74
+
+dark theme revert to these colours
+
+### Assistant Response
+
+Created At: 2026-10-21T06:00:34+05:30
+Completed At: 2026-10-21T06:00:35+05:30
+
+				The command exited with code 0.
+				Output:
+				db661b2 docs: sync chat archive
+9a96d00 Fix dark theme: natural satellite raster color and eliminate light-theme UI leakage
+2ae453f docs: sync chat archive
+f91b875 Smooth out raster tile seams and jaggies along Konkan coast
+3739f44 Update chat archive
+57543d6 Match map and liquid glass overlay exactly to dark theme reference image
+43fd805 Update chat archive
+0a28c10 Enhance dark theme polish, lush emerald satellite terrain filter, and Apple liquid glass choropleth overlay
+f932bb9 Update chat archive
+3d08d0c Add Light/Dark scheme toggle in top right of startup and main dashboard
+4be2ab6 Update chat archive
+1cbe673 Apply editorial pale sage scientific aesthetic across entire dashboard
+5fbbcd4 docs: sync chat archive
+0ef663e feat: add editorial landing homepage with seamless dashboard transition matching reference design
+ecb6a15 docs: finalize Hugging Face dataset card metadata and sync script
+d1cad33 docs: polish GitHub repository and Hugging Face Dataset Card with full architecture, diagrams, metrics, and live showcase
+ee99b6a docs: upgrade Word documentation to publication-grade technical report, integrate art visual assets, remove pdf
+0e673fb docs: update chat archive with word/pdf generation turn
+459e6e6 docs: add Word (.docx) and PDF (.pdf) versions of full project documentation with embedded diagrams
+8fcda0f docs: update chat archive with documentation generation turn
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:00:42+05:30
+Completed At: 2026-10-21T06:00:42+05:30
+
+				The command exited with code 0.
+				Output:
+				@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #0B0F14;
+    color: #f1f5f9;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom subtle dark scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0B0F14;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:01:01+05:30
+Completed At: 2026-10-21T06:01:01+05:30
+
+				The command exited with code 0.
+				Output:
+				9a96d00 Fix dark theme: natural satellite raster color and eliminate light-theme UI leakage
+57543d6 Match map and liquid glass overlay exactly to dark theme reference image
+0a28c10 Enhance dark theme polish, lush emerald satellite terrain filter, and Apple liquid glass choropleth overlay
+1cbe673 Apply editorial pale sage scientific aesthetic across entire dashboard
+674a9b7 feat: complete multi-crop CNN-LSTM dashboard, wide regional satellite terrain background, and audit logs
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:01:12+05:30
+Completed At: 2026-10-21T06:01:13+05:30
+
+				The command exited with code 0.
+				Output:
+				<truncated 1 lines>
+    if (poly.id === 'mumbai_city') {
+      if (zoom < 1.6) return null;
+      return { text: 'Mumbai City', x: poly.center[0], y: poly.center[1] + 4 };
+    }
+    if (poly.id === 'mumbai_suburban') {
+      if (zoom < 1.6) return { text: 'Mumbai', x: 25, y: 332 };
+      return { text: 'Mumbai Sub.', x: poly.center[0], y: poly.center[1] - 4 };
+    }
+
+    let displayName = poly.name;
+    if (poly.name === 'Chhatrapati Sambhajinagar') {
+      displayName = 'Chh. Sambhajinagar';
+    }
+    if (poly.id === 'jalna') {
+      return { text: displayName, x: 360, y: 238 };
+    }
+    return { text: displayName, x: poly.center[0], y: poly.center[1] };
+  };
+
+  return (
+    <div
+      className={`rounded-2xl bg-[#091410] border border-[#14261F] p-3.5 relative overflow-hidden shadow-xs ${className}`}
+    >
+      {/* Map Header & Legend Row */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-2.5 border-b border-[#14261F]">
+        <div>
+          <h2 className="text-sm font-bold text-white tracking-tight">
+            {title || `Maharashtra District Risk Map (Kharif ${cropYearStr})`}
+          </h2>
+          <p className="text-[11px] text-[#80978E] mt-0.5">
+            District-wise classification based on &gt;10% yield deficit below historical 5-year baseline
+          </p>
+        </div>
+
+        {/* Legend matching mockup */}
+        <div className="flex items-center gap-3 text-xs font-medium shrink-0 flex-wrap">
+          <div className="flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#EF4444]" />
+            <span className="text-[#F87171] font-mono text-[10px]">Failure (Deficit &gt; 10%)</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#10B981]" />
+            <span className="text-[#34D399] font-mono text-[10px
+<truncated 4246 bytes>
+ggedRef.current) {
+                      setSelectedDistrictId(poly.id);
+                    }
+                  }}
+                  onMouseEnter={() => {
+                    if (!hasDraggedRef.current) setHoveredDistrictId(poly.id);
+                  }}
+                  onMouseLeave={() => {
+                    if (!hasDraggedRef.current) setHoveredDistrictId(null);
+                  }}
+                />
+              );
+            })}
+          </g>
+
+          {/* Layer 2: District Text Labels (Rendered OVER all polygons and borders) */}
+          <g className="map-labels-layer pointer-events-none" style={{ pointerEvents: 'none' }}>
+            {MAHARASHTRA_GEOJSON_POLYGONS.map(poly => {
+              const isSelected = selectedDistrictId === poly.id;
+              const isHovered = hoveredDistrictId === poly.id;
+              const labelInfo = getDistrictLabel(poly, zoomLevel);
+              if (!labelInfo) return null;
+
+              return (
+                <text
+                  key={`label-${poly.id}`}
+                  x={labelInfo.x}
+                  y={labelInfo.y}
+                  fill={isSelected ? '#38BDF8' : isHovered ? '#4ADE80' : '#FFFFFF'}
+                  fontSize={isSelected ? '14' : isHovered ? '13' : '11.5'}
+                  fontWeight={isSelected || isHovered ? '800' : '700'}
+                  fontFamily="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  pointerEvents="none"
+                  stroke="#05120C"
+                  strokeWidth="3.2"
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  style={{
+                    paintOrder: 'stroke fill',
+                    filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.85))',
+                  }}
+                >
+                  {labelInfo.text}
+                </text>
+              );
+            })}
+          </g>
+        </svg>
+      </div>
+    </div>
+  );
+};
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:01:20+05:30
+Completed At: 2026-10-21T06:01:20+05:30
+
+				The command exited with code 0.
+				Output:
+				import React from 'react';
+import { ZoomIn, ZoomOut, RotateCcw } from 'lucide-react';
+
+interface MapControlsProps {
+  zoomLevel: number;
+  onZoomIn: () => void;
+  onZoomOut: () => void;
+  onReset: () => void;
+}
+
+export const MapControls: React.FC<MapControlsProps> = ({
+  zoomLevel,
+  onZoomIn,
+  onZoomOut,
+  onReset,
+}) => {
+  const scaledKm = Math.max(10, Math.round(200 / zoomLevel));
+
+  return (
+    <>
+      {/* Top-Left Zoom & Reset Buttons */}
+      <div className="absolute top-3.5 left-3.5 flex flex-col gap-1.5 z-20">
+        <button
+          type="button"
+          onClick={onZoomIn}
+          className="w-8 h-8 rounded-lg bg-[#0C1B15]/90 hover:bg-[#122A20] border border-[#163327] text-white flex items-center justify-center transition-colors cursor-pointer shadow-md"
+          title="Zoom In"
+        >
+          <ZoomIn className="w-4 h-4 text-[#A4B8AF]" />
+        </button>
+        <button
+          type="button"
+          onClick={onZoomOut}
+          className="w-8 h-8 rounded-lg bg-[#0C1B15]/90 hover:bg-[#122A20] border border-[#163327] text-white flex items-center justify-center transition-colors cursor-pointer shadow-md"
+          title="Zoom Out"
+        >
+          <ZoomOut className="w-4 h-4 text-[#A4B8AF]" />
+        </button>
+        <button
+          type="button"
+          onClick={onReset}
+          className="w-8 h-8 rounded-lg bg-[#0C1B15]/90 hover:bg-[#122A20] border border-[#163327] text-white flex items-center justify-center transition-colors cursor-pointer shadow-md"
+          title="Reset Position"
+        >
+          <RotateCcw className="w-3.5 h-3.5 text-[#A4B8AF]" />
+        </button>
+        <div className="px-1 py-0.5 rounded-md bg-[#0C1B15]/90 border border-[#163327] text-[9px] font-mono text-[#7A9187] text-center select-none shadow-xs">
+          {Math.round(zoomLevel * 100)}%
+        </div>
+      </div>
+
+      {/* Top-Right North Arrow & Instruction Badge */}
+      <div className="absolute top-3.5 right-3.5 z-20 pointer-events-none select-none flex items-center gap-2.5">
+        <div className="hidden sm:flex items-center gap-2 px-2.5 py-1 rounded-lg bg-[#0C1B15]/90 border border-[#163327] text-[10px] font-mono text-[#849B90] backdrop-blur-xs shadow-md">
+          <span className="text-[#22C55E] font-medium">Pan: Drag</span>
+          <span className="text-[#2C4A3C]">·</span>
+          <span>Zoom: Scroll Wheel</span>
+          <span className="text-[#2C4A3C]">·</span>
+          <span>Select: Click District</span>
+        </div>
+        <div className="w-8 h-8 rounded-full bg-[#0C1B15]/80 border border-[#163327] flex flex-col items-center justify-center shadow-md">
+          <span className="text-[11px] font-bold font-mono text-[#22C55E] leading-none">N</span>
+          <span className="text-[9px] text-[#22C55E] leading-none">▲</span>
+        </div>
+      </div>
+
+      {/* Bottom-Left Metric Scale Bar */}
+      <div className="absolute bottom-3.5 left-3.5 z-20 pointer-events-none select-none flex flex-col gap-1 font-mono text-[9px] text-[#7A9187] bg-[#0C1B15]/80 p-1.5 rounded-lg border border-[#163327]">
+        <div className="flex justify-between w-28 text-[9px]">
+          <span>0</span>
+          <span>{Math.round(scaledKm / 4)}</span>
+          <span>{Math.round(scaledKm / 2)}</span>
+          <span>{scaledKm} km</span>
+        </div>
+        <div className="h-1 w-28 bg-[#14261F] border border-[#213F33] flex">
+          <div className="w-1/4 h-full bg-white"></div>
+          <div className="w-1/4 h-full bg-[#14261F]"></div>
+          <div className="w-1/4 h-full bg-white"></div>
+          <div className="w-1/4 h-full bg-[#14261F]"></div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:01:28+05:30
+Completed At: 2026-10-21T06:01:29+05:30
+
+				The command exited with code 1.
+				Output:
+				
+    return (
+      <div
+>       className={`rounded-2xl bg-[#091410] border border-[#14261F] p-3.5 space-y-3 shadow-xs flex flex-col 
+justify-between ${className}`}
+      >
+        {/* 1. Header: > District Insights with Year, Crop & District selectors */}
+                value={selectedDistrictId}
+                onChange={e => setSelectedDistrictId(e.target.value)}
+>               className="bg-[#0B1A14] border border-[#173026] text-white rounded-xl px-2.5 py-2 text-xs font-mono 
+cursor-pointer focus:outline-hidden hover:border-[#22C55E]/60 transition-colors"
+              >
+                {monitoredDistrictsForCrop.map(d => (
+>                 <option key={d.id} value={d.id} className="bg-[#08120E] text-white">
+                    {d.name}
+                  </option>
+                onClick={onDownloadCsv}
+                type="button"
+>               className="p-2 rounded-xl bg-[#0B1A14] border border-[#173026] text-[#A4B8AF] hover:text-white 
+hover:border-[#22C55E] transition-all cursor-pointer shadow-xs"
+                title="Download CSV"
+              >
+          {/* Status Badge */}
+          {!hasCropData ? (
+>           <span className="px-2 py-0.5 rounded-lg text-[10px] font-mono font-bold flex items-center gap-1 shrink-0 
+bg-[#14221C] text-[#80978E] border border-[#23332A]" title="Crop not commercially monitored in this district">
+              <ShieldAlert className="w-3 h-3" />
+              <span>NOT GROWN</span>
+              className={`px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold flex items-center gap-1.5 shrink-0 ${
+                isFailure
+>                 ? 'bg-[#2E1212] text-[#EF4444] border border-[#591C1C]'
+>                 : 'bg-[#0E281F] text-[#22C55E] border border-[#1B4B38]'
+              }`}
+            >
+        <div className="grid grid-cols-2 gap-2">
+          {/* Metric 1: Observed Yield */}
+>         <div className="p-2.5 rounded-xl bg-[#060D0A] border border-[#14261F]">
+            <span className="text-[9px] text-[#7A9187] uppercase font-mono block">
+              Observed Yield
+  
+          {/* Metric 2: 5-Yr Baseline Yield */}
+>         <div className="p-2.5 rounded-xl bg-[#060D0A] border border-[#14261F]">
+            <span className="text-[9px] text-[#7A9187] uppercase font-mono block">
+              5-Yr Baseline Yield
+  
+          {/* Metric 3: Yield Departure */}
+>         <div className="p-2.5 rounded-xl bg-[#060D0A] border border-[#14261F]">
+            <span className="text-[9px] text-[#7A9187] uppercase font-mono block">
+              Yield Departure
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:01:40+05:30
+Completed At: 2026-10-21T06:01:41+05:30
+
+				The command exited with code 0.
+				Output:
+				import React from 'react';
+import { Sprout, ShieldAlert, Clock, CloudRain, Thermometer } from 'lucide-react';
+import { useDashboard } from '../../context/DashboardContext';
+
+interface KpiCardsProps {
+  className?: string;
+}
+
+export const KpiCards: React.FC<KpiCardsProps> = ({ className = '' }) => {
+  const {
+    historicalTotalDistricts,
+    historicalFailureCount,
+    historicalResilientCount,
+    stateMeanRainfallMm,
+    oniInfo,
+    selectedCrop,
+  } = useDashboard();
+
+  return (
+    <div className={`grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3 ${className}`}>
+      {/* 1. Total Districts */}
+      <div className="p-3.5 rounded-xl bg-[#091410] border border-[#14261F] flex items-center justify-between hover:border-[#1E3A2F] transition-colors shadow-xs">
+        <div className="space-y-0.5">
+          <span className="text-[11px] text-[#7A9187] font-medium block">
+            Total Districts
+          </span>
+          <div className="flex items-baseline gap-2">
+            <span className="text-2xl font-bold font-mono text-white">
+              {historicalTotalDistricts}
+            </span>
+            <span className="text-[10px] text-[#7A9187] font-mono">
+              {selectedCrop === 'ALL' ? 'Monitored' : `${selectedCrop}`}
+            </span>
+          </div>
+        </div>
+        <div className="w-9 h-9 rounded-xl bg-[#0D241B] border border-[#173D2C] flex items-center justify-center text-[#22C55E] shrink-0">
+          <Sprout className="w-5 h-5 text-[#22C55E]" />
+        </div>
+      </div>
+
+      {/* 2. Failure Districts */}
+      <div className="p-3.5 rounded-xl bg-[#091410] border border-[#14261F] flex items-center justify-between hover:border-[#1E3A2F] transition-colors shadow-xs">
+        <div className="space-y-0.5">
+          <span className="text-[11px] text-[#7A9187] font-medium block">
+            Failure Districts
+          </span>
+          <div className
+<truncated 2653 bytes>
+2F] transition-colors shadow-xs">
+        <div className="space-y-0.5">
+          <span className="text-[11px] text-[#7A9187] font-medium block">
+            Monsoon Rainfall (IMD)
+          </span>
+          <div className="flex items-baseline gap-1.5">
+            <span className="text-xl font-bold font-mono text-white">
+              {stateMeanRainfallMm !== null ? `${stateMeanRainfallMm.toLocaleString()} mm` : 'N/A'}
+            </span>
+          </div>
+          <span className="text-[10px] text-[#6A8177] font-mono block">
+            Rice Belt Seasonal Mean
+          </span>
+        </div>
+        <div className="w-9 h-9 rounded-xl bg-[#0E1F29] border border-[#1A3A4D] flex items-center justify-center text-[#38BDF8] shrink-0">
+          <CloudRain className="w-5 h-5 text-[#38BDF8]" />
+        </div>
+      </div>
+
+      {/* 6. El Niño Index (ONI) */}
+      <div className="p-3.5 rounded-xl bg-[#091410] border border-[#14261F] flex items-center justify-between hover:border-[#1E3A2F] transition-colors shadow-xs">
+        <div className="space-y-0.5">
+          <span className="text-[11px] text-[#7A9187] font-medium block">
+            El Niño Index (ONI)
+          </span>
+          <div className="flex items-baseline gap-1.5">
+            <span className="text-xl font-bold font-mono text-white">
+              {oniInfo
+                ? `${oniInfo.meanEarlyWarningSstAnomaly > 0 ? '+' : ''}${oniInfo.meanEarlyWarningSstAnomaly.toFixed(1)}°C`
+                : 'N/A'}
+            </span>
+          </div>
+          <span
+            className={`text-[10px] font-bold font-mono block ${
+              oniInfo?.elNinoIndicator === 1 ? 'text-[#D93838]' : 'text-[#22C55E]'
+            }`}
+          >
+            {oniInfo?.ensoPhase || 'Neutral'}
+          </span>
+        </div>
+        <div className="w-9 h-9 rounded-xl bg-[#281313] border border-[#4D1D1D] flex items-center justify-center text-[#D93838] shrink-0">
+          <Thermometer className="w-5 h-5 text-[#D93838]" />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:01:49+05:30
+Completed At: 2026-10-21T06:01:49+05:30
+
+				The command exited with code 0.
+				Output:
+				import React, { useMemo } from 'react';
+import { useDashboard } from '../../context/DashboardContext';
+import { ALL_YEAR_METRICS } from '../../data/maharashtraMapData';
+import { PRIMARY_RICE_DISTRICTS } from '../../data/canonicalDistricts';
+
+interface RainfallYieldChartProps {
+  className?: string;
+  title?: string;
+}
+
+export const RainfallYieldChart: React.FC<RainfallYieldChartProps> = ({
+  className = '',
+  title,
+}) => {
+  const { selectedYear, setSelectedYear, availableYears, allYearMetrics, monitoredDistrictsForCrop, selectedCrop } = useDashboard();
+
+  const displayTitle = title || (
+    selectedCrop === 'ALL'
+      ? 'All Kharif Crops — Mean Rainfall & Yield'
+      : `${selectedCrop} Belt — Mean Rainfall & Yield`
+  );
+
+  // Multi-year averages computed from allYearMetrics (dynamically filtered by crop)
+  const yearlyData = useMemo(() => {
+    return availableYears.map(yr => {
+      const yrMetrics = allYearMetrics[yr] || {};
+      const valid = monitoredDistrictsForCrop.map(d => yrMetrics[d.id]).filter(Boolean);
+      const withRain = valid.filter(m => m.rainfallMm !== null);
+      const withYield = valid.filter(m => m.yieldTonnesHa !== null);
+
+      const avgRain = withRain.length > 0
+        ? Math.round(withRain.reduce((acc, m) => acc + (m.rainfallMm || 0), 0) / withRain.length)
+        : 0;
+      const avgYield = withYield.length > 0
+        ? Number((withYield.reduce((acc, m) => acc + (m.yieldTonnesHa || 0), 0) / withYield.length).toFixed(2))
+        : 0;
+
+      return {
+        year: yr,
+        yearLabel: String(yr),
+        rainfall: avgRain,
+        yieldVal: avgYield,
+      };
+    });
+  }, [availableYears, allYearMetrics, monitoredDistrictsForCrop]);
+
+  const selectedData = yearlyData.find(d => d.year === selectedYear);
+
+  return (
+    <div
+      className={`rounded-2xl bg-[#091410] border border-[#14261F] p-3.5 sm:p-4 flex flex-col justify-between shadow-xs ${clas
+<truncated 1802 bytes>
+ relative"
+                title={`${item.year}: ${item.rainfall} mm rainfall · ${item.yieldVal} t/ha yield`}
+              >
+                {/* Yield Value Badge on Top */}
+                <span
+                  className={`text-[11px] sm:text-xs font-mono font-bold leading-none mb-1 transition-colors ${
+                    isCurrent ? 'text-[#38BDF8]' : 'text-[#10B981] group-hover:text-white'
+                  }`}
+                >
+                  {item.yieldVal}t
+                </span>
+
+                {/* Rainfall Bar with Smooth Gradient */}
+                <div className="w-full flex-1 flex items-end justify-center min-h-[35px]">
+                  <div
+                    className={`w-full max-w-[36px] sm:max-w-[42px] rounded-t-md transition-all duration-200 ${
+                      isCurrent
+                        ? 'bg-gradient-to-t from-[#0284C7] to-[#38BDF8] shadow-[0_0_12px_rgba(56,189,248,0.45)]'
+                        : 'bg-[#0284C7]/55 group-hover:bg-[#0284C7]/85'
+                    }`}
+                    style={{ height: `${rainHeight}%` }}
+                  />
+                </div>
+
+                {/* Year Label */}
+                <span
+                  className={`text-[11px] sm:text-xs font-mono font-semibold mt-1 transition-colors ${
+                    isCurrent ? 'text-[#38BDF8] font-bold' : 'text-[#7A9187] group-hover:text-white'
+                  }`}
+                >
+                  {item.yearLabel}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* 3. Bottom Status Row */}
+      <div className="flex items-center justify-between text-[10px] sm:text-[11px] font-mono text-[#7A9187] pt-1.5 border-t border-[#14261F]/60">
+        <span>Cycles: 2015–2022</span>
+        <span className="text-white font-medium">
+          Selected: <strong className="text-[#38BDF8]">{selectedYear}</strong> ({selectedData?.rainfall ?? 'N/A'} mm · {selectedData?.yieldVal ?? 'N/A'} t/ha)
+        </span>
+      </div>
+    </div>
+  );
+};
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:01:56+05:30
+Completed At: 2026-10-21T06:01:57+05:30
+
+				The command exited with code 0.
+				Output:
+				import React from 'react';
+import { CloudRain, Thermometer, Sprout } from 'lucide-react';
+import { useDashboard } from '../../context/DashboardContext';
+
+interface SeasonalClimateCardProps {
+  className?: string;
+}
+
+export const SeasonalClimateCard: React.FC<SeasonalClimateCardProps> = ({ className = '' }) => {
+  const { cropYearStr, stateMeanRainfallMm, oniInfo, historicalTotalDistricts } = useDashboard();
+
+  return (
+    <div
+      className={`rounded-2xl bg-[#091410] border border-[#14261F] p-3.5 sm:p-4 flex flex-col justify-between shadow-xs ${className}`}
+    >
+      {/* 1. Header */}
+      <div className="flex items-center justify-between pb-2 border-b border-[#14261F]/60">
+        <span className="text-sm font-bold text-white tracking-tight">
+          Seasonal Climate Indices ({cropYearStr})
+        </span>
+        <span className="text-xs font-mono text-[#80978E]">
+          NOAA CPC &amp; IMD Observations
+        </span>
+      </div>
+
+      {/* 2. Scaled 3 Metric Tiles filling available window */}
+      <div className="flex-1 grid grid-cols-3 gap-2.5 my-2 min-h-[100px] items-stretch">
+        {/* Metric 1: Rice Belt Rain */}
+        <div className="p-3 sm:p-3.5 rounded-xl bg-[#060D0A] border border-[#14261F] flex flex-col justify-between hover:border-[#38BDF8]/40 transition-colors">
+          <div className="flex items-center gap-1.5 text-xs text-[#A4B8AF] font-semibold">
+            <CloudRain className="w-4 h-4 text-[#38BDF8] shrink-0" />
+            <span className="truncate">Rice Belt Rain</span>
+          </div>
+          <div className="text-xl sm:text-2xl font-extrabold font-mono text-white mt-1 tracking-tight">
+            {stateMeanRainfallMm !== null ? `${stateMeanRainfallMm} mm` : 'N/A'}
+          </div>
+          <div className="text-[11px] sm:text-xs text-[#7A9187] font-mono leading-tight">
+            June–August Mean
+          </div>
+        </div>
+
+        
+<truncated 68 bytes>
+5 rounded-xl bg-[#060D0A] border border-[#14261F] flex flex-col justify-between hover:border-[#D93838]/40 transition-colors">
+          <div className="flex items-center gap-1.5 text-xs text-[#A4B8AF] font-semibold">
+            <Thermometer className="w-4 h-4 text-[#D93838] shrink-0" />
+            <span className="truncate">El Niño (ONI)</span>
+          </div>
+          <div className="text-xl sm:text-2xl font-extrabold font-mono text-white mt-1 tracking-tight">
+            {oniInfo
+              ? `${oniInfo.meanEarlyWarningSstAnomaly > 0 ? '+' : ''}${oniInfo.meanEarlyWarningSstAnomaly.toFixed(1)}°C`
+              : 'N/A'}
+          </div>
+          <div
+            className={`text-[11px] sm:text-xs font-bold font-mono leading-tight ${
+              oniInfo?.elNinoIndicator === 1 ? 'text-[#D93838]' : 'text-[#22C55E]'
+            }`}
+          >
+            {oniInfo?.ensoPhase || 'Neutral'}
+          </div>
+        </div>
+
+        {/* Metric 3: Spatial Scope */}
+        <div className="p-3 sm:p-3.5 rounded-xl bg-[#060D0A] border border-[#14261F] flex flex-col justify-between hover:border-[#22C55E]/40 transition-colors">
+          <div className="flex items-center gap-1.5 text-xs text-[#A4B8AF] font-semibold">
+            <Sprout className="w-4 h-4 text-[#22C55E] shrink-0" />
+            <span className="truncate">Spatial Scope</span>
+          </div>
+          <div className="text-xl sm:text-2xl font-extrabold font-mono text-white mt-1 tracking-tight">
+            {historicalTotalDistricts} Dist.
+          </div>
+          <div className="text-[11px] sm:text-xs text-[#7A9187] font-mono leading-tight">
+            Primary Rice Belt
+          </div>
+        </div>
+      </div>
+
+      {/* 3. Bottom Meta Row */}
+      <div className="flex items-center justify-between text-[10px] sm:text-[11px] font-mono text-[#7A9187] pt-1.5 border-t border-[#14261F]/60">
+        <span>IMD Gridded: 0.25°</span>
+        <span className="text-[#849B90]">Pacific SST Niño 3.4 Early Warning</span>
+      </div>
+    </div>
+  );
+};
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:02:25+05:30
+Completed At: 2026-10-21T06:02:25+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/index.css`
+Total Lines: 272
+Total Bytes: 6676
+Showing lines 1 to 160
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: @import "tailwindcss";
+2: 
+3: @layer base {
+4:   :root {
+5:     --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+6:     --font-serif: 'Playfair Display', 'Newsreader', Georgia, serif;
+7:     --font-mono: 'JetBrains Mono', monospace;
+8:   }
+9: 
+10:   body {
+11:     font-family: var(--font-sans);
+12:     background-color: #EAECE4;
+13:     color: #16221B;
+14:     overflow-x: hidden;
+15:     transition: background-color 0.25s ease, color 0.25s ease;
+16:   }
+17: 
+18:   /* Root dark mode class */
+19:   .dark, [data-theme="dark"] {
+20:     color-scheme: dark;
+21:   }
+22: 
+23:   .dark body,
+24:   [data-theme="dark"] body {
+25:     background-color: #040B08;
+26:     color: #E8EFEB;
+27:   }
+28: }
+29: 
+30: /* ========================================================================= */
+31: /* Comprehensive Polished Dark Mode Overrides (Apple Pro Obsidian Aesthetic) */
+32: /* ========================================================================= */
+33: 
+34: /* Canvases & Outer Backgrounds */
+35: .dark .bg-\[\#EAECE4\],
+36: .dark .bg-\[\#EAECE4\]\/90,
+37: .dark .bg-\[\#EAECE4\]\/80,
+38: .dark header.bg-\[\#EAECE4\]\/90 {
+39:   background-color: #040B08 !important;
+40: }
+41: 
+42: /* Sidebar Canvas */
+43: .dark .bg-\[\#E0E4D8\] {
+44:   background-color: #060E0B !important;
+45:   border-color: #152A1F !important;
+46: }
+47: 
+48: /* Primary Card Surfaces - Rich Obsidian Glass */
+49: .dark .bg-\[\#E2E6DC\] {
+50:   background-color: #0B1712 !important;
+51:   border-color: #1A3427 !important;
+52:   box-shadow: 
+<truncated 1285 bytes>
+/60,
+95: .dark .border-\[\#CCD2C4\]\/50,
+96: .dark .border-\[\#CCD2C4\]\/40,
+97: .dark .border-\[\#CCD2C4\]\/35,
+98: .dark .border-\[\#CCD2C4\]\/30,
+99: .dark .border-\[\#D5D9CE\],
+100: .dark .border-\[\#C5CDC0\],
+101: .dark .border-\[\#BDC4B4\],
+102: .dark .border-\[\#CCD2C2\],
+103: .dark .border-\[\#B8BFB0\],
+104: .dark .border-\[\#B0B8A6\] {
+105:   border-color: #294338 !important;
+106: }
+107: 
+108: /* Progress bar & status tracks in dark mode */
+109: .dark .bg-\[\#CCD2C4\] {
+110:   background-color: #14271F !important;
+111: }
+112: 
+113: .dark .divide-\[\#CCD2C4\] > :not([hidden]) ~ :not([hidden]),
+114: .dark .divide-\[\#D5D9CE\] > :not([hidden]) ~ :not([hidden]) {
+115:   border-color: #294338 !important;
+116: }
+117: 
+118: /* Primary Text */
+119: .dark .text-\[\#16221B\],
+120: .dark .text-\[\#1B2A22\] {
+121:   color: #FFFFFF !important;
+122: }
+123: 
+124: /* Secondary & Muted Text - High Legibility in Dark */
+125: .dark .text-\[\#526458\],
+126: .dark .text-\[\#46574D\],
+127: .dark .text-\[\#506257\],
+128: .dark .text-\[\#5C6E64\],
+129: .dark .text-\[\#62756A\],
+130: .dark .text-\[\#2F4238\],
+131: .dark .text-\[\#35483D\],
+132: .dark .text-\[\#607368\] {
+133:   color: #92A69A !important;
+134: }
+135: 
+136: /* Sidebar Navigation Text */
+137: .dark .text-\[\#3E5146\] {
+138:   color: #A8BDAF !important;
+139: }
+140: .dark .text-\[\#506659\] {
+141:   color: #799183 !important;
+142: }
+143: .dark .hover\:text-\[\#16221B\]:hover {
+144:   color: #FFFFFF !important;
+145: }
+146: 
+147: /* Tertiary / Subtle Text */
+148: .dark .text-\[\#718277\],
+149: .dark .text-\[\#889B8F\] {
+150:   color: #647C6F !important;
+151: }
+152: 
+153: /* Green Brand Accents & Icons */
+154: .dark .text-\[\#12382B\],
+155: .dark .text-\[\#1B4D3E\] {
+156:   color: #4ADE80 !important;
+157: }
+158: 
+159: /* Active Buttons & Navigation Pills */
+160: .dark .bg-\[\#12382B\] {
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:02:30+05:30
+Completed At: 2026-10-21T06:02:32+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/index.css`
+Total Lines: 272
+Total Bytes: 6676
+Showing lines 161 to 272
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+161:   background-color: #0E2A1F !important;
+162:   border-color: #22C55E !important;
+163: }
+164: 
+165: .dark .hover\:bg-\[\#1A4C3B\]:hover {
+166:   background-color: #163B2C !important;
+167: }
+168: 
+169: .dark .bg-\[\#12382B\].text-white,
+170: .dark button.bg-\[\#12382B\] {
+171:   color: #22C55E !important;
+172: }
+173: 
+174: .dark .border-\[\#16221B\] {
+175:   border-color: #22C55E !important;
+176:   color: #22C55E !important;
+177: }
+178: 
+179: /* Selected row in table */
+180: .dark tr.bg-\[\#12382B\].text-white {
+181:   background-color: #143A29 !important;
+182:   color: #FFFFFF !important;
+183: }
+184: 
+185: /* ========================================================================= */
+186: /* Jewel-Tone Badges in Dark Mode (Eliminating Washed-Out Pastels)            */
+187: /* ========================================================================= */
+188: 
+189: .dark .bg-\[\#FEE2E2\] {
+190:   background-color: rgba(220, 38, 38, 0.18) !important;
+191:   border-color: rgba(220, 38, 38, 0.40) !important;
+192:   color: #F87171 !important;
+193: }
+194: 
+195: .dark .bg-\[\#DCFCE7\] {
+196:   background-color: rgba(22, 163, 74, 0.18) !important;
+197:   border-color: rgba(22, 163, 74, 0.40) !important;
+198:   color: #4ADE80 !important;
+199: }
+200: 
+201: .dark .bg-\[\#E0F2FE\] {
+202:   background-color: rgba(2, 132, 199, 0.18) !important;
+203:   border-color: rgba(2, 132, 199, 0.40) !important;
+204:   color: #38BDF8 !important;
+205: }
+206: 
+207: .dark .bg-\[\#E0E7FF\] {
+208:   background-color: rgba(79, 70, 229, 0.18) !important;
+209:   border-color: rgba(79, 70, 229, 0.40) !important;
+210:   color: #818CF8 !important;
+211: }
+212: 
+213: .dark .bg-\[\#FEF3C7\] {
+214:   background-color: rgba(217, 119, 6, 0.18) !important;
+215:   border-color: rgba(217, 119, 6, 0.40) !important;
+216:   color: #FBBF24 !important;
+217: }
+218: 
+219: .dark .bg-\[\#D8DECFC0\] {
+220:   background-color: rgba(34, 197, 94, 0.15) !important;
+221:   border-color: rgba(34, 197, 94, 0.35) !important;
+222:   color: #4ADE80 !important;
+223: }
+224: 
+225: /* Form selects & options */
+226: .dark select {
+227:   background-color: #07120D !important;
+228:   color: #FFFFFF !important;
+229:   border-color: #172F23 !important;
+230: }
+231: .dark select option {
+232:   background-color: #07120D !important;
+233:   color: #FFFFFF !important;
+234: }
+235: 
+236: /* Scrollbars */
+237: ::-webkit-scrollbar {
+238:   width: 6px;
+239:   height: 6px;
+240: }
+241: ::-webkit-scrollbar-track {
+242:   background: #EAECE4;
+243: }
+244: ::-webkit-scrollbar-thumb {
+245:   background: #CCD2C4;
+246:   border-radius: 3px;
+247: }
+248: ::-webkit-scrollbar-thumb:hover {
+249:   background: #B5BCAB;
+250: }
+251: 
+252: .dark::-webkit-scrollbar-track,
+253: .dark ::-webkit-scrollbar-track {
+254:   background: #040B08 !important;
+255: }
+256: .dark::-webkit-scrollbar-thumb,
+257: .dark ::-webkit-scrollbar-thumb {
+258:   background: #172F23 !important;
+259: }
+260: .dark::-webkit-scrollbar-thumb:hover,
+261: .dark ::-webkit-scrollbar-thumb:hover {
+262:   background: #224332 !important;
+263: }
+264: 
+265: .scrollbar-none::-webkit-scrollbar {
+266:   display: none;
+267: }
+268: .scrollbar-none {
+269:   -ms-overflow-style: none;
+270:   scrollbar-width: none;
+271: }
+272: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:02:37+05:30
+Completed At: 2026-10-21T06:02:37+05:30
+
+				The command exited with code 0.
+				Output:
+				<truncated 1 lines>
+    if (poly.id === 'mumbai_city') {
+      if (zoom < 1.6) return null;
+      return { text: 'Mumbai City', x: poly.center[0], y: poly.center[1] + 4 };
+    }
+    if (poly.id === 'mumbai_suburban') {
+      if (zoom < 1.6) return { text: 'Mumbai', x: 25, y: 332 };
+      return { text: 'Mumbai Sub.', x: poly.center[0], y: poly.center[1] - 4 };
+    }
+
+    let displayName = poly.name;
+    if (poly.name === 'Chhatrapati Sambhajinagar') {
+      displayName = 'Chh. Sambhajinagar';
+    }
+    if (poly.id === 'jalna') {
+      return { text: displayName, x: 360, y: 238 };
+    }
+    return { text: displayName, x: poly.center[0], y: poly.center[1] };
+  };
+
+  return (
+    <div
+      className={`rounded-2xl bg-[#091410] border border-[#14261F] p-3.5 relative overflow-hidden shadow-xs ${className}`}
+    >
+      {/* Map Header & Legend Row */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-2.5 border-b border-[#14261F]">
+        <div>
+          <h2 className="text-sm font-bold text-white tracking-tight">
+            {title || `Maharashtra District Risk Map (Kharif ${cropYearStr})`}
+          </h2>
+          <p className="text-[11px] text-[#80978E] mt-0.5">
+            District-wise classification based on &gt;10% yield deficit below historical 5-year baseline
+          </p>
+        </div>
+
+        {/* Legend matching mockup */}
+        <div className="flex items-center gap-3 text-xs font-medium shrink-0 flex-wrap">
+          <div className="flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#EF4444]" />
+            <span className="text-[#F87171] font-mono text-[10px]">Failure (Deficit &gt; 10%)</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#10B981]" />
+            <span className="text-[#34D399] font-mono text-[10px
+<truncated 4246 bytes>
+ggedRef.current) {
+                      setSelectedDistrictId(poly.id);
+                    }
+                  }}
+                  onMouseEnter={() => {
+                    if (!hasDraggedRef.current) setHoveredDistrictId(poly.id);
+                  }}
+                  onMouseLeave={() => {
+                    if (!hasDraggedRef.current) setHoveredDistrictId(null);
+                  }}
+                />
+              );
+            })}
+          </g>
+
+          {/* Layer 2: District Text Labels (Rendered OVER all polygons and borders) */}
+          <g className="map-labels-layer pointer-events-none" style={{ pointerEvents: 'none' }}>
+            {MAHARASHTRA_GEOJSON_POLYGONS.map(poly => {
+              const isSelected = selectedDistrictId === poly.id;
+              const isHovered = hoveredDistrictId === poly.id;
+              const labelInfo = getDistrictLabel(poly, zoomLevel);
+              if (!labelInfo) return null;
+
+              return (
+                <text
+                  key={`label-${poly.id}`}
+                  x={labelInfo.x}
+                  y={labelInfo.y}
+                  fill={isSelected ? '#38BDF8' : isHovered ? '#4ADE80' : '#FFFFFF'}
+                  fontSize={isSelected ? '14' : isHovered ? '13' : '11.5'}
+                  fontWeight={isSelected || isHovered ? '800' : '700'}
+                  fontFamily="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  pointerEvents="none"
+                  stroke="#05120C"
+                  strokeWidth="3.2"
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  style={{
+                    paintOrder: 'stroke fill',
+                    filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.85))',
+                  }}
+                >
+                  {labelInfo.text}
+                </text>
+              );
+            })}
+          </g>
+        </svg>
+      </div>
+    </div>
+  );
+};
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:02:41+05:30
+Completed At: 2026-10-21T06:02:41+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/map/DistrictChoropleth.tsx`
+Total Lines: 465
+Total Bytes: 17051
+Showing lines 1 to 140
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: import React, { useState, useRef, useEffect, useCallback } from 'react';
+2: import { useDashboard } from '../../context/DashboardContext';
+3: import { useAppTheme } from '../../context/ThemeContext';
+4: import {
+5:   MAHARASHTRA_GEOJSON_POLYGONS,
+6:   MAHARASHTRA_GEOJSON_VIEWBOX,
+7:   GeoDistrictPolygon,
+8: } from '../../data/maharashtraGeoJsonData';
+9: import { MapControls } from './MapControls';
+10: 
+11: interface DistrictChoroplethProps {
+12:   mode?: 'historical' | 'model_pred' | 'yield' | 'rainfall';
+13:   title?: string;
+14:   className?: string;
+15:   heightClass?: string;
+16: }
+17: 
+18: export const DistrictChoropleth: React.FC<DistrictChoroplethProps> = ({
+19:   mode = 'historical',
+20:   title,
+21:   className = '',
+22:   heightClass = 'min-h-[480px] sm:min-h-[520px]',
+23: }) => {
+24:   const {
+25:     selectedDistrictId,
+26:     setSelectedDistrictId,
+27:     currentYearMetrics,
+28:     inSeasonModelPredictions,
+29:     cropYearStr,
+30:     monitoredDistrictsForCrop,
+31:   } = useDashboard();
+32: 
+33:   const [hoveredDistrictId, setHoveredDistrictId] = useState<string | null>(null);
+34:   const [zoomLevel, setZoomLevel] = useState<number>(1);
+35:   const [panOffset, setPanOffset] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+36:   const [isDragging, setIsDragging] = useState<boolean>(false);
+37:   const [isWheeling, setIsWheeling] = useState<boolean>(false);
+38:   const [showLabels, setShowLabels] = useState<boolean>(false);
+39: 
+40:   const containerRef = useRef<HTML
+<truncated 1782 bytes>
+my - currentPan.y) * ratio;
+91: 
+92:       setIsWheeling(true);
+93:       if (wheelTimeoutRef.current) window.clearTimeout(wheelTimeoutRef.current);
+94:       wheelTimeoutRef.current = window.setTimeout(() => setIsWheeling(false), 120);
+95: 
+96:       setZoomLevel(nextZoom);
+97:       setPanOffset({ x: nextPanX, y: nextPanY });
+98:     };
+99: 
+100:     el.addEventListener('wheel', handleWheel, { passive: false });
+101:     return () => el.removeEventListener('wheel', handleWheel);
+102:   }, []);
+103: 
+104:   // Mouse pan handlers
+105:   const handleMouseDown = (e: React.MouseEvent) => {
+106:     if (e.button !== 0) return;
+107:     const target = e.target as HTMLElement;
+108:     if (target.closest('button') || target.closest('select')) return;
+109: 
+110:     isDraggingRef.current = true;
+111:     hasDraggedRef.current = false;
+112:     dragStartPosRef.current = { x: e.clientX, y: e.clientY };
+113:     dragStartPanRef.current = { ...panRef.current };
+114:   };
+115: 
+116:   useEffect(() => {
+117:     const handleMouseMove = (e: MouseEvent) => {
+118:       if (!isDraggingRef.current) return;
+119:       const dx = e.clientX - dragStartPosRef.current.x;
+120:       const dy = e.clientY - dragStartPosRef.current.y;
+121: 
+122:       if (!hasDraggedRef.current && Math.hypot(dx, dy) > 6) {
+123:         hasDraggedRef.current = true;
+124:         setIsDragging(true);
+125:       }
+126:       if (hasDraggedRef.current) {
+127:         setPanOffset({
+128:           x: dragStartPanRef.current.x + dx,
+129:           y: dragStartPanRef.current.y + dy,
+130:         });
+131:       }
+132:     };
+133: 
+134:     const handleMouseUp = () => {
+135:       if (!isDraggingRef.current) return;
+136:       isDraggingRef.current = false;
+137:       setIsDragging(false);
+138:       setTimeout(() => {
+139:         hasDraggedRef.current = false;
+140:       }, 80);
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:02:44+05:30
+Completed At: 2026-10-21T06:02:44+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/map/DistrictChoropleth.tsx`
+Total Lines: 465
+Total Bytes: 17051
+Showing lines 141 to 260
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+141:     };
+142: 
+143:     window.addEventListener('mousemove', handleMouseMove);
+144:     window.addEventListener('mouseup', handleMouseUp);
+145:     return () => {
+146:       window.removeEventListener('mousemove', handleMouseMove);
+147:       window.removeEventListener('mouseup', handleMouseUp);
+148:     };
+149:   }, []);
+150: 
+151:   // Dynamic Fill matching user reference:
+152:   // Resilient: #44A07A (soft jade seafoam)
+153:   // Failure: #D46A64 (soft coral terracotta)
+154:   // Non-monitored: #525D67 (slate charcoal)
+155:   const getDistrictFill = useCallback(
+156:     (distId: string): string => {
+157:       const isMonitored = monitoredDistrictsForCrop.some(d => d.id === distId);
+158:       if (!isMonitored) return '#525D67';
+159: 
+160:       if (mode === 'model_pred') {
+161:         const pred = inSeasonModelPredictions[distId];
+162:         if (!pred || pred.predictionStatus !== 'READY') return '#525D67';
+163:         if (pred.riskCategory === 'High' || (pred.failureProbability !== null && pred.failureProbability >= 0.5)) {
+164:           return '#D46A64';
+165:         }
+166:         if (pred.riskCategory === 'Moderate') {
+167:           return '#E59858';
+168:         }
+169:         return '#44A07A';
+170:       }
+171: 
+172:       if (mode === 'rainfall') {
+173:         const m = currentYearMetrics[distId];
+174:         if (!m || m.rainfallMm === null) return '#525D67';
+175:         if (m.rainfallMm < 700) return '#D46A64';
+176:         if (m.rainfallMm < 1100) return '#E59858
+<truncated 1769 bytes>
+'bg-[#102019] border border-[#294338]'
+223:           : 'bg-[#E2E6DC] border border-[#CCD2C4]'
+224:       } ${className}`}
+225:     >
+226:       {/* Map Header & Legend Row */}
+227:       <div
+228:         className={`flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-2.5 border-b ${
+229:           isDark ? 'border-[#294338]' : 'border-[#CCD2C4]'
+230:         }`}
+231:       >
+232:         <div>
+233:           <h2
+234:             className={`text-sm font-bold tracking-tight ${
+235:               isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+236:             }`}
+237:           >
+238:             {title || `Maharashtra District Risk Map (Kharif ${cropYearStr})`}
+239:           </h2>
+240:           <p
+241:             className={`text-[11px] mt-0.5 ${
+242:               isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'
+243:             }`}
+244:           >
+245:             District-wise classification based on &gt;10% yield deficit below historical 5-year baseline
+246:           </p>
+247:         </div>
+248: 
+249:         {/* Legend matching reference image */}
+250:         <div className="flex items-center gap-3 text-xs font-medium shrink-0 flex-wrap">
+251:           <div className="flex items-center gap-1.5">
+252:             <span className="w-2.5 h-2.5 rounded-full bg-[#D46A64]" />
+253:             <span className="text-[#D46A64] font-mono text-[10px] font-semibold">Failure (&gt;10% Deficit)</span>
+254:           </div>
+255:           <div className="flex items-center gap-1.5">
+256:             <span className="w-2.5 h-2.5 rounded-full bg-[#44A07A]" />
+257:             <span className="text-[#44A07A] font-mono text-[10px] font-semibold">Resilient (&le;10%)</span>
+258:           </div>
+259:           <div className="flex items-center gap-1.5">
+260:             <span className="w-2.5 h-2.5 rounded-full bg-[#525D67]" />
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:02:49+05:30
+Completed At: 2026-10-21T06:02:49+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/map/DistrictChoropleth.tsx`
+Total Lines: 465
+Total Bytes: 17051
+Showing lines 260 to 350
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+260:             <span className="w-2.5 h-2.5 rounded-full bg-[#525D67]" />
+261:             <span
+262:               className={`font-mono text-[10px] font-semibold ${
+263:                 isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'
+264:               }`}
+265:             >
+266:               Non-Target District
+267:             </span>
+268:           </div>
+269:           <div
+270:             className={`flex items-center gap-1.5 pl-2 border-l ${
+271:               isDark ? 'border-[#294338]' : 'border-[#CCD2C4]'
+272:             }`}
+273:           >
+274:             <button
+275:               type="button"
+276:               onClick={() => setShowLabels(!showLabels)}
+277:               className={`px-2 py-0.5 rounded text-[10px] font-mono cursor-pointer transition-colors border ${
+278:                 showLabels
+279:                   ? isDark
+280:                     ? 'bg-[#14271F] text-[#39B8C4] border-[#39B8C4]'
+281:                     : 'bg-[#12382B] text-white border-[#12382B]'
+282:                   : isDark
+283:                   ? 'bg-[#102019] border-[#294338] text-[#9BAFA4] hover:text-[#E5EEE8]'
+284:                   : 'bg-white border-[#CCD2C4] text-[#526458] hover:text-[#16221B]'
+285:               }`}
+286:             >
+287:               Labels: {showLabels ? 'ON' : 'OFF'}
+288:             </button>
+289:           </div>
+290:         </div>
+291:       </div>
+292: 
+293:       {/* Map Canvas */}
+294:       <div
+295:         ref={containerRef}
+296:         onMouseDown=
+<truncated 716 bytes>
+RASHTRA_GEOJSON_VIEWBOX}
+315:           preserveAspectRatio="xMidYMid meet"
+316:           className="w-full h-full max-h-[560px] select-none relative z-10 pointer-events-auto"
+317:           style={{
+318:             overflow: 'visible',
+319:             transform: `translate(${panOffset.x}px, ${panOffset.y}px) scale(${zoomLevel})`,
+320:             transformOrigin: 'center center',
+321:             transition: isDragging || isWheeling ? 'none' : 'transform 200ms cubic-bezier(0.16, 1, 0.3, 1)',
+322:             willChange: isDragging || isWheeling ? 'transform' : 'auto',
+323:           }}
+324:         >
+325:           {/* SVG Definitions for Selection Glow */}
+326:           <defs>
+327:             <filter id="glass-selection-glow" x="-25%" y="-25%" width="150%" height="150%">
+328:               <feDropShadow dx="0" dy="0" stdDeviation="3.5" floodColor="#38BDF8" floodOpacity="0.9" />
+329:             </filter>
+330:           </defs>
+331: 
+332:           {/* Layer 0: High-Resolution GEE Sentinel-2 + DEM Satellite Terrain Background */}
+333:           <g className="map-terrain-layer pointer-events-none" style={{ pointerEvents: 'none' }}>
+334:             <image
+335:               href="/images/maharashtra_satellite_terrain_sentinel2_dem.webp"
+336:               x="-1091.8"
+337:               y="-859.9"
+338:               width="3089.8"
+339:               height="2394.6"
+340:               preserveAspectRatio="none"
+341:               style={{
+342:                 pointerEvents: 'none',
+343:               }}
+344:             />
+345:           </g>
+346: 
+347:           {/* Layer 1: Frosted Liquid Glass District Polygons (Matching User Reference Image) */}
+348:           <g className="map-polygons-layer">
+349:             {MAHARASHTRA_GEOJSON_POLYGONS.map(poly => {
+350:               const isSelected = selectedDistrictId === poly.id;
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:02:53+05:30
+Completed At: 2026-10-21T06:02:53+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/map/DistrictChoropleth.tsx`
+Total Lines: 465
+Total Bytes: 17051
+Showing lines 351 to 465
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+351:               const isHovered = hoveredDistrictId === poly.id;
+352:               const fillColor = getDistrictFill(poly.id);
+353:               const isNonTarget = fillColor === '#525D67';
+354: 
+355:               // Opacity matching user reference:
+356:               // Monitored: 0.72 (soft matte frosted glass with subtle relief showing through)
+357:               // Non-target: 0.65
+358:               // Selected: 0.78
+359:               // Hovered: 0.75
+360:               const fillOpacity = isSelected
+361:                 ? 0.78
+362:                 : isHovered
+363:                 ? 0.75
+364:                 : isNonTarget
+365:                 ? 0.65
+366:                 : 0.72;
+367: 
+368:               // Border stroke matching user reference:
+369:               // Selected: Electric cyan #38BDF8 (2.4px)
+370:               // Hovered: #FFFFFF (1.5px)
+371:               // Normal: subtle dark border rgba(15, 23, 20, 0.5) (0.8px)
+372:               let strokeColor = 'rgba(15, 23, 20, 0.55)';
+373:               let strokeWidth = 0.8;
+374: 
+375:               if (isSelected) {
+376:                 strokeColor = '#38BDF8';
+377:                 strokeWidth = 2.4;
+378:               } else if (isHovered) {
+379:                 strokeColor = '#FFFFFF';
+380:                 strokeWidth = 1.6;
+381:               }
+382: 
+383:               return (
+384:                 <path
+385:                   key={poly.id}
+386:                   d={poly.path}
+387:                   fill={fillColor}
+<truncated 1580 bytes>
+nts-none" style={{ pointerEvents: 'none' }}>
+422:             {MAHARASHTRA_GEOJSON_POLYGONS.map(poly => {
+423:               const isSelected = selectedDistrictId === poly.id;
+424:               const isHovered = hoveredDistrictId === poly.id;
+425: 
+426:               // Only show label if selected, hovered, or labels toggled ON (or zoomed in)
+427:               if (!isSelected && !isHovered && !showLabels && zoomLevel < 1.6) {
+428:                 return null;
+429:               }
+430: 
+431:               const labelInfo = getDistrictLabel(poly, zoomLevel);
+432:               if (!labelInfo) return null;
+433: 
+434:               return (
+435:                 <text
+436:                   key={`label-${poly.id}`}
+437:                   x={labelInfo.x}
+438:                   y={labelInfo.y}
+439:                   fill={isSelected ? '#38BDF8' : '#FFFFFF'}
+440:                   fontSize={isSelected ? '13' : isHovered ? '12.5' : '10.5'}
+441:                   fontWeight={isSelected || isHovered ? '800' : '600'}
+442:                   fontFamily="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+443:                   textAnchor="middle"
+444:                   dominantBaseline="middle"
+445:                   pointerEvents="none"
+446:                   stroke="#05120C"
+447:                   strokeWidth="2.8"
+448:                   strokeLinejoin="round"
+449:                   strokeLinecap="round"
+450:                   style={{
+451:                     paintOrder: 'stroke fill',
+452:                     filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.8))',
+453:                   }}
+454:                 >
+455:                   {labelInfo.text}
+456:                 </text>
+457:               );
+458:             })}
+459:           </g>
+460:         </svg>
+461:       </div>
+462:     </div>
+463:   );
+464: };
+465: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:03:03+05:30
+Completed At: 2026-10-21T06:03:03+05:30
+
+				The command exited with code 0.
+				Output:
+				import React from 'react';
+import { Sprout, ShieldAlert, Clock, CloudRain, Thermometer } from 'lucide-react';
+import { useDashboard } from '../../context/DashboardContext';
+
+interface KpiCardsProps {
+  className?: string;
+}
+
+export const KpiCards: React.FC<KpiCardsProps> = ({ className = '' }) => {
+  const {
+    historicalTotalDistricts,
+    historicalFailureCount,
+    historicalResilientCount,
+    stateMeanRainfallMm,
+    oniInfo,
+    selectedCrop,
+  } = useDashboard();
+
+  return (
+    <div className={`grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3 ${className}`}>
+      {/* 1. Total Districts */}
+      <div className="p-3.5 rounded-xl bg-[#091410] border border-[#14261F] flex items-center justify-between hover:border-[#1E3A2F] transition-colors shadow-xs">
+        <div className="space-y-0.5">
+          <span className="text-[11px] text-[#7A9187] font-medium block">
+            Total Districts
+          </span>
+          <div className="flex items-baseline gap-2">
+            <span className="text-2xl font-bold font-mono text-white">
+              {historicalTotalDistricts}
+            </span>
+            <span className="text-[10px] text-[#7A9187] font-mono">
+              {selectedCrop === 'ALL' ? 'Monitored' : `${selectedCrop}`}
+            </span>
+          </div>
+        </div>
+        <div className="w-9 h-9 rounded-xl bg-[#0D241B] border border-[#173D2C] flex items-center justify-center text-[#22C55E] shrink-0">
+          <Sprout className="w-5 h-5 text-[#22C55E]" />
+        </div>
+      </div>
+
+      {/* 2. Failure Districts */}
+      <div className="p-3.5 rounded-xl bg-[#091410] border border-[#14261F] flex items-center justify-between hover:border-[#1E3A2F] transition-colors shadow-xs">
+        <div className="space-y-0.5">
+          <span className="text-[11px] text-[#7A9187] font-medium block">
+            Failure Districts
+          </span>
+          <div className
+<truncated 2653 bytes>
+2F] transition-colors shadow-xs">
+        <div className="space-y-0.5">
+          <span className="text-[11px] text-[#7A9187] font-medium block">
+            Monsoon Rainfall (IMD)
+          </span>
+          <div className="flex items-baseline gap-1.5">
+            <span className="text-xl font-bold font-mono text-white">
+              {stateMeanRainfallMm !== null ? `${stateMeanRainfallMm.toLocaleString()} mm` : 'N/A'}
+            </span>
+          </div>
+          <span className="text-[10px] text-[#6A8177] font-mono block">
+            Rice Belt Seasonal Mean
+          </span>
+        </div>
+        <div className="w-9 h-9 rounded-xl bg-[#0E1F29] border border-[#1A3A4D] flex items-center justify-center text-[#38BDF8] shrink-0">
+          <CloudRain className="w-5 h-5 text-[#38BDF8]" />
+        </div>
+      </div>
+
+      {/* 6. El Niño Index (ONI) */}
+      <div className="p-3.5 rounded-xl bg-[#091410] border border-[#14261F] flex items-center justify-between hover:border-[#1E3A2F] transition-colors shadow-xs">
+        <div className="space-y-0.5">
+          <span className="text-[11px] text-[#7A9187] font-medium block">
+            El Niño Index (ONI)
+          </span>
+          <div className="flex items-baseline gap-1.5">
+            <span className="text-xl font-bold font-mono text-white">
+              {oniInfo
+                ? `${oniInfo.meanEarlyWarningSstAnomaly > 0 ? '+' : ''}${oniInfo.meanEarlyWarningSstAnomaly.toFixed(1)}°C`
+                : 'N/A'}
+            </span>
+          </div>
+          <span
+            className={`text-[10px] font-bold font-mono block ${
+              oniInfo?.elNinoIndicator === 1 ? 'text-[#D93838]' : 'text-[#22C55E]'
+            }`}
+          >
+            {oniInfo?.ensoPhase || 'Neutral'}
+          </span>
+        </div>
+        <div className="w-9 h-9 rounded-xl bg-[#281313] border border-[#4D1D1D] flex items-center justify-center text-[#D93838] shrink-0">
+          <Thermometer className="w-5 h-5 text-[#D93838]" />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:03:14+05:30
+Completed At: 2026-10-21T06:03:14+05:30
+
+				The command exited with code 0.
+				Output:
+				<truncated 295 lines>
+            />
+          </div>
+        </div>
+
+        <div className="overflow-x-auto max-h-36 border border-[#14261F] rounded-xl bg-[#060D0A]">
+          <table className="w-full text-left text-[10px] font-mono">
+            <thead className="bg-[#091410] text-[#7A9187] sticky top-0 border-b border-[#14261F]">
+              <tr>
+                <th className="py-1.5 px-2 font-sans font-semibold">District</th>
+                <th className="py-1.5 px-1.5 text-right">Yield</th>
+                <th className="py-1.5 px-1.5 text-right">Baseline</th>
+                <th className="py-1.5 px-1.5 text-right">Departure</th>
+                <th className="py-1.5 px-2 text-center">Status</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-[#14261F]">
+              {comparisonDistricts.map(d => {
+                const metric = currentYearMetrics[d.id];
+                const isFail = metric?.failureEvent === 1;
+                const isSelected = selectedDistrictId === d.id;
+
+                return (
+                  <tr
+                    key={d.id}
+                    onClick={() => setSelectedDistrictId(d.id)}
+                    className={`cursor-pointer transition-colors ${
+                      isSelected ? 'bg-[#0E241B]' : 'hover:bg-[#091611]'
+                    }`}
+                  >
+                    <td className="py-1 px-2 text-white font-medium">{d.name}</td>
+                    <td className="py-1 px-1.5 text-right text-[#A4B8AF]">
+                      {metric?.yieldTonnesHa !== null && metric?.yieldTonnesHa !== undefined
+                        ? metric.yieldTonnesHa.toFixed(2)
+                        : '—'}
+                    </td>
+                    <td className="py-1 px-1.5 text-right text-[#7A9187]">
+                      {metric?.baselineYieldTonnesHa !== null && metric?.baselineYieldTonnesHa !== undef
+<truncated 4112 bytes>
+         </span>
+                <span className="text-right">
+                  {row.rainfallMm !== null ? `${Math.round(row.rainfallMm)}` : '—'}
+                </span>
+                <span
+                  className={`text-right font-bold ${
+                    row.yieldTonnesHa === null
+                      ? 'text-[#647C72]'
+                      : row.failure
+                      ? 'text-[#EF4444]'
+                      : 'text-[#22C55E]'
+                  }`}
+                >
+                  {row.yieldTonnesHa === null ? 'N/A' : row.failure ? 'Fail' : 'OK'}
+                </span>
+              </div>
+            ))}
+          </div>
+        </Collapsible>
+
+        <Collapsible
+          title="Satellite Biophysical Indicators (NDVI, etc.)"
+          icon={<Layers className="w-3.5 h-3.5" />}
+          defaultOpen={false}
+        >
+          <div className="space-y-1 text-[10px] font-mono">
+            <div className="flex justify-between py-0.5 border-b border-[#14261F]/60">
+              <span className="text-[#7A9187]">Tensor Dimensions:</span>
+              <span className="text-white font-bold">{TENSOR_SPEC.spatialTensorShape}</span>
+            </div>
+            <div className="flex justify-between py-0.5 border-b border-[#14261F]/60">
+              <span className="text-[#7A9187]">Temporal Windows:</span>
+              <span className="text-white">6 bi-weekly (Jun 1 – Aug 31)</span>
+            </div>
+            <div className="flex justify-between py-0.5 border-b border-[#14261F]/60">
+              <span className="text-[#7A9187]">Channels (8 Bands):</span>
+              <span className="text-white">B2, B3, B4, B8, B11, B12, NDVI, NDWI</span>
+            </div>
+            <div className="flex justify-between py-0.5 border-b border-[#14261F]/60">
+              <span className="text-[#7A9187]">Parcel Purity Mask:</span>
+              <span className="text-white">ESA WorldCover 10m Class 40</span>
+            </div>
+          </div>
+        </Collapsible>
+      </div>
+    </div>
+  );
+};
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:03:18+05:30
+Completed At: 2026-10-21T06:03:18+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/panels/DistrictDetailPanel.tsx`
+Total Lines: 769
+Total Bytes: 29195
+Showing lines 1 to 100
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: import React, { useState, useMemo } from 'react';
+2: import { useDashboard } from '../../context/DashboardContext';
+3: import { useAppTheme } from '../../context/ThemeContext';
+4: import { Collapsible } from '../common/Collapsible';
+5: import {
+6:   TrendingUp,
+7:   Layers,
+8:   CheckCircle2,
+9:   AlertCircle,
+10:   Sprout,
+11:   CloudRain,
+12:   Thermometer,
+13:   Search,
+14:   ShieldAlert,
+15:   Download,
+16: } from 'lucide-react';
+17: import { PRIMARY_RICE_DISTRICTS } from '../../data/canonicalDistricts';
+18: import { ALL_YEAR_METRICS } from '../../data/maharashtraMapData';
+19: import { TENSOR_SPEC } from '../../data/satelliteSpec';
+20: import { YearSelect } from '../common/YearSelect';
+21: import { CropSelect } from '../common/CropSelect';
+22: 
+23: interface DistrictDetailPanelProps {
+24:   className?: string;
+25:   onDownloadCsv?: () => void;
+26: }
+27: 
+28: export const DistrictDetailPanel: React.FC<DistrictDetailPanelProps> = ({
+29:   className = '',
+30:   onDownloadCsv,
+31: }) => {
+32:   const {
+33:     selectedDistrictInfo,
+34:     selectedDistrictId,
+35:     setSelectedDistrictId,
+36:     selectedDistrictMetric,
+37:     selectedYear,
+38:     cropYearStr,
+39:     availableYears,
+40:     oniInfo,
+41:     currentYearMetrics,
+42:     allYearMetrics,
+43:     selectedCrop,
+44:     monitoredDistrictsForCrop,
+45:   } = useDashboard();
+46: 
+47:   const { isDark } = useAppTheme();
+48:   const [comparisonSearch, setComparisonSearch] = useState('');
+49: 
+50:   const hasCropData = selec
+<truncated 442 bytes>
+metric?.rainfallMm ?? null,
+61:         failure: metric?.failureEvent === 1,
+62:       };
+63:     });
+64:   }, [availableYears, allYearMetrics, selectedDistrictId]);
+65: 
+66:   // Filtered comparison list
+67:   const comparisonDistricts = useMemo(() => {
+68:     return monitoredDistrictsForCrop.filter(d =>
+69:       d.name.toLowerCase().includes(comparisonSearch.toLowerCase())
+70:     );
+71:   }, [comparisonSearch, monitoredDistrictsForCrop]);
+72: 
+73:   // Region-wise statistics helper based on active crop districts
+74:   const getRegionStats = (regionName: string) => {
+75:     const dists = monitoredDistrictsForCrop.filter(d => {
+76:       if (regionName === 'Konkan') return d.division === 'Konkan';
+77:       if (regionName === 'Western MH') return d.division === 'Pune' || d.division === 'Nashik';
+78:       if (regionName === 'Marathwada') return d.division === 'Chhatrapati Sambhajinagar';
+79:       if (regionName === 'Vidarbha') return d.division === 'Nagpur' || d.division === 'Amravati';
+80:       return false;
+81:     });
+82: 
+83:     const total = dists.length;
+84:     if (total === 0) return { total: 0, failCount: 0, resilientCount: 0, failurePct: 0, resilientPct: 0 };
+85: 
+86:     const failCount = dists.filter(d => currentYearMetrics[d.id]?.failureEvent === 1).length;
+87:     const resilientCount = total - failCount;
+88:     const failurePct = Math.round((failCount / total) * 100);
+89:     const resilientPct = 100 - failurePct;
+90: 
+91:     return { total, failCount, resilientCount, failurePct, resilientPct };
+92:   };
+93: 
+94:   return (
+95:     <div
+96:       className={`rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between shadow-xs transition-colors space-y-3 ${
+97:         isDark
+98:           ? 'bg-[#102019] border border-[#294338]'
+99:           : 'bg-[#E2E6DC] border border-[#CCD2C4]'
+100:       } ${className}`}
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:03:22+05:30
+Completed At: 2026-10-21T06:03:23+05:30
+No results found
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:03:29+05:30
+Completed At: 2026-10-21T06:03:29+05:30
+No results found
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:03:34+05:30
+Completed At: 2026-10-21T06:03:34+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/panels/DistrictDetailPanel.tsx`
+Total Lines: 769
+Total Bytes: 29195
+Showing lines 90 to 200
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+90: 
+91:     return { total, failCount, resilientCount, failurePct, resilientPct };
+92:   };
+93: 
+94:   return (
+95:     <div
+96:       className={`rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between shadow-xs transition-colors space-y-3 ${
+97:         isDark
+98:           ? 'bg-[#102019] border border-[#294338]'
+99:           : 'bg-[#E2E6DC] border border-[#CCD2C4]'
+100:       } ${className}`}
+101:     >
+102:       {/* 1. Header with Crop & Year Pickers */}
+103:       <div
+104:         className={`flex flex-col gap-2 pb-2.5 border-b ${
+105:           isDark ? 'border-[#294338]' : 'border-[#CCD2C4]'
+106:         }`}
+107:       >
+108:         <div
+109:           className={`flex items-center justify-between text-xs font-mono font-medium ${
+110:             isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'
+111:           }`}
+112:         >
+113:           <span>Kharif {cropYearStr} &bull; Ground Truth Analysis</span>
+114:           <span>&gt; District Insights</span>
+115:         </div>
+116: 
+117:         <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+118:           {/* Crop Selector */}
+119:           <CropSelect showIcon={false} />
+120: 
+121:           {/* Kharif Year Selector */}
+122:           <YearSelect />
+123: 
+124:           {/* District Dropdown Selector */}
+125:           <div className="relative">
+126:             <select
+127:               value={selectedDistrictId}
+128:               onChange={e => setSelectedDistrictId(e.target.value)}
+129:               class
+<truncated 1273 bytes>
+ver:border-[#12382B]'
+155:               }`}
+156:               title="Download CSV"
+157:             >
+158:               <Download className={`w-3.5 h-3.5 ${isDark ? 'text-[#39B8C4]' : 'text-[#12382B]'}`} />
+159:             </button>
+160:           )}
+161:         </div>
+162:       </div>
+163: 
+164:       {/* 2. District Title & Status Badge */}
+165:       <div className="flex items-start justify-between gap-2.5">
+166:         <div>
+167:           <h3
+168:             className={`text-xl font-bold tracking-tight ${
+169:               isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+170:             }`}
+171:           >
+172:             {selectedDistrictInfo.name}
+173:           </h3>
+174:           <span
+175:             className={`text-[11px] font-medium block mt-0.5 ${
+176:               isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'
+177:             }`}
+178:           >
+179:             {selectedDistrictInfo.division} Division &bull; {selectedDistrictInfo.agroZone}
+180:             {selectedDistrictMetric?.crop && (
+181:               <span
+182:                 className={`ml-1.5 font-mono font-semibold ${
+183:                   isDark ? 'text-[#39B8C4]' : 'text-[#12382B]'
+184:                 }`}
+185:               >
+186:                 [{selectedDistrictMetric.crop}]
+187:               </span>
+188:             )}
+189:           </span>
+190:         </div>
+191: 
+192:         {/* Status Badge */}
+193:         {!hasCropData ? (
+194:           <span
+195:             className={`px-2 py-0.5 rounded-lg text-[10px] font-mono font-bold flex items-center gap-1 shrink-0 border ${
+196:               isDark
+197:                 ? 'bg-[#14271F] text-[#9BAFA4] border-[#294338]'
+198:                 : 'bg-[#D2D8CA] text-[#526458] border-[#CCD2C4]'
+199:             }`}
+200:             title="Crop not commercially monitored in this district"
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:03:39+05:30
+Completed At: 2026-10-21T06:03:39+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/panels/DistrictDetailPanel.tsx`
+Total Lines: 769
+Total Bytes: 29195
+Showing lines 201 to 350
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+201:           >
+202:             <ShieldAlert className="w-3 h-3" />
+203:             <span>NOT GROWN</span>
+204:           </span>
+205:         ) : (
+206:           <span
+207:             className={`px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold flex items-center gap-1.5 shrink-0 border ${
+208:               isFailure
+209:                 ? isDark
+210:                   ? 'bg-[#D46A64]/20 text-[#F87171] border-[#D46A64]/40'
+211:                   : 'bg-[#FEE2E2] text-[#DC2626] border-[#FECACA]'
+212:                 : isDark
+213:                 ? 'bg-[#44A07A]/20 text-[#4ADE80] border-[#44A07A]/40'
+214:                 : 'bg-[#DCFCE7] text-[#16A34A] border-[#BBF7D0]'
+215:             }`}
+216:           >
+217:             {isFailure ? <AlertCircle className="w-3 h-3" /> : <CheckCircle2 className="w-3 h-3" />}
+218:             <span>{isFailure ? 'DES FAILURE' : 'DES RESILIENT'}</span>
+219:           </span>
+220:         )}
+221:       </div>
+222: 
+223:       {/* 3. 2x2 Metric Grid */}
+224:       <div className="grid grid-cols-2 gap-2">
+225:         {/* Metric 1: Observed Yield */}
+226:         <div
+227:           className={`p-2.5 rounded-xl border ${
+228:             isDark ? 'bg-[#14271F] border-[#294338]' : 'bg-[#EAECE4] border-[#CCD2C4]'
+229:           }`}
+230:         >
+231:           <span
+232:             className={`text-[9px] uppercase font-mono block ${
+233:               isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'
+234:             }`}
+235:           >
+236:        
+<truncated 2631 bytes>
+              isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'
+302:             }`}
+303:           >
+304:             IMD Monsoon Rain
+305:           </span>
+306:           <span
+307:             className={`text-base font-bold font-mono block mt-0.5 ${
+308:               isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+309:             }`}
+310:           >
+311:             {selectedDistrictMetric?.rainfallMm !== null && selectedDistrictMetric?.rainfallMm !== undefined
+312:               ? `${Math.round(selectedDistrictMetric.rainfallMm)} mm`
+313:               : 'N/A'}
+314:           </span>
+315:           <span
+316:             className={`text-[9.5px] font-mono block ${
+317:               isDark ? 'text-[#9BAFA4]' : 'text-[#718277]'
+318:             }`}
+319:           >
+320:             June 1 – August 31
+321:           </span>
+322:         </div>
+323: 
+324:         {/* Metric 4: Model Early Warning */}
+325:         <div
+326:           className={`p-2.5 rounded-xl border ${
+327:             isDark ? 'bg-[#14271F] border-[#294338]' : 'bg-[#EAECE4] border-[#CCD2C4]'
+328:           }`}
+329:         >
+330:           <span
+331:             className={`text-[9px] uppercase font-mono block ${
+332:               isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'
+333:             }`}
+334:           >
+335:             Model Early Warning
+336:           </span>
+337:           <span
+338:             className={`text-base font-bold font-mono block mt-0.5 ${
+339:               isDark ? 'text-[#39B8C4]' : 'text-[#12382B]'
+340:             }`}
+341:           >
+342:             T-60 to T-75d
+343:           </span>
+344:           <span
+345:             className={`text-[9.5px] font-mono block ${
+346:               isDark ? 'text-[#9BAFA4]' : 'text-[#718277]'
+347:             }`}
+348:           >
+349:             Pre-harvest lead time
+350:           </span>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:03:45+05:30
+Completed At: 2026-10-21T06:03:45+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/panels/DistrictDetailPanel.tsx`
+Total Lines: 769
+Total Bytes: 29195
+Showing lines 351 to 520
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+351:         </div>
+352:       </div>
+353: 
+354:       {/* 4. Key Environmental Observations */}
+355:       <div
+356:         className={`space-y-1.5 pt-1.5 border-t ${
+357:           isDark ? 'border-[#294338]' : 'border-[#CCD2C4]'
+358:         }`}
+359:       >
+360:         <span
+361:           className={`text-[11px] font-bold block ${
+362:             isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+363:           }`}
+364:         >
+365:           Environmental Observations
+366:         </span>
+367:         <div className="grid grid-cols-3 gap-2">
+368:           {/* Rainfall Badge */}
+369:           <div
+370:             className={`p-2 rounded-xl border flex flex-col justify-between ${
+371:               isDark ? 'bg-[#14271F] border-[#294338]' : 'bg-[#EAECE4] border-[#CCD2C4]'
+372:             }`}
+373:           >
+374:             <div className={`flex items-center gap-1 ${isDark ? 'text-[#38BDF8]' : 'text-[#0284C7]'}`}>
+375:               <CloudRain className="w-3 h-3" />
+376:               <span className="text-[9px] font-bold">Rainfall</span>
+377:             </div>
+378:             <span
+379:               className={`text-[11px] font-mono mt-0.5 font-bold ${
+380:                 isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+381:               }`}
+382:             >
+383:               {selectedDistrictMetric?.rainfallMm !== null && selectedDistrictMetric?.rainfallMm !== undefined
+384:                 ? `${Math.round(selectedDistrictMetric.rainfallMm)} mm`
+385:                 : '
+<truncated 4269 bytes>
+5 px-1.5 text-right">Departure</th>
+483:                 <th className="py-1.5 px-2 text-center">Status</th>
+484:               </tr>
+485:             </thead>
+486:             <tbody className={`divide-y ${isDark ? 'divide-[#294338]' : 'divide-[#CCD2C4]'}`}>
+487:               {comparisonDistricts.map(d => {
+488:                 const metric = currentYearMetrics[d.id];
+489:                 const isFail = metric?.failureEvent === 1;
+490:                 const isSelected = selectedDistrictId === d.id;
+491: 
+492:                 return (
+493:                   <tr
+494:                     key={d.id}
+495:                     onClick={() => setSelectedDistrictId(d.id)}
+496:                     className={`cursor-pointer transition-colors ${
+497:                       isSelected
+498:                         ? isDark
+499:                           ? 'bg-[#143A29] text-white font-semibold shadow-xs'
+500:                           : 'bg-[#12382B] text-white font-semibold shadow-xs'
+501:                         : isDark
+502:                         ? 'hover:bg-[#14271F]'
+503:                         : 'hover:bg-[#F2F4EE]'
+504:                     }`}
+505:                   >
+506:                     <td
+507:                       className={`py-1 px-2 font-medium ${
+508:                         isSelected ? 'text-white' : isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+509:                       }`}
+510:                     >
+511:                       {d.name}
+512:                     </td>
+513:                     <td
+514:                       className={`py-1 px-1.5 text-right ${
+515:                         isSelected
+516:                           ? 'text-emerald-100'
+517:                           : isDark
+518:                           ? 'text-[#9BAFA4]'
+519:                           : 'text-[#526458]'
+520:                       }`}
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:03:48+05:30
+Completed At: 2026-10-21T06:03:48+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/panels/DistrictDetailPanel.tsx`
+Total Lines: 769
+Total Bytes: 29195
+Showing lines 521 to 650
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+521:                     >
+522:                       {metric?.yieldTonnesHa !== null && metric?.yieldTonnesHa !== undefined
+523:                         ? metric.yieldTonnesHa.toFixed(2)
+524:                         : '—'}
+525:                     </td>
+526:                     <td
+527:                       className={`py-1 px-1.5 text-right ${
+528:                         isSelected
+529:                           ? 'text-emerald-200/70'
+530:                           : isDark
+531:                           ? 'text-[#647C6F]'
+532:                           : 'text-[#718277]'
+533:                       }`}
+534:                     >
+535:                       {metric?.baselineYieldTonnesHa !== null && metric?.baselineYieldTonnesHa !== undefined
+536:                         ? metric.baselineYieldTonnesHa.toFixed(2)
+537:                         : '—'}
+538:                     </td>
+539:                     <td
+540:                       className={`py-1 px-1.5 text-right font-bold ${
+541:                         isSelected
+542:                           ? isFail
+543:                             ? 'text-red-300'
+544:                             : 'text-emerald-300'
+545:                           : isFail
+546:                           ? isDark
+547:                             ? 'text-[#F87171]'
+548:                             : 'text-[#DC2626]'
+549:                           : isDark
+550:                           ? 'text-[#4ADE80]'
+551:                           : 'text-[#16A34A]
+<truncated 2571 bytes>
+s(regionName);
+610:             return (
+611:               <div key={regionName} className="space-y-0.5">
+612:                 <div
+613:                   className={`flex justify-between text-[9.5px] ${
+614:                     isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'
+615:                   }`}
+616:                 >
+617:                   <span
+618:                     className={`font-semibold ${
+619:                       isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+620:                     }`}
+621:                   >
+622:                     {regionName} ({stats.total})
+623:                   </span>
+624:                   <span>
+625:                     {stats.failurePct}% Fail / {stats.resilientPct}% Resilient
+626:                   </span>
+627:                 </div>
+628:                 {/* Clean Theme-Aware Status Bar Track */}
+629:                 <div
+630:                   className={`h-2 w-full rounded-full flex overflow-hidden border ${
+631:                     isDark
+632:                       ? 'bg-[#14271F] border-[#294338]'
+633:                       : 'bg-[#CCD2C4] border-[#B8BFB0]'
+634:                   }`}
+635:                 >
+636:                   <div
+637:                     className="h-full bg-[#D46A64] transition-all duration-300"
+638:                     style={{ width: `${stats.failurePct}%` }}
+639:                     title={`${regionName} Fail: ${stats.failurePct}%`}
+640:                   />
+641:                   <div
+642:                     className="h-full bg-[#44A07A] transition-all duration-300"
+643:                     style={{ width: `${stats.resilientPct}%` }}
+644:                     title={`${regionName} Resilient: ${stats.resilientPct}%`}
+645:                   />
+646:                 </div>
+647:               </div>
+648:             );
+649:           })}
+650:         </div>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:03:52+05:30
+Completed At: 2026-10-21T06:03:52+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/panels/DistrictDetailPanel.tsx`
+Total Lines: 769
+Total Bytes: 29195
+Showing lines 651 to 769
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+651:       </div>
+652: 
+653:       {/* 7. Secondary Collapsibles */}
+654:       <div
+655:         className={`space-y-1.5 pt-1.5 border-t ${
+656:           isDark ? 'border-[#294338]' : 'border-[#CCD2C4]'
+657:         }`}
+658:       >
+659:         <Collapsible
+660:           title={`Historical Multi-Year Trend (${selectedDistrictInfo.name})`}
+661:           icon={<TrendingUp className="w-3.5 h-3.5" />}
+662:           defaultOpen={false}
+663:         >
+664:           <div className="space-y-1 max-h-32 overflow-y-auto pr-1">
+665:             <div
+666:               className={`grid grid-cols-4 gap-1 text-[9px] font-mono pb-1 border-b ${
+667:                 isDark ? 'border-[#294338] text-[#9BAFA4]' : 'border-[#CCD2C4] text-[#526458]'
+668:               }`}
+669:             >
+670:               <span>Year</span>
+671:               <span className="text-right">Yield</span>
+672:               <span className="text-right">Rain</span>
+673:               <span className="text-right">Status</span>
+674:             </div>
+675:             {districtHistoricalSeries.map(row => (
+676:               <div
+677:                 key={row.year}
+678:                 className={`grid grid-cols-4 gap-1 text-[10px] font-mono py-0.5 ${
+679:                   row.year === selectedYear
+680:                     ? isDark
+681:                       ? 'text-[#39B8C4] font-bold bg-[#39B8C4]/15 px-1 rounded'
+682:                       : 'text-[#0284C7] font-bold bg-[#0284C7]/10 px-1 rounded'
+683:                  
+<truncated 1925 bytes>
+xt-[#526458]'}>Tensor Dimensions:</span>
+729:               <span className={`font-bold ${isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'}`}>
+730:                 {TENSOR_SPEC.spatialTensorShape}
+731:               </span>
+732:             </div>
+733:             <div
+734:               className={`flex justify-between py-0.5 border-b ${
+735:                 isDark ? 'border-[#294338]' : 'border-[#CCD2C4]/60'
+736:               }`}
+737:             >
+738:               <span className={isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'}>Temporal Windows:</span>
+739:               <span className={isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'}>
+740:                 6 bi-weekly (Jun 1 – Aug 31)
+741:               </span>
+742:             </div>
+743:             <div
+744:               className={`flex justify-between py-0.5 border-b ${
+745:                 isDark ? 'border-[#294338]' : 'border-[#CCD2C4]/60'
+746:               }`}
+747:             >
+748:               <span className={isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'}>Channels (8 Bands):</span>
+749:               <span className={isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'}>
+750:                 B2, B3, B4, B8, B11, B12, NDVI, NDWI
+751:               </span>
+752:             </div>
+753:             <div
+754:               className={`flex justify-between py-0.5 border-b ${
+755:                 isDark ? 'border-[#294338]' : 'border-[#CCD2C4]/60'
+756:               }`}
+757:             >
+758:               <span className={isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'}>Parcel Purity Mask:</span>
+759:               <span className={isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'}>
+760:                 ESA WorldCover 10m Class 40
+761:               </span>
+762:             </div>
+763:           </div>
+764:         </Collapsible>
+765:       </div>
+766:     </div>
+767:   );
+768: };
+769: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:03:56+05:30
+Completed At: 2026-10-21T06:03:57+05:30
+
+				The command exited with code 0.
+				Output:
+				import React from 'react';
+import { ZoomIn, ZoomOut, RotateCcw } from 'lucide-react';
+
+interface MapControlsProps {
+  zoomLevel: number;
+  onZoomIn: () => void;
+  onZoomOut: () => void;
+  onReset: () => void;
+}
+
+export const MapControls: React.FC<MapControlsProps> = ({
+  zoomLevel,
+  onZoomIn,
+  onZoomOut,
+  onReset,
+}) => {
+  const scaledKm = Math.max(10, Math.round(200 / zoomLevel));
+
+  return (
+    <>
+      {/* Top-Left Zoom & Reset Buttons */}
+      <div className="absolute top-3.5 left-3.5 flex flex-col gap-1.5 z-20">
+        <button
+          type="button"
+          onClick={onZoomIn}
+          className="w-8 h-8 rounded-lg bg-[#0C1B15]/90 hover:bg-[#122A20] border border-[#163327] text-white flex items-center justify-center transition-colors cursor-pointer shadow-md"
+          title="Zoom In"
+        >
+          <ZoomIn className="w-4 h-4 text-[#A4B8AF]" />
+        </button>
+        <button
+          type="button"
+          onClick={onZoomOut}
+          className="w-8 h-8 rounded-lg bg-[#0C1B15]/90 hover:bg-[#122A20] border border-[#163327] text-white flex items-center justify-center transition-colors cursor-pointer shadow-md"
+          title="Zoom Out"
+        >
+          <ZoomOut className="w-4 h-4 text-[#A4B8AF]" />
+        </button>
+        <button
+          type="button"
+          onClick={onReset}
+          className="w-8 h-8 rounded-lg bg-[#0C1B15]/90 hover:bg-[#122A20] border border-[#163327] text-white flex items-center justify-center transition-colors cursor-pointer shadow-md"
+          title="Reset Position"
+        >
+          <RotateCcw className="w-3.5 h-3.5 text-[#A4B8AF]" />
+        </button>
+        <div className="px-1 py-0.5 rounded-md bg-[#0C1B15]/90 border border-[#163327] text-[9px] font-mono text-[#7A9187] text-center select-none shadow-xs">
+          {Math.round(zoomLevel * 100)}%
+        </div>
+      </div>
+
+      {/* Top-Right North Arrow & Instruction Badge */}
+      <div className="absolute top-3.5 right-3.5 z-20 pointer-events-none select-none flex items-center gap-2.5">
+        <div className="hidden sm:flex items-center gap-2 px-2.5 py-1 rounded-lg bg-[#0C1B15]/90 border border-[#163327] text-[10px] font-mono text-[#849B90] backdrop-blur-xs shadow-md">
+          <span className="text-[#22C55E] font-medium">Pan: Drag</span>
+          <span className="text-[#2C4A3C]">·</span>
+          <span>Zoom: Scroll Wheel</span>
+          <span className="text-[#2C4A3C]">·</span>
+          <span>Select: Click District</span>
+        </div>
+        <div className="w-8 h-8 rounded-full bg-[#0C1B15]/80 border border-[#163327] flex flex-col items-center justify-center shadow-md">
+          <span className="text-[11px] font-bold font-mono text-[#22C55E] leading-none">N</span>
+          <span className="text-[9px] text-[#22C55E] leading-none">▲</span>
+        </div>
+      </div>
+
+      {/* Bottom-Left Metric Scale Bar */}
+      <div className="absolute bottom-3.5 left-3.5 z-20 pointer-events-none select-none flex flex-col gap-1 font-mono text-[9px] text-[#7A9187] bg-[#0C1B15]/80 p-1.5 rounded-lg border border-[#163327]">
+        <div className="flex justify-between w-28 text-[9px]">
+          <span>0</span>
+          <span>{Math.round(scaledKm / 4)}</span>
+          <span>{Math.round(scaledKm / 2)}</span>
+          <span>{scaledKm} km</span>
+        </div>
+        <div className="h-1 w-28 bg-[#14261F] border border-[#213F33] flex">
+          <div className="w-1/4 h-full bg-white"></div>
+          <div className="w-1/4 h-full bg-[#14261F]"></div>
+          <div className="w-1/4 h-full bg-white"></div>
+          <div className="w-1/4 h-full bg-[#14261F]"></div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:04:02+05:30
+Completed At: 2026-10-21T06:04:02+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/map/MapControls.tsx`
+Total Lines: 131
+Total Bytes: 5316
+Showing lines 1 to 120
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: import React from 'react';
+2: import { ZoomIn, ZoomOut, RotateCcw } from 'lucide-react';
+3: import { useAppTheme } from '../../context/ThemeContext';
+4: 
+5: interface MapControlsProps {
+6:   zoomLevel: number;
+7:   onZoomIn: () => void;
+8:   onZoomOut: () => void;
+9:   onReset: () => void;
+10: }
+11: 
+12: export const MapControls: React.FC<MapControlsProps> = ({
+13:   zoomLevel,
+14:   onZoomIn,
+15:   onZoomOut,
+16:   onReset,
+17: }) => {
+18:   const { isDark } = useAppTheme();
+19:   const scaledKm = Math.max(10, Math.round(200 / zoomLevel));
+20: 
+21:   return (
+22:     <>
+23:       {/* Top-Left Zoom & Reset Buttons */}
+24:       <div className="absolute top-3.5 left-3.5 flex flex-col gap-1.5 z-20">
+25:         <button
+26:           type="button"
+27:           onClick={onZoomIn}
+28:           className={`w-8 h-8 rounded-lg border flex items-center justify-center transition-colors cursor-pointer shadow-md ${
+29:             isDark
+30:               ? 'bg-[#102019]/95 hover:bg-[#14271F] border-[#294338] text-[#E5EEE8]'
+31:               : 'bg-white/95 hover:bg-white border-[#CCD2C4] text-[#16221B]'
+32:           }`}
+33:           title="Zoom In"
+34:         >
+35:           <ZoomIn className={`w-4 h-4 ${isDark ? 'text-[#39B8C4]' : 'text-[#12382B]'}`} />
+36:         </button>
+37:         <button
+38:           type="button"
+39:           onClick={onZoomOut}
+40:           className={`w-8 h-8 rounded-lg border flex items-center justify-center transition-colors cursor-pointer shadow-md ${
+41:            
+<truncated 2006 bytes>
+ Drag</span>
+82:           <span className={isDark ? 'text-[#294338]' : 'text-[#A4B0A4]'}>·</span>
+83:           <span>Zoom: Scroll Wheel</span>
+84:           <span className={isDark ? 'text-[#294338]' : 'text-[#A4B0A4]'}>·</span>
+85:           <span>Select: Click District</span>
+86:         </div>
+87:         <div
+88:           className={`w-8 h-8 rounded-full border flex flex-col items-center justify-center shadow-md ${
+89:             isDark
+90:               ? 'bg-[#102019]/95 border-[#294338]'
+91:               : 'bg-white/95 border-[#CCD2C4]'
+92:           }`}
+93:         >
+94:           <span className={`text-[11px] font-bold font-mono leading-none ${isDark ? 'text-[#E5EEE8]' : 'text-[#12382B]'}`}>
+95:             N
+96:           </span>
+97:           <span className={`text-[9px] leading-none ${isDark ? 'text-[#39B8C4]' : 'text-[#12382B]'}`}>
+98:             ▲
+99:           </span>
+100:         </div>
+101:       </div>
+102: 
+103:       {/* Bottom-Left Metric Scale Bar */}
+104:       <div
+105:         className={`absolute bottom-3.5 left-3.5 z-20 pointer-events-none select-none flex flex-col gap-1 font-mono text-[9px] p-1.5 rounded-lg border shadow-xs ${
+106:           isDark
+107:             ? 'bg-[#102019]/95 border-[#294338] text-[#9BAFA4]'
+108:             : 'bg-white/95 border-[#CCD2C4] text-[#526458]'
+109:         }`}
+110:       >
+111:         <div className="flex justify-between w-28 text-[9px] font-semibold">
+112:           <span>0</span>
+113:           <span>{Math.round(scaledKm / 4)}</span>
+114:           <span>{Math.round(scaledKm / 2)}</span>
+115:           <span>{scaledKm} km</span>
+116:         </div>
+117:         <div
+118:           className={`h-1.5 w-28 flex rounded-xs overflow-hidden border ${
+119:             isDark ? 'bg-[#14271F] border-[#294338]' : 'bg-[#CCD2C4] border-[#B0B8A6]'
+120:           }`}
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:04:14+05:30
+Completed At: 2026-10-21T06:04:14+05:30
+
+				The command exited with code 0.
+				Output:
+				import React from 'react';
+import { CloudRain, Thermometer, Sprout } from 'lucide-react';
+import { useDashboard } from '../../context/DashboardContext';
+
+interface SeasonalClimateCardProps {
+  className?: string;
+}
+
+export const SeasonalClimateCard: React.FC<SeasonalClimateCardProps> = ({ className = '' }) => {
+  const { cropYearStr, stateMeanRainfallMm, oniInfo, historicalTotalDistricts } = useDashboard();
+
+  return (
+    <div
+      className={`rounded-2xl bg-[#091410] border border-[#14261F] p-3.5 sm:p-4 flex flex-col justify-between shadow-xs ${className}`}
+    >
+      {/* 1. Header */}
+      <div className="flex items-center justify-between pb-2 border-b border-[#14261F]/60">
+        <span className="text-sm font-bold text-white tracking-tight">
+          Seasonal Climate Indices ({cropYearStr})
+        </span>
+        <span className="text-xs font-mono text-[#80978E]">
+          NOAA CPC &amp; IMD Observations
+        </span>
+      </div>
+
+      {/* 2. Scaled 3 Metric Tiles filling available window */}
+      <div className="flex-1 grid grid-cols-3 gap-2.5 my-2 min-h-[100px] items-stretch">
+        {/* Metric 1: Rice Belt Rain */}
+        <div className="p-3 sm:p-3.5 rounded-xl bg-[#060D0A] border border-[#14261F] flex flex-col justify-between hover:border-[#38BDF8]/40 transition-colors">
+          <div className="flex items-center gap-1.5 text-xs text-[#A4B8AF] font-semibold">
+            <CloudRain className="w-4 h-4 text-[#38BDF8] shrink-0" />
+            <span className="truncate">Rice Belt Rain</span>
+          </div>
+          <div className="text-xl sm:text-2xl font-extrabold font-mono text-white mt-1 tracking-tight">
+            {stateMeanRainfallMm !== null ? `${stateMeanRainfallMm} mm` : 'N/A'}
+          </div>
+          <div className="text-[11px] sm:text-xs text-[#7A9187] font-mono leading-tight">
+            June–August Mean
+          </div>
+        </div>
+
+        
+<truncated 68 bytes>
+5 rounded-xl bg-[#060D0A] border border-[#14261F] flex flex-col justify-between hover:border-[#D93838]/40 transition-colors">
+          <div className="flex items-center gap-1.5 text-xs text-[#A4B8AF] font-semibold">
+            <Thermometer className="w-4 h-4 text-[#D93838] shrink-0" />
+            <span className="truncate">El Niño (ONI)</span>
+          </div>
+          <div className="text-xl sm:text-2xl font-extrabold font-mono text-white mt-1 tracking-tight">
+            {oniInfo
+              ? `${oniInfo.meanEarlyWarningSstAnomaly > 0 ? '+' : ''}${oniInfo.meanEarlyWarningSstAnomaly.toFixed(1)}°C`
+              : 'N/A'}
+          </div>
+          <div
+            className={`text-[11px] sm:text-xs font-bold font-mono leading-tight ${
+              oniInfo?.elNinoIndicator === 1 ? 'text-[#D93838]' : 'text-[#22C55E]'
+            }`}
+          >
+            {oniInfo?.ensoPhase || 'Neutral'}
+          </div>
+        </div>
+
+        {/* Metric 3: Spatial Scope */}
+        <div className="p-3 sm:p-3.5 rounded-xl bg-[#060D0A] border border-[#14261F] flex flex-col justify-between hover:border-[#22C55E]/40 transition-colors">
+          <div className="flex items-center gap-1.5 text-xs text-[#A4B8AF] font-semibold">
+            <Sprout className="w-4 h-4 text-[#22C55E] shrink-0" />
+            <span className="truncate">Spatial Scope</span>
+          </div>
+          <div className="text-xl sm:text-2xl font-extrabold font-mono text-white mt-1 tracking-tight">
+            {historicalTotalDistricts} Dist.
+          </div>
+          <div className="text-[11px] sm:text-xs text-[#7A9187] font-mono leading-tight">
+            Primary Rice Belt
+          </div>
+        </div>
+      </div>
+
+      {/* 3. Bottom Meta Row */}
+      <div className="flex items-center justify-between text-[10px] sm:text-[11px] font-mono text-[#7A9187] pt-1.5 border-t border-[#14261F]/60">
+        <span>IMD Gridded: 0.25°</span>
+        <span className="text-[#849B90]">Pacific SST Niño 3.4 Early Warning</span>
+      </div>
+    </div>
+  );
+};
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:04:18+05:30
+Completed At: 2026-10-21T06:04:18+05:30
+
+				The command exited with code 0.
+				Output:
+				import React, { useMemo } from 'react';
+import { useDashboard } from '../../context/DashboardContext';
+import { ALL_YEAR_METRICS } from '../../data/maharashtraMapData';
+import { PRIMARY_RICE_DISTRICTS } from '../../data/canonicalDistricts';
+
+interface RainfallYieldChartProps {
+  className?: string;
+  title?: string;
+}
+
+export const RainfallYieldChart: React.FC<RainfallYieldChartProps> = ({
+  className = '',
+  title,
+}) => {
+  const { selectedYear, setSelectedYear, availableYears, allYearMetrics, monitoredDistrictsForCrop, selectedCrop } = useDashboard();
+
+  const displayTitle = title || (
+    selectedCrop === 'ALL'
+      ? 'All Kharif Crops — Mean Rainfall & Yield'
+      : `${selectedCrop} Belt — Mean Rainfall & Yield`
+  );
+
+  // Multi-year averages computed from allYearMetrics (dynamically filtered by crop)
+  const yearlyData = useMemo(() => {
+    return availableYears.map(yr => {
+      const yrMetrics = allYearMetrics[yr] || {};
+      const valid = monitoredDistrictsForCrop.map(d => yrMetrics[d.id]).filter(Boolean);
+      const withRain = valid.filter(m => m.rainfallMm !== null);
+      const withYield = valid.filter(m => m.yieldTonnesHa !== null);
+
+      const avgRain = withRain.length > 0
+        ? Math.round(withRain.reduce((acc, m) => acc + (m.rainfallMm || 0), 0) / withRain.length)
+        : 0;
+      const avgYield = withYield.length > 0
+        ? Number((withYield.reduce((acc, m) => acc + (m.yieldTonnesHa || 0), 0) / withYield.length).toFixed(2))
+        : 0;
+
+      return {
+        year: yr,
+        yearLabel: String(yr),
+        rainfall: avgRain,
+        yieldVal: avgYield,
+      };
+    });
+  }, [availableYears, allYearMetrics, monitoredDistrictsForCrop]);
+
+  const selectedData = yearlyData.find(d => d.year === selectedYear);
+
+  return (
+    <div
+      className={`rounded-2xl bg-[#091410] border border-[#14261F] p-3.5 sm:p-4 flex flex-col justify-between shadow-xs ${clas
+<truncated 1802 bytes>
+ relative"
+                title={`${item.year}: ${item.rainfall} mm rainfall · ${item.yieldVal} t/ha yield`}
+              >
+                {/* Yield Value Badge on Top */}
+                <span
+                  className={`text-[11px] sm:text-xs font-mono font-bold leading-none mb-1 transition-colors ${
+                    isCurrent ? 'text-[#38BDF8]' : 'text-[#10B981] group-hover:text-white'
+                  }`}
+                >
+                  {item.yieldVal}t
+                </span>
+
+                {/* Rainfall Bar with Smooth Gradient */}
+                <div className="w-full flex-1 flex items-end justify-center min-h-[35px]">
+                  <div
+                    className={`w-full max-w-[36px] sm:max-w-[42px] rounded-t-md transition-all duration-200 ${
+                      isCurrent
+                        ? 'bg-gradient-to-t from-[#0284C7] to-[#38BDF8] shadow-[0_0_12px_rgba(56,189,248,0.45)]'
+                        : 'bg-[#0284C7]/55 group-hover:bg-[#0284C7]/85'
+                    }`}
+                    style={{ height: `${rainHeight}%` }}
+                  />
+                </div>
+
+                {/* Year Label */}
+                <span
+                  className={`text-[11px] sm:text-xs font-mono font-semibold mt-1 transition-colors ${
+                    isCurrent ? 'text-[#38BDF8] font-bold' : 'text-[#7A9187] group-hover:text-white'
+                  }`}
+                >
+                  {item.yearLabel}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* 3. Bottom Status Row */}
+      <div className="flex items-center justify-between text-[10px] sm:text-[11px] font-mono text-[#7A9187] pt-1.5 border-t border-[#14261F]/60">
+        <span>Cycles: 2015–2022</span>
+        <span className="text-white font-medium">
+          Selected: <strong className="text-[#38BDF8]">{selectedYear}</strong> ({selectedData?.rainfall ?? 'N/A'} mm · {selectedData?.yieldVal ?? 'N/A'} t/ha)
+        </span>
+      </div>
+    </div>
+  );
+};
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:04:24+05:30
+Completed At: 2026-10-21T06:04:24+05:30
+
+				The command exited with code 0.
+				Output:
+				import React, { useState } from 'react';
+import {
+  Home,
+  Map,
+  BarChart2,
+  TrendingUp,
+  Cpu,
+  Layers,
+  ShieldCheck,
+  Compass,
+  Database,
+  Info,
+  Sprout,
+  Menu,
+  X,
+} from 'lucide-react';
+
+export type ActiveTab =
+  | 'overview'
+  | 'risk_map'
+  | 'historical_analysis'
+  | 'rainfall_trends'
+  | 'model_predictions'
+  | 'model_architecture'
+  | 'loso_validation'
+  | 'future_elnino'
+  | 'data_sources'
+  | 'about_project';
+
+interface SidebarProps {
+  activeTab: ActiveTab;
+  setActiveTab: (tab: ActiveTab) => void;
+}
+
+interface NavItem {
+  id: ActiveTab;
+  label: string;
+  icon: React.ReactNode;
+}
+
+interface NavSection {
+  title: string;
+  items: NavItem[];
+}
+
+export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const sections: NavSection[] = [
+    {
+      title: 'EXPLORATION',
+      items: [
+        {
+          id: 'overview',
+          label: 'Overview',
+          icon: <Home className="w-4 h-4" />,
+        },
+        {
+          id: 'risk_map',
+          label: 'District Risk Map',
+          icon: <Map className="w-4 h-4" />,
+        },
+        {
+          id: 'historical_analysis',
+          label: 'Historical Analysis',
+          icon: <BarChart2 className="w-4 h-4" />,
+        },
+        {
+          id: 'rainfall_trends',
+          label: 'Rainfall & Crop Trends',
+          icon: <TrendingUp className="w-4 h-4" />,
+        },
+      ],
+    },
+    {
+      title: 'MODELLING & FORECASTING',
+      items: [
+        {
+          id: 'model_predictions',
+          label: 'CNN–LSTM Predictions',
+          icon: <Cpu className="w-4 h-4" />,
+        },
+        {
+          id: 'model_architecture',
+          label: 'Model & Architecture',
+          icon: <Layers className="w-4 h-4" />,
+        },
+        {
+          id: 'loso_validation',
+          label: 'LOSO Validation',
+          icon: <ShieldC
+<truncated 2715 bytes>
+           </span>
+                    <span className="truncate">{item.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+          ))}
+        </nav>
+      </div>
+
+      {/* Footer Info */}
+      <div className="mt-6 pt-4 border-t border-[#13241C] text-[10px] font-mono text-[#586E64] px-1 flex items-center justify-between">
+        <span>B.Tech PBL</span>
+        <span className="text-[#7A9187]">Kharif Crop System</span>
+      </div>
+    </div>
+  );
+
+  return (
+    <>
+      {/* Desktop Fixed Left Sidebar */}
+      <aside className="hidden lg:flex w-60 xl:w-64 shrink-0 flex-col h-screen sticky top-0 border-r border-[#13241C] z-30">
+        {navContent}
+      </aside>
+
+      {/* Mobile Top Header with Hamburger Toggle */}
+      <div className="lg:hidden flex items-center justify-between px-4 py-3 bg-[#08120E] border-b border-[#13241C] sticky top-0 z-40">
+        <div className="flex items-center gap-2.5">
+          <div className="w-7 h-7 rounded-lg bg-[#0D241C] border border-[#164332] text-[#22C55E] flex items-center justify-center">
+            <Sprout className="w-4 h-4 text-[#22C55E]" />
+          </div>
+          <span className="text-xs font-bold text-white">
+            Maharashtra Crop-Risk Analytics
+          </span>
+        </div>
+
+        <button
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className="p-1.5 rounded-lg bg-[#0C1914] text-[#A3B8AF] border border-[#162A21] hover:text-white cursor-pointer"
+        >
+          {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </button>
+      </div>
+
+      {/* Mobile Drawer Overlay */}
+      {mobileOpen && (
+        <div className="lg:hidden fixed inset-0 z-50 flex">
+          <div
+            className="fixed inset-0 bg-black/70 backdrop-blur-xs"
+            onClick={() => setMobileOpen(false)}
+          />
+          <div className="relative w-64 max-w-[80%] h-full z-10 shadow-2xl">
+            {navContent}
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:04:42+05:30
+Completed At: 2026-10-21T06:04:42+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/Sidebar.tsx`
+Total Lines: 258
+Total Bytes: 8202
+Showing lines 90 to 160
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+90:         },
+91:         {
+92:           id: 'loso_validation',
+93:           label: 'LOSO Validation',
+94:           icon: <ShieldCheck className="w-4 h-4" />,
+95:         },
+96:         {
+97:           id: 'future_elnino',
+98:           label: 'Future El Niño',
+99:           icon: <Compass className="w-4 h-4" />,
+100:         },
+101:       ],
+102:     },
+103:     {
+104:       title: 'PROJECT',
+105:       items: [
+106:         {
+107:           id: 'data_sources',
+108:           label: 'Data Sources',
+109:           icon: <Database className="w-4 h-4" />,
+110:         },
+111:         {
+112:           id: 'about_project',
+113:           label: 'About Project',
+114:           icon: <Info className="w-4 h-4" />,
+115:         },
+116:       ],
+117:     },
+118:   ];
+119: 
+120:   const handleSelectTab = (id: ActiveTab) => {
+121:     setActiveTab(id);
+122:     setMobileOpen(false);
+123:   };
+124: 
+125:   const navContent = (
+126:     <div className="flex flex-col h-full justify-between p-4 bg-[#E0E4D8] text-[#16221B] overflow-y-auto">
+127:       {/* Brand Header */}
+128:       <div className="space-y-6">
+129:         <div className="flex items-center gap-3 pt-1">
+130:           <div className="w-9 h-9 rounded-xl bg-[#D0D6C6] border border-[#BDC4B4] text-[#12382B] flex items-center justify-center shrink-0 shadow-xs">
+131:             <Sprout className="w-5 h-5 text-[#12382B]" />
+132:           </div>
+133:           <div className="flex flex-col min-w-0">
+134:             <span className="text-sm font-bold tracking-tight text-[#16221B] truncate">
+135:               Maharashtra
+136:             </span>
+137:             <span className="text-xs font-semibold text-[#35483D] tracking-tight truncate">
+138:               Crop-Risk Analytics
+139:             </span>
+140:             <span className="text-[10px] text-[#607368] truncate font-mono mt-0.5">
+141:               Spatiotemporal Analysis
+142:             </span>
+143:           </div>
+144:         </div>
+145: 
+146:         {/* Back to Project Landing Page Button */}
+147:         {onBackToLanding && (
+148:           <button
+149:             onClick={onBackToLanding}
+150:             className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold bg-[#12382B] text-white hover:bg-[#1A4C3B] border border-[#0F3025] transition-all cursor-pointer shadow-xs group"
+151:             title="Return to Project Homepage"
+152:           >
+153:             <span className="flex items-center gap-2">
+154:               <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1 text-[#4ADE80]" />
+155:               <span>Project Home</span>
+156:             </span>
+157:             <span className="text-[10px] font-mono text-[#A3B8AF] uppercase tracking-wider group-hover:text-white">Exit</span>
+158:           </button>
+159:         )}
+160: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:04:47+05:30
+Completed At: 2026-10-21T06:04:47+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/Sidebar.tsx`
+Total Lines: 258
+Total Bytes: 8202
+Showing lines 161 to 258
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+161:         {/* Grouped Navigation Sections */}
+162:         <nav className="space-y-5">
+163:           {sections.map(sec => (
+164:             <div key={sec.title} className="space-y-1">
+165:               <span className="px-3 text-[10px] font-mono font-bold tracking-wider text-[#607368] uppercase block pb-1">
+166:                 {sec.title}
+167:               </span>
+168:               {sec.items.map(item => {
+169:                 const isActive = activeTab === item.id;
+170:                 return (
+171:                   <button
+172:                     key={item.id}
+173:                     onClick={() => handleSelectTab(item.id)}
+174:                     className={`w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium transition-all text-left cursor-pointer ${
+175:                       isActive
+176:                         ? 'bg-[#12382B] text-white font-semibold shadow-xs'
+177:                         : 'text-[#3E5146] hover:text-[#16221B] hover:bg-[#D4D9CC]'
+178:                     }`}
+179:                   >
+180:                     <span className={isActive ? 'text-[#4ADE80]' : 'text-[#506659]'}>
+181:                       {item.icon}
+182:                     </span>
+183:                     <span className="truncate">{item.label}</span>
+184:                   </button>
+185:                 );
+186:               })}
+187:             </div>
+188:           ))}
+189:         </nav>
+190:       </div>
+191: 
+192:       {/* Theme Switcher in Sidebar */}
+193:       <div classNam
+<truncated 861 bytes>
+border-[#CCD2C4] sticky top-0 z-40">
+214:         <div className="flex items-center gap-2.5">
+215:           <div className="w-7 h-7 rounded-lg bg-[#D0D6C6] border border-[#BDC4B4] text-[#12382B] flex items-center justify-center">
+216:             <Sprout className="w-4 h-4 text-[#12382B]" />
+217:           </div>
+218:           <span className="text-xs font-bold text-[#16221B]">
+219:             Maharashtra Crop-Risk Analytics
+220:           </span>
+221:         </div>
+222: 
+223:         <div className="flex items-center gap-2">
+224:           <ThemeToggle showLabel={false} />
+225:           {onBackToLanding && (
+226:             <button
+227:               onClick={onBackToLanding}
+228:               className="p-1.5 rounded-lg bg-[#12382B] text-white hover:bg-[#1A4C3B] cursor-pointer"
+229:               title="Back to Project Homepage"
+230:             >
+231:               <ArrowLeft className="w-4 h-4" />
+232:             </button>
+233:           )}
+234:           <button
+235:             onClick={() => setMobileOpen(!mobileOpen)}
+236:             className="p-1.5 rounded-lg bg-[#D4D9CC] text-[#35483D] border border-[#CCD2C4] hover:text-[#16221B] cursor-pointer"
+237:           >
+238:             {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+239:           </button>
+240:         </div>
+241:       </div>
+242: 
+243:       {/* Mobile Drawer Overlay */}
+244:       {mobileOpen && (
+245:         <div className="lg:hidden fixed inset-0 z-50 flex">
+246:           <div
+247:             className="fixed inset-0 bg-black/50 backdrop-blur-xs"
+248:             onClick={() => setMobileOpen(false)}
+249:           />
+250:           <div className="relative w-64 max-w-[80%] h-full z-10 shadow-2xl">
+251:             {navContent}
+252:           </div>
+253:         </div>
+254:       )}
+255:     </>
+256:   );
+257: };
+258: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:04:56+05:30
+Completed At: 2026-10-21T06:04:56+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/pages/OverviewPage.tsx`
+Total Lines: 105
+Total Bytes: 4409
+Showing lines 1 to 105
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: import React from 'react';
+2: import { KpiCards } from '../components/panels/KpiCards';
+3: import { DistrictChoropleth } from '../components/map/DistrictChoropleth';
+4: import { RainfallYieldChart } from '../components/charts/RainfallYieldChart';
+5: import { SeasonalClimateCard } from '../components/panels/SeasonalClimateCard';
+6: import { DistrictDetailPanel } from '../components/panels/DistrictDetailPanel';
+7: import { useDashboard } from '../context/DashboardContext';
+8: import { useAppTheme } from '../context/ThemeContext';
+9: 
+10: export const OverviewPage: React.FC = () => {
+11:   const { cropYearStr, currentYearMetrics, monitoredDistrictsForCrop, selectedCrop } = useDashboard();
+12:   const { isDark } = useAppTheme();
+13: 
+14:   const handleDownloadCsv = () => {
+15:     const headers = [
+16:       'district_id',
+17:       'district_name',
+18:       'division',
+19:       'crop',
+20:       'crop_year',
+21:       'imd_rainfall_mm',
+22:       'des_actual_yield_t_ha',
+23:       'baseline_yield_t_ha',
+24:       'yield_departure_pct',
+25:       'des_observed_failure_status',
+26:     ];
+27: 
+28:     const rows = monitoredDistrictsForCrop.map(d => {
+29:       const m = currentYearMetrics[d.id];
+30:       return [
+31:         d.id,
+32:         `"${d.name}"`,
+33:         `"${d.division}"`,
+34:         `"${m?.crop || selectedCrop}"`,
+35:         cropYearStr,
+36:         m?.rainfallMm !== null && m?.rainfallMm !== undefined ? Math.round(m.rainfallMm) : 'N/A',
+37:         m?.yieldTonnesHa !== null && m?.yield
+<truncated 1331 bytes>
+2xl font-bold tracking-tight font-serif ${
+65:               isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+66:             }`}
+67:           >
+68:             Maharashtra District Risk &amp; Historical Intelligence
+69:           </h1>
+70:           <p className={`text-xs mt-0.5 font-medium ${isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'}`}>
+71:             Spatiotemporal CNN-LSTM Framework for All-Kharif Crop Failure Prediction using Satellite Imagery and IMD Data
+72:           </p>
+73:         </div>
+74:       </div>
+75: 
+76:       {/* 2. Full-Width 6-Card KPI Row */}
+77:       <KpiCards />
+78: 
+79:       {/* 3. Central Grid: Left Column (Map + Bottom Row) vs Right Column (District Insights) */}
+80:       <div className="grid grid-cols-1 lg:grid-cols-12 gap-3.5 items-stretch">
+81:         {/* Left Column (8 cols): Map + Bottom Equal 2-Card Row */}
+82:         <div className="lg:col-span-8 flex flex-col gap-3.5">
+83:           {/* Main Maharashtra Map Card with Expansive Vertical Room */}
+84:           <DistrictChoropleth
+85:             mode="historical"
+86:             title={`Observed Crop Failure Ground Truth — Kharif ${cropYearStr} (${selectedCrop === 'ALL' ? 'All Crops' : selectedCrop})`}
+87:             heightClass="h-[490px] sm:h-[530px] xl:h-[560px]"
+88:           />
+89: 
+90:           {/* Bottom Row under Map: Equal 50/50 Split with Identical Height */}
+91:           <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 items-stretch flex-1">
+92:             <RainfallYieldChart className="h-full" />
+93:             <SeasonalClimateCard className="h-full" />
+94:           </div>
+95:         </div>
+96: 
+97:         {/* Right Column (4 cols): District Insights Panel with Year & District selectors */}
+98:         <div className="lg:col-span-4 flex flex-col">
+99:           <DistrictDetailPanel className="h-full" onDownloadCsv={handleDownloadCsv} />
+100:         </div>
+101:       </div>
+102:     </div>
+103:   );
+104: };
+105: 
+The above content shows the entire, complete file contents of the requested file.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:05:00+05:30
+Completed At: 2026-10-21T06:05:00+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/App.tsx`
+Total Lines: 121
+Total Bytes: 5722
+Showing lines 1 to 100
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: import React, { useState } from 'react';
+2: import { Sidebar, ActiveTab } from './components/Sidebar';
+3: import { DashboardProvider } from './context/DashboardContext';
+4: import { ThemeProvider } from './context/ThemeContext';
+5: import { ThemeToggle } from './components/common/ThemeToggle';
+6: import { HomePage } from './pages/HomePage';
+7: import { OverviewPage } from './pages/OverviewPage';
+8: import { DistrictRiskMapPage } from './pages/DistrictRiskMapPage';
+9: import { HistoricalAnalysisPage } from './pages/HistoricalAnalysisPage';
+10: import { RainfallTrendsPage } from './pages/RainfallTrendsPage';
+11: import { ModelPredictionsPage } from './pages/ModelPredictionsPage';
+12: import { ModelArchitectureView } from './components/ModelArchitectureView';
+13: import { LosoValidationView } from './components/LosoValidationView';
+14: import { FutureElNinoPage } from './pages/FutureElNinoPage';
+15: import { DataSourcesPage } from './pages/DataSourcesPage';
+16: import { AboutProjectPage } from './pages/AboutProjectPage';
+17: import { Home, ChevronRight, Activity } from 'lucide-react';
+18: 
+19: const TAB_TITLES: Record<ActiveTab, string> = {
+20:   overview: 'Overview & District Choropleth',
+21:   risk_map: 'District Risk Map',
+22:   historical_analysis: 'Historical Analysis & APY Audit',
+23:   rainfall_trends: 'Rainfall & Climate Trends',
+24:   model_predictions: 'CNN–LSTM Predictions',
+25:   model_architecture: 'Model Architecture & Pipeline',
+26:   loso_validation: 'Holdout District Validation',
+27:   future_elnino: 
+<truncated 1772 bytes>
+         {/* Top Dashboard Header Bar with Breadcrumbs & Theme Toggle */}
+73:               <header className="sticky top-0 z-30 px-3 sm:px-5 lg:px-6 py-2.5 bg-[#EAECE4]/90 backdrop-blur-md border-b border-[#CCD2C4]/70 flex items-center justify-between gap-3 shadow-2xs">
+74:                 {/* Left: Breadcrumbs & Current View */}
+75:                 <div className="flex items-center gap-2 text-xs font-mono min-w-0">
+76:                   <button
+77:                     onClick={handleBackToLanding}
+78:                     className="inline-flex items-center gap-1.5 text-[#526458] hover:text-[#16221B] transition-colors font-medium cursor-pointer shrink-0"
+79:                     title="Return to Project Home"
+80:                   >
+81:                     <Home className="w-3.5 h-3.5" />
+82:                     <span>Home</span>
+83:                   </button>
+84:                   <ChevronRight className="w-3 h-3 text-[#889B8F] shrink-0" />
+85:                   <span className="font-semibold text-[#16221B] truncate">
+86:                     {TAB_TITLES[activeTab] || activeTab}
+87:                   </span>
+88:                 </div>
+89: 
+90:                 {/* Right: Operational Status Pill & Theme Toggle */}
+91:                 <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+92:                   <div className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white border border-[#CCD2C4] text-[10px] font-mono text-[#526458] shadow-2xs">
+93:                     <Activity className="w-3 h-3 text-[#16A34A] animate-pulse" />
+94:                     <span>ENSO Niño 3.4 · IMD RF25 · S2</span>
+95:                   </div>
+96: 
+97:                   {/* Theme Switcher Toggle (Top Right for Dashboard) */}
+98:                   <ThemeToggle />
+99:                 </div>
+100:               </header>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:05:42+05:30
+Completed At: 2026-10-21T06:05:42+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/pages/HomePage.tsx`
+Total Lines: 552
+Total Bytes: 28392
+Showing lines 1 to 80
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: import React from 'react';
+2: import {
+3:   ArrowRight,
+4:   ExternalLink,
+5:   Map,
+6:   Layers,
+7:   ShieldCheck,
+8:   TrendingUp,
+9:   Cpu,
+10:   Compass,
+11:   Database,
+12:   Satellite,
+13:   BarChart2,
+14:   CheckCircle2,
+15:   FileText
+16: } from 'lucide-react';
+17: import { ActiveTab } from '../components/Sidebar';
+18: import { ThemeToggle } from '../components/common/ThemeToggle';
+19: 
+20: interface HomePageProps {
+21:   onLaunchDashboard: (initialTab?: ActiveTab) => void;
+22: }
+23: 
+24: export const HomePage: React.FC<HomePageProps> = ({ onLaunchDashboard }) => {
+25:   return (
+26:     <div className="min-h-screen bg-[#EAECE4] text-[#1B2A22] font-sans selection:bg-[#12382B] selection:text-white">
+27:       {/* ------------------------------------------------------------------- */}
+28:       {/* 1. Clean Editorial Navigation Bar */}
+29:       {/* ------------------------------------------------------------------- */}
+30:       <header className="border-b border-[#D5D9CE] px-6 sm:px-10 lg:px-16 py-4 flex items-center justify-between sticky top-0 bg-[#EAECE4]/90 backdrop-blur-md z-40">
+31:         <div className="flex items-center gap-3">
+32:           <span className="font-mono text-xs sm:text-sm font-bold tracking-widest text-[#1B2A22] uppercase">
+33:             MAHARASHTRA / KHARIF CROP RISK
+34:           </span>
+35:           <span className="hidden sm:inline-block px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-[#D9DECFA0] text-[#2F4238] border border-[#CCD2C2]">
+36:             v2.4.0 • PRODUCTION
+37:           </span>
+38:         </div>
+39: 
+40:         <nav className="flex items-center gap-5 sm:gap-8 text-xs font-medium text-[#46574D]">
+41:           <a
+42:             href="#pipeline"
+43:             className="hidden md:inline-block hover:text-[#1B2A22] transition-colors"
+44:           >
+45:             Pipeline
+46:           </a>
+47:           <a
+48:             href="#metrics"
+49:             className="hidden md:inline-block hover:text-[#1B2A22] transition-colors"
+50:           >
+51:             Metrics
+52:           </a>
+53:           <a
+54:             href="#modules"
+55:             className="hidden md:inline-block hover:text-[#1B2A22] transition-colors"
+56:           >
+57:             Modules
+58:           </a>
+59:           <a
+60:             href="https://huggingface.co/datasets/UsmanSait/elnino-crop-failure-pbl"
+61:             target="_blank"
+62:             rel="noopener noreferrer"
+63:             className="hidden lg:flex items-center gap-1.5 hover:text-[#1B2A22] transition-colors"
+64:           >
+65:             <span>Hugging Face</span>
+66:             <ExternalLink className="w-3 h-3 text-[#62756A]" />
+67:           </a>
+68:           <a
+69:             href="https://github.com/usmanssait/ElninoPBLProject"
+70:             target="_blank"
+71:             rel="noopener noreferrer"
+72:             className="hidden lg:flex items-center gap-1.5 hover:text-[#1B2A22] transition-colors"
+73:           >
+74:             <span>Source</span>
+75:             <ExternalLink className="w-3 h-3 text-[#62756A]" />
+76:           </a>
+77: 
+78:           {/* Theme Mode Toggle (Light/Dark) */}
+79:           <ThemeToggle />
+80: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:06:01+05:30
+Completed At: 2026-10-21T06:06:01+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/panels/KpiCards.tsx`
+Total Lines: 290
+Total Bytes: 10219
+Showing lines 1 to 100
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: import React from 'react';
+2: import { Sprout, ShieldAlert, Clock, CloudRain, Thermometer } from 'lucide-react';
+3: import { useDashboard } from '../../context/DashboardContext';
+4: import { useAppTheme } from '../../context/ThemeContext';
+5: 
+6: interface KpiCardsProps {
+7:   className?: string;
+8: }
+9: 
+10: export const KpiCards: React.FC<KpiCardsProps> = ({ className = '' }) => {
+11:   const {
+12:     historicalTotalDistricts,
+13:     historicalFailureCount,
+14:     historicalResilientCount,
+15:     stateMeanRainfallMm,
+16:     oniInfo,
+17:     selectedCrop,
+18:   } = useDashboard();
+19: 
+20:   const { isDark } = useAppTheme();
+21: 
+22:   return (
+23:     <div className={`grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3 ${className}`}>
+24:       {/* 1. Total Districts */}
+25:       <div
+26:         className={`p-3.5 rounded-xl border flex items-center justify-between transition-colors shadow-xs ${
+27:           isDark
+28:             ? 'bg-[#102019] border-[#294338] hover:border-[#39B8C4]/40'
+29:             : 'bg-[#E2E6DC] border-[#CCD2C4] hover:border-[#12382B]/40'
+30:         }`}
+31:       >
+32:         <div className="space-y-0.5">
+33:           <span
+34:             className={`text-[11px] font-medium block uppercase tracking-wider ${
+35:               isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'
+36:             }`}
+37:           >
+38:             Total Districts
+39:           </span>
+40:           <div className="flex items-baseline gap-2">
+41:             <span
+42:               
+<truncated 538 bytes>
+x items-center justify-center shrink-0 ${
+55:             isDark
+56:               ? 'bg-[#14271F] border-[#294338] text-[#39B8C4]'
+57:               : 'bg-[#D8DECFC0] border-[#CCD2C4] text-[#12382B]'
+58:           }`}
+59:         >
+60:           <Sprout className="w-5 h-5" />
+61:         </div>
+62:       </div>
+63: 
+64:       {/* 2. Failure Districts */}
+65:       <div
+66:         className={`p-3.5 rounded-xl border flex items-center justify-between transition-colors shadow-xs ${
+67:           isDark
+68:             ? 'bg-[#102019] border-[#294338] hover:border-[#D46A64]/40'
+69:             : 'bg-[#E2E6DC] border-[#CCD2C4] hover:border-[#DC2626]/40'
+70:         }`}
+71:       >
+72:         <div className="space-y-0.5">
+73:           <span
+74:             className={`text-[11px] font-medium block uppercase tracking-wider ${
+75:               isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'
+76:             }`}
+77:           >
+78:             Failure Districts
+79:           </span>
+80:           <div className="flex items-baseline gap-2">
+81:             <span
+82:               className={`text-2xl font-bold font-mono ${
+83:                 isDark ? 'text-[#F87171]' : 'text-[#DC2626]'
+84:               }`}
+85:             >
+86:               {historicalFailureCount}
+87:             </span>
+88:             <span
+89:               className={`text-[11px] font-bold font-mono ${
+90:                 isDark ? 'text-[#F87171]' : 'text-[#DC2626]'
+91:               }`}
+92:             >
+93:               {Math.round((historicalFailureCount / historicalTotalDistricts) * 100)}%
+94:             </span>
+95:           </div>
+96:         </div>
+97:         <div
+98:           className={`w-9 h-9 rounded-xl border flex items-center justify-center shrink-0 ${
+99:             isDark
+100:               ? 'bg-[#D46A64]/20 border-[#D46A64]/40 text-[#F87171]'
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:06:06+05:30
+Completed At: 2026-10-21T06:06:06+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/panels/KpiCards.tsx`
+Total Lines: 290
+Total Bytes: 10219
+Showing lines 101 to 290
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+101:               : 'bg-[#FEE2E2] border-[#FECACA] text-[#DC2626]'
+102:           }`}
+103:         >
+104:           <ShieldAlert className="w-5 h-5" />
+105:         </div>
+106:       </div>
+107: 
+108:       {/* 3. Resilient Districts */}
+109:       <div
+110:         className={`p-3.5 rounded-xl border flex items-center justify-between transition-colors shadow-xs ${
+111:           isDark
+112:             ? 'bg-[#102019] border-[#294338] hover:border-[#44A07A]/40'
+113:             : 'bg-[#E2E6DC] border-[#CCD2C4] hover:border-[#16A34A]/40'
+114:         }`}
+115:       >
+116:         <div className="space-y-0.5">
+117:           <span
+118:             className={`text-[11px] font-medium block uppercase tracking-wider ${
+119:               isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'
+120:             }`}
+121:           >
+122:             Resilient Districts
+123:           </span>
+124:           <div className="flex items-baseline gap-2">
+125:             <span
+126:               className={`text-2xl font-bold font-mono ${
+127:                 isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+128:               }`}
+129:             >
+130:               {historicalResilientCount}
+131:             </span>
+132:             <span
+133:               className={`text-[11px] font-bold font-mono ${
+134:                 isDark ? 'text-[#4ADE80]' : 'text-[#16A34A]'
+135:               }`}
+136:             >
+137:               {Math.round((historicalResilientCount / historicalTotalDistricts) * 100)}%
+138:            
+<truncated 4260 bytes>
+t-medium block uppercase tracking-wider ${
+243:               isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'
+244:             }`}
+245:           >
+246:             El Niño Index (ONI)
+247:           </span>
+248:           <div className="flex items-baseline gap-1.5">
+249:             <span
+250:               className={`text-xl font-bold font-mono ${
+251:                 isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+252:               }`}
+253:             >
+254:               {oniInfo
+255:                 ? `${oniInfo.meanEarlyWarningSstAnomaly > 0 ? '+' : ''}${oniInfo.meanEarlyWarningSstAnomaly.toFixed(1)}°C`
+256:                 : 'N/A'}
+257:             </span>
+258:           </div>
+259:           <span
+260:             className={`text-[10px] font-bold font-mono block ${
+261:               oniInfo?.elNinoIndicator === 1
+262:                 ? isDark
+263:                   ? 'text-[#F87171]'
+264:                   : 'text-[#DC2626]'
+265:                 : isDark
+266:                 ? 'text-[#4ADE80]'
+267:                 : 'text-[#16A34A]'
+268:             }`}
+269:           >
+270:             {oniInfo?.ensoPhase || 'Neutral'}
+271:           </span>
+272:         </div>
+273:         <div
+274:           className={`w-9 h-9 rounded-xl border flex items-center justify-center shrink-0 ${
+275:             oniInfo?.elNinoIndicator === 1
+276:               ? isDark
+277:                 ? 'bg-[#D46A64]/20 border-[#D46A64]/40 text-[#F87171]'
+278:                 : 'bg-[#FEE2E2] border-[#FECACA] text-[#DC2626]'
+279:               : isDark
+280:               ? 'bg-[#44A07A]/20 border-[#44A07A]/40 text-[#4ADE80]'
+281:               : 'bg-[#DCFCE7] border-[#BBF7D0] text-[#16A34A]'
+282:           }`}
+283:         >
+284:           <Thermometer className="w-5 h-5" />
+285:         </div>
+286:       </div>
+287:     </div>
+288:   );
+289: };
+290: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:06:14+05:30
+Completed At: 2026-10-21T06:06:15+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/panels/SeasonalClimateCard.tsx`
+Total Lines: 167
+Total Bytes: 6035
+Showing lines 1 to 100
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: import React from 'react';
+2: import { CloudRain, Thermometer, Sprout } from 'lucide-react';
+3: import { useDashboard } from '../../context/DashboardContext';
+4: import { useAppTheme } from '../../context/ThemeContext';
+5: 
+6: interface SeasonalClimateCardProps {
+7:   className?: string;
+8: }
+9: 
+10: export const SeasonalClimateCard: React.FC<SeasonalClimateCardProps> = ({ className = '' }) => {
+11:   const { cropYearStr, stateMeanRainfallMm, oniInfo, historicalTotalDistricts } = useDashboard();
+12:   const { isDark } = useAppTheme();
+13: 
+14:   return (
+15:     <div
+16:       className={`rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between shadow-xs transition-colors ${
+17:         isDark
+18:           ? 'bg-[#102019] border border-[#294338]'
+19:           : 'bg-[#E2E6DC] border border-[#CCD2C4]'
+20:       } ${className}`}
+21:     >
+22:       {/* 1. Header */}
+23:       <div
+24:         className={`flex items-center justify-between pb-2 border-b ${
+25:           isDark ? 'border-[#294338]' : 'border-[#CCD2C4]'
+26:         }`}
+27:       >
+28:         <span
+29:           className={`text-sm font-bold tracking-tight ${
+30:             isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+31:           }`}
+32:         >
+33:           Seasonal Climate Indices ({cropYearStr})
+34:         </span>
+35:         <span className={`text-xs font-mono ${isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'}`}>
+36:           NOAA CPC &amp; IMD Observations
+37:         </span>
+38:       </div>
+39: 
+40:       {/* 2.
+<truncated 861 bytes>
+  />
+58:             <span className="truncate">Rice Belt Rain</span>
+59:           </div>
+60:           <div
+61:             className={`text-xl sm:text-2xl font-extrabold font-mono mt-1 tracking-tight ${
+62:               isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+63:             }`}
+64:           >
+65:             {stateMeanRainfallMm !== null ? `${stateMeanRainfallMm} mm` : 'N/A'}
+66:           </div>
+67:           <div
+68:             className={`text-[11px] sm:text-xs font-mono leading-tight ${
+69:               isDark ? 'text-[#9BAFA4]' : 'text-[#718277]'
+70:             }`}
+71:           >
+72:             June–August Mean
+73:           </div>
+74:         </div>
+75: 
+76:         {/* Metric 2: El Niño (ONI) */}
+77:         <div
+78:           className={`p-3 sm:p-3.5 rounded-xl border flex flex-col justify-between transition-colors ${
+79:             isDark
+80:               ? 'bg-[#14271F] border-[#294338] hover:border-[#F87171]/40'
+81:               : 'bg-[#EAECE4] border-[#CCD2C4] hover:border-[#DC2626]/40'
+82:           }`}
+83:         >
+84:           <div
+85:             className={`flex items-center gap-1.5 text-xs font-semibold ${
+86:               isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'
+87:             }`}
+88:           >
+89:             <Thermometer
+90:               className={`w-4 h-4 shrink-0 ${isDark ? 'text-[#F87171]' : 'text-[#DC2626]'}`}
+91:             />
+92:             <span className="truncate">El Niño (ONI)</span>
+93:           </div>
+94:           <div
+95:             className={`text-xl sm:text-2xl font-extrabold font-mono mt-1 tracking-tight ${
+96:               isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+97:             }`}
+98:           >
+99:             {oniInfo
+100:               ? `${oniInfo.meanEarlyWarningSstAnomaly > 0 ? '+' : ''}${oniInfo.meanEarlyWarningSstAnomaly.toFixed(1)}°C`
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:06:21+05:30
+Completed At: 2026-10-21T06:06:21+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/charts/RainfallYieldChart.tsx`
+Total Lines: 185
+Total Bytes: 7135
+Showing lines 1 to 100
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: import React, { useMemo } from 'react';
+2: import { useDashboard } from '../../context/DashboardContext';
+3: import { useAppTheme } from '../../context/ThemeContext';
+4: 
+5: interface RainfallYieldChartProps {
+6:   className?: string;
+7:   title?: string;
+8: }
+9: 
+10: export const RainfallYieldChart: React.FC<RainfallYieldChartProps> = ({
+11:   className = '',
+12:   title,
+13: }) => {
+14:   const { selectedYear, setSelectedYear, availableYears, allYearMetrics, monitoredDistrictsForCrop, selectedCrop } = useDashboard();
+15:   const { isDark } = useAppTheme();
+16: 
+17:   const displayTitle = title || (
+18:     selectedCrop === 'ALL'
+19:       ? 'All Kharif Crops — Mean Rainfall & Yield'
+20:       : `${selectedCrop} Belt — Mean Rainfall & Yield`
+21:   );
+22: 
+23:   // Multi-year averages computed from allYearMetrics (dynamically filtered by crop)
+24:   const yearlyData = useMemo(() => {
+25:     return availableYears.map(yr => {
+26:       const yrMetrics = allYearMetrics[yr] || {};
+27:       const valid = monitoredDistrictsForCrop.map(d => yrMetrics[d.id]).filter(Boolean);
+28:       const withRain = valid.filter(m => m.rainfallMm !== null);
+29:       const withYield = valid.filter(m => m.yieldTonnesHa !== null);
+30: 
+31:       const avgRain = withRain.length > 0
+32:         ? Math.round(withRain.reduce((acc, m) => acc + (m.rainfallMm || 0), 0) / withRain.length)
+33:         : 0;
+34:       const avgYield = withYield.length > 0
+35:         ? Number((withYield.reduce((acc, m) => acc + (m
+<truncated 714 bytes>
+1. Header & Legend */}
+58:       <div
+59:         className={`flex items-center justify-between gap-2 pb-2 border-b ${
+60:           isDark ? 'border-[#294338]' : 'border-[#CCD2C4]'
+61:         }`}
+62:       >
+63:         <h3
+64:           className={`text-sm font-bold tracking-tight ${
+65:             isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+66:           }`}
+67:         >
+68:           {displayTitle}
+69:         </h3>
+70: 
+71:         {/* Legend */}
+72:         <div className="flex items-center gap-3 text-xs font-mono shrink-0">
+73:           <div className="flex items-center gap-1.5">
+74:             <span className="w-2.5 h-2 rounded-xs bg-[#0284C7]" />
+75:             <span className={`font-medium ${isDark ? 'text-[#38BDF8]' : 'text-[#0284C7]'}`}>
+76:               Avg Rain (mm)
+77:             </span>
+78:           </div>
+79:           <div className="flex items-center gap-1.5">
+80:             <span className="w-2 h-2 rounded-full bg-[#44A07A]" />
+81:             <span className={`font-medium ${isDark ? 'text-[#44A07A]' : 'text-[#16A34A]'}`}>
+82:               Avg Yield (t/ha)
+83:             </span>
+84:           </div>
+85:         </div>
+86:       </div>
+87: 
+88:       {/* 2. Scaled Horizontal Bar Chart filling available window */}
+89:       <div className="flex-1 flex flex-col justify-end py-2 min-h-[100px]">
+90:         <div
+91:           className={`flex-1 min-h-[90px] w-full flex items-end justify-between gap-1.5 sm:gap-2 px-1 border-b relative pb-1 ${
+92:             isDark ? 'border-[#294338]' : 'border-[#CCD2C4]'
+93:           }`}
+94:         >
+95:           {/* Subtle horizontal reference lines */}
+96:           <div
+97:             className={`absolute inset-x-0 top-0 border-b pointer-events-none ${
+98:               isDark ? 'border-[#294338]/60' : 'border-[#CCD2C4]/50'
+99:             }`}
+100:           />
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:06:26+05:30
+Completed At: 2026-10-21T06:06:26+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/charts/RainfallYieldChart.tsx`
+Total Lines: 185
+Total Bytes: 7135
+Showing lines 101 to 185
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+101:           <div
+102:             className={`absolute inset-x-0 top-1/2 border-b pointer-events-none ${
+103:               isDark ? 'border-[#294338]/40' : 'border-[#CCD2C4]/35'
+104:             }`}
+105:           />
+106: 
+107:           {yearlyData.map(item => {
+108:             const isCurrent = item.year === selectedYear;
+109:             const rainHeight = Math.min(100, Math.max(20, Math.round((item.rainfall / 1400) * 100)));
+110: 
+111:             return (
+112:               <div
+113:                 key={item.year}
+114:                 onClick={() => setSelectedYear(item.year)}
+115:                 className="flex-1 flex flex-col items-center h-full justify-end cursor-pointer group relative"
+116:                 title={`${item.year}: ${item.rainfall} mm rainfall · ${item.yieldVal} t/ha yield`}
+117:               >
+118:                 {/* Yield Value Badge on Top */}
+119:                 <span
+120:                   className={`text-[11px] sm:text-xs font-mono font-bold leading-none mb-1 transition-colors ${
+121:                     isCurrent
+122:                       ? isDark
+123:                         ? 'text-[#38BDF8]'
+124:                         : 'text-[#0284C7]'
+125:                       : isDark
+126:                       ? 'text-[#44A07A] group-hover:text-white'
+127:                       : 'text-[#16A34A] group-hover:text-[#16221B]'
+128:                   }`}
+129:                 >
+130:                   {item.yieldVal}t
+131:                 </span>
+132: 
+133: 
+<truncated 493 bytes>
+40:                         ? 'bg-[#0284C7]/45 group-hover:bg-[#0284C7]/80'
+141:                         : 'bg-[#0284C7]/65 group-hover:bg-[#0284C7]/90'
+142:                     }`}
+143:                     style={{ height: `${rainHeight}%` }}
+144:                   />
+145:                 </div>
+146: 
+147:                 {/* Year Label */}
+148:                 <span
+149:                   className={`text-[11px] sm:text-xs font-mono font-semibold mt-1 transition-colors ${
+150:                     isCurrent
+151:                       ? isDark
+152:                         ? 'text-[#38BDF8] font-bold'
+153:                         : 'text-[#0284C7] font-bold'
+154:                       : isDark
+155:                       ? 'text-[#9BAFA4] group-hover:text-white'
+156:                       : 'text-[#526458] group-hover:text-[#16221B]'
+157:                   }`}
+158:                 >
+159:                   {item.yearLabel}
+160:                 </span>
+161:               </div>
+162:             );
+163:           })}
+164:         </div>
+165:       </div>
+166: 
+167:       {/* 3. Bottom Status Row */}
+168:       <div
+169:         className={`flex items-center justify-between text-[10px] sm:text-[11px] font-mono pt-1.5 border-t ${
+170:           isDark ? 'border-[#294338] text-[#9BAFA4]' : 'border-[#CCD2C4] text-[#526458]'
+171:         }`}
+172:       >
+173:         <span>Cycles: 2015–2022</span>
+174:         <span className={isDark ? 'text-[#E5EEE8] font-medium' : 'text-[#16221B] font-medium'}>
+175:           Selected:{' '}
+176:           <strong className={isDark ? 'text-[#38BDF8]' : 'text-[#0284C7]'}>
+177:             {selectedYear}
+178:           </strong>{' '}
+179:           ({selectedData?.rainfall ?? 'N/A'} mm · {selectedData?.yieldVal ?? 'N/A'} t/ha)
+180:         </span>
+181:       </div>
+182:     </div>
+183:   );
+184: };
+185: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:06:34+05:30
+Completed At: 2026-10-21T06:06:35+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/common/YearSelect.tsx`
+Total Lines: 77
+Total Bytes: 2533
+Showing lines 1 to 60
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: import React from 'react';
+2: import { Calendar, ChevronDown } from 'lucide-react';
+3: import { useDashboard } from '../../context/DashboardContext';
+4: import { useAppTheme } from '../../context/ThemeContext';
+5: 
+6: interface YearSelectProps {
+7:   className?: string;
+8:   showIcon?: boolean;
+9:   years?: number[];
+10: }
+11: 
+12: export const YearSelect: React.FC<YearSelectProps> = ({
+13:   className = '',
+14:   showIcon = true,
+15:   years,
+16: }) => {
+17:   const { selectedYear, setSelectedYear, availableYears } = useDashboard();
+18:   const { isDark } = useAppTheme();
+19:   const displayYears = years && years.length > 0 ? years : availableYears;
+20: 
+21:   React.useEffect(() => {
+22:     if (years && years.length > 0 && !years.includes(selectedYear)) {
+23:       const fallbackYear = years.includes(2020) ? 2020 : years[years.length - 1];
+24:       setSelectedYear(fallbackYear);
+25:     }
+26:   }, [years, selectedYear, setSelectedYear]);
+27: 
+28:   return (
+29:     <div
+30:       className={`inline-flex items-center gap-2 rounded-xl px-3 py-1.5 transition-colors shadow-xs border ${
+31:         isDark
+32:           ? 'bg-[#14271F] border-[#294338] hover:border-[#39B8C4]'
+33:           : 'bg-white border-[#CCD2C4] hover:border-[#12382B]'
+34:       } ${className}`}
+35:     >
+36:       {showIcon && (
+37:         <Calendar
+38:           className={`w-3.5 h-3.5 shrink-0 ${isDark ? 'text-[#39B8C4]' : 'text-[#12382B]'}`}
+39:         />
+40:       )}
+41:       <div className="flex flex-col text-left">
+42:         <span
+43:           className={`text-[10px] uppercase font-mono leading-none ${
+44:             isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'
+45:           }`}
+46:         >
+47:           Kharif Year
+48:         </span>
+49:         <div className="relative flex items-center mt-0.5">
+50:           <select
+51:             value={selectedYear}
+52:             onChange={e => setSelectedYear(Number(e.target.value))}
+53:             className={`appearance-none bg-transparent font-mono font-bold text-xs pr-5 cursor-pointer focus:outline-hidden ${
+54:               isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+55:             }`}
+56:           >
+57:             {displayYears.map(yr => (
+58:               <option
+59:                 key={yr}
+60:                 value={yr}
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:06:39+05:30
+Completed At: 2026-10-21T06:06:39+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/common/CropSelect.tsx`
+Total Lines: 48
+Total Bytes: 1654
+Showing lines 1 to 48
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: import React from 'react';
+2: import { useDashboard } from '../../context/DashboardContext';
+3: import { useAppTheme } from '../../context/ThemeContext';
+4: import { SUPPORTED_KHARIF_CROPS, KharifCropType } from '../../data/authoritativeData';
+5: import { Sprout } from 'lucide-react';
+6: 
+7: interface CropSelectProps {
+8:   className?: string;
+9:   showIcon?: boolean;
+10: }
+11: 
+12: export const CropSelect: React.FC<CropSelectProps> = ({ className = '', showIcon = true }) => {
+13:   const { selectedCrop, setSelectedCrop } = useDashboard();
+14:   const { isDark } = useAppTheme();
+15: 
+16:   return (
+17:     <div className={`flex items-center gap-1.5 ${className}`}>
+18:       {showIcon && (
+19:         <Sprout
+20:           className={`w-3.5 h-3.5 shrink-0 ${isDark ? 'text-[#39B8C4]' : 'text-[#12382B]'}`}
+21:         />
+22:       )}
+23:       <div className="relative">
+24:         <select
+25:           value={selectedCrop}
+26:           onChange={e => setSelectedCrop(e.target.value as KharifCropType)}
+27:           className={`border rounded-xl px-2.5 py-2 text-xs font-mono cursor-pointer focus:outline-hidden transition-colors shadow-xs ${
+28:             isDark
+29:               ? 'bg-[#14271F] border-[#294338] text-[#E5EEE8] hover:border-[#39B8C4]'
+30:               : 'bg-white border-[#CCD2C4] text-[#16221B] hover:border-[#12382B]'
+31:           }`}
+32:           title="Filter by Kharif Crop"
+33:         >
+34:           {SUPPORTED_KHARIF_CROPS.map(c => (
+35:             <option
+36:               key={c.id}
+37:               value={c.id}
+38:               className={isDark ? 'bg-[#14271F] text-[#E5EEE8]' : 'bg-white text-[#16221B]'}
+39:             >
+40:               {c.icon} {c.label}
+41:             </option>
+42:           ))}
+43:         </select>
+44:       </div>
+45:     </div>
+46:   );
+47: };
+48: 
+The above content shows the entire, complete file contents of the requested file.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:07:12+05:30
+Completed At: 2026-10-21T06:07:15+05:30
+The following changes were made by the replace_file_content tool to: c:\Users\USMAN\Desktop\Usman ELNINO Project\ElninoPBLProject-main\ElninoPBLProject-main\src\index.css. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -28,7 +28,7 @@
+ }
+ 
+ /* ========================================================================= */
+-/* Comprehensive Polished Dark Mode Overrides (Apple Pro Obsidian Aesthetic) */
++/* Comprehensive Original Dark Mode Overrides (Obsidian & Emerald Aesthetic) */
+ /* ========================================================================= */
+ 
+ /* Canvases & Outer Backgrounds */
+@@ -40,8 +40,8 @@
+ 
+ /* Sidebar Canvas */
+ .dark .bg-\[\#E0E4D8\] {
+-  background-color: #060E0B !important;
+-  border-color: #152A1F !important;
++  background-color: #08120E !important;
++  border-color: #13241C !important;
+ }
+ 
+ /* Primary Card Surfaces - Rich Obsidian Glass */
+@@ -48,5 +48,5 @@
+-  background-color: #0B1712 !important;
+-  border-color: #1A3427 !important;
++  background-color: #091410 !important;
++  border-color: #14261F !important;
+   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px -1px rgba(0, 0, 0, 0.4);
+ }
+ 
+@@ -56,8 +56,8 @@
+ .dark .bg-\[\#D0D6C6\],
+ .dark .bg-\[\#D4D9CC\],
+ .dark .bg-\[\#D9DECFA0\] {
+-  background-color: #0E2018 !important;
+-  border-color: #1B382B !important;
++  background-color: #060D0A !important;
++  border-color: #14261F !important;
+ }
+ 
+ /* Inner metric boxes & nested tiles */
+@@ -64,5 +64,5 @@
+-  background-color: #07120D !important;
+-  border-color: #14281E !important;
++  background-color: #060D0A !important;
++  border-color: #14261F !important;
+ }
+ 
+ /* White Tiles, Popovers, Table Containers, Inputs & Opacity Badges */
+@@ -70,8 +70,8 @@
+ .dark .bg-white\/90,
+ .dark .bg-white\/80,
+ .dark .bg-white\/70 {
+-  background-color: #102019 !important;
+-  border-color: #294338 !important;
++  background-color: #060D0A !imp
+<truncated 3242 bytes>
+E0F2FE\] {
+-  background-color: rgba(2, 132, 199, 0.18) !important;
+-  border-color: rgba(2, 132, 199, 0.40) !important;
++  background-color: #0E1F29 !important;
++  border-color: #1A3A4D !important;
+   color: #38BDF8 !important;
+ }
+ 
+@@ -192,10 +192,10 @@
+-  background-color: rgba(79, 70, 229, 0.18) !important;
+-  border-color: rgba(79, 70, 229, 0.40) !important;
+-  color: #818CF8 !important;
++  background-color: #0D241B !important;
++  border-color: #173D2C !important;
++  color: #22C55E !important;
+ }
+ 
+ .dark .bg-\[\#FEF3C7\] {
+-  background-color: rgba(217, 119, 6, 0.18) !important;
++  background-color: rgba(217, 119, 6, 0.20) !important;
+   border-color: rgba(217, 119, 6, 0.40) !important;
+   color: #FBBF24 !important;
+ }
+@@ -202,7 +202,7 @@
+ .dark .bg-\[\#D8DECFC0\] {
+-  background-color: rgba(34, 197, 94, 0.15) !important;
+-  border-color: rgba(34, 197, 94, 0.35) !important;
+-  color: #4ADE80 !important;
++  background-color: #0D241B !important;
++  border-color: #173D2C !important;
++  color: #22C55E !important;
+ }
+ 
+ /* Form selects & options */
+@@ -209,9 +209,9 @@
+-  background-color: #07120D !important;
+-  color: #FFFFFF !important;
+-  border-color: #172F23 !important;
++  background-color: #060D0A !important;
++  color: #FFFFFF !important;
++  border-color: #14261F !important;
+ }
+ .dark select option {
+-  background-color: #07120D !important;
++  background-color: #060D0A !important;
+   color: #FFFFFF !important;
+ }
+ 
+@@ -236,11 +236,11 @@
+ }
+ .dark::-webkit-scrollbar-thumb,
+ .dark ::-webkit-scrollbar-thumb {
+-  background: #172F23 !important;
++  background: #14261F !important;
+ }
+ .dark::-webkit-scrollbar-thumb:hover,
+ .dark ::-webkit-scrollbar-thumb:hover {
+-  background: #224332 !important;
++  background: #1E3A2F !important;
+ }
+ 
+ .scrollbar-none::-webkit-scrollbar {
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:07:26+05:30
+Completed At: 2026-10-21T06:07:26+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/map/DistrictChoropleth.tsx`
+Total Lines: 465
+Total Bytes: 17051
+Showing lines 150 to 295
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+150: 
+151:   // Dynamic Fill matching user reference:
+152:   // Resilient: #44A07A (soft jade seafoam)
+153:   // Failure: #D46A64 (soft coral terracotta)
+154:   // Non-monitored: #525D67 (slate charcoal)
+155:   const getDistrictFill = useCallback(
+156:     (distId: string): string => {
+157:       const isMonitored = monitoredDistrictsForCrop.some(d => d.id === distId);
+158:       if (!isMonitored) return '#525D67';
+159: 
+160:       if (mode === 'model_pred') {
+161:         const pred = inSeasonModelPredictions[distId];
+162:         if (!pred || pred.predictionStatus !== 'READY') return '#525D67';
+163:         if (pred.riskCategory === 'High' || (pred.failureProbability !== null && pred.failureProbability >= 0.5)) {
+164:           return '#D46A64';
+165:         }
+166:         if (pred.riskCategory === 'Moderate') {
+167:           return '#E59858';
+168:         }
+169:         return '#44A07A';
+170:       }
+171: 
+172:       if (mode === 'rainfall') {
+173:         const m = currentYearMetrics[distId];
+174:         if (!m || m.rainfallMm === null) return '#525D67';
+175:         if (m.rainfallMm < 700) return '#D46A64';
+176:         if (m.rainfallMm < 1100) return '#E59858';
+177:         return '#3895C8';
+178:       }
+179: 
+180:       if (mode === 'yield') {
+181:         const m = currentYearMetrics[distId];
+182:         if (!m || m.yieldTonnesHa === null) return '#525D67';
+183:         if (m.yieldTonnesHa < 1.0) return '#D46A64';
+184:         if (m.yieldTonnesHa < 1.8) return '#E59858';
+185: 
+<truncated 2853 bytes>
+&gt;10% Deficit)</span>
+254:           </div>
+255:           <div className="flex items-center gap-1.5">
+256:             <span className="w-2.5 h-2.5 rounded-full bg-[#44A07A]" />
+257:             <span className="text-[#44A07A] font-mono text-[10px] font-semibold">Resilient (&le;10%)</span>
+258:           </div>
+259:           <div className="flex items-center gap-1.5">
+260:             <span className="w-2.5 h-2.5 rounded-full bg-[#525D67]" />
+261:             <span
+262:               className={`font-mono text-[10px] font-semibold ${
+263:                 isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'
+264:               }`}
+265:             >
+266:               Non-Target District
+267:             </span>
+268:           </div>
+269:           <div
+270:             className={`flex items-center gap-1.5 pl-2 border-l ${
+271:               isDark ? 'border-[#294338]' : 'border-[#CCD2C4]'
+272:             }`}
+273:           >
+274:             <button
+275:               type="button"
+276:               onClick={() => setShowLabels(!showLabels)}
+277:               className={`px-2 py-0.5 rounded text-[10px] font-mono cursor-pointer transition-colors border ${
+278:                 showLabels
+279:                   ? isDark
+280:                     ? 'bg-[#14271F] text-[#39B8C4] border-[#39B8C4]'
+281:                     : 'bg-[#12382B] text-white border-[#12382B]'
+282:                   : isDark
+283:                   ? 'bg-[#102019] border-[#294338] text-[#9BAFA4] hover:text-[#E5EEE8]'
+284:                   : 'bg-white border-[#CCD2C4] text-[#526458] hover:text-[#16221B]'
+285:               }`}
+286:             >
+287:               Labels: {showLabels ? 'ON' : 'OFF'}
+288:             </button>
+289:           </div>
+290:         </div>
+291:       </div>
+292: 
+293:       {/* Map Canvas */}
+294:       <div
+295:         ref={containerRef}
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:07:31+05:30
+Completed At: 2026-10-21T06:07:31+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/map/DistrictChoropleth.tsx`
+Total Lines: 465
+Total Bytes: 17051
+Showing lines 296 to 465
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+296:         onMouseDown={handleMouseDown}
+297:         className={`w-full relative flex items-center justify-center py-1 px-1 overflow-hidden rounded-xl my-1.5 select-none ${heightClass} ${
+298:           isDragging ? 'cursor-grabbing' : 'cursor-grab'
+299:         }`}
+300:         style={{
+301:           backgroundColor: '#07100D',
+302:         }}
+303:       >
+304:         {/* Controls Overlay */}
+305:         <MapControls
+306:           zoomLevel={zoomLevel}
+307:           onZoomIn={handleZoomIn}
+308:           onZoomOut={handleZoomOut}
+309:           onReset={handleReset}
+310:         />
+311: 
+312:         {/* Vector SVG using Real GeoJSON Boundaries with Satellite Terrain Layer */}
+313:         <svg
+314:           viewBox={MAHARASHTRA_GEOJSON_VIEWBOX}
+315:           preserveAspectRatio="xMidYMid meet"
+316:           className="w-full h-full max-h-[560px] select-none relative z-10 pointer-events-auto"
+317:           style={{
+318:             overflow: 'visible',
+319:             transform: `translate(${panOffset.x}px, ${panOffset.y}px) scale(${zoomLevel})`,
+320:             transformOrigin: 'center center',
+321:             transition: isDragging || isWheeling ? 'none' : 'transform 200ms cubic-bezier(0.16, 1, 0.3, 1)',
+322:             willChange: isDragging || isWheeling ? 'transform' : 'auto',
+323:           }}
+324:         >
+325:           {/* SVG Definitions for Selection Glow */}
+326:           <defs>
+327:             <filter id="glass-selection-glow" x="-25%" y="-25%" width="150
+<truncated 4183 bytes>
+nts-none" style={{ pointerEvents: 'none' }}>
+422:             {MAHARASHTRA_GEOJSON_POLYGONS.map(poly => {
+423:               const isSelected = selectedDistrictId === poly.id;
+424:               const isHovered = hoveredDistrictId === poly.id;
+425: 
+426:               // Only show label if selected, hovered, or labels toggled ON (or zoomed in)
+427:               if (!isSelected && !isHovered && !showLabels && zoomLevel < 1.6) {
+428:                 return null;
+429:               }
+430: 
+431:               const labelInfo = getDistrictLabel(poly, zoomLevel);
+432:               if (!labelInfo) return null;
+433: 
+434:               return (
+435:                 <text
+436:                   key={`label-${poly.id}`}
+437:                   x={labelInfo.x}
+438:                   y={labelInfo.y}
+439:                   fill={isSelected ? '#38BDF8' : '#FFFFFF'}
+440:                   fontSize={isSelected ? '13' : isHovered ? '12.5' : '10.5'}
+441:                   fontWeight={isSelected || isHovered ? '800' : '600'}
+442:                   fontFamily="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+443:                   textAnchor="middle"
+444:                   dominantBaseline="middle"
+445:                   pointerEvents="none"
+446:                   stroke="#05120C"
+447:                   strokeWidth="2.8"
+448:                   strokeLinejoin="round"
+449:                   strokeLinecap="round"
+450:                   style={{
+451:                     paintOrder: 'stroke fill',
+452:                     filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.8))',
+453:                   }}
+454:                 >
+455:                   {labelInfo.text}
+456:                 </text>
+457:               );
+458:             })}
+459:           </g>
+460:         </svg>
+461:       </div>
+462:     </div>
+463:   );
+464: };
+465: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:08:28+05:30
+Completed At: 2026-10-21T06:08:31+05:30
+The following changes were made by the replace_file_content tool to: c:\Users\USMAN\Desktop\Usman ELNINO Project\ElninoPBLProject-main\ElninoPBLProject-main\src\components\map\DistrictChoropleth.tsx. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -148,25 +148,26 @@
+     };
+   }, []);
+ 
+-  // Dynamic Fill matching user reference:
+-  // Resilient: #44A07A (soft jade seafoam)
+-  // Failure: #D46A64 (soft coral terracotta)
+-  // Non-monitored: #525D67 (slate charcoal)
++  const { isDark } = useAppTheme();
++
++  // Dynamic Fill matching theme:
++  // Dark mode (original 674a9b7): Failure: #EF4444, Resilient: #10B981, Non-monitored: #14221C
++  // Light mode: Failure: #D46A64, Resilient: #44A07A, Non-monitored: #525D67
+   const getDistrictFill = useCallback(
+     (distId: string): string => {
+       const isMonitored = monitoredDistrictsForCrop.some(d => d.id === distId);
+-      if (!isMonitored) return '#525D67';
++      if (!isMonitored) return isDark ? '#14221C' : '#525D67';
+ 
+       if (mode === 'model_pred') {
+         const pred = inSeasonModelPredictions[distId];
+-        if (!pred || pred.predictionStatus !== 'READY') return '#525D67';
++        if (!pred || pred.predictionStatus !== 'READY') return isDark ? '#14221C' : '#525D67';
+         if (pred.riskCategory === 'High' || (pred.failureProbability !== null && pred.failureProbability >= 0.5)) {
+-          return '#D46A64';
++          return isDark ? '#EF4444' : '#D46A64';
+         }
+         if (pred.riskCategory === 'Moderate') {
+-          return '#E59858';
+-        }
+-        return '#44A07A';
++          return isDark ? '#F59E0B' : '#E59858';
++        }
++        return isDark ? '#10B981' : '#44A07A';
+       }
+ 
+       if (mode === 'rainfall') {
+@@ -173,7 +173,7 @@
+-        if (!m || m.rainfallMm === null) return '#525D67';
+-        if (m.rainfallMm < 700) return '#D46A64';
+-        if (m.rainfallMm < 1100
+<truncated 10114 bytes>
+     strokeWidth = isDark ? 2.0 : 1.6;
+               }
+ 
+               return (
+@@ -402,7 +402,7 @@
+             })}
+           </g>
+ 
+-          {/* Layer 2: District Text Labels (Shown on Selected / Hovered, or all when toggled ON) */}
++          {/* Layer 2: District Text Labels */}
+           <g className="map-labels-layer pointer-events-none" style={{ pointerEvents: 'none' }}>
+             {MAHARASHTRA_GEOJSON_POLYGONS.map(poly => {
+               const isSelected = selectedDistrictId === poly.id;
+@@ -420,9 +420,9 @@
+                   key={`label-${poly.id}`}
+                   x={labelInfo.x}
+                   y={labelInfo.y}
+-                  fill={isSelected ? '#38BDF8' : '#FFFFFF'}
+-                  fontSize={isSelected ? '13' : isHovered ? '12.5' : '10.5'}
+-                  fontWeight={isSelected || isHovered ? '800' : '600'}
++                  fill={isSelected ? '#38BDF8' : isHovered ? (isDark ? '#4ADE80' : '#FFFFFF') : '#FFFFFF'}
++                  fontSize={isSelected ? '14' : isHovered ? '13' : '11.5'}
++                  fontWeight={isSelected || isHovered ? '800' : '700'}
+                   fontFamily="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+                   textAnchor="middle"
+                   dominantBaseline="middle"
+@@ -429,5 +429,5 @@
+                   stroke="#05120C"
+-                  strokeWidth="2.8"
++                  strokeWidth={isDark ? '3.2' : '2.8'}
+                   strokeLinejoin="round"
+                   strokeLinecap="round"
+                   style={{
+@@ -434,4 +434,4 @@
+-                    filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.8))',
++                    filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.85))',
+                   }}
+                 >
+                   {labelInfo.text}
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:08:37+05:30
+Completed At: 2026-10-21T06:08:37+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/map/MapControls.tsx`
+Total Lines: 131
+Total Bytes: 5316
+Showing lines 1 to 131
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: import React from 'react';
+2: import { ZoomIn, ZoomOut, RotateCcw } from 'lucide-react';
+3: import { useAppTheme } from '../../context/ThemeContext';
+4: 
+5: interface MapControlsProps {
+6:   zoomLevel: number;
+7:   onZoomIn: () => void;
+8:   onZoomOut: () => void;
+9:   onReset: () => void;
+10: }
+11: 
+12: export const MapControls: React.FC<MapControlsProps> = ({
+13:   zoomLevel,
+14:   onZoomIn,
+15:   onZoomOut,
+16:   onReset,
+17: }) => {
+18:   const { isDark } = useAppTheme();
+19:   const scaledKm = Math.max(10, Math.round(200 / zoomLevel));
+20: 
+21:   return (
+22:     <>
+23:       {/* Top-Left Zoom & Reset Buttons */}
+24:       <div className="absolute top-3.5 left-3.5 flex flex-col gap-1.5 z-20">
+25:         <button
+26:           type="button"
+27:           onClick={onZoomIn}
+28:           className={`w-8 h-8 rounded-lg border flex items-center justify-center transition-colors cursor-pointer shadow-md ${
+29:             isDark
+30:               ? 'bg-[#102019]/95 hover:bg-[#14271F] border-[#294338] text-[#E5EEE8]'
+31:               : 'bg-white/95 hover:bg-white border-[#CCD2C4] text-[#16221B]'
+32:           }`}
+33:           title="Zoom In"
+34:         >
+35:           <ZoomIn className={`w-4 h-4 ${isDark ? 'text-[#39B8C4]' : 'text-[#12382B]'}`} />
+36:         </button>
+37:         <button
+38:           type="button"
+39:           onClick={onZoomOut}
+40:           className={`w-8 h-8 rounded-lg border flex items-center justify-center transition-colors cursor-pointer shadow-md ${
+41:            
+<truncated 2376 bytes>
+er flex flex-col items-center justify-center shadow-md ${
+89:             isDark
+90:               ? 'bg-[#102019]/95 border-[#294338]'
+91:               : 'bg-white/95 border-[#CCD2C4]'
+92:           }`}
+93:         >
+94:           <span className={`text-[11px] font-bold font-mono leading-none ${isDark ? 'text-[#E5EEE8]' : 'text-[#12382B]'}`}>
+95:             N
+96:           </span>
+97:           <span className={`text-[9px] leading-none ${isDark ? 'text-[#39B8C4]' : 'text-[#12382B]'}`}>
+98:             ▲
+99:           </span>
+100:         </div>
+101:       </div>
+102: 
+103:       {/* Bottom-Left Metric Scale Bar */}
+104:       <div
+105:         className={`absolute bottom-3.5 left-3.5 z-20 pointer-events-none select-none flex flex-col gap-1 font-mono text-[9px] p-1.5 rounded-lg border shadow-xs ${
+106:           isDark
+107:             ? 'bg-[#102019]/95 border-[#294338] text-[#9BAFA4]'
+108:             : 'bg-white/95 border-[#CCD2C4] text-[#526458]'
+109:         }`}
+110:       >
+111:         <div className="flex justify-between w-28 text-[9px] font-semibold">
+112:           <span>0</span>
+113:           <span>{Math.round(scaledKm / 4)}</span>
+114:           <span>{Math.round(scaledKm / 2)}</span>
+115:           <span>{scaledKm} km</span>
+116:         </div>
+117:         <div
+118:           className={`h-1.5 w-28 flex rounded-xs overflow-hidden border ${
+119:             isDark ? 'bg-[#14271F] border-[#294338]' : 'bg-[#CCD2C4] border-[#B0B8A6]'
+120:           }`}
+121:         >
+122:           <div className={`w-1/4 h-full ${isDark ? 'bg-[#39B8C4]' : 'bg-[#12382B]'}`}></div>
+123:           <div className={`w-1/4 h-full ${isDark ? 'bg-[#102019]' : 'bg-white'}`}></div>
+124:           <div className={`w-1/4 h-full ${isDark ? 'bg-[#39B8C4]' : 'bg-[#12382B]'}`}></div>
+125:           <div className={`w-1/4 h-full ${isDark ? 'bg-[#102019]' : 'bg-white'}`}></div>
+126:         </div>
+127:       </div>
+128:     </>
+129:   );
+130: };
+131: 
+The above content shows the entire, complete file contents of the requested file.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:09:00+05:30
+Completed At: 2026-10-21T06:09:02+05:30
+The following changes were made by the replace_file_content tool to: c:\Users\USMAN\Desktop\Usman ELNINO Project\ElninoPBLProject-main\ElninoPBLProject-main\src\components\map\MapControls.tsx. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -27,7 +27,7 @@
+           onClick={onZoomIn}
+           className={`w-8 h-8 rounded-lg border flex items-center justify-center transition-colors cursor-pointer shadow-md ${
+             isDark
+-              ? 'bg-[#102019]/95 hover:bg-[#14271F] border-[#294338] text-[#E5EEE8]'
++              ? 'bg-[#0C1B15]/90 hover:bg-[#122A20] border-[#163327] text-white'
+               : 'bg-white/95 hover:bg-white border-[#CCD2C4] text-[#16221B]'
+           }`}
+           title="Zoom In"
+@@ -34,4 +34,4 @@
+-          <ZoomIn className={`w-4 h-4 ${isDark ? 'text-[#39B8C4]' : 'text-[#12382B]'}`} />
++          <ZoomIn className={`w-4 h-4 ${isDark ? 'text-[#A4B8AF]' : 'text-[#12382B]'}`} />
+         </button>
+         <button
+           type="button"
+@@ -38,6 +38,6 @@
+           className={`w-8 h-8 rounded-lg border flex items-center justify-center transition-colors cursor-pointer shadow-md ${
+             isDark
+-              ? 'bg-[#102019]/95 hover:bg-[#14271F] border-[#294338] text-[#E5EEE8]'
++              ? 'bg-[#0C1B15]/90 hover:bg-[#122A20] border-[#163327] text-white'
+               : 'bg-white/95 hover:bg-white border-[#CCD2C4] text-[#16221B]'
+           }`}
+           title="Zoom Out"
+@@ -44,4 +44,4 @@
+-          <ZoomOut className={`w-4 h-4 ${isDark ? 'text-[#39B8C4]' : 'text-[#12382B]'}`} />
++          <ZoomOut className={`w-4 h-4 ${isDark ? 'text-[#A4B8AF]' : 'text-[#12382B]'}`} />
+         </button>
+         <button
+           type="button"
+@@ -48,6 +48,6 @@
+           className={`w-8 h-8 rounded-lg border flex items-center justify-center transition-colors cursor-pointer shadow-md ${
+             isDark
+-              ? 
+<truncated 2577 bytes>
+#12382B]'}`}>
++          <span className={`text-[9px] leading-none ${isDark ? 'text-[#22C55E]' : 'text-[#12382B]'}`}>
+             ▲
+           </span>
+         </div>
+@@ -95,7 +95,7 @@
+       <div
+         className={`absolute bottom-3.5 left-3.5 z-20 pointer-events-none select-none flex flex-col gap-1 font-mono text-[9px] p-1.5 rounded-lg border shadow-xs ${
+           isDark
+-            ? 'bg-[#102019]/95 border-[#294338] text-[#9BAFA4]'
++            ? 'bg-[#0C1B15]/80 border-[#163327] text-[#7A9187]'
+             : 'bg-white/95 border-[#CCD2C4] text-[#526458]'
+         }`}
+       >
+@@ -105,14 +105,14 @@
+           <span>{scaledKm} km</span>
+         </div>
+         <div
+-          className={`h-1.5 w-28 flex rounded-xs overflow-hidden border ${
+-            isDark ? 'bg-[#14271F] border-[#294338]' : 'bg-[#CCD2C4] border-[#B0B8A6]'
+-          }`}
+-        >
+-          <div className={`w-1/4 h-full ${isDark ? 'bg-[#39B8C4]' : 'bg-[#12382B]'}`}></div>
+-          <div className={`w-1/4 h-full ${isDark ? 'bg-[#102019]' : 'bg-white'}`}></div>
+-          <div className={`w-1/4 h-full ${isDark ? 'bg-[#39B8C4]' : 'bg-[#12382B]'}`}></div>
+-          <div className={`w-1/4 h-full ${isDark ? 'bg-[#102019]' : 'bg-white'}`}></div>
++          className={`h-1 w-28 flex border ${
++            isDark ? 'bg-[#14261F] border-[#213F33]' : 'bg-[#CCD2C4] border-[#B0B8A6]'
++          }`}
++        >
++          <div className={`w-1/4 h-full ${isDark ? 'bg-white' : 'bg-[#12382B]'}`}></div>
++          <div className={`w-1/4 h-full ${isDark ? 'bg-[#14261F]' : 'bg-white'}`}></div>
++          <div className={`w-1/4 h-full ${isDark ? 'bg-white' : 'bg-[#12382B]'}`}></div>
++          <div className={`w-1/4 h-full ${isDark ? 'bg-[#14261F]' : 'bg-white'}`}></div>
+         </div>
+       </div>
+     </>
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:09:42+05:30
+Completed At: 2026-10-21T06:09:44+05:30
+The following changes were made by the replace_file_content tool to: c:\Users\USMAN\Desktop\Usman ELNINO Project\ElninoPBLProject-main\ElninoPBLProject-main\src\components\panels\KpiCards.tsx. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -25,14 +25,14 @@
+       <div
+         className={`p-3.5 rounded-xl border flex items-center justify-between transition-colors shadow-xs ${
+           isDark
+-            ? 'bg-[#102019] border-[#294338] hover:border-[#39B8C4]/40'
+-            : 'bg-[#E2E6DC] border-[#CCD2C4] hover:border-[#12382B]/40'
+-        }`}
+-      >
+-        <div className="space-y-0.5">
+-          <span
+-            className={`text-[11px] font-medium block uppercase tracking-wider ${
+-              isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'
++            ? 'bg-[#091410] border-[#14261F] hover:border-[#1E3A2F]'
++            : 'bg-[#E2E6DC] border-[#CCD2C4] hover:border-[#12382B]/40'
++        }`}
++      >
++        <div className="space-y-0.5">
++          <span
++            className={`text-[11px] font-medium block uppercase tracking-wider ${
++              isDark ? 'text-[#7A9187]' : 'text-[#526458]'
+             }`}
+           >
+             Total Districts
+@@ -39,7 +39,7 @@
+           <div className="flex items-baseline gap-2">
+             <span
+               className={`text-2xl font-bold font-mono ${
+-                isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
++                isDark ? 'text-white' : 'text-[#16221B]'
+               }`}
+             >
+               {historicalTotalDistricts}
+@@ -46,4 +46,4 @@
+-            <span className={`text-[10px] font-mono ${isDark ? 'text-[#9BAFA4]' : 'text-[#718277]'}`}>
++            <span className={`text-[10px] font-mono ${isDark ? 'text-[#7A9187]' : 'text-[#718277]'}`}>
+               {selectedCrop === 'ALL' ? 'Monitored' : `${selectedCrop}`}
+             </span>
+           </div>
+@@ -50,7 +50,7
+<truncated 8198 bytes>
+order-[#14261F] hover:border-[#1E3A2F]'
++            : 'bg-[#E2E6DC] border-[#CCD2C4] hover:border-[#12382B]/40'
++        }`}
++      >
++        <div className="space-y-0.5">
++          <span
++            className={`text-[11px] font-medium block uppercase tracking-wider ${
++              isDark ? 'text-[#7A9187]' : 'text-[#526458]'
+             }`}
+           >
+             El Niño Index (ONI)
+@@ -224,7 +224,7 @@
+           <div className="flex items-baseline gap-1.5">
+             <span
+               className={`text-xl font-bold font-mono ${
+-                isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
++                isDark ? 'text-white' : 'text-[#16221B]'
+               }`}
+             >
+               {oniInfo
+@@ -235,10 +235,10 @@
+             className={`text-[10px] font-bold font-mono block ${
+               oniInfo?.elNinoIndicator === 1
+                 ? isDark
+-                  ? 'text-[#F87171]'
++                  ? 'text-[#D93838]'
+                   : 'text-[#DC2626]'
+                 : isDark
+-                ? 'text-[#4ADE80]'
++                ? 'text-[#22C55E]'
+                 : 'text-[#16A34A]'
+             }`}
+           >
+@@ -248,10 +248,10 @@
+           className={`w-9 h-9 rounded-xl border flex items-center justify-center shrink-0 ${
+             oniInfo?.elNinoIndicator === 1
+               ? isDark
+-                ? 'bg-[#D46A64]/20 border-[#D46A64]/40 text-[#F87171]'
++                ? 'bg-[#281313] border-[#4D1D1D] text-[#D93838]'
+                 : 'bg-[#FEE2E2] border-[#FECACA] text-[#DC2626]'
+               : isDark
+-              ? 'bg-[#44A07A]/20 border-[#44A07A]/40 text-[#4ADE80]'
++              ? 'bg-[#0D241B] border-[#173D2C] text-[#22C55E]'
+               : 'bg-[#DCFCE7] border-[#BBF7D0] text-[#16A34A]'
+           }`}
+         >
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:09:59+05:30
+Completed At: 2026-10-21T06:09:59+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/panels/DistrictDetailPanel.tsx`
+Total Lines: 769
+Total Bytes: 29195
+Showing lines 95 to 250
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+95:     <div
+96:       className={`rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between shadow-xs transition-colors space-y-3 ${
+97:         isDark
+98:           ? 'bg-[#102019] border border-[#294338]'
+99:           : 'bg-[#E2E6DC] border border-[#CCD2C4]'
+100:       } ${className}`}
+101:     >
+102:       {/* 1. Header with Crop & Year Pickers */}
+103:       <div
+104:         className={`flex flex-col gap-2 pb-2.5 border-b ${
+105:           isDark ? 'border-[#294338]' : 'border-[#CCD2C4]'
+106:         }`}
+107:       >
+108:         <div
+109:           className={`flex items-center justify-between text-xs font-mono font-medium ${
+110:             isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'
+111:           }`}
+112:         >
+113:           <span>Kharif {cropYearStr} &bull; Ground Truth Analysis</span>
+114:           <span>&gt; District Insights</span>
+115:         </div>
+116: 
+117:         <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+118:           {/* Crop Selector */}
+119:           <CropSelect showIcon={false} />
+120: 
+121:           {/* Kharif Year Selector */}
+122:           <YearSelect />
+123: 
+124:           {/* District Dropdown Selector */}
+125:           <div className="relative">
+126:             <select
+127:               value={selectedDistrictId}
+128:               onChange={e => setSelectedDistrictId(e.target.value)}
+129:               className={`rounded-xl px-2.5 py-2 text-xs font-mono cursor-pointer focus:outline-hidden transition-colors shadow-xs $
+<truncated 3326 bytes>
+8:               isFailure
+209:                 ? isDark
+210:                   ? 'bg-[#D46A64]/20 text-[#F87171] border-[#D46A64]/40'
+211:                   : 'bg-[#FEE2E2] text-[#DC2626] border-[#FECACA]'
+212:                 : isDark
+213:                 ? 'bg-[#44A07A]/20 text-[#4ADE80] border-[#44A07A]/40'
+214:                 : 'bg-[#DCFCE7] text-[#16A34A] border-[#BBF7D0]'
+215:             }`}
+216:           >
+217:             {isFailure ? <AlertCircle className="w-3 h-3" /> : <CheckCircle2 className="w-3 h-3" />}
+218:             <span>{isFailure ? 'DES FAILURE' : 'DES RESILIENT'}</span>
+219:           </span>
+220:         )}
+221:       </div>
+222: 
+223:       {/* 3. 2x2 Metric Grid */}
+224:       <div className="grid grid-cols-2 gap-2">
+225:         {/* Metric 1: Observed Yield */}
+226:         <div
+227:           className={`p-2.5 rounded-xl border ${
+228:             isDark ? 'bg-[#14271F] border-[#294338]' : 'bg-[#EAECE4] border-[#CCD2C4]'
+229:           }`}
+230:         >
+231:           <span
+232:             className={`text-[9px] uppercase font-mono block ${
+233:               isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'
+234:             }`}
+235:           >
+236:             Observed Yield
+237:           </span>
+238:           <span
+239:             className={`text-base font-bold font-mono block mt-0.5 ${
+240:               isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+241:             }`}
+242:           >
+243:             {selectedDistrictMetric?.yieldTonnesHa !== null && selectedDistrictMetric?.yieldTonnesHa !== undefined
+244:               ? `${selectedDistrictMetric.yieldTonnesHa.toFixed(2)} t/ha`
+245:               : 'N/A'}
+246:           </span>
+247:           <span
+248:             className={`text-[9.5px] font-mono block ${
+249:               isDark ? 'text-[#9BAFA4]' : 'text-[#718277]'
+250:             }`}
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:10:04+05:30
+Completed At: 2026-10-21T06:10:04+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/panels/DistrictDetailPanel.tsx`
+Total Lines: 769
+Total Bytes: 29195
+Showing lines 251 to 450
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+251:           >
+252:             Baseline: {selectedDistrictMetric?.baselineYieldTonnesHa?.toFixed(2) ?? '—'} t
+253:           </span>
+254:         </div>
+255: 
+256:         {/* Metric 2: Yield Departure */}
+257:         <div
+258:           className={`p-2.5 rounded-xl border ${
+259:             isDark ? 'bg-[#14271F] border-[#294338]' : 'bg-[#EAECE4] border-[#CCD2C4]'
+260:           }`}
+261:         >
+262:           <span
+263:             className={`text-[9px] uppercase font-mono block ${
+264:               isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'
+265:             }`}
+266:           >
+267:             Yield Departure
+268:           </span>
+269:           <span
+270:             className={`text-base font-bold font-mono block mt-0.5 ${
+271:               isFailure
+272:                 ? isDark
+273:                   ? 'text-[#F87171]'
+274:                   : 'text-[#DC2626]'
+275:                 : isDark
+276:                 ? 'text-[#4ADE80]'
+277:                 : 'text-[#16A34A]'
+278:             }`}
+279:           >
+280:             {selectedDistrictMetric?.yieldAnomalyPct !== null && selectedDistrictMetric?.yieldAnomalyPct !== undefined
+281:               ? `${selectedDistrictMetric.yieldAnomalyPct > 0 ? '+' : ''}${selectedDistrictMetric.yieldAnomalyPct.toFixed(1)}%`
+282:               : 'N/A'}
+283:           </span>
+284:           <span
+285:             className={`text-[9.5px] font-mono block ${
+286:               isDark ? 'text-[#9BAFA4]' : 'text-[#718277]'
+287:      
+<truncated 4708 bytes>
+ningSstAnomaly > 0 ? '+' : ''}${oniInfo.meanEarlyWarningSstAnomaly.toFixed(1)}°C`
+406:                 : 'N/A'}
+407:             </span>
+408:           </div>
+409: 
+410:           {/* Cropland Area Badge */}
+411:           <div
+412:             className={`p-2 rounded-xl border flex flex-col justify-between ${
+413:               isDark ? 'bg-[#14271F] border-[#294338]' : 'bg-[#EAECE4] border-[#CCD2C4]'
+414:             }`}
+415:           >
+416:             <div className={`flex items-center gap-1 ${isDark ? 'text-[#39B8C4]' : 'text-[#12382B]'}`}>
+417:               <Sprout className="w-3 h-3" />
+418:               <span className="text-[9px] font-bold">Cropland</span>
+419:             </div>
+420:             <span
+421:               className={`text-[11px] font-mono mt-0.5 font-bold ${
+422:                 isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+423:               }`}
+424:             >
+425:               {(selectedDistrictInfo.normalKharifAreaHa / 1000).toFixed(0)}k ha
+426:             </span>
+427:           </div>
+428:         </div>
+429:       </div>
+430: 
+431:       {/* 5. District Comparison Table */}
+432:       <div
+433:         className={`space-y-1.5 pt-1.5 border-t ${
+434:           isDark ? 'border-[#294338]' : 'border-[#CCD2C4]'
+435:         }`}
+436:       >
+437:         <div className="flex items-center justify-between">
+438:           <span
+439:             className={`text-[11px] font-bold ${
+440:               isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+441:             }`}
+442:           >
+443:             District Comparison
+444:           </span>
+445:           <div className="relative w-32">
+446:             <Search
+447:               className={`w-3 h-3 absolute left-2 top-1/2 -translate-y-1/2 ${
+448:                 isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'
+449:               }`}
+450:             />
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:10:08+05:30
+Completed At: 2026-10-21T06:10:08+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/panels/DistrictDetailPanel.tsx`
+Total Lines: 769
+Total Bytes: 29195
+Showing lines 451 to 660
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+451:             <input
+452:               type="text"
+453:               value={comparisonSearch}
+454:               onChange={e => setComparisonSearch(e.target.value)}
+455:               placeholder="Search..."
+456:               className={`w-full pl-6 pr-2 py-0.5 rounded-lg text-[10px] focus:outline-hidden font-mono ${
+457:                 isDark
+458:                   ? 'bg-[#14271F] border border-[#294338] text-[#E5EEE8] placeholder:text-[#526458]'
+459:                   : 'bg-white border border-[#CCD2C4] text-[#16221B] placeholder:text-[#889B8F]'
+460:               }`}
+461:             />
+462:           </div>
+463:         </div>
+464: 
+465:         <div
+466:           className={`overflow-x-auto max-h-36 rounded-xl border ${
+467:             isDark ? 'border-[#294338] bg-[#102019]' : 'border-[#CCD2C4] bg-white'
+468:           }`}
+469:         >
+470:           <table className="w-full text-left text-[10px] font-mono">
+471:             <thead
+472:               className={`sticky top-0 border-b ${
+473:                 isDark
+474:                   ? 'bg-[#14271F] text-[#9BAFA4] border-[#294338]'
+475:                   : 'bg-[#EAECE4] text-[#526458] border-[#CCD2C4]'
+476:               }`}
+477:             >
+478:               <tr>
+479:                 <th className="py-1.5 px-2 font-sans font-semibold">District</th>
+480:                 <th className="py-1.5 px-1.5 text-right">Yield</th>
+481:                 <th className="py-1.5 px-1.5 text-right">Baseline</th>
+482:           
+<truncated 6312 bytes>
+   <span
+618:                     className={`font-semibold ${
+619:                       isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+620:                     }`}
+621:                   >
+622:                     {regionName} ({stats.total})
+623:                   </span>
+624:                   <span>
+625:                     {stats.failurePct}% Fail / {stats.resilientPct}% Resilient
+626:                   </span>
+627:                 </div>
+628:                 {/* Clean Theme-Aware Status Bar Track */}
+629:                 <div
+630:                   className={`h-2 w-full rounded-full flex overflow-hidden border ${
+631:                     isDark
+632:                       ? 'bg-[#14271F] border-[#294338]'
+633:                       : 'bg-[#CCD2C4] border-[#B8BFB0]'
+634:                   }`}
+635:                 >
+636:                   <div
+637:                     className="h-full bg-[#D46A64] transition-all duration-300"
+638:                     style={{ width: `${stats.failurePct}%` }}
+639:                     title={`${regionName} Fail: ${stats.failurePct}%`}
+640:                   />
+641:                   <div
+642:                     className="h-full bg-[#44A07A] transition-all duration-300"
+643:                     style={{ width: `${stats.resilientPct}%` }}
+644:                     title={`${regionName} Resilient: ${stats.resilientPct}%`}
+645:                   />
+646:                 </div>
+647:               </div>
+648:             );
+649:           })}
+650:         </div>
+651:       </div>
+652: 
+653:       {/* 7. Secondary Collapsibles */}
+654:       <div
+655:         className={`space-y-1.5 pt-1.5 border-t ${
+656:           isDark ? 'border-[#294338]' : 'border-[#CCD2C4]'
+657:         }`}
+658:       >
+659:         <Collapsible
+660:           title={`Historical Multi-Year Trend (${selectedDistrictInfo.name})`}
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:10:12+05:30
+Completed At: 2026-10-21T06:10:12+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/panels/DistrictDetailPanel.tsx`
+Total Lines: 769
+Total Bytes: 29195
+Showing lines 660 to 769
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+660:           title={`Historical Multi-Year Trend (${selectedDistrictInfo.name})`}
+661:           icon={<TrendingUp className="w-3.5 h-3.5" />}
+662:           defaultOpen={false}
+663:         >
+664:           <div className="space-y-1 max-h-32 overflow-y-auto pr-1">
+665:             <div
+666:               className={`grid grid-cols-4 gap-1 text-[9px] font-mono pb-1 border-b ${
+667:                 isDark ? 'border-[#294338] text-[#9BAFA4]' : 'border-[#CCD2C4] text-[#526458]'
+668:               }`}
+669:             >
+670:               <span>Year</span>
+671:               <span className="text-right">Yield</span>
+672:               <span className="text-right">Rain</span>
+673:               <span className="text-right">Status</span>
+674:             </div>
+675:             {districtHistoricalSeries.map(row => (
+676:               <div
+677:                 key={row.year}
+678:                 className={`grid grid-cols-4 gap-1 text-[10px] font-mono py-0.5 ${
+679:                   row.year === selectedYear
+680:                     ? isDark
+681:                       ? 'text-[#39B8C4] font-bold bg-[#39B8C4]/15 px-1 rounded'
+682:                       : 'text-[#0284C7] font-bold bg-[#0284C7]/10 px-1 rounded'
+683:                     : isDark
+684:                     ? 'text-[#9BAFA4]'
+685:                     : 'text-[#526458]'
+686:                 }`}
+687:               >
+688:                 <span>{row.year}</span>
+689:                 <span className="text-right">
+690:               
+<truncated 1664 bytes>
+xt-[#526458]'}>Tensor Dimensions:</span>
+729:               <span className={`font-bold ${isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'}`}>
+730:                 {TENSOR_SPEC.spatialTensorShape}
+731:               </span>
+732:             </div>
+733:             <div
+734:               className={`flex justify-between py-0.5 border-b ${
+735:                 isDark ? 'border-[#294338]' : 'border-[#CCD2C4]/60'
+736:               }`}
+737:             >
+738:               <span className={isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'}>Temporal Windows:</span>
+739:               <span className={isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'}>
+740:                 6 bi-weekly (Jun 1 – Aug 31)
+741:               </span>
+742:             </div>
+743:             <div
+744:               className={`flex justify-between py-0.5 border-b ${
+745:                 isDark ? 'border-[#294338]' : 'border-[#CCD2C4]/60'
+746:               }`}
+747:             >
+748:               <span className={isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'}>Channels (8 Bands):</span>
+749:               <span className={isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'}>
+750:                 B2, B3, B4, B8, B11, B12, NDVI, NDWI
+751:               </span>
+752:             </div>
+753:             <div
+754:               className={`flex justify-between py-0.5 border-b ${
+755:                 isDark ? 'border-[#294338]' : 'border-[#CCD2C4]/60'
+756:               }`}
+757:             >
+758:               <span className={isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'}>Parcel Purity Mask:</span>
+759:               <span className={isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'}>
+760:                 ESA WorldCover 10m Class 40
+761:               </span>
+762:             </div>
+763:           </div>
+764:         </Collapsible>
+765:       </div>
+766:     </div>
+767:   );
+768: };
+769: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:11:34+05:30
+Completed At: 2026-10-21T06:11:36+05:30
+The following changes were made by the replace_file_content tool to: c:\Users\USMAN\Desktop\Usman ELNINO Project\ElninoPBLProject-main\ElninoPBLProject-main\src\components\panels\DistrictDetailPanel.tsx. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -95,7 +95,7 @@
+     <div
+       className={`rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between shadow-xs transition-colors space-y-3 ${
+         isDark
+-          ? 'bg-[#102019] border border-[#294338]'
++          ? 'bg-[#091410] border border-[#14261F]'
+           : 'bg-[#E2E6DC] border border-[#CCD2C4]'
+       } ${className}`}
+     >
+@@ -102,6 +102,6 @@
+       <div
+         className={`flex flex-col gap-2 pb-2.5 border-b ${
+-          isDark ? 'border-[#294338]' : 'border-[#CCD2C4]'
++          isDark ? 'border-[#14261F]' : 'border-[#CCD2C4]'
+         }`}
+       >
+         <div
+@@ -108,4 +108,4 @@
+-            isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'
++            isDark ? 'text-[#7A9187]' : 'text-[#526458]'
+           }`}
+         >
+           <span>Kharif {cropYearStr} &bull; Ground Truth Analysis</span>
+@@ -125,7 +125,7 @@
+               onChange={e => setSelectedDistrictId(e.target.value)}
+               className={`rounded-xl px-2.5 py-2 text-xs font-mono cursor-pointer focus:outline-hidden transition-colors shadow-xs ${
+                 isDark
+-                  ? 'bg-[#14271F] border border-[#294338] text-[#E5EEE8] hover:border-[#39B8C4]'
++                  ? 'bg-[#060D0A] border border-[#14261F] text-white hover:border-[#22C55E]'
+                   : 'bg-white border border-[#CCD2C4] text-[#16221B] hover:border-[#12382B]'
+               }`}
+             >
+@@ -132,7 +132,7 @@
+                 <option
+                   key={d.id}
+                   value={d.id}
+-                  className={isDark ? 'bg-[#14271F] text-[#E5EEE8]' : 'bg-white text-[#16221B]'}
++                  className={isDark
+<truncated 25048 bytes>
+           }`}
++            >
++              <span className={isDark ? 'text-[#7A9187]' : 'text-[#526458]'}>Temporal Windows:</span>
++              <span className={isDark ? 'text-white' : 'text-[#16221B]'}>
+                 6 bi-weekly (Jun 1 – Aug 31)
+               </span>
+             </div>
+@@ -686,9 +686,9 @@
+               className={`flex justify-between py-0.5 border-b ${
+-                isDark ? 'border-[#294338]' : 'border-[#CCD2C4]/60'
+-              }`}
+-            >
+-              <span className={isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'}>Channels (8 Bands):</span>
+-              <span className={isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'}>
++                isDark ? 'border-[#14261F]/60' : 'border-[#CCD2C4]/60'
++              }`}
++            >
++              <span className={isDark ? 'text-[#7A9187]' : 'text-[#526458]'}>Channels (8 Bands):</span>
++              <span className={isDark ? 'text-white' : 'text-[#16221B]'}>
+                 B2, B3, B4, B8, B11, B12, NDVI, NDWI
+               </span>
+             </div>
+@@ -695,9 +695,9 @@
+               className={`flex justify-between py-0.5 border-b ${
+-                isDark ? 'border-[#294338]' : 'border-[#CCD2C4]/60'
+-              }`}
+-            >
+-              <span className={isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'}>Parcel Purity Mask:</span>
+-              <span className={isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'}>
++                isDark ? 'border-[#14261F]/60' : 'border-[#CCD2C4]/60'
++              }`}
++            >
++              <span className={isDark ? 'text-[#7A9187]' : 'text-[#526458]'}>Parcel Purity Mask:</span>
++              <span className={isDark ? 'text-white' : 'text-[#16221B]'}>
+                 ESA WorldCover 10m Class 40
+               </span>
+             </div>
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:11:40+05:30
+Completed At: 2026-10-21T06:11:40+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/panels/SeasonalClimateCard.tsx`
+Total Lines: 167
+Total Bytes: 6035
+Showing lines 15 to 167
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+15:     <div
+16:       className={`rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between shadow-xs transition-colors ${
+17:         isDark
+18:           ? 'bg-[#102019] border border-[#294338]'
+19:           : 'bg-[#E2E6DC] border border-[#CCD2C4]'
+20:       } ${className}`}
+21:     >
+22:       {/* 1. Header */}
+23:       <div
+24:         className={`flex items-center justify-between pb-2 border-b ${
+25:           isDark ? 'border-[#294338]' : 'border-[#CCD2C4]'
+26:         }`}
+27:       >
+28:         <span
+29:           className={`text-sm font-bold tracking-tight ${
+30:             isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+31:           }`}
+32:         >
+33:           Seasonal Climate Indices ({cropYearStr})
+34:         </span>
+35:         <span className={`text-xs font-mono ${isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'}`}>
+36:           NOAA CPC &amp; IMD Observations
+37:         </span>
+38:       </div>
+39: 
+40:       {/* 2. Scaled 3 Metric Tiles filling available window */}
+41:       <div className="flex-1 grid grid-cols-3 gap-2.5 my-2 min-h-[100px] items-stretch">
+42:         {/* Metric 1: Rice Belt Rain */}
+43:         <div
+44:           className={`p-3 sm:p-3.5 rounded-xl border flex flex-col justify-between transition-colors ${
+45:             isDark
+46:               ? 'bg-[#14271F] border-[#294338] hover:border-[#38BDF8]/40'
+47:               : 'bg-[#EAECE4] border-[#CCD2C4] hover:border-[#0284C7]/40'
+48:           }`}
+49:         >
+50:           <div
+51:             cl
+<truncated 2827 bytes>
+p-3.5 rounded-xl border flex flex-col justify-between transition-colors ${
+121:             isDark
+122:               ? 'bg-[#14271F] border-[#294338] hover:border-[#39B8C4]/40'
+123:               : 'bg-[#EAECE4] border-[#CCD2C4] hover:border-[#12382B]/40'
+124:           }`}
+125:         >
+126:           <div
+127:             className={`flex items-center gap-1.5 text-xs font-semibold ${
+128:               isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'
+129:             }`}
+130:           >
+131:             <Sprout
+132:               className={`w-4 h-4 shrink-0 ${isDark ? 'text-[#39B8C4]' : 'text-[#12382B]'}`}
+133:             />
+134:             <span className="truncate">Spatial Scope</span>
+135:           </div>
+136:           <div
+137:             className={`text-xl sm:text-2xl font-extrabold font-mono mt-1 tracking-tight ${
+138:               isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+139:             }`}
+140:           >
+141:             {historicalTotalDistricts} Dist.
+142:           </div>
+143:           <div
+144:             className={`text-[11px] sm:text-xs font-mono leading-tight ${
+145:               isDark ? 'text-[#9BAFA4]' : 'text-[#718277]'
+146:             }`}
+147:           >
+148:             Primary Rice Belt
+149:           </div>
+150:         </div>
+151:       </div>
+152: 
+153:       {/* 3. Bottom Meta Row */}
+154:       <div
+155:         className={`flex items-center justify-between text-[10px] sm:text-[11px] font-mono pt-1.5 border-t ${
+156:           isDark ? 'border-[#294338] text-[#9BAFA4]' : 'border-[#CCD2C4] text-[#526458]'
+157:         }`}
+158:       >
+159:         <span>IMD Gridded: 0.25°</span>
+160:         <span className={isDark ? 'text-[#647C6F]' : 'text-[#718277]'}>
+161:           Pacific SST Niño 3.4 Early Warning
+162:         </span>
+163:       </div>
+164:     </div>
+165:   );
+166: };
+167: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:12:02+05:30
+Completed At: 2026-10-21T06:12:05+05:30
+The following changes were made by the replace_file_content tool to: c:\Users\USMAN\Desktop\Usman ELNINO Project\ElninoPBLProject-main\ElninoPBLProject-main\src\components\panels\SeasonalClimateCard.tsx. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -15,7 +15,7 @@
+     <div
+       className={`rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between shadow-xs transition-colors ${
+         isDark
+-          ? 'bg-[#102019] border border-[#294338]'
++          ? 'bg-[#091410] border border-[#14261F]'
+           : 'bg-[#E2E6DC] border border-[#CCD2C4]'
+       } ${className}`}
+     >
+@@ -22,6 +22,6 @@
+       <div
+         className={`flex items-center justify-between pb-2 border-b ${
+-          isDark ? 'border-[#294338]' : 'border-[#CCD2C4]'
++          isDark ? 'border-[#14261F]/60' : 'border-[#CCD2C4]'
+         }`}
+       >
+         <span
+@@ -28,4 +28,4 @@
+-            isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
++            isDark ? 'text-white' : 'text-[#16221B]'
+           }`}
+         >
+           Seasonal Climate Indices ({cropYearStr})
+@@ -32,4 +32,4 @@
+-        <span className={`text-xs font-mono ${isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'}`}>
++        <span className={`text-xs font-mono ${isDark ? 'text-[#80978E]' : 'text-[#526458]'}`}>
+           NOAA CPC &amp; IMD Observations
+         </span>
+       </div>
+@@ -39,7 +39,7 @@
+         <div
+           className={`p-3 sm:p-3.5 rounded-xl border flex flex-col justify-between transition-colors ${
+             isDark
+-              ? 'bg-[#14271F] border-[#294338] hover:border-[#38BDF8]/40'
++              ? 'bg-[#060D0A] border-[#14261F] hover:border-[#38BDF8]/40'
+               : 'bg-[#EAECE4] border-[#CCD2C4] hover:border-[#0284C7]/40'
+           }`}
+         >
+@@ -46,5 +46,5 @@
+             className={`flex items-center gap-1.5 text-xs font-semibold ${
+-              isDark ? 'text-[#9BAFA4]' : 'tex
+<truncated 2890 bytes>
+     >
+@@ -114,9 +114,9 @@
+             className={`flex items-center gap-1.5 text-xs font-semibold ${
+-              isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'
++              isDark ? 'text-[#A4B8AF]' : 'text-[#526458]'
+             }`}
+           >
+             <Sprout
+-              className={`w-4 h-4 shrink-0 ${isDark ? 'text-[#39B8C4]' : 'text-[#12382B]'}`}
++              className={`w-4 h-4 shrink-0 ${isDark ? 'text-[#22C55E]' : 'text-[#12382B]'}`}
+             />
+             <span className="truncate">Spatial Scope</span>
+           </div>
+@@ -123,5 +123,5 @@
+             className={`text-xl sm:text-2xl font-extrabold font-mono mt-1 tracking-tight ${
+-              isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
++              isDark ? 'text-white' : 'text-[#16221B]'
+             }`}
+           >
+             {historicalTotalDistricts} Dist.
+@@ -128,6 +128,6 @@
+           <div
+             className={`text-[11px] sm:text-xs font-mono leading-tight ${
+-              isDark ? 'text-[#9BAFA4]' : 'text-[#718277]'
++              isDark ? 'text-[#7A9187]' : 'text-[#718277]'
+             }`}
+           >
+             Primary Rice Belt
+@@ -137,11 +137,11 @@
+       {/* 3. Bottom Meta Row */}
+       <div
+         className={`flex items-center justify-between text-[10px] sm:text-[11px] font-mono pt-1.5 border-t ${
+-          isDark ? 'border-[#294338] text-[#9BAFA4]' : 'border-[#CCD2C4] text-[#526458]'
++          isDark ? 'border-[#14261F]/60 text-[#7A9187]' : 'border-[#CCD2C4] text-[#526458]'
+         }`}
+       >
+         <span>IMD Gridded: 0.25°</span>
+-        <span className={isDark ? 'text-[#647C6F]' : 'text-[#718277]'}>
++        <span className={isDark ? 'text-[#849B90]' : 'text-[#718277]'}>
+           Pacific SST Niño 3.4 Early Warning
+         </span>
+       </div>
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:12:09+05:30
+Completed At: 2026-10-21T06:12:09+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/charts/RainfallYieldChart.tsx`
+Total Lines: 185
+Total Bytes: 7135
+Showing lines 50 to 184
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+50:     <div
+51:       className={`rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between shadow-xs transition-colors ${
+52:         isDark
+53:           ? 'bg-[#102019] border border-[#294338]'
+54:           : 'bg-[#E2E6DC] border border-[#CCD2C4]'
+55:       } ${className}`}
+56:     >
+57:       {/* 1. Header & Legend */}
+58:       <div
+59:         className={`flex items-center justify-between gap-2 pb-2 border-b ${
+60:           isDark ? 'border-[#294338]' : 'border-[#CCD2C4]'
+61:         }`}
+62:       >
+63:         <h3
+64:           className={`text-sm font-bold tracking-tight ${
+65:             isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+66:           }`}
+67:         >
+68:           {displayTitle}
+69:         </h3>
+70: 
+71:         {/* Legend */}
+72:         <div className="flex items-center gap-3 text-xs font-mono shrink-0">
+73:           <div className="flex items-center gap-1.5">
+74:             <span className="w-2.5 h-2 rounded-xs bg-[#0284C7]" />
+75:             <span className={`font-medium ${isDark ? 'text-[#38BDF8]' : 'text-[#0284C7]'}`}>
+76:               Avg Rain (mm)
+77:             </span>
+78:           </div>
+79:           <div className="flex items-center gap-1.5">
+80:             <span className="w-2 h-2 rounded-full bg-[#44A07A]" />
+81:             <span className={`font-medium ${isDark ? 'text-[#44A07A]' : 'text-[#16A34A]'}`}>
+82:               Avg Yield (t/ha)
+83:             </span>
+84:           </div>
+85:         </div>
+86:       </div>
+87: 
+88:       {/* 2. Sc
+<truncated 2649 bytes>
+Dark
+140:                         ? 'bg-[#0284C7]/45 group-hover:bg-[#0284C7]/80'
+141:                         : 'bg-[#0284C7]/65 group-hover:bg-[#0284C7]/90'
+142:                     }`}
+143:                     style={{ height: `${rainHeight}%` }}
+144:                   />
+145:                 </div>
+146: 
+147:                 {/* Year Label */}
+148:                 <span
+149:                   className={`text-[11px] sm:text-xs font-mono font-semibold mt-1 transition-colors ${
+150:                     isCurrent
+151:                       ? isDark
+152:                         ? 'text-[#38BDF8] font-bold'
+153:                         : 'text-[#0284C7] font-bold'
+154:                       : isDark
+155:                       ? 'text-[#9BAFA4] group-hover:text-white'
+156:                       : 'text-[#526458] group-hover:text-[#16221B]'
+157:                   }`}
+158:                 >
+159:                   {item.yearLabel}
+160:                 </span>
+161:               </div>
+162:             );
+163:           })}
+164:         </div>
+165:       </div>
+166: 
+167:       {/* 3. Bottom Status Row */}
+168:       <div
+169:         className={`flex items-center justify-between text-[10px] sm:text-[11px] font-mono pt-1.5 border-t ${
+170:           isDark ? 'border-[#294338] text-[#9BAFA4]' : 'border-[#CCD2C4] text-[#526458]'
+171:         }`}
+172:       >
+173:         <span>Cycles: 2015–2022</span>
+174:         <span className={isDark ? 'text-[#E5EEE8] font-medium' : 'text-[#16221B] font-medium'}>
+175:           Selected:{' '}
+176:           <strong className={isDark ? 'text-[#38BDF8]' : 'text-[#0284C7]'}>
+177:             {selectedYear}
+178:           </strong>{' '}
+179:           ({selectedData?.rainfall ?? 'N/A'} mm · {selectedData?.yieldVal ?? 'N/A'} t/ha)
+180:         </span>
+181:       </div>
+182:     </div>
+183:   );
+184: };
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:12:31+05:30
+Completed At: 2026-10-21T06:12:33+05:30
+The following changes were made by the replace_file_content tool to: c:\Users\USMAN\Desktop\Usman ELNINO Project\ElninoPBLProject-main\ElninoPBLProject-main\src\components\charts\RainfallYieldChart.tsx. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -50,7 +50,7 @@
+     <div
+       className={`rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between shadow-xs transition-colors ${
+         isDark
+-          ? 'bg-[#102019] border border-[#294338]'
++          ? 'bg-[#091410] border border-[#14261F]'
+           : 'bg-[#E2E6DC] border border-[#CCD2C4]'
+       } ${className}`}
+     >
+@@ -57,6 +57,6 @@
+       <div
+         className={`flex items-center justify-between gap-2 pb-2 border-b ${
+-          isDark ? 'border-[#294338]' : 'border-[#CCD2C4]'
++          isDark ? 'border-[#14261F]/60' : 'border-[#CCD2C4]'
+         }`}
+       >
+         <h3
+@@ -63,4 +63,4 @@
+-            isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
++            isDark ? 'text-white' : 'text-[#16221B]'
+           }`}
+         >
+           {displayTitle}
+@@ -68,7 +68,7 @@
+         {/* Legend */}
+         <div className="flex items-center gap-3 text-xs font-mono shrink-0">
+           <div className="flex items-center gap-1.5">
+-            <span className="w-2.5 h-2 rounded-xs bg-[#0284C7]" />
++            <span className="w-2.5 h-2 rounded-xs bg-[#38BDF8]" />
+             <span className={`font-medium ${isDark ? 'text-[#38BDF8]' : 'text-[#0284C7]'}`}>
+               Avg Rain (mm)
+             </span>
+@@ -75,6 +75,6 @@
+           <div className="flex items-center gap-1.5">
+-            <span className="w-2 h-2 rounded-full bg-[#44A07A]" />
+-            <span className={`font-medium ${isDark ? 'text-[#44A07A]' : 'text-[#16A34A]'}`}>
++            <span className={`w-2 h-2 rounded-full ${isDark ? 'bg-[#10B981]' : 'bg-[#44A07A]'}`} />
++            <span className={`font-medium ${isDark ? 'text-[#22C
+<truncated 2049 bytes>
+] shadow-[0_0_12px_rgba(56,189,248,0.45)]'
+                         : isDark
+-                        ? 'bg-[#0284C7]/45 group-hover:bg-[#0284C7]/80'
++                        ? 'bg-[#0284C7]/55 group-hover:bg-[#0284C7]/85'
+                         : 'bg-[#0284C7]/65 group-hover:bg-[#0284C7]/90'
+                     }`}
+                     style={{ height: `${rainHeight}%` }}
+@@ -138,11 +138,9 @@
+                 <span
+                   className={`text-[11px] sm:text-xs font-mono font-semibold mt-1 transition-colors ${
+                     isCurrent
+-                      ? isDark
+-                        ? 'text-[#38BDF8] font-bold'
+-                        : 'text-[#0284C7] font-bold'
+-                      : isDark
+-                      ? 'text-[#9BAFA4] group-hover:text-white'
++                      ? 'text-[#38BDF8] font-bold'
++                      : isDark
++                      ? 'text-[#7A9187] group-hover:text-white'
+                       : 'text-[#526458] group-hover:text-[#16221B]'
+                   }`}
+                 >
+@@ -156,11 +156,11 @@
+       {/* 3. Bottom Status Row */}
+       <div
+         className={`flex items-center justify-between text-[10px] sm:text-[11px] font-mono pt-1.5 border-t ${
+-          isDark ? 'border-[#294338] text-[#9BAFA4]' : 'border-[#CCD2C4] text-[#526458]'
++          isDark ? 'border-[#14261F]/60 text-[#7A9187]' : 'border-[#CCD2C4] text-[#526458]'
+         }`}
+       >
+         <span>Cycles: 2015–2022</span>
+-        <span className={isDark ? 'text-[#E5EEE8] font-medium' : 'text-[#16221B] font-medium'}>
++        <span className={isDark ? 'text-white font-medium' : 'text-[#16221B] font-medium'}>
+           Selected:{' '}
+           <strong className={isDark ? 'text-[#38BDF8]' : 'text-[#0284C7]'}>
+             {selectedYear}
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:12:41+05:30
+Completed At: 2026-10-21T06:12:41+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/pages/OverviewPage.tsx`
+Total Lines: 105
+Total Bytes: 4409
+Showing lines 50 to 105
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+50:     link.click();
+51:     URL.revokeObjectURL(url);
+52:   };
+53: 
+54:   return (
+55:     <div className={`space-y-3.5 w-full ${isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'}`}>
+56:       {/* 1. Page Header with Title */}
+57:       <div
+58:         className={`flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b ${
+59:           isDark ? 'border-[#294338]' : 'border-[#CCD2C4]'
+60:         }`}
+61:       >
+62:         <div>
+63:           <h1
+64:             className={`text-xl sm:text-2xl font-bold tracking-tight font-serif ${
+65:               isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+66:             }`}
+67:           >
+68:             Maharashtra District Risk &amp; Historical Intelligence
+69:           </h1>
+70:           <p className={`text-xs mt-0.5 font-medium ${isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'}`}>
+71:             Spatiotemporal CNN-LSTM Framework for All-Kharif Crop Failure Prediction using Satellite Imagery and IMD Data
+72:           </p>
+73:         </div>
+74:       </div>
+75: 
+76:       {/* 2. Full-Width 6-Card KPI Row */}
+77:       <KpiCards />
+78: 
+79:       {/* 3. Central Grid: Left Column (Map + Bottom Row) vs Right Column (District Insights) */}
+80:       <div className="grid grid-cols-1 lg:grid-cols-12 gap-3.5 items-stretch">
+81:         {/* Left Column (8 cols): Map + Bottom Equal 2-Card Row */}
+82:         <div className="lg:col-span-8 flex flex-col gap-3.5">
+83:           {/* Main Maharashtra Map Card with Expansive Vertical Room */}
+84:           <DistrictChoropleth
+85:             mode="historical"
+86:             title={`Observed Crop Failure Ground Truth — Kharif ${cropYearStr} (${selectedCrop === 'ALL' ? 'All Crops' : selectedCrop})`}
+87:             heightClass="h-[490px] sm:h-[530px] xl:h-[560px]"
+88:           />
+89: 
+90:           {/* Bottom Row under Map: Equal 50/50 Split with Identical Height */}
+91:           <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 items-stretch flex-1">
+92:             <RainfallYieldChart className="h-full" />
+93:             <SeasonalClimateCard className="h-full" />
+94:           </div>
+95:         </div>
+96: 
+97:         {/* Right Column (4 cols): District Insights Panel with Year & District selectors */}
+98:         <div className="lg:col-span-4 flex flex-col">
+99:           <DistrictDetailPanel className="h-full" onDownloadCsv={handleDownloadCsv} />
+100:         </div>
+101:       </div>
+102:     </div>
+103:   );
+104: };
+105: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:12:49+05:30
+Completed At: 2026-10-21T06:12:52+05:30
+The following changes were made by the replace_file_content tool to: c:\Users\USMAN\Desktop\Usman ELNINO Project\ElninoPBLProject-main\ElninoPBLProject-main\src\pages\OverviewPage.tsx. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -52,11 +52,11 @@
+   };
+ 
+   return (
+-    <div className={`space-y-3.5 w-full ${isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'}`}>
++    <div className={`space-y-3.5 w-full ${isDark ? 'text-white' : 'text-[#16221B]'}`}>
+       {/* 1. Page Header with Title */}
+       <div
+         className={`flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b ${
+-          isDark ? 'border-[#294338]' : 'border-[#CCD2C4]'
++          isDark ? 'border-[#14261F]' : 'border-[#CCD2C4]'
+         }`}
+       >
+         <div>
+@@ -63,5 +63,5 @@
+-            className={`text-xl sm:text-2xl font-bold tracking-tight font-serif ${
+-              isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
++            className={`text-xl sm:text-2xl font-bold tracking-tight ${
++              isDark ? 'text-white' : 'text-[#16221B]'
+             }`}
+           >
+             Maharashtra District Risk &amp; Historical Intelligence
+@@ -68,4 +68,4 @@
+-          <p className={`text-xs mt-0.5 font-medium ${isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'}`}>
++          <p className={`text-xs mt-0.5 font-medium ${isDark ? 'text-[#80978E]' : 'text-[#526458]'}`}>
+             Spatiotemporal CNN-LSTM Framework for All-Kharif Crop Failure Prediction using Satellite Imagery and IMD Data
+           </p>
+         </div>
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:12:56+05:30
+Completed At: 2026-10-21T06:12:57+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/App.tsx`
+Total Lines: 121
+Total Bytes: 5722
+Showing lines 60 to 110
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+60:           <HomePage onLaunchDashboard={handleLaunchDashboard} />
+61:         ) : (
+62:           <div className="min-h-screen bg-[#EAECE4] text-[#16221B] flex flex-col lg:flex-row font-sans selection:bg-[#12382B] selection:text-white overflow-x-hidden">
+63:             {/* Grouped Sidebar with Return to Home Button */}
+64:             <Sidebar
+65:               activeTab={activeTab}
+66:               setActiveTab={setActiveTab}
+67:               onBackToLanding={handleBackToLanding}
+68:             />
+69: 
+70:             {/* Main Analytics Viewport */}
+71:             <div className="flex-1 min-w-0 flex flex-col overflow-y-auto">
+72:               {/* Top Dashboard Header Bar with Breadcrumbs & Theme Toggle */}
+73:               <header className="sticky top-0 z-30 px-3 sm:px-5 lg:px-6 py-2.5 bg-[#EAECE4]/90 backdrop-blur-md border-b border-[#CCD2C4]/70 flex items-center justify-between gap-3 shadow-2xs">
+74:                 {/* Left: Breadcrumbs & Current View */}
+75:                 <div className="flex items-center gap-2 text-xs font-mono min-w-0">
+76:                   <button
+77:                     onClick={handleBackToLanding}
+78:                     className="inline-flex items-center gap-1.5 text-[#526458] hover:text-[#16221B] transition-colors font-medium cursor-pointer shrink-0"
+79:                     title="Return to Project Home"
+80:                   >
+81:                     <Home className="w-3.5 h-3.5" />
+82:                     <span>Home</span>
+83:                   </button>
+84:                   <ChevronRight className="w-3 h-3 text-[#889B8F] shrink-0" />
+85:                   <span className="font-semibold text-[#16221B] truncate">
+86:                     {TAB_TITLES[activeTab] || activeTab}
+87:                   </span>
+88:                 </div>
+89: 
+90:                 {/* Right: Operational Status Pill & Theme Toggle */}
+91:                 <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+92:                   <div className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white border border-[#CCD2C4] text-[10px] font-mono text-[#526458] shadow-2xs">
+93:                     <Activity className="w-3 h-3 text-[#16A34A] animate-pulse" />
+94:                     <span>ENSO Niño 3.4 · IMD RF25 · S2</span>
+95:                   </div>
+96: 
+97:                   {/* Theme Switcher Toggle (Top Right for Dashboard) */}
+98:                   <ThemeToggle />
+99:                 </div>
+100:               </header>
+101: 
+102:               <main className="flex-1 p-3 sm:p-4 lg:p-5 w-full">
+103:                 {activeTab === 'overview' && <OverviewPage />}
+104:                 {activeTab === 'risk_map' && <DistrictRiskMapPage />}
+105:                 {activeTab === 'historical_analysis' && <HistoricalAnalysisPage />}
+106:                 {activeTab === 'rainfall_trends' && <RainfallTrendsPage />}
+107:                 {activeTab === 'model_predictions' && <ModelPredictionsPage />}
+108:                 {activeTab === 'model_architecture' && <ModelArchitectureView />}
+109:                 {activeTab === 'loso_validation' && <LosoValidationView />}
+110:                 {activeTab === 'future_elnino' && <FutureElNinoPage />}
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:13:02+05:30
+Completed At: 2026-10-21T06:13:04+05:30
+
+				The command exited with code 0.
+				Output:
+				
+> react-example@0.0.0 build
+> vite build
+
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - `__dirname` (vite.config.ts:11:27). Use `import.meta.dirname` instead
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+vite v8.3.2 building client environment for production...
+transforming...
+✓ 1707 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                     1.54 kB │ gzip:   0.72 kB
+dist/assets/index-CfA_RAje.css     65.94 kB │ gzip:  12.64 kB
+dist/assets/index-_Iart2D7.js   1,718.16 kB │ gzip: 418.10 kB
+
+✓ built in 555ms
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:13:08+05:30
+Completed At: 2026-10-21T06:13:09+05:30
+
+				The command exited with code 0.
+				Output:
+				
+Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  SI ProcessName                                                  
+-------  ------    -----      -----     ------     --  -- -----------                                                  
+    225      26    74656      19548       0.42   6600   1 node                                                         
+    177      35   115972      22508       0.69   6880   1 node                                                         
+    617     263   325976     137556     146.72   8084   1 node                                                         
+    207      20    58252      19752       0.14   9688   1 node                                                         
+    177      36   117036      19036       0.80  17864   1 node                                                         
+    225      26    75044      19292       0.95  18096   1 node
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:13:14+05:30
+Completed At: 2026-10-21T06:13:14+05:30
+
+				The command exited with code 0.
+				Output:
+				  TCP    0.0.0.0:3000           0.0.0.0:0              LISTENING       8084
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:13:23+05:30
+Completed At: 2026-10-21T06:13:45+05:30
+Browser subagent result:
+Let's review the required checks and verify our implementation against them:
+1. **The background is deep obsidian (`#040B08`)**: Implemented in `src/index.css` and container classes across pages.
+2. **The cards are dark emerald/obsidian (`#091410` with `#14261F` border)**: Implemented in `src/components/panels/`, `src/components/map/`, etc.
+3. **The KPI cards show the original jewel-tone badges (green Sprout, red ShieldAlert, etc.)**: Implemented in `src/components/panels/KpiCards.tsx`.
+4. **The Maharashtra district map has bright red failure districts (`#EF4444`), vibrant emerald resilient districts (`#10B981`), and dark non-rice districts (`#14221C`)**: Implemented in `src/components/map/DistrictChoropleth.tsx`.
+5. **The map controls and legend match the original dark mode specification**: Implemented in `src/components/map/MapControls.tsx`.
+6. **The District Insights panel has `#060D0A` inner metric tiles, `#D93838`/`#22C55E` values, and matching Region-wise status bars**: Implemented in `src/components/panels/DistrictDetailPanel.tsx`.
+
+Since browser automation via Playwright encountered a driver download failure (`404 Not Found` for Playwright binary in the offline/restricted sandbox container), we cannot take a live browser screenshot, but all code changes requested by the user for reverting the dark mode styling have been meticulously applied and built successfully (`npm run build` passed in previous steps).
+
+Let's do a final check of the scratchpad rules and task instructions:
+- Stop calling tools when done.
+- Your last message should be a summary of your actions and findings.
+
+Everything is complete. Let's write out our final response summarizing our actions and findings.I have successfully reviewed and verified the implementation of the dark theme revert across the El Niño Kharif Crop Failure Project dashboard.
+
+### Summary of Actions and Findings:
+1. **Dark Mode Color Palette & Styling Reversion**:
+  
+<truncated 2176 bytes>
+dashboard in dark mode.","toolAction":"Opening browser URL","toolSummary":"Open dashboard URL"}
+```
+Status: CORTEX_STEP_STATUS_ERROR
+Error: error executing cascade step: CORTEX_STEP_TYPE_OPEN_BROWSER_URL: failed to open URL in Antigravity Browser. DO NOT try alternative ways of opening the page. If this tool has failed multiple times, end the task, and state that the open_browser_url tool failed with the following error: failed to create browser context: failed to run playwright manager: failed to install playwright: could not install driver: could not install driver: error: got non 200 status code: 404 (404 Not Found) from https://playwright.azureedge.net/builds/driver/playwright-1.57.0-win32_x64.zip
+error: got non 200 status code: 404 (404 Not Found) from https://playwright-akamai.azureedge.net/builds/driver/playwright-1.57.0-win32_x64.zip
+error: got non 200 status code: 404 (404 Not Found) from https://playwright-verizon.azureedge.net/builds/driver/playwright-1.57.0-win32_x64.zip
+
+### Step 8: replace_file_content
+Arguments:
+```json
+{"AllowMultiple":false,"Description":"Update scratchpad with current status and findings regarding browser limitation and code completion.","EndLine":1,"Instruction":"Update scratchpad progress checklist.","ReplacementContent":"- [x] Check codebase and color scheme for dark mode revert\n- [x] Verify code implementation against dark mode requirements (#040B08, #091410, #14261F, jewel-tone badges, map district colors, legend, District Insights panel)\n- [x] Attempt browser navigation (Note: Playwright browser initialization failed due to sandbox environment network error 404 on driver download)\n- [x] Finalize summary of actions and findings","StartLine":1,"TargetContent":"","TargetFile":"C:\\Users\\USMAN\\.gemini\\antigravity-ide\\brain\\788a3851-03d1-4e89-8a09-a370e71ef13a\\browser\\scratchpad_tjmpl4sd.md","explanation":"Update scratchpad with progress.","toolAction":"Editing file","toolSummary":"Update scratchpad"}
+```
+Status: CORTEX_STEP_STATUS_DONE
+The browser subagent's ID is:
+
+---
+

@@ -27,41 +27,41 @@ export const MapControls: React.FC<MapControlsProps> = ({
           onClick={onZoomIn}
           className={`w-8 h-8 rounded-lg border flex items-center justify-center transition-colors cursor-pointer shadow-md ${
             isDark
-              ? 'bg-[#102019]/95 hover:bg-[#14271F] border-[#294338] text-[#E5EEE8]'
+              ? 'bg-[#0C1B15]/90 hover:bg-[#122A20] border-[#163327] text-white'
               : 'bg-white/95 hover:bg-white border-[#CCD2C4] text-[#16221B]'
           }`}
           title="Zoom In"
         >
-          <ZoomIn className={`w-4 h-4 ${isDark ? 'text-[#39B8C4]' : 'text-[#12382B]'}`} />
+          <ZoomIn className={`w-4 h-4 ${isDark ? 'text-[#A4B8AF]' : 'text-[#12382B]'}`} />
         </button>
         <button
           type="button"
           onClick={onZoomOut}
           className={`w-8 h-8 rounded-lg border flex items-center justify-center transition-colors cursor-pointer shadow-md ${
             isDark
-              ? 'bg-[#102019]/95 hover:bg-[#14271F] border-[#294338] text-[#E5EEE8]'
+              ? 'bg-[#0C1B15]/90 hover:bg-[#122A20] border-[#163327] text-white'
               : 'bg-white/95 hover:bg-white border-[#CCD2C4] text-[#16221B]'
           }`}
           title="Zoom Out"
         >
-          <ZoomOut className={`w-4 h-4 ${isDark ? 'text-[#39B8C4]' : 'text-[#12382B]'}`} />
+          <ZoomOut className={`w-4 h-4 ${isDark ? 'text-[#A4B8AF]' : 'text-[#12382B]'}`} />
         </button>
         <button
           type="button"
           onClick={onReset}
           className={`w-8 h-8 rounded-lg border flex items-center justify-center transition-colors cursor-pointer shadow-md ${
             isDark
-              ? 'bg-[#102019]/95 hover:bg-[#14271F] border-[#294338] text-[#E5EEE8]'
+              ? 'bg-[#0C1B15]/90 hover:bg-[#122A20] border-[#163327] text-white'
               : 'bg-white/95 hover:bg-white border-[#CCD2C4] text-[#16221B]'
           }`}
           title="Reset Position"
         >
-          <RotateCcw className={`w-3.5 h-3.5 ${isDark ? 'text-[#39B8C4]' : 'text-[#12382B]'}`} />
+          <RotateCcw className={`w-3.5 h-3.5 ${isDark ? 'text-[#A4B8AF]' : 'text-[#12382B]'}`} />
         </button>
         <div
           className={`px-1 py-0.5 rounded-md border text-[9px] font-mono text-center select-none shadow-xs font-semibold ${
             isDark
-              ? 'bg-[#102019]/95 border-[#294338] text-[#9BAFA4]'
+              ? 'bg-[#0C1B15]/90 border-[#163327] text-[#7A9187]'
               : 'bg-white/95 border-[#CCD2C4] text-[#526458]'
           }`}
         >
@@ -74,27 +74,27 @@ export const MapControls: React.FC<MapControlsProps> = ({
         <div
           className={`hidden sm:flex items-center gap-2 px-2.5 py-1 rounded-lg border text-[10px] font-mono backdrop-blur-xs shadow-md ${
             isDark
-              ? 'bg-[#102019]/95 border-[#294338] text-[#9BAFA4]'
+              ? 'bg-[#0C1B15]/90 border-[#163327] text-[#849B90]'
               : 'bg-white/95 border-[#CCD2C4] text-[#16221B]'
           }`}
         >
-          <span className={`font-semibold ${isDark ? 'text-[#39B8C4]' : 'text-[#12382B]'}`}>Pan: Drag</span>
-          <span className={isDark ? 'text-[#294338]' : 'text-[#A4B0A4]'}>·</span>
+          <span className={`font-semibold ${isDark ? 'text-[#22C55E]' : 'text-[#12382B]'}`}>Pan: Drag</span>
+          <span className={isDark ? 'text-[#2C4A3C]' : 'text-[#A4B0A4]'}>·</span>
           <span>Zoom: Scroll Wheel</span>
-          <span className={isDark ? 'text-[#294338]' : 'text-[#A4B0A4]'}>·</span>
+          <span className={isDark ? 'text-[#2C4A3C]' : 'text-[#A4B0A4]'}>·</span>
           <span>Select: Click District</span>
         </div>
         <div
           className={`w-8 h-8 rounded-full border flex flex-col items-center justify-center shadow-md ${
             isDark
-              ? 'bg-[#102019]/95 border-[#294338]'
+              ? 'bg-[#0C1B15]/80 border-[#163327]'
               : 'bg-white/95 border-[#CCD2C4]'
           }`}
         >
-          <span className={`text-[11px] font-bold font-mono leading-none ${isDark ? 'text-[#E5EEE8]' : 'text-[#12382B]'}`}>
+          <span className={`text-[11px] font-bold font-mono leading-none ${isDark ? 'text-[#22C55E]' : 'text-[#12382B]'}`}>
             N
           </span>
-          <span className={`text-[9px] leading-none ${isDark ? 'text-[#39B8C4]' : 'text-[#12382B]'}`}>
+          <span className={`text-[9px] leading-none ${isDark ? 'text-[#22C55E]' : 'text-[#12382B]'}`}>
             ▲
           </span>
         </div>
@@ -104,7 +104,7 @@ export const MapControls: React.FC<MapControlsProps> = ({
       <div
         className={`absolute bottom-3.5 left-3.5 z-20 pointer-events-none select-none flex flex-col gap-1 font-mono text-[9px] p-1.5 rounded-lg border shadow-xs ${
           isDark
-            ? 'bg-[#102019]/95 border-[#294338] text-[#9BAFA4]'
+            ? 'bg-[#0C1B15]/80 border-[#163327] text-[#7A9187]'
             : 'bg-white/95 border-[#CCD2C4] text-[#526458]'
         }`}
       >
@@ -115,14 +115,14 @@ export const MapControls: React.FC<MapControlsProps> = ({
           <span>{scaledKm} km</span>
         </div>
         <div
-          className={`h-1.5 w-28 flex rounded-xs overflow-hidden border ${
-            isDark ? 'bg-[#14271F] border-[#294338]' : 'bg-[#CCD2C4] border-[#B0B8A6]'
+          className={`h-1 w-28 flex border ${
+            isDark ? 'bg-[#14261F] border-[#213F33]' : 'bg-[#CCD2C4] border-[#B0B8A6]'
           }`}
         >
-          <div className={`w-1/4 h-full ${isDark ? 'bg-[#39B8C4]' : 'bg-[#12382B]'}`}></div>
-          <div className={`w-1/4 h-full ${isDark ? 'bg-[#102019]' : 'bg-white'}`}></div>
-          <div className={`w-1/4 h-full ${isDark ? 'bg-[#39B8C4]' : 'bg-[#12382B]'}`}></div>
-          <div className={`w-1/4 h-full ${isDark ? 'bg-[#102019]' : 'bg-white'}`}></div>
+          <div className={`w-1/4 h-full ${isDark ? 'bg-white' : 'bg-[#12382B]'}`}></div>
+          <div className={`w-1/4 h-full ${isDark ? 'bg-[#14261F]' : 'bg-white'}`}></div>
+          <div className={`w-1/4 h-full ${isDark ? 'bg-white' : 'bg-[#12382B]'}`}></div>
+          <div className={`w-1/4 h-full ${isDark ? 'bg-[#14261F]' : 'bg-white'}`}></div>
         </div>
       </div>
     </>

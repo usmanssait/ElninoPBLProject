@@ -52,22 +52,22 @@ export const OverviewPage: React.FC = () => {
   };
 
   return (
-    <div className={`space-y-3.5 w-full ${isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'}`}>
+    <div className={`space-y-3.5 w-full ${isDark ? 'text-white' : 'text-[#16221B]'}`}>
       {/* 1. Page Header with Title */}
       <div
         className={`flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b ${
-          isDark ? 'border-[#294338]' : 'border-[#CCD2C4]'
+          isDark ? 'border-[#14261F]' : 'border-[#CCD2C4]'
         }`}
       >
         <div>
           <h1
-            className={`text-xl sm:text-2xl font-bold tracking-tight font-serif ${
-              isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+            className={`text-xl sm:text-2xl font-bold tracking-tight ${
+              isDark ? 'text-white' : 'text-[#16221B]'
             }`}
           >
             Maharashtra District Risk &amp; Historical Intelligence
           </h1>
-          <p className={`text-xs mt-0.5 font-medium ${isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'}`}>
+          <p className={`text-xs mt-0.5 font-medium ${isDark ? 'text-[#80978E]' : 'text-[#526458]'}`}>
             Spatiotemporal CNN-LSTM Framework for All-Kharif Crop Failure Prediction using Satellite Imagery and IMD Data
           </p>
         </div>

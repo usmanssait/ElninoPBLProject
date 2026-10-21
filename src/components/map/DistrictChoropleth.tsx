@@ -148,49 +148,52 @@ export const DistrictChoropleth: React.FC<DistrictChoroplethProps> = ({
     };
   }, []);
 
-  // Dynamic Fill matching user reference:
-  // Resilient: #44A07A (soft jade seafoam)
-  // Failure: #D46A64 (soft coral terracotta)
-  // Non-monitored: #525D67 (slate charcoal)
+  const { isDark } = useAppTheme();
+
+  // Dynamic Fill matching theme:
+  // Dark mode (original 674a9b7): Failure: #EF4444, Resilient: #10B981, Non-monitored: #14221C
+  // Light mode: Failure: #D46A64, Resilient: #44A07A, Non-monitored: #525D67
   const getDistrictFill = useCallback(
     (distId: string): string => {
       const isMonitored = monitoredDistrictsForCrop.some(d => d.id === distId);
-      if (!isMonitored) return '#525D67';
+      if (!isMonitored) return isDark ? '#14221C' : '#525D67';
 
       if (mode === 'model_pred') {
         const pred = inSeasonModelPredictions[distId];
-        if (!pred || pred.predictionStatus !== 'READY') return '#525D67';
+        if (!pred || pred.predictionStatus !== 'READY') return isDark ? '#14221C' : '#525D67';
         if (pred.riskCategory === 'High' || (pred.failureProbability !== null && pred.failureProbability >= 0.5)) {
-          return '#D46A64';
+          return isDark ? '#EF4444' : '#D46A64';
         }
         if (pred.riskCategory === 'Moderate') {
-          return '#E59858';
+          return isDark ? '#F59E0B' : '#E59858';
         }
-        return '#44A07A';
+        return isDark ? '#10B981' : '#44A07A';
       }
 
       if (mode === 'rainfall') {
         const m = currentYearMetrics[distId];
-        if (!m || m.rainfallMm === null) return '#525D67';
-        if (m.rainfallMm < 700) return '#D46A64';
-        if (m.rainfallMm < 1100) return '#E59858';
-        return '#3895C8';
+        if (!m || m.rainfallMm === null) return isDark ? '#14221C' : '#525D67';
+        if (m.rainfallMm < 700) return isDark ? '#EF4444' : '#D46A64';
+        if (m.rainfallMm < 1100) return isDark ? '#F59E0B' : '#E59858';
+        return isDark ? '#38BDF8' : '#3895C8';
       }
 
       if (mode === 'yield') {
         const m = currentYearMetrics[distId];
-        if (!m || m.yieldTonnesHa === null) return '#525D67';
-        if (m.yieldTonnesHa < 1.0) return '#D46A64';
-        if (m.yieldTonnesHa < 1.8) return '#E59858';
-        return '#44A07A';
+        if (!m || m.yieldTonnesHa === null) return isDark ? '#14221C' : '#525D67';
+        if (m.yieldTonnesHa < 1.0) return isDark ? '#EF4444' : '#D46A64';
+        if (m.yieldTonnesHa < 1.8) return isDark ? '#F59E0B' : '#E59858';
+        return isDark ? '#10B981' : '#44A07A';
       }
 
       // Default: historical failure event
       const metric = currentYearMetrics[distId];
-      if (!metric || metric.failureEvent === null) return '#525D67';
-      return metric.failureEvent === 1 ? '#D46A64' : '#44A07A';
+      if (!metric || metric.failureEvent === null) return isDark ? '#14221C' : '#525D67';
+      return metric.failureEvent === 1
+        ? (isDark ? '#EF4444' : '#D46A64')
+        : (isDark ? '#10B981' : '#44A07A');
     },
-    [mode, currentYearMetrics, inSeasonModelPredictions, monitoredDistrictsForCrop]
+    [mode, currentYearMetrics, inSeasonModelPredictions, monitoredDistrictsForCrop, isDark]
   );
 
   const getDistrictLabel = (poly: GeoDistrictPolygon, zoom: number) => {
@@ -213,62 +216,94 @@ export const DistrictChoropleth: React.FC<DistrictChoroplethProps> = ({
     return { text: displayName, x: poly.center[0], y: poly.center[1] };
   };
 
-  const { isDark } = useAppTheme();
-
   return (
     <div
       className={`rounded-2xl p-3.5 relative overflow-hidden shadow-xs transition-colors ${
         isDark
-          ? 'bg-[#102019] border border-[#294338]'
+          ? 'bg-[#091410] border border-[#14261F]'
           : 'bg-[#E2E6DC] border border-[#CCD2C4]'
       } ${className}`}
     >
       {/* Map Header & Legend Row */}
       <div
         className={`flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-2.5 border-b ${
-          isDark ? 'border-[#294338]' : 'border-[#CCD2C4]'
+          isDark ? 'border-[#14261F]' : 'border-[#CCD2C4]'
         }`}
       >
         <div>
           <h2
             className={`text-sm font-bold tracking-tight ${
-              isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+              isDark ? 'text-white' : 'text-[#16221B]'
             }`}
           >
             {title || `Maharashtra District Risk Map (Kharif ${cropYearStr})`}
           </h2>
           <p
             className={`text-[11px] mt-0.5 ${
-              isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'
+              isDark ? 'text-[#80978E]' : 'text-[#526458]'
             }`}
           >
             District-wise classification based on &gt;10% yield deficit below historical 5-year baseline
           </p>
         </div>
 
-        {/* Legend matching reference image */}
+        {/* Legend */}
         <div className="flex items-center gap-3 text-xs font-medium shrink-0 flex-wrap">
           <div className="flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#D46A64]" />
-            <span className="text-[#D46A64] font-mono text-[10px] font-semibold">Failure (&gt;10% Deficit)</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#44A07A]" />
-            <span className="text-[#44A07A] font-mono text-[10px] font-semibold">Resilient (&le;10%)</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#525D67]" />
+            <span
+              className={`w-2.5 h-2.5 rounded-full ${isDark ? 'bg-[#EF4444]' : 'bg-[#D46A64]'}`}
+            />
             <span
               className={`font-mono text-[10px] font-semibold ${
-                isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'
+                isDark ? 'text-[#F87171]' : 'text-[#D46A64]'
               }`}
             >
-              Non-Target District
+              Failure (Deficit &gt; 10%)
+            </span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <span
+              className={`w-2.5 h-2.5 rounded-full ${isDark ? 'bg-[#10B981]' : 'bg-[#44A07A]'}`}
+            />
+            <span
+              className={`font-mono text-[10px] font-semibold ${
+                isDark ? 'text-[#34D399]' : 'text-[#44A07A]'
+              }`}
+            >
+              Resilient (&le; 10%)
+            </span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <span
+              className={`w-2.5 h-2.5 rounded-full ${
+                isDark ? 'bg-[#14221C] border border-[#23332A]' : 'bg-[#525D67]'
+              }`}
+            />
+            <span
+              className={`font-mono text-[10px] font-semibold ${
+                isDark ? 'text-[#7A9187]' : 'text-[#526458]'
+              }`}
+            >
+              {isDark ? 'Non-Rice District' : 'Non-Target District'}
             </span>
           </div>
           <div
             className={`flex items-center gap-1.5 pl-2 border-l ${
-              isDark ? 'border-[#294338]' : 'border-[#CCD2C4]'
+              isDark ? 'border-[#14261F]' : 'border-[#CCD2C4]'
+            }`}
+          >
+            <span className="w-2 h-2 rounded-full bg-[#38BDF8] animate-pulse" />
+            <span
+              className={`font-mono text-[10px] font-semibold ${
+                isDark ? 'text-[#67E8F9]' : 'text-[#0284C7]'
+              }`}
+            >
+              Satellite Terrain Layer
+            </span>
+          </div>
+          <div
+            className={`flex items-center gap-1.5 pl-2 border-l ${
+              isDark ? 'border-[#14261F]' : 'border-[#CCD2C4]'
             }`}
           >
             <button
@@ -277,10 +312,10 @@ export const DistrictChoropleth: React.FC<DistrictChoroplethProps> = ({
               className={`px-2 py-0.5 rounded text-[10px] font-mono cursor-pointer transition-colors border ${
                 showLabels
                   ? isDark
-                    ? 'bg-[#14271F] text-[#39B8C4] border-[#39B8C4]'
+                    ? 'bg-[#0E241C] text-[#22C55E] border-[#22C55E]'
                     : 'bg-[#12382B] text-white border-[#12382B]'
                   : isDark
-                  ? 'bg-[#102019] border-[#294338] text-[#9BAFA4] hover:text-[#E5EEE8]'
+                  ? 'bg-[#060D0A] border-[#14261F] text-[#7A9187] hover:text-white hover:border-[#22C55E]'
                   : 'bg-white border-[#CCD2C4] text-[#526458] hover:text-[#16221B]'
               }`}
             >
@@ -297,9 +332,20 @@ export const DistrictChoropleth: React.FC<DistrictChoroplethProps> = ({
         className={`w-full relative flex items-center justify-center py-1 px-1 overflow-hidden rounded-xl my-1.5 select-none ${heightClass} ${
           isDragging ? 'cursor-grabbing' : 'cursor-grab'
         }`}
-        style={{
-          backgroundColor: '#07100D',
-        }}
+        style={
+          isDark
+            ? {
+                backgroundColor: '#040B08',
+                backgroundImage: `
+                  radial-gradient(ellipse at 80% 45%, rgba(16, 185, 129, 0.05) 0%, transparent 60%),
+                  radial-gradient(ellipse at 20% 70%, rgba(34, 197, 94, 0.04) 0%, transparent 55%),
+                  linear-gradient(to bottom, #040B08 0%, #06120D 100%)
+                `,
+              }
+            : {
+                backgroundColor: '#07100D',
+              }
+        }
       >
         {/* Controls Overlay */}
         <MapControls
@@ -344,20 +390,23 @@ export const DistrictChoropleth: React.FC<DistrictChoroplethProps> = ({
             />
           </g>
 
-          {/* Layer 1: Frosted Liquid Glass District Polygons (Matching User Reference Image) */}
+          {/* Layer 1: District Polygons & Boundaries */}
           <g className="map-polygons-layer">
             {MAHARASHTRA_GEOJSON_POLYGONS.map(poly => {
               const isSelected = selectedDistrictId === poly.id;
               const isHovered = hoveredDistrictId === poly.id;
               const fillColor = getDistrictFill(poly.id);
-              const isNonTarget = fillColor === '#525D67';
+              const isNonTarget = isDark ? fillColor === '#14221C' : fillColor === '#525D67';
 
-              // Opacity matching user reference:
-              // Monitored: 0.72 (soft matte frosted glass with subtle relief showing through)
-              // Non-target: 0.65
-              // Selected: 0.78
-              // Hovered: 0.75
-              const fillOpacity = isSelected
+              const fillOpacity = isDark
+                ? isSelected
+                  ? 0.84
+                  : isHovered
+                  ? 0.78
+                  : isNonTarget
+                  ? 0.40
+                  : 0.68
+                : isSelected
                 ? 0.78
                 : isHovered
                 ? 0.75
@@ -365,19 +414,15 @@ export const DistrictChoropleth: React.FC<DistrictChoroplethProps> = ({
                 ? 0.65
                 : 0.72;
 
-              // Border stroke matching user reference:
-              // Selected: Electric cyan #38BDF8 (2.4px)
-              // Hovered: #FFFFFF (1.5px)
-              // Normal: subtle dark border rgba(15, 23, 20, 0.5) (0.8px)
-              let strokeColor = 'rgba(15, 23, 20, 0.55)';
-              let strokeWidth = 0.8;
+              let strokeColor = isDark ? 'rgba(5, 18, 12, 0.9)' : 'rgba(15, 23, 20, 0.55)';
+              let strokeWidth = isDark ? 0.85 : 0.8;
 
               if (isSelected) {
                 strokeColor = '#38BDF8';
-                strokeWidth = 2.4;
+                strokeWidth = isDark ? 2.5 : 2.4;
               } else if (isHovered) {
-                strokeColor = '#FFFFFF';
-                strokeWidth = 1.6;
+                strokeColor = isDark ? '#4ADE80' : '#FFFFFF';
+                strokeWidth = isDark ? 2.0 : 1.6;
               }
 
               return (
@@ -417,7 +462,7 @@ export const DistrictChoropleth: React.FC<DistrictChoroplethProps> = ({
             })}
           </g>
 
-          {/* Layer 2: District Text Labels (Shown on Selected / Hovered, or all when toggled ON) */}
+          {/* Layer 2: District Text Labels */}
           <g className="map-labels-layer pointer-events-none" style={{ pointerEvents: 'none' }}>
             {MAHARASHTRA_GEOJSON_POLYGONS.map(poly => {
               const isSelected = selectedDistrictId === poly.id;
@@ -436,20 +481,20 @@ export const DistrictChoropleth: React.FC<DistrictChoroplethProps> = ({
                   key={`label-${poly.id}`}
                   x={labelInfo.x}
                   y={labelInfo.y}
-                  fill={isSelected ? '#38BDF8' : '#FFFFFF'}
-                  fontSize={isSelected ? '13' : isHovered ? '12.5' : '10.5'}
-                  fontWeight={isSelected || isHovered ? '800' : '600'}
+                  fill={isSelected ? '#38BDF8' : isHovered ? (isDark ? '#4ADE80' : '#FFFFFF') : '#FFFFFF'}
+                  fontSize={isSelected ? '14' : isHovered ? '13' : '11.5'}
+                  fontWeight={isSelected || isHovered ? '800' : '700'}
                   fontFamily="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
                   textAnchor="middle"
                   dominantBaseline="middle"
                   pointerEvents="none"
                   stroke="#05120C"
-                  strokeWidth="2.8"
+                  strokeWidth={isDark ? '3.2' : '2.8'}
                   strokeLinejoin="round"
                   strokeLinecap="round"
                   style={{
                     paintOrder: 'stroke fill',
-                    filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.8))',
+                    filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.85))',
                   }}
                 >
                   {labelInfo.text}

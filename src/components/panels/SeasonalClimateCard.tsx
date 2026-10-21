@@ -15,24 +15,24 @@ export const SeasonalClimateCard: React.FC<SeasonalClimateCardProps> = ({ classN
     <div
       className={`rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between shadow-xs transition-colors ${
         isDark
-          ? 'bg-[#102019] border border-[#294338]'
+          ? 'bg-[#091410] border border-[#14261F]'
           : 'bg-[#E2E6DC] border border-[#CCD2C4]'
       } ${className}`}
     >
       {/* 1. Header */}
       <div
         className={`flex items-center justify-between pb-2 border-b ${
-          isDark ? 'border-[#294338]' : 'border-[#CCD2C4]'
+          isDark ? 'border-[#14261F]/60' : 'border-[#CCD2C4]'
         }`}
       >
         <span
           className={`text-sm font-bold tracking-tight ${
-            isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+            isDark ? 'text-white' : 'text-[#16221B]'
           }`}
         >
           Seasonal Climate Indices ({cropYearStr})
         </span>
-        <span className={`text-xs font-mono ${isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'}`}>
+        <span className={`text-xs font-mono ${isDark ? 'text-[#80978E]' : 'text-[#526458]'}`}>
           NOAA CPC &amp; IMD Observations
         </span>
       </div>
@@ -43,13 +43,13 @@ export const SeasonalClimateCard: React.FC<SeasonalClimateCardProps> = ({ classN
         <div
           className={`p-3 sm:p-3.5 rounded-xl border flex flex-col justify-between transition-colors ${
             isDark
-              ? 'bg-[#14271F] border-[#294338] hover:border-[#38BDF8]/40'
+              ? 'bg-[#060D0A] border-[#14261F] hover:border-[#38BDF8]/40'
               : 'bg-[#EAECE4] border-[#CCD2C4] hover:border-[#0284C7]/40'
           }`}
         >
           <div
             className={`flex items-center gap-1.5 text-xs font-semibold ${
-              isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'
+              isDark ? 'text-[#A4B8AF]' : 'text-[#526458]'
             }`}
           >
             <CloudRain
@@ -59,14 +59,14 @@ export const SeasonalClimateCard: React.FC<SeasonalClimateCardProps> = ({ classN
           </div>
           <div
             className={`text-xl sm:text-2xl font-extrabold font-mono mt-1 tracking-tight ${
-              isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+              isDark ? 'text-white' : 'text-[#16221B]'
             }`}
           >
             {stateMeanRainfallMm !== null ? `${stateMeanRainfallMm} mm` : 'N/A'}
           </div>
           <div
             className={`text-[11px] sm:text-xs font-mono leading-tight ${
-              isDark ? 'text-[#9BAFA4]' : 'text-[#718277]'
+              isDark ? 'text-[#7A9187]' : 'text-[#718277]'
             }`}
           >
             June–August Mean
@@ -77,23 +77,23 @@ export const SeasonalClimateCard: React.FC<SeasonalClimateCardProps> = ({ classN
         <div
           className={`p-3 sm:p-3.5 rounded-xl border flex flex-col justify-between transition-colors ${
             isDark
-              ? 'bg-[#14271F] border-[#294338] hover:border-[#F87171]/40'
+              ? 'bg-[#060D0A] border-[#14261F] hover:border-[#D93838]/40'
               : 'bg-[#EAECE4] border-[#CCD2C4] hover:border-[#DC2626]/40'
           }`}
         >
           <div
             className={`flex items-center gap-1.5 text-xs font-semibold ${
-              isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'
+              isDark ? 'text-[#A4B8AF]' : 'text-[#526458]'
             }`}
           >
             <Thermometer
-              className={`w-4 h-4 shrink-0 ${isDark ? 'text-[#F87171]' : 'text-[#DC2626]'}`}
+              className={`w-4 h-4 shrink-0 ${isDark ? 'text-[#D93838]' : 'text-[#DC2626]'}`}
             />
             <span className="truncate">El Niño (ONI)</span>
           </div>
           <div
             className={`text-xl sm:text-2xl font-extrabold font-mono mt-1 tracking-tight ${
-              isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+              isDark ? 'text-white' : 'text-[#16221B]'
             }`}
           >
             {oniInfo
@@ -104,10 +104,10 @@ export const SeasonalClimateCard: React.FC<SeasonalClimateCardProps> = ({ classN
             className={`text-[11px] sm:text-xs font-bold font-mono leading-tight ${
               oniInfo?.elNinoIndicator === 1
                 ? isDark
-                  ? 'text-[#F87171]'
+                  ? 'text-[#D93838]'
                   : 'text-[#DC2626]'
                 : isDark
-                ? 'text-[#4ADE80]'
+                ? 'text-[#22C55E]'
                 : 'text-[#16A34A]'
             }`}
           >
@@ -119,30 +119,30 @@ export const SeasonalClimateCard: React.FC<SeasonalClimateCardProps> = ({ classN
         <div
           className={`p-3 sm:p-3.5 rounded-xl border flex flex-col justify-between transition-colors ${
             isDark
-              ? 'bg-[#14271F] border-[#294338] hover:border-[#39B8C4]/40'
+              ? 'bg-[#060D0A] border-[#14261F] hover:border-[#22C55E]/40'
               : 'bg-[#EAECE4] border-[#CCD2C4] hover:border-[#12382B]/40'
           }`}
         >
           <div
             className={`flex items-center gap-1.5 text-xs font-semibold ${
-              isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'
+              isDark ? 'text-[#A4B8AF]' : 'text-[#526458]'
             }`}
           >
             <Sprout
-              className={`w-4 h-4 shrink-0 ${isDark ? 'text-[#39B8C4]' : 'text-[#12382B]'}`}
+              className={`w-4 h-4 shrink-0 ${isDark ? 'text-[#22C55E]' : 'text-[#12382B]'}`}
             />
             <span className="truncate">Spatial Scope</span>
           </div>
           <div
             className={`text-xl sm:text-2xl font-extrabold font-mono mt-1 tracking-tight ${
-              isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+              isDark ? 'text-white' : 'text-[#16221B]'
             }`}
           >
             {historicalTotalDistricts} Dist.
           </div>
           <div
             className={`text-[11px] sm:text-xs font-mono leading-tight ${
-              isDark ? 'text-[#9BAFA4]' : 'text-[#718277]'
+              isDark ? 'text-[#7A9187]' : 'text-[#718277]'
             }`}
           >
             Primary Rice Belt
@@ -153,11 +153,11 @@ export const SeasonalClimateCard: React.FC<SeasonalClimateCardProps> = ({ classN
       {/* 3. Bottom Meta Row */}
       <div
         className={`flex items-center justify-between text-[10px] sm:text-[11px] font-mono pt-1.5 border-t ${
-          isDark ? 'border-[#294338] text-[#9BAFA4]' : 'border-[#CCD2C4] text-[#526458]'
+          isDark ? 'border-[#14261F]/60 text-[#7A9187]' : 'border-[#CCD2C4] text-[#526458]'
         }`}
       >
         <span>IMD Gridded: 0.25°</span>
-        <span className={isDark ? 'text-[#647C6F]' : 'text-[#718277]'}>
+        <span className={isDark ? 'text-[#849B90]' : 'text-[#718277]'}>
           Pacific SST Niño 3.4 Early Warning
         </span>
       </div>
