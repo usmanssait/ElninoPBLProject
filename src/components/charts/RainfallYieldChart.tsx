@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 import { useDashboard } from '../../context/DashboardContext';
-import { ALL_YEAR_METRICS } from '../../data/maharashtraMapData';
-import { PRIMARY_RICE_DISTRICTS } from '../../data/canonicalDistricts';
+import { useAppTheme } from '../../context/ThemeContext';
 
 interface RainfallYieldChartProps {
   className?: string;
@@ -13,6 +12,7 @@ export const RainfallYieldChart: React.FC<RainfallYieldChartProps> = ({
   title,
 }) => {
   const { selectedYear, setSelectedYear, availableYears, allYearMetrics, monitoredDistrictsForCrop, selectedCrop } = useDashboard();
+  const { isDark } = useAppTheme();
 
   const displayTitle = title || (
     selectedCrop === 'ALL'
@@ -48,11 +48,23 @@ export const RainfallYieldChart: React.FC<RainfallYieldChartProps> = ({
 
   return (
     <div
-      className={`rounded-2xl bg-[#E2E6DC] border border-[#CCD2C4] p-3.5 sm:p-4 flex flex-col justify-between shadow-xs ${className}`}
+      className={`rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between shadow-xs transition-colors ${
+        isDark
+          ? 'bg-[#102019] border border-[#294338]'
+          : 'bg-[#E2E6DC] border border-[#CCD2C4]'
+      } ${className}`}
     >
       {/* 1. Header & Legend */}
-      <div className="flex items-center justify-between gap-2 pb-2 border-b border-[#CCD2C4]">
-        <h3 className="text-sm font-bold text-[#16221B] tracking-tight">
+      <div
+        className={`flex items-center justify-between gap-2 pb-2 border-b ${
+          isDark ? 'border-[#294338]' : 'border-[#CCD2C4]'
+        }`}
+      >
+        <h3
+          className={`text-sm font-bold tracking-tight ${
+            isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+          }`}
+        >
           {displayTitle}
         </h3>
 
@@ -60,21 +72,37 @@ export const RainfallYieldChart: React.FC<RainfallYieldChartProps> = ({
         <div className="flex items-center gap-3 text-xs font-mono shrink-0">
           <div className="flex items-center gap-1.5">
             <span className="w-2.5 h-2 rounded-xs bg-[#0284C7]" />
-            <span className="text-[#0284C7] font-medium">Avg Rain (mm)</span>
+            <span className={`font-medium ${isDark ? 'text-[#38BDF8]' : 'text-[#0284C7]'}`}>
+              Avg Rain (mm)
+            </span>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-[#16A34A]" />
-            <span className="text-[#16A34A] font-medium">Avg Yield (t/ha)</span>
+            <span className="w-2 h-2 rounded-full bg-[#44A07A]" />
+            <span className={`font-medium ${isDark ? 'text-[#44A07A]' : 'text-[#16A34A]'}`}>
+              Avg Yield (t/ha)
+            </span>
           </div>
         </div>
       </div>
 
       {/* 2. Scaled Horizontal Bar Chart filling available window */}
       <div className="flex-1 flex flex-col justify-end py-2 min-h-[100px]">
-        <div className="flex-1 min-h-[90px] w-full flex items-end justify-between gap-1.5 sm:gap-2 px-1 border-b border-[#CCD2C4] relative pb-1">
+        <div
+          className={`flex-1 min-h-[90px] w-full flex items-end justify-between gap-1.5 sm:gap-2 px-1 border-b relative pb-1 ${
+            isDark ? 'border-[#294338]' : 'border-[#CCD2C4]'
+          }`}
+        >
           {/* Subtle horizontal reference lines */}
-          <div className="absolute inset-x-0 top-0 border-b border-[#CCD2C4]/50 pointer-events-none" />
-          <div className="absolute inset-x-0 top-1/2 border-b border-[#CCD2C4]/35 pointer-events-none" />
+          <div
+            className={`absolute inset-x-0 top-0 border-b pointer-events-none ${
+              isDark ? 'border-[#294338]/60' : 'border-[#CCD2C4]/50'
+            }`}
+          />
+          <div
+            className={`absolute inset-x-0 top-1/2 border-b pointer-events-none ${
+              isDark ? 'border-[#294338]/40' : 'border-[#CCD2C4]/35'
+            }`}
+          />
 
           {yearlyData.map(item => {
             const isCurrent = item.year === selectedYear;
@@ -90,7 +118,13 @@ export const RainfallYieldChart: React.FC<RainfallYieldChartProps> = ({
                 {/* Yield Value Badge on Top */}
                 <span
                   className={`text-[11px] sm:text-xs font-mono font-bold leading-none mb-1 transition-colors ${
-                    isCurrent ? 'text-[#0284C7]' : 'text-[#16A34A] group-hover:text-[#16221B]'
+                    isCurrent
+                      ? isDark
+                        ? 'text-[#38BDF8]'
+                        : 'text-[#0284C7]'
+                      : isDark
+                      ? 'text-[#44A07A] group-hover:text-white'
+                      : 'text-[#16A34A] group-hover:text-[#16221B]'
                   }`}
                 >
                   {item.yieldVal}t
@@ -102,6 +136,8 @@ export const RainfallYieldChart: React.FC<RainfallYieldChartProps> = ({
                     className={`w-full max-w-[36px] sm:max-w-[42px] rounded-t-md transition-all duration-200 ${
                       isCurrent
                         ? 'bg-gradient-to-t from-[#0284C7] to-[#38BDF8] shadow-[0_2px_8px_rgba(2,132,199,0.35)]'
+                        : isDark
+                        ? 'bg-[#0284C7]/45 group-hover:bg-[#0284C7]/80'
                         : 'bg-[#0284C7]/65 group-hover:bg-[#0284C7]/90'
                     }`}
                     style={{ height: `${rainHeight}%` }}
@@ -111,7 +147,13 @@ export const RainfallYieldChart: React.FC<RainfallYieldChartProps> = ({
                 {/* Year Label */}
                 <span
                   className={`text-[11px] sm:text-xs font-mono font-semibold mt-1 transition-colors ${
-                    isCurrent ? 'text-[#0284C7] font-bold' : 'text-[#526458] group-hover:text-[#16221B]'
+                    isCurrent
+                      ? isDark
+                        ? 'text-[#38BDF8] font-bold'
+                        : 'text-[#0284C7] font-bold'
+                      : isDark
+                      ? 'text-[#9BAFA4] group-hover:text-white'
+                      : 'text-[#526458] group-hover:text-[#16221B]'
                   }`}
                 >
                   {item.yearLabel}
@@ -123,10 +165,18 @@ export const RainfallYieldChart: React.FC<RainfallYieldChartProps> = ({
       </div>
 
       {/* 3. Bottom Status Row */}
-      <div className="flex items-center justify-between text-[10px] sm:text-[11px] font-mono text-[#526458] pt-1.5 border-t border-[#CCD2C4]">
+      <div
+        className={`flex items-center justify-between text-[10px] sm:text-[11px] font-mono pt-1.5 border-t ${
+          isDark ? 'border-[#294338] text-[#9BAFA4]' : 'border-[#CCD2C4] text-[#526458]'
+        }`}
+      >
         <span>Cycles: 2015–2022</span>
-        <span className="text-[#16221B] font-medium">
-          Selected: <strong className="text-[#0284C7]">{selectedYear}</strong> ({selectedData?.rainfall ?? 'N/A'} mm · {selectedData?.yieldVal ?? 'N/A'} t/ha)
+        <span className={isDark ? 'text-[#E5EEE8] font-medium' : 'text-[#16221B] font-medium'}>
+          Selected:{' '}
+          <strong className={isDark ? 'text-[#38BDF8]' : 'text-[#0284C7]'}>
+            {selectedYear}
+          </strong>{' '}
+          ({selectedData?.rainfall ?? 'N/A'} mm · {selectedData?.yieldVal ?? 'N/A'} t/ha)
         </span>
       </div>
     </div>

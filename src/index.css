@@ -69,10 +69,14 @@
   border-color: #14281E !important;
 }
 
-/* White Tiles, Popovers, Table Containers & Inputs */
-.dark .bg-white {
-  background-color: #07120D !important;
-  border-color: #172F23 !important;
+/* White Tiles, Popovers, Table Containers, Inputs & Opacity Badges */
+.dark .bg-white,
+.dark .bg-white\/95,
+.dark .bg-white\/90,
+.dark .bg-white\/80,
+.dark .bg-white\/70 {
+  background-color: #102019 !important;
+  border-color: #294338 !important;
 }
 
 /* Hover States */
@@ -88,16 +92,27 @@
 .dark .border-\[\#CCD2C4\],
 .dark .border-\[\#CCD2C4\]\/70,
 .dark .border-\[\#CCD2C4\]\/60,
+.dark .border-\[\#CCD2C4\]\/50,
+.dark .border-\[\#CCD2C4\]\/40,
+.dark .border-\[\#CCD2C4\]\/35,
+.dark .border-\[\#CCD2C4\]\/30,
 .dark .border-\[\#D5D9CE\],
 .dark .border-\[\#C5CDC0\],
 .dark .border-\[\#BDC4B4\],
-.dark .border-\[\#CCD2C2\] {
-  border-color: #172F23 !important;
+.dark .border-\[\#CCD2C2\],
+.dark .border-\[\#B8BFB0\],
+.dark .border-\[\#B0B8A6\] {
+  border-color: #294338 !important;
+}
+
+/* Progress bar & status tracks in dark mode */
+.dark .bg-\[\#CCD2C4\] {
+  background-color: #14271F !important;
 }
 
 .dark .divide-\[\#CCD2C4\] > :not([hidden]) ~ :not([hidden]),
 .dark .divide-\[\#D5D9CE\] > :not([hidden]) ~ :not([hidden]) {
-  border-color: #172F23 !important;
+  border-color: #294338 !important;
 }
 
 /* Primary Text */

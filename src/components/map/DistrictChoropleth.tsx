@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useDashboard } from '../../context/DashboardContext';
+import { useAppTheme } from '../../context/ThemeContext';
 import {
   MAHARASHTRA_GEOJSON_POLYGONS,
   MAHARASHTRA_GEOJSON_VIEWBOX,
@@ -212,17 +213,35 @@ export const DistrictChoropleth: React.FC<DistrictChoroplethProps> = ({
     return { text: displayName, x: poly.center[0], y: poly.center[1] };
   };
 
+  const { isDark } = useAppTheme();
+
   return (
     <div
-      className={`rounded-2xl bg-[#E2E6DC] border border-[#CCD2C4] p-3.5 relative overflow-hidden shadow-xs ${className}`}
+      className={`rounded-2xl p-3.5 relative overflow-hidden shadow-xs transition-colors ${
+        isDark
+          ? 'bg-[#102019] border border-[#294338]'
+          : 'bg-[#E2E6DC] border border-[#CCD2C4]'
+      } ${className}`}
     >
       {/* Map Header & Legend Row */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-2.5 border-b border-[#CCD2C4]">
+      <div
+        className={`flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-2.5 border-b ${
+          isDark ? 'border-[#294338]' : 'border-[#CCD2C4]'
+        }`}
+      >
         <div>
-          <h2 className="text-sm font-bold text-[#16221B] tracking-tight">
+          <h2
+            className={`text-sm font-bold tracking-tight ${
+              isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+            }`}
+          >
             {title || `Maharashtra District Risk Map (Kharif ${cropYearStr})`}
           </h2>
-          <p className="text-[11px] text-[#526458] mt-0.5">
+          <p
+            className={`text-[11px] mt-0.5 ${
+              isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'
+            }`}
+          >
             District-wise classification based on &gt;10% yield deficit below historical 5-year baseline
           </p>
         </div>
@@ -239,15 +258,29 @@ export const DistrictChoropleth: React.FC<DistrictChoroplethProps> = ({
           </div>
           <div className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-[#525D67]" />
-            <span className="text-[#525D67] font-mono text-[10px] font-semibold">Non-Target District</span>
+            <span
+              className={`font-mono text-[10px] font-semibold ${
+                isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'
+              }`}
+            >
+              Non-Target District
+            </span>
           </div>
-          <div className="flex items-center gap-1.5 pl-2 border-l border-[#CCD2C4]">
+          <div
+            className={`flex items-center gap-1.5 pl-2 border-l ${
+              isDark ? 'border-[#294338]' : 'border-[#CCD2C4]'
+            }`}
+          >
             <button
               type="button"
               onClick={() => setShowLabels(!showLabels)}
               className={`px-2 py-0.5 rounded text-[10px] font-mono cursor-pointer transition-colors border ${
                 showLabels
-                  ? 'bg-[#12382B] text-white border-[#12382B]'
+                  ? isDark
+                    ? 'bg-[#14271F] text-[#39B8C4] border-[#39B8C4]'
+                    : 'bg-[#12382B] text-white border-[#12382B]'
+                  : isDark
+                  ? 'bg-[#102019] border-[#294338] text-[#9BAFA4] hover:text-[#E5EEE8]'
                   : 'bg-white border-[#CCD2C4] text-[#526458] hover:text-[#16221B]'
               }`}
             >

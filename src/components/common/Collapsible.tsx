@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
+import { useAppTheme } from '../../context/ThemeContext';
 
 interface CollapsibleProps {
   title: string;
@@ -19,32 +20,55 @@ export const Collapsible: React.FC<CollapsibleProps> = ({
   className = '',
 }) => {
   const [isOpen, setIsOpen] = useState(defaultOpen);
+  const { isDark } = useAppTheme();
 
   return (
     <div
-      className={`rounded-xl border border-[#CCD2C4] bg-[#EAECE4] overflow-hidden transition-all shadow-2xs ${className}`}
+      className={`rounded-xl border overflow-hidden transition-all shadow-2xs ${
+        isDark
+          ? 'border-[#294338] bg-[#102019]'
+          : 'border-[#CCD2C4] bg-[#EAECE4]'
+      } ${className}`}
     >
       <button
         type="button"
         onClick={() => setIsOpen(prev => !prev)}
-        className="w-full flex items-center justify-between p-3 text-left hover:bg-[#E2E6DC] transition-colors cursor-pointer select-none"
+        className={`w-full flex items-center justify-between p-3 text-left transition-colors cursor-pointer select-none ${
+          isDark ? 'hover:bg-[#14271F]' : 'hover:bg-[#E2E6DC]'
+        }`}
       >
         <div className="flex items-center gap-2 min-w-0">
-          {icon && <span className="text-[#12382B] shrink-0">{icon}</span>}
-          <span className="text-xs font-semibold text-[#16221B] truncate">{title}</span>
+          {icon && (
+            <span className={`shrink-0 ${isDark ? 'text-[#39B8C4]' : 'text-[#12382B]'}`}>
+              {icon}
+            </span>
+          )}
+          <span
+            className={`text-xs font-semibold truncate ${
+              isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+            }`}
+          >
+            {title}
+          </span>
         </div>
         <div className="flex items-center gap-2 shrink-0">
           {badge}
           <ChevronDown
-            className={`w-4 h-4 text-[#526458] transition-transform duration-200 ${
-              isOpen ? 'rotate-180 text-[#12382B]' : ''
-            }`}
+            className={`w-4 h-4 transition-transform duration-200 ${
+              isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'
+            } ${isOpen ? (isDark ? 'rotate-180 text-[#39B8C4]' : 'rotate-180 text-[#12382B]') : ''}`}
           />
         </div>
       </button>
 
       {isOpen && (
-        <div className="p-3 border-t border-[#CCD2C4] text-xs text-[#3E5146] animate-in fade-in duration-150">
+        <div
+          className={`p-3 border-t text-xs animate-in fade-in duration-150 ${
+            isDark
+              ? 'border-[#294338] text-[#9BAFA4]'
+              : 'border-[#CCD2C4] text-[#3E5146]'
+          }`}
+        >
           {children}
         </div>
       )}

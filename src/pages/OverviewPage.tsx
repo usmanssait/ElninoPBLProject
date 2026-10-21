@@ -5,9 +5,11 @@ import { RainfallYieldChart } from '../components/charts/RainfallYieldChart';
 import { SeasonalClimateCard } from '../components/panels/SeasonalClimateCard';
 import { DistrictDetailPanel } from '../components/panels/DistrictDetailPanel';
 import { useDashboard } from '../context/DashboardContext';
+import { useAppTheme } from '../context/ThemeContext';
 
 export const OverviewPage: React.FC = () => {
   const { cropYearStr, currentYearMetrics, monitoredDistrictsForCrop, selectedCrop } = useDashboard();
+  const { isDark } = useAppTheme();
 
   const handleDownloadCsv = () => {
     const headers = [
@@ -50,14 +52,22 @@ export const OverviewPage: React.FC = () => {
   };
 
   return (
-    <div className="space-y-3.5 w-full text-[#16221B]">
+    <div className={`space-y-3.5 w-full ${isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'}`}>
       {/* 1. Page Header with Title */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-[#CCD2C4]">
+      <div
+        className={`flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b ${
+          isDark ? 'border-[#294338]' : 'border-[#CCD2C4]'
+        }`}
+      >
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-[#16221B] font-serif">
+          <h1
+            className={`text-xl sm:text-2xl font-bold tracking-tight font-serif ${
+              isDark ? 'text-[#E5EEE8]' : 'text-[#16221B]'
+            }`}
+          >
             Maharashtra District Risk &amp; Historical Intelligence
           </h1>
-          <p className="text-xs text-[#526458] mt-0.5 font-medium">
+          <p className={`text-xs mt-0.5 font-medium ${isDark ? 'text-[#9BAFA4]' : 'text-[#526458]'}`}>
             Spatiotemporal CNN-LSTM Framework for All-Kharif Crop Failure Prediction using Satellite Imagery and IMD Data
           </p>
         </div>
