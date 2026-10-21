@@ -15,7 +15,6 @@ export const CropSelect: React.FC<CropSelectProps> = ({ className = '', showIcon
   const cropOptions: SelectOption<KharifCropType>[] = SUPPORTED_KHARIF_CROPS.map(c => ({
     value: c.id,
     label: `${c.icon} ${c.label}`,
-    badge: c.id === 'rice' ? 'Active Focus' : 'Phase 2',
   }));
 
   return (

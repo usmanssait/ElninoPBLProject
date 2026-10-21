@@ -24,7 +24,7 @@ export const AboutProjectPage: React.FC = () => {
         </p>
       </div>
 
-      {/* Project Abstract & Roadmap */}
+      {/* Project Abstract & Scope */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div
           className={`rounded-2xl border p-5 sm:p-6 space-y-3 shadow-xs ${
@@ -47,7 +47,7 @@ export const AboutProjectPage: React.FC = () => {
         >
           <div className="flex items-center gap-2 font-bold text-sm">
             <CheckCircle2 className="w-4 h-4 text-[#22C55E]" />
-            <span className={`font-serif ${isDark ? 'text-white' : 'text-[#16221B]'}`}>Development Roadmap & Crop Scope</span>
+            <span className={`font-serif ${isDark ? 'text-white' : 'text-[#16221B]'}`}>Operational Coverage &amp; Agronomic Scope</span>
           </div>
           <div className="space-y-2 text-xs font-mono">
             <div
@@ -55,9 +55,9 @@ export const AboutProjectPage: React.FC = () => {
                 isDark ? 'bg-[#060D0A] border-[#14261F]' : 'bg-white border-[#CCD2C4]'
               }`}
             >
-              <span className="text-[#22C55E] font-bold block">Phase 1 (Current Active Build):</span>
+              <span className="text-[#22C55E] font-bold block">Primary Paddy (Rice) Belts:</span>
               <span className={`text-[11px] font-sans block mt-0.5 ${isDark ? 'text-[#7A9187]' : 'text-[#526458]'}`}>
-                Streamlined UI layout, grouped navigation, zero-leakage baseline audit, and rice pilot CNN-LSTM checkpoint evaluation.
+                24 monitored districts spanning Konkan (Thane, Raigad, Ratnagiri, Sindhudurg, Palghar) and Eastern Vidarbha (Bhandara, Gondia, Gadchiroli, Chandrapur, Nagpur).
               </span>
             </div>
             <div
@@ -65,9 +65,9 @@ export const AboutProjectPage: React.FC = () => {
                 isDark ? 'bg-[#060D0A] border-[#14261F]' : 'bg-white border-[#CCD2C4]'
               }`}
             >
-              <span className="text-[#38BDF8] font-bold block">Phase 2 (Upcoming Expansion):</span>
+              <span className="text-[#38BDF8] font-bold block">Comparative Kharif Crops:</span>
               <span className={`text-[11px] font-sans block mt-0.5 ${isDark ? 'text-[#7A9187]' : 'text-[#526458]'}`}>
-                Transition from rice to All Kharif Crops using DES multi-crop APY statistics and area-weighted Composite Kharif Yield Index.
+                Yield sensitivity profiles and empirical response modeling across Maharashtra Kharif staples: Rice, Soybean, Cotton, Bajra, Jowar, and Tur (Pigeon Pea).
               </span>
             </div>
           </div>

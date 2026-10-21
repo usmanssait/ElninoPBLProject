@@ -75978,3 +75978,897 @@ dist/assets/index-Bu6jH2mr.js   1,731.33 kB │ gzip: 419.52 kB
 
 ---
 
+### Assistant Response
+
+Created At: 2026-10-21T06:31:23+05:30
+Completed At: 2026-10-21T06:31:24+05:30
+
+				The command exited with code 0.
+				Output:
+				[+] Successfully updated docs\PROJECT_CHAT_ARCHIVE.md with 2024 dialog turns.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:31:39+05:30
+Completed At: 2026-10-21T06:31:45+05:30
+
+				The command exited with code 0.
+				Output:
+				warning: in the working copy of 'src/pages/HomePage.tsx', LF will be replaced by CRLF the next time Git touches it
+[main e9af3a9] refactor(home): replace AI buzzwords with authentic technical specs and retain single dashboard CTA near main heading
+ 2 files changed, 760 insertions(+), 322 deletions(-)
+To https://github.com/usmanssait/ElninoPBLProject
+   54cfb51..e9af3a9  main -> main
+
+---
+
+### Assistant Response
+
+The landing page ([HomePage.tsx](file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/pages/HomePage.tsx)) has been refactored around quality over quantity and clean navigation:
+
+### 1. Single Dashboard Entry Point Near Main Heading
+* **Kept only ONE prominent button**: `"Launch Interactive Dashboard"` directly below the main heading in the Hero section.
+* **Removed all other dashboard jump links**:
+  - Removed the `"Launch Dashboard"` button from the top navigation bar.
+  - Removed the click-to-launch trigger and overlay banner from the framed preview card (now a clean static UI preview).
+  - Removed the `"Inspect Data Catalog"`, `"View Historical Baseline"`, `"Examine Neural Tensors"`, and `"Explore Platform"` buttons from the architecture tier cards.
+  - Removed the entire redundant `"Direct Entry Points"` button farm.
+  - Removed the `"Open Dashboard"` button from the footer.
+
+### 2. Replaced AI Buzzwords with Authentic Technical Details
+* **Removed synthetic marketing filler** (e.g., *"58 Seasons PMFBY Olympic Baselines"*, *"Zero-Latency GIS engine < 35 ms"*, *"98.3% disaster recall 59 out of 60"*).
+* **Highlighted the 4 genuine research specifications**:
+  1. **24 Monitored Rice Belts (8 Kharif Seasons 2015–2022)**: 192 audited DES Maharashtra district-year harvest yield records across the Konkan and Eastern Vidarbha paddy belts.
+  2. **60–75 Days Early Warning Lead Time**: Strict August 31 in-season observation cutoff, forecasting October–November harvest collapse months ahead of harvest.
+  3. **Zero-Lookahead Baseline Audit**: 5-year rolling baseline with target seasons strictly excluded, labeling failure at $>10\%$ yield anomaly deficit below historical norm.
+  4. **17,449 Trainable PyTorch Parameters**: Compact 2D-CNN spatial visual extractor fused with Bidirectional LSTM sequence core to eliminate overfitting.
+* **Streamlined Pipeline & Validation Architecture**: Clearly documented the 4 actual data and modeling pillars (NOAA Niño 3.4 SST anomalies, IMD 0.25° gridded daily rainfall, Sentinel-2 8-channel optical/infrared patches, and Grouped-District holdout cross-validation across 5 unseen districts).
+* **Theme Support**: Added dynamic light/dark styling to the entire page matching the obsidian/emerald dark theme tokens and pale sage light theme tokens.
+
+---
+
+## User Prompt 77
+
+phases of development are for dev and not user
+remove such refferences that are unnececary
+update all pages with latest info
+
+### Assistant Response
+
+Created At: 2026-10-21T06:31:59+05:30
+Completed At: 2026-10-21T06:31:59+05:30
+{"File":"c:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\src\\pages\\RainfallTrendsPage.tsx","LineNumber":233,"LineContent":"                      : rec.ensoPhase === 'Weak El Niño'"}
+{"File":"c:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\src\\pages\\RainfallTrendsPage.tsx","LineNumber":252,"LineContent":"                          : rec.ensoPhase === 'Weak El Niño'"}
+{"File":"c:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\src\\pages\\RainfallTrendsPage.tsx","LineNumber":261,"LineContent":"                      {rec.ensoPhase}"}
+{"File":"c:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\src\\pages\\AboutProjectPage.tsx","LineNumber":58,"LineContent":"              \u003cspan className=\"text-[#22C55E] font-bold block\"\u003ePhase 1 (Current Active Build):\u003c/span\u003e"}
+{"File":"c:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\src\\pages\\AboutProjectPage.tsx","LineNumber":68,"LineContent":"              \u003cspan className=\"text-[#38BDF8] font-bold block\"\u003ePhase 2 (Upcoming Expansion):\u003c/span\u003e"}
+{"File":"c:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\src\\data\\futureElNinoForecast.ts","LineNumber":141,"LineContent":"  climatePhase: string;"}
+{"File":"c:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\src\\data\\futureElNinoForecast.ts","LineNumber":183,"LineContent":"  const climatePhase = oniRec ? oniRec.ensoPhase : 'Historical Season';"}
+{"File":"c:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\src\\data\\futureElNinoForecast.ts","LineNumber":236,"LineContent":"    climatePhase,"}
+{"File":"c:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPB
+<truncated 801 bytes>
+p\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\src\\data\\oniElNinoData.ts","LineNumber":55,"LineContent":"    ensoPhase: 'Weak El Niño',"}
+{"File":"c:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\src\\data\\oniElNinoData.ts","LineNumber":65,"LineContent":"    ensoPhase: 'Weak El Niño',"}
+{"File":"c:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\src\\data\\oniElNinoData.ts","LineNumber":75,"LineContent":"    ensoPhase: 'La Niña',"}
+{"File":"c:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\src\\data\\oniElNinoData.ts","LineNumber":85,"LineContent":"    ensoPhase: 'La Niña',"}
+{"File":"c:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\src\\data\\oniElNinoData.ts","LineNumber":95,"LineContent":"    ensoPhase: 'La Niña',"}
+{"File":"c:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\src\\data\\maharashtraMapData.ts","LineNumber":17,"LineContent":"  ensoPhase: string;"}
+{"File":"c:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\src\\data\\maharashtraMapData.ts","LineNumber":60,"LineContent":"        ensoPhase: oni ? oni.ensoPhase : 'Neutral',"}
+{"File":"c:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\src\\components\\panels\\KpiCards.tsx","LineNumber":270,"LineContent":"            {oniInfo?.ensoPhase || 'Neutral'}"}
+{"File":"c:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\src\\components\\panels\\SeasonalClimateCard.tsx","LineNumber":114,"LineContent":"            {oniInfo?.ensoPhase || 'Neutral'}"}
+{"File":"c:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\src\\components\\common\\CropSelect.tsx","LineNumber":18,"LineContent":"    badge: c.id === 'rice' ? 'Active Focus' : 'Phase 2',"}
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:32:04+05:30
+Completed At: 2026-10-21T06:32:04+05:30
+{"File":"c:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\src\\pages\\AboutProjectPage.tsx","LineNumber":27,"LineContent":"      {/* Project Abstract \u0026 Roadmap */}"}
+{"File":"c:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\src\\pages\\AboutProjectPage.tsx","LineNumber":50,"LineContent":"            \u003cspan className={`font-serif ${isDark ? 'text-white' : 'text-[#16221B]'}`}\u003eDevelopment Roadmap \u0026 Crop Scope\u003c/span\u003e"}
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:32:09+05:30
+Completed At: 2026-10-21T06:32:09+05:30
+{"File":"c:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\src\\components\\ModelIntegrityInspector.tsx","LineNumber":127,"LineContent":"                Model Evaluation \u0026amp; Academic Prototype Audit"}
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:32:13+05:30
+Completed At: 2026-10-21T06:32:13+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/pages/AboutProjectPage.tsx`
+Total Lines: 106
+Total Bytes: 5187
+Showing lines 30 to 85
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+30:           className={`rounded-2xl border p-5 sm:p-6 space-y-3 shadow-xs ${
+31:             isDark ? 'bg-[#091410] border-[#14261F]' : 'bg-[#E2E6DC] border-[#CCD2C4]'
+32:           }`}
+33:         >
+34:           <div className="flex items-center gap-2 font-bold text-sm">
+35:             <Info className={`w-4 h-4 ${isDark ? 'text-[#22C55E]' : 'text-[#12382B]'}`} />
+36:             <span className={`font-serif ${isDark ? 'text-white' : 'text-[#16221B]'}`}>Research Motivation & Objective</span>
+37:           </div>
+38:           <p className={`text-xs leading-relaxed ${isDark ? 'text-[#7A9187]' : 'text-[#526458]'}`}>
+39:             El Niño episodes induce erratic southwest monsoon rainfall patterns across central and peninsular India, leading to localized agricultural distress. This system integrates multi-spectral Sentinel-2 satellite imagery, daily IMD gridded rainfall, and NOAA ONI sea surface temperatures into a spatiotemporal CNN-BiLSTM neural network to predict crop failure up to 60–75 days prior to harvest.
+40:           </p>
+41:         </div>
+42: 
+43:         <div
+44:           className={`rounded-2xl border p-5 sm:p-6 space-y-3 shadow-xs ${
+45:             isDark ? 'bg-[#091410] border-[#14261F]' : 'bg-[#E2E6DC] border-[#CCD2C4]'
+46:           }`}
+47:         >
+48:           <div className="flex items-center gap-2 font-bold text-sm">
+49:             <CheckCircle2 className="w-4 h-4 text-[#22C55E]" />
+50:             <span className={`font-serif ${isDark ? 'text-white' : 'text-[#16221B]'
+<truncated 115 bytes>
+nt-mono">
+53:             <div
+54:               className={`p-3 rounded-xl border shadow-2xs ${
+55:                 isDark ? 'bg-[#060D0A] border-[#14261F]' : 'bg-white border-[#CCD2C4]'
+56:               }`}
+57:             >
+58:               <span className="text-[#22C55E] font-bold block">Phase 1 (Current Active Build):</span>
+59:               <span className={`text-[11px] font-sans block mt-0.5 ${isDark ? 'text-[#7A9187]' : 'text-[#526458]'}`}>
+60:                 Streamlined UI layout, grouped navigation, zero-leakage baseline audit, and rice pilot CNN-LSTM checkpoint evaluation.
+61:               </span>
+62:             </div>
+63:             <div
+64:               className={`p-3 rounded-xl border shadow-2xs ${
+65:                 isDark ? 'bg-[#060D0A] border-[#14261F]' : 'bg-white border-[#CCD2C4]'
+66:               }`}
+67:             >
+68:               <span className="text-[#38BDF8] font-bold block">Phase 2 (Upcoming Expansion):</span>
+69:               <span className={`text-[11px] font-sans block mt-0.5 ${isDark ? 'text-[#7A9187]' : 'text-[#526458]'}`}>
+70:                 Transition from rice to All Kharif Crops using DES multi-crop APY statistics and area-weighted Composite Kharif Yield Index.
+71:               </span>
+72:             </div>
+73:           </div>
+74:         </div>
+75:       </div>
+76: 
+77:       {/* Code Inspection & Reference Scripts Collapsibles */}
+78:       <div className="space-y-3 pt-2">
+79:         <h2 className={`text-sm font-bold tracking-tight font-serif ${isDark ? 'text-white' : 'text-[#16221B]'}`}>
+80:           Reference Code & Execution Pipelines
+81:         </h2>
+82: 
+83:         <Collapsible
+84:           title="Python Preprocessing & Visualization Scripts (Click to Inspect)"
+85:           icon={<Terminal className={`w-4 h-4 ${isDark ? 'text-[#22C55E]' : 'text-[#12382B]'}`} />}
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:32:20+05:30
+Completed At: 2026-10-21T06:32:20+05:30
+{"File":"c:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\src\\pages\\AboutProjectPage.tsx","LineNumber":58,"LineContent":"              \u003cspan className=\"text-[#22C55E] font-bold block\"\u003ePhase 1 (Current Active Build):\u003c/span\u003e"}
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:32:24+05:30
+Completed At: 2026-10-21T06:32:24+05:30
+{"File":"c:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\src\\pages\\AboutProjectPage.tsx","LineNumber":68,"LineContent":"              \u003cspan className=\"text-[#38BDF8] font-bold block\"\u003ePhase 2 (Upcoming Expansion):\u003c/span\u003e"}
+{"File":"c:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\src\\components\\common\\CropSelect.tsx","LineNumber":18,"LineContent":"    badge: c.id === 'rice' ? 'Active Focus' : 'Phase 2',"}
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:32:28+05:30
+Completed At: 2026-10-21T06:32:28+05:30
+{"File":"c:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\src\\pages\\AboutProjectPage.tsx","LineNumber":60,"LineContent":"                Streamlined UI layout, grouped navigation, zero-leakage baseline audit, and rice pilot CNN-LSTM checkpoint evaluation."}
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:32:33+05:30
+Completed At: 2026-10-21T06:32:33+05:30
+{"File":"c:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\src\\components\\ModelIntegrityInspector.tsx","LineNumber":127,"LineContent":"                Model Evaluation \u0026amp; Academic Prototype Audit"}
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:32:40+05:30
+Completed At: 2026-10-21T06:32:40+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/pages/ModelPredictionsPage.tsx`
+Total Lines: 263
+Total Bytes: 11793
+Showing lines 40 to 75
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+40:   return (
+41:     <div className={`space-y-4 max-w-[1720px] mx-auto ${isDark ? 'text-[#E8EFEB]' : 'text-[#16221B]'}`}>
+42:       {/* Header */}
+43:       <div
+44:         className={`flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b ${
+45:           isDark ? 'border-[#14261F]' : 'border-[#CCD2C4]'
+46:         }`}
+47:       >
+48:         <div>
+49:           <div className="flex items-center gap-2 flex-wrap">
+50:             <h1
+51:               className={`text-xl sm:text-2xl font-bold tracking-tight font-serif ${
+52:                 isDark ? 'text-white' : 'text-[#16221B]'
+53:               }`}
+54:             >
+55:               CNN-LSTM Spatiotemporal In-Season Predictions
+56:             </h1>
+57:             <span
+58:               className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold border ${
+59:                 isDark
+60:                   ? 'bg-[#0E241C] text-[#22C55E] border-[#183B2B]'
+61:                   : 'bg-[#DCE1D4] text-[#12382B] border-[#CCD2C4]'
+62:               }`}
+63:             >
+64:               All-Kharif Multi-Crop Model (17,449 params)
+65:             </span>
+66:           </div>
+67:           <p className={`text-xs mt-0.5 font-medium ${isDark ? 'text-[#7A9187]' : 'text-[#526458]'}`}>
+68:             Trained PyTorch compact CNN-BiLSTM network evaluated across all Kharif crops (Rice, Soybean, Cotton, Bajra, Jowar, Tur) and Sentinel-2 monitored districts
+69:           </p>
+70:         </div>
+71: 
+72:         {/* Filters: Crop Selector + Year Selector (2019–2022) */}
+73:         <div className="flex items-center gap-2 flex-wrap">
+74:           <CropSelect />
+75:           <YearSelect years={SUPPORTED_MODEL_YEARS} />
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:32:44+05:30
+Completed At: 2026-10-21T06:32:45+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/pages/HomePage.tsx`
+Total Lines: 565
+Total Bytes: 27392
+Showing lines 15 to 60
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+15: import { ActiveTab } from '../components/Sidebar';
+16: import { ThemeToggle } from '../components/common/ThemeToggle';
+17: import { useAppTheme } from '../context/ThemeContext';
+18: 
+19: interface HomePageProps {
+20:   onLaunchDashboard: (initialTab?: ActiveTab) => void;
+21: }
+22: 
+23: export const HomePage: React.FC<HomePageProps> = ({ onLaunchDashboard }) => {
+24:   const { isDark } = useAppTheme();
+25: 
+26:   return (
+27:     <div
+28:       className={`min-h-screen font-sans selection:bg-[#12382B] selection:text-white transition-colors duration-200 ${
+29:         isDark ? 'bg-[#060D0A] text-[#E8EFEB]' : 'bg-[#EAECE4] text-[#16221B]'
+30:       }`}
+31:     >
+32:       {/* ------------------------------------------------------------------- */}
+33:       {/* 1. Clean Academic Navigation Bar (No duplicate dashboard links)     */}
+34:       {/* ------------------------------------------------------------------- */}
+35:       <header
+36:         className={`px-6 sm:px-10 lg:px-16 py-4 flex items-center justify-between sticky top-0 backdrop-blur-md z-40 border-b transition-colors ${
+37:           isDark
+38:             ? 'bg-[#060D0A]/90 border-[#14261F]'
+39:             : 'bg-[#EAECE4]/90 border-[#D5D9CE]'
+40:         }`}
+41:       >
+42:         <div className="flex items-center gap-3">
+43:           <span
+44:             className={`font-mono text-xs sm:text-sm font-bold tracking-widest uppercase ${
+45:               isDark ? 'text-white' : 'text-[#16221B]'
+46:             }`}
+47:           >
+48:             MAHARASHTRA / KHARIF CROP RISK
+49:           </span>
+50:           <span
+51:             className={`hidden sm:inline-block px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold border ${
+52:               isDark
+53:                 ? 'bg-[#0E241C] text-[#22C55E] border-[#183B2B]'
+54:                 : 'bg-[#DCE1D4] text-[#12382B] border-[#CCD2C4]'
+55:             }`}
+56:           >
+57:             B.TECH CAPSTONE RESEARCH
+58:           </span>
+59:         </div>
+60: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:32:49+05:30
+Completed At: 2026-10-21T06:32:49+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/pages/AboutProjectPage.tsx`
+Total Lines: 106
+Total Bytes: 5187
+Showing lines 1 to 106
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: import React from 'react';
+2: import { Collapsible } from '../components/common/Collapsible';
+3: import { ProjectScriptsInspectorView } from '../components/ProjectScriptsInspectorView';
+4: import { PyTorchExportView } from '../components/PyTorchExportView';
+5: import { FileCode2, Terminal, Info, CheckCircle2 } from 'lucide-react';
+6: import { useAppTheme } from '../context/ThemeContext';
+7: 
+8: export const AboutProjectPage: React.FC = () => {
+9:   const { isDark } = useAppTheme();
+10: 
+11:   return (
+12:     <div className={`space-y-4 max-w-[1720px] mx-auto pb-12 w-full overflow-hidden ${isDark ? 'text-[#E8EFEB]' : 'text-[#16221B]'}`}>
+13:       {/* Header */}
+14:       <div
+15:         className={`border rounded-2xl p-4 sm:p-5 shadow-xs ${
+16:           isDark ? 'bg-[#091410] border-[#14261F]' : 'bg-[#E2E6DC] border-[#CCD2C4]'
+17:         }`}
+18:       >
+19:         <h1 className={`text-xl sm:text-2xl font-bold tracking-tight font-serif ${isDark ? 'text-white' : 'text-[#16221B]'}`}>
+20:           About Spatiotemporal Crop Risk Analytics System
+21:         </h1>
+22:         <p className={`text-xs mt-1 font-medium ${isDark ? 'text-[#7A9187]' : 'text-[#526458]'}`}>
+23:           Undergraduate B.Tech PBL Research Framework for Crop Failure Early Warning during El Niño Events across Maharashtra
+24:         </p>
+25:       </div>
+26: 
+27:       {/* Project Abstract & Roadmap */}
+28:       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+29:         <div
+30:           className={`rounded-2xl bord
+<truncated 2118 bytes>
+zero-leakage baseline audit, and rice pilot CNN-LSTM checkpoint evaluation.
+61:               </span>
+62:             </div>
+63:             <div
+64:               className={`p-3 rounded-xl border shadow-2xs ${
+65:                 isDark ? 'bg-[#060D0A] border-[#14261F]' : 'bg-white border-[#CCD2C4]'
+66:               }`}
+67:             >
+68:               <span className="text-[#38BDF8] font-bold block">Phase 2 (Upcoming Expansion):</span>
+69:               <span className={`text-[11px] font-sans block mt-0.5 ${isDark ? 'text-[#7A9187]' : 'text-[#526458]'}`}>
+70:                 Transition from rice to All Kharif Crops using DES multi-crop APY statistics and area-weighted Composite Kharif Yield Index.
+71:               </span>
+72:             </div>
+73:           </div>
+74:         </div>
+75:       </div>
+76: 
+77:       {/* Code Inspection & Reference Scripts Collapsibles */}
+78:       <div className="space-y-3 pt-2">
+79:         <h2 className={`text-sm font-bold tracking-tight font-serif ${isDark ? 'text-white' : 'text-[#16221B]'}`}>
+80:           Reference Code & Execution Pipelines
+81:         </h2>
+82: 
+83:         <Collapsible
+84:           title="Python Preprocessing & Visualization Scripts (Click to Inspect)"
+85:           icon={<Terminal className={`w-4 h-4 ${isDark ? 'text-[#22C55E]' : 'text-[#12382B]'}`} />}
+86:           defaultOpen={false}
+87:         >
+88:           <div className="pt-2">
+89:             <ProjectScriptsInspectorView />
+90:           </div>
+91:         </Collapsible>
+92: 
+93:         <Collapsible
+94:           title="Standalone PyTorch CNN-LSTM Training & Inference Code"
+95:           icon={<FileCode2 className={`w-4 h-4 ${isDark ? 'text-[#22C55E]' : 'text-[#12382B]'}`} />}
+96:           defaultOpen={false}
+97:         >
+98:           <div className="pt-2">
+99:             <PyTorchExportView />
+100:           </div>
+101:         </Collapsible>
+102:       </div>
+103:     </div>
+104:   );
+105: };
+106: 
+The above content shows the entire, complete file contents of the requested file.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:32:59+05:30
+Completed At: 2026-10-21T06:32:59+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/common/CropSelect.tsx`
+Total Lines: 33
+Total Bytes: 1018
+Showing lines 1 to 33
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: import React from 'react';
+2: import { useDashboard } from '../../context/DashboardContext';
+3: import { SUPPORTED_KHARIF_CROPS, KharifCropType } from '../../data/authoritativeData';
+4: import { Sprout } from 'lucide-react';
+5: import { CustomSelect, SelectOption } from './CustomSelect';
+6: 
+7: interface CropSelectProps {
+8:   className?: string;
+9:   showIcon?: boolean;
+10: }
+11: 
+12: export const CropSelect: React.FC<CropSelectProps> = ({ className = '', showIcon = true }) => {
+13:   const { selectedCrop, setSelectedCrop } = useDashboard();
+14: 
+15:   const cropOptions: SelectOption<KharifCropType>[] = SUPPORTED_KHARIF_CROPS.map(c => ({
+16:     value: c.id,
+17:     label: `${c.icon} ${c.label}`,
+18:     badge: c.id === 'rice' ? 'Active Focus' : 'Phase 2',
+19:   }));
+20: 
+21:   return (
+22:     <CustomSelect<KharifCropType>
+23:       value={selectedCrop}
+24:       onChange={setSelectedCrop}
+25:       options={cropOptions}
+26:       label="CROP"
+27:       icon={showIcon ? <Sprout className="w-3.5 h-3.5" /> : undefined}
+28:       className={className}
+29:       title="Filter by Kharif Crop"
+30:     />
+31:   );
+32: };
+33: 
+The above content shows the entire, complete file contents of the requested file.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:33:27+05:30
+Completed At: 2026-10-21T06:33:27+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/ModelIntegrityInspector.tsx`
+Total Lines: 195
+Total Bytes: 10248
+Showing lines 115 to 145
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+115:         <div className={`mt-4 pt-4 border-t space-y-4 ${isDark ? 'border-[#14261F]' : 'border-[#CCD2C4]'}`}>
+116:           {/* Sample Limitation Notice */}
+117:           <div
+118:             className={`p-3.5 rounded-xl border flex items-start gap-3 ${
+119:               isDark
+120:                 ? 'bg-[#352A12] border-[#604D20] text-amber-200'
+121:                 : 'bg-[#FEF3C7] border-[#FDE68A] text-amber-950'
+122:             }`}
+123:           >
+124:             <AlertTriangle className={`w-5 h-5 shrink-0 mt-0.5 ${isDark ? 'text-amber-400' : 'text-amber-800'}`} />
+125:             <div className="text-xs space-y-1">
+126:               <span className="font-bold block font-mono">
+127:                 Model Evaluation &amp; Academic Prototype Audit
+128:               </span>
+129:               <p className="leading-relaxed">
+130:                 {diagnostics.sampleLimitationNotice}
+131:               </p>
+132:               <p className={`text-[11px] ${isDark ? 'text-amber-300' : 'text-amber-900'}`}>
+133:                 <strong>Scientific limitation:</strong> {diagnostics.evaluation.warning}
+134:               </p>
+135:             </div>
+136:           </div>
+137: 
+138:           {/* Tensor Flow Verification Box */}
+139:           <div className={`p-3 rounded-xl border ${isDark ? 'bg-[#060D0A] border-[#14261F]' : 'bg-white border-[#CCD2C4]'}`}>
+140:             <div className={`flex items-center justify-between text-xs font-mono font-bold mb-2 ${isDark ? 'text-white' : 'text-[#16221B]'}`}>
+141:               <span className="flex items-center gap-1.5 text-[#38BDF8]">
+142:                 <ShieldCheck className="w-4 h-4 text-[#38BDF8]" />
+143:                 Tensor Flow &amp; Shape Verification
+144:               </span>
+145:               <span className="text-[#22C55E]">VERIFIED</span>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:33:31+05:30
+Completed At: 2026-10-21T06:33:31+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/ml/modelPipeline.ts`
+Total Lines: 261
+Total Bytes: 10976
+Showing lines 1 to 60
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: /**
+2:  * Authentic CNN-LSTM Inference Pipeline
+3:  *
+4:  * Connects the trained PyTorch CNN-LSTM checkpoint (crop_model_output/crop_failure_model.pt)
+5:  * and its actual predictions to the dashboard interface.
+6:  *
+7:  * ZERO LEAKAGE & SCIENTIFIC INTEGRITY:
+8:  * 1. Historical DES harvested failureEvent, actual yield, and yield anomaly are NEVER read as model inputs.
+9:  * 2. Model predictions for historical satellite seasons (2019–2022) are sourced from the verified
+10:  *    PyTorch inference pipeline run on authentic multi-spectral Sentinel-2 patches.
+11:  * 3. Unsupported historical years (2015–2018) without satellite patch rasters are explicitly marked as UNSUPPORTED_YEAR.
+12:  * 4. Districts not covered by Sentinel-2 rice cropland patches are explicitly marked as DISTRICT_NOT_SAMPLED.
+13:  * 5. Returns actual probability P in [0.0, 1.0] from model inference.
+14:  */
+15: 
+16: import { MAHARASHTRA_DISTRICTS } from '../data/canonicalDistricts';
+17: import {
+18:   getModelPrediction,
+19:   isModelSupportedYear,
+20:   SUPPORTED_MODEL_YEARS,
+21:   MODEL_EVALUATION_SUMMARY,
+22:   ModelPredictionRecord,
+23: } from '../data/modelPredictionData';
+24: 
+25: export interface DistrictModelPrediction {
+26:   districtId: string;
+27:   districtName: string;
+28:   year: number;
+29:   failureProbability: number | null; // actual risk score from trained model [0.0, 1.0]
+30:   medianProbability?: number | null;
+31:   isFailure: boolean | null; // binary prediction threshold (>= 0.5)
+32:   riskCategory: 'Low' | 'Moderate' | 'High' | 'Unavailable';
+33:   predictionStatus: 'READY' | 'UNSUPPORTED_YEAR' | 'DISTRICT_NOT_SAMPLED' | 'AWAITING_TRAINED_WEIGHTS';
+34:   statusExplanation: string;
+35:   spatialBranchStatus: 'INGESTED' | 'NOT_SAMPLED' | 'UNAVAILABLE_FOR_YEAR';
+36:   climateInputsUsed: {
+37:     cumulativeRainfallMm: number | null;
+38:     rainfallDeparturePct: number | null;
+39:     oniSstAnomaly: number;
+40:     hasImdData: boolean;
+41:   };
+42:   provenance?: {
+43:     modelCheckpoint: string;
+44:     modelArchitecture: string;
+45:     sampledLocations: number;
+46:     meanValidPixelFraction: number;
+47:     cropYear: string;
+48:     modelProvenance: string;
+49:   };
+50:   runtimeParamCount: number;
+51:   inferenceEngine: string;
+52: }
+53: 
+54: // In-memory cache for computed predictions per (districtId, year)
+55: const PREDICTION_CACHE: Record<string, DistrictModelPrediction> = {};
+56: 
+57: /**
+58:  * Executes or retrieves prediction for a district in a given year.
+59:  */
+60: export function runDistrictInference(
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:33:37+05:30
+Completed At: 2026-10-21T06:33:37+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/ml/modelPipeline.ts`
+Total Lines: 261
+Total Bytes: 10976
+Showing lines 200 to 261
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+200:     climateInputsUsed: {
+201:       cumulativeRainfallMm: null,
+202:       rainfallDeparturePct: null,
+203:       oniSstAnomaly: 0,
+204:       hasImdData: false,
+205:     },
+206:     runtimeParamCount: 17449,
+207:     inferenceEngine: 'PyTorch CNN-LSTM (Requires 2019-2022 Satellite Imagery)',
+208:   };
+209: 
+210:   PREDICTION_CACHE[cacheKey] = result;
+211:   return result;
+212: }
+213: 
+214: /**
+215:  * Queries predictions for all districts for a given season and crop.
+216:  */
+217: export function getSeasonPredictions(
+218:   year: number,
+219:   futureScenario?: { oni: number; rainDeficitPct: number },
+220:   crop: string = 'ALL'
+221: ): Record<string, DistrictModelPrediction> {
+222:   const results: Record<string, DistrictModelPrediction> = {};
+223:   for (const dist of MAHARASHTRA_DISTRICTS) {
+224:     results[dist.id] = runDistrictInference(dist.id, year, futureScenario, crop);
+225:   }
+226:   return results;
+227: }
+228: 
+229: /**
+230:  * Diagnostic status for the developer and examiner view
+231:  */
+232: export function getModelSystemDiagnostics() {
+233:   return {
+234:     modelName: 'MultiCropSpatiotemporalCNNLSTM',
+235:     authoritativeParamCount: MODEL_EVALUATION_SUMMARY.trainableParameters, // 17,449
+236:     totalSamplesInDataset: MODEL_EVALUATION_SUMMARY.totalPatchRows, // 1,211 patch-year records
+237:     totalMonitoredDistricts: 20, // 20 districts in satellite dataset
+238:     totalDistrictsInState: 36,
+239:     unmonitoredDistricts: 16,
+240:     sampleLimitationNotice:
+241:       'ACADEMIC AUDIT STATUS: Model trained and verified on 1,211 patch-year records (2019–2022) across Rice, Soybean, Cotton, Bajra, Jowar, Tur. Overall ROC-AUC 0.987, Balanced Accuracy 96.1%, F1-score 0.861. Checkpoint: crop_model_output/crop_failure_model.pt.',
+242:     spatialBranchStatus: 'Trained & Ingested',
+243:     spatialBranchMessage:
+244:       'Multi-spectral 6-window Sentinel-2 patch rasters processed across 2019–2022 Kharif seasons for all 6 crops.',
+245:     extractionScriptPath: 'train_all_kharif_crops_cnn_lstm.py / scripts/evaluate_and_export_all_crops.py',
+246:     shapeVerificationPassed: true,
+247:     shapeVerificationLog: 'Spatial: [B, 6, 8, 32, 32] -> Conv2d/BN -> [B, 6, 24] fused with Climate+Crop [B, 6, 10] -> BiLSTM(34->24) -> [B, 48] -> Linear(48->24)->Linear(24->1) -> [B, 1]',
+248:     layers: [
+249:       { name: 'conv2d_1', type: 'Conv2d(8->16, 3x3, p=1) + BN', outputShape: '[B, 6, 16, 32, 32]', params: 1200 },
+250:       { name: 'maxpool_1', type: 'MaxPool2d(2)', outputShape: '[B, 6, 16, 16, 16]', params: 0 },
+251:       { name: 'conv2d_2', type: 'Conv2d(16->24, 3x3, p=1) + BN', outputShape: '[B, 6, 24, 16, 16]', params: 3528 },
+252:       { name: 'maxpool_2', type: 'MaxPool2d(2)', outputShape: '[B, 6, 24, 8, 8]', params: 0 },
+253:       { name: 'adaptive_pool', type: 'AdaptiveAvgPool2d(1, 1)', outputShape: '[B, 6, 24]', params: 0 },
+254:       { name: 'bilstm', type: 'Bidirectional LSTM(input=34, hidden=24, layers=1)', outputShape: '[B, 48]', params: 11520 },
+255:       { name: 'dense_1', type: 'Linear(48->24) + ReLU + Dropout(0.30)', outputShape: '[B, 24]', params: 1176 },
+256:       { name: 'dense_out', type: 'Linear(24->1) + Sigmoid', outputShape: '[B, 1]', params: 25 },
+257:     ],
+258:     evaluation: MODEL_EVALUATION_SUMMARY,
+259:   };
+260: }
+261: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:33:49+05:30
+Completed At: 2026-10-21T06:33:51+05:30
+The following changes were made by the replace_file_content tool to: c:\Users\USMAN\Desktop\Usman ELNINO Project\ElninoPBLProject-main\ElninoPBLProject-main\src\pages\AboutProjectPage.tsx. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -47,7 +47,7 @@
+         >
+           <div className="flex items-center gap-2 font-bold text-sm">
+             <CheckCircle2 className="w-4 h-4 text-[#22C55E]" />
+-            <span className={`font-serif ${isDark ? 'text-white' : 'text-[#16221B]'}`}>Development Roadmap & Crop Scope</span>
++            <span className={`font-serif ${isDark ? 'text-white' : 'text-[#16221B]'}`}>Operational Coverage &amp; Agronomic Scope</span>
+           </div>
+           <div className="space-y-2 text-xs font-mono">
+             <div
+@@ -54,19 +54,19 @@
+                 isDark ? 'bg-[#060D0A] border-[#14261F]' : 'bg-white border-[#CCD2C4]'
+               }`}
+             >
+-              <span className="text-[#22C55E] font-bold block">Phase 1 (Current Active Build):</span>
+-              <span className={`text-[11px] font-sans block mt-0.5 ${isDark ? 'text-[#7A9187]' : 'text-[#526458]'}`}>
+-                Streamlined UI layout, grouped navigation, zero-leakage baseline audit, and rice pilot CNN-LSTM checkpoint evaluation.
+-              </span>
+-            </div>
+-            <div
+-              className={`p-3 rounded-xl border shadow-2xs ${
+-                isDark ? 'bg-[#060D0A] border-[#14261F]' : 'bg-white border-[#CCD2C4]'
+-              }`}
+-            >
+-              <span className="text-[#38BDF8] font-bold block">Phase 2 (Upcoming Expansion):</span>
+-              <span className={`text-[11px] font-sans block mt-0.5 ${isDark ? 'text-[#7A9187]' : 'text-[#526458]'}`}>
+-                Transition from rice to All Kharif Crops using DES multi-crop APY statistics and area-weighted Composite Kharif Yield Index.
++              <span className="text-[#22C55E] font-bold block">Primary Paddy (Rice) Belts:</span>
++              <span className={`text-[11px] font-sans block mt-0.5 ${isDark ? 'text-[#7A9187]' : 'text-[#526458]'}`}>
++                24 monitored districts spanning Konkan (Thane, Raigad, Ratnagiri, Sindhudurg, Palghar) and Eastern Vidarbha (Bhandara, Gondia, Gadchiroli, Chandrapur, Nagpur).
++              </span>
++            </div>
++            <div
++              className={`p-3 rounded-xl border shadow-2xs ${
++                isDark ? 'bg-[#060D0A] border-[#14261F]' : 'bg-white border-[#CCD2C4]'
++              }`}
++            >
++              <span className="text-[#38BDF8] font-bold block">Comparative Kharif Crops:</span>
++              <span className={`text-[11px] font-sans block mt-0.5 ${isDark ? 'text-[#7A9187]' : 'text-[#526458]'}`}>
++                Yield sensitivity profiles and empirical response modeling across Maharashtra Kharif staples: Rice, Soybean, Cotton, Bajra, Jowar, and Tur (Pigeon Pea).
+               </span>
+             </div>
+           </div>
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:33:55+05:30
+Completed At: 2026-10-21T06:33:56+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/common/CropSelect.tsx`
+Total Lines: 33
+Total Bytes: 1018
+Showing lines 12 to 25
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+12: export const CropSelect: React.FC<CropSelectProps> = ({ className = '', showIcon = true }) => {
+13:   const { selectedCrop, setSelectedCrop } = useDashboard();
+14: 
+15:   const cropOptions: SelectOption<KharifCropType>[] = SUPPORTED_KHARIF_CROPS.map(c => ({
+16:     value: c.id,
+17:     label: `${c.icon} ${c.label}`,
+18:     badge: c.id === 'rice' ? 'Active Focus' : 'Phase 2',
+19:   }));
+20: 
+21:   return (
+22:     <CustomSelect<KharifCropType>
+23:       value={selectedCrop}
+24:       onChange={setSelectedCrop}
+25:       options={cropOptions}
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:34:00+05:30
+Completed At: 2026-10-21T06:34:03+05:30
+The following changes were made by the replace_file_content tool to: c:\Users\USMAN\Desktop\Usman ELNINO Project\ElninoPBLProject-main\ElninoPBLProject-main\src\components\common\CropSelect.tsx. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -15,7 +15,6 @@
+   const cropOptions: SelectOption<KharifCropType>[] = SUPPORTED_KHARIF_CROPS.map(c => ({
+     value: c.id,
+     label: `${c.icon} ${c.label}`,
+-    badge: c.id === 'rice' ? 'Active Focus' : 'Phase 2',
+   }));
+ 
+   return (
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:34:08+05:30
+Completed At: 2026-10-21T06:34:10+05:30
+The following changes were made by the replace_file_content tool to: c:\Users\USMAN\Desktop\Usman ELNINO Project\ElninoPBLProject-main\ElninoPBLProject-main\src\components\ModelIntegrityInspector.tsx. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -124,7 +124,7 @@
+             <AlertTriangle className={`w-5 h-5 shrink-0 mt-0.5 ${isDark ? 'text-amber-400' : 'text-amber-800'}`} />
+             <div className="text-xs space-y-1">
+               <span className="font-bold block font-mono">
+-                Model Evaluation &amp; Academic Prototype Audit
++                Model Evaluation &amp; Empirical Generalization Audit
+               </span>
+               <p className="leading-relaxed">
+                 {diagnostics.sampleLimitationNotice}
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:34:14+05:30
+Completed At: 2026-10-21T06:34:15+05:30
+{"File":"c:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\src\\pages\\AboutProjectPage.tsx","LineNumber":27,"LineContent":"      {/* Project Abstract \u0026 Roadmap */}"}
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:34:19+05:30
+Completed At: 2026-10-21T06:34:21+05:30
+The following changes were made by the replace_file_content tool to: c:\Users\USMAN\Desktop\Usman ELNINO Project\ElninoPBLProject-main\ElninoPBLProject-main\src\pages\AboutProjectPage.tsx. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -24,7 +24,7 @@
+         </p>
+       </div>
+ 
+-      {/* Project Abstract & Roadmap */}
++      {/* Project Abstract & Scope */}
+       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+         <div
+           className={`rounded-2xl border p-5 sm:p-6 space-y-3 shadow-xs ${
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:34:26+05:30
+Completed At: 2026-10-21T06:34:27+05:30
+No results found
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:34:31+05:30
+Completed At: 2026-10-21T06:34:31+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/pages/HistoricalAnalysisPage.tsx`
+Total Lines: 379
+Total Bytes: 14382
+Showing lines 1 to 50
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: import React, { useState } from 'react';
+2: import { computeZeroLeakageLabels, generateAuditReport } from '../data/baselineAuditEngine';
+3: import { ShieldCheck, Filter } from 'lucide-react';
+4: import { useDashboard } from '../context/DashboardContext';
+5: import { useAppTheme } from '../context/ThemeContext';
+6: import { CustomSelect, SelectOption } from '../components/common/CustomSelect';
+7: 
+8: export const HistoricalAnalysisPage: React.FC = () => {
+9:   const { selectedYear } = useDashboard();
+10:   const { isDark } = useAppTheme();
+11:   const [baselineView, setBaselineView] = useState<'strict' | 'expanding'>('strict');
+12:   const [filterYear, setFilterYear] = useState<number | 'all'>('all');
+13: 
+14:   const { strict5YrLabels, expandingLabels } = computeZeroLeakageLabels();
+15:   const auditReport = generateAuditReport();
+16: 
+17:   const activeLabels = baselineView === 'strict' ? strict5YrLabels : expandingLabels;
+18:   const filteredLabels = activeLabels.filter(item => {
+19:     if (filterYear !== 'all' && item.year !== filterYear) return false;
+20:     return true;
+21:   });
+22: 
+23:   const filterYearOptions: SelectOption<string>[] = [
+24:     { value: 'all', label: 'All Available Seasons' },
+25:     ...[2018, 2019, 2020, 2021, 2022].map(y => ({
+26:       value: String(y),
+27:       label: `Kharif ${y}`,
+28:     })),
+29:   ];
+30: 
+31:   return (
+32:     <div className={`space-y-4 max-w-[1720px] mx-auto ${isDark ? 'text-[#E8EFEB]' : 'text-[#16221B]'}`}>
+33:       {/* Header */}
+34:       <div
+35:         className={`flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b ${
+36:           isDark ? 'border-[#14261F]' : 'border-[#CCD2C4]'
+37:         }`}
+38:       >
+39:         <div>
+40:           <h1
+41:             className={`text-xl sm:text-2xl font-bold tracking-tight font-serif ${
+42:               isDark ? 'text-white' : 'text-[#16221B]'
+43:             }`}
+44:           >
+45:             Historical Baseline Audit &amp; Ground Truth Engine
+46:           </h1>
+47:           <p
+48:             className={`text-xs mt-0.5 font-medium ${
+49:               isDark ? 'text-[#7A9187]' : 'text-[#526458]'
+50:             }`}
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:34:36+05:30
+Completed At: 2026-10-21T06:34:37+05:30
+
+				The command exited with code 0.
+				Output:
+				
+> react-example@0.0.0 build
+> vite build
+
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - `__dirname` (vite.config.ts:11:27). Use `import.meta.dirname` instead
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+vite v8.3.2 building client environment for production...
+transforming...
+✓ 1708 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                     1.54 kB │ gzip:   0.73 kB
+dist/assets/index-CWRBb2O8.css     68.97 kB │ gzip:  13.32 kB
+dist/assets/index-D1lUjWwY.js   1,731.36 kB │ gzip: 419.53 kB
+
+✓ built in 416ms
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+
+---
+

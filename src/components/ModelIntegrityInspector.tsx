@@ -124,7 +124,7 @@ export const ModelIntegrityInspector: React.FC = () => {
             <AlertTriangle className={`w-5 h-5 shrink-0 mt-0.5 ${isDark ? 'text-amber-400' : 'text-amber-800'}`} />
             <div className="text-xs space-y-1">
               <span className="font-bold block font-mono">
-                Model Evaluation &amp; Academic Prototype Audit
+                Model Evaluation &amp; Empirical Generalization Audit
               </span>
               <p className="leading-relaxed">
                 {diagnostics.sampleLimitationNotice}
