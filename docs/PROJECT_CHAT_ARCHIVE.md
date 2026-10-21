@@ -76872,3 +76872,1323 @@ dist/assets/index-D1lUjWwY.js   1,731.36 kB │ gzip: 419.53 kB
 
 ---
 
+### Assistant Response
+
+Created At: 2026-10-21T06:34:44+05:30
+Completed At: 2026-10-21T06:34:45+05:30
+
+				The command exited with code 0.
+				Output:
+				[+] Successfully updated docs\PROJECT_CHAT_ARCHIVE.md with 2052 dialog turns.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:34:49+05:30
+Completed At: 2026-10-21T06:34:55+05:30
+
+				The command exited with code 0.
+				Output:
+				warning: in the working copy of 'src/components/ModelIntegrityInspector.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/components/common/CropSelect.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/pages/AboutProjectPage.tsx', LF will be replaced by CRLF the next time Git touches it
+[main 6ea6235] refactor: remove developer roadmap/phase references and present user-facing operational coverage
+ 4 files changed, 901 insertions(+), 8 deletions(-)
+To https://github.com/usmanssait/ElninoPBLProject
+   e9af3a9..6ea6235  main -> main
+
+---
+
+### Assistant Response
+
+Internal development references and developer roadmap phases have been removed and replaced with user-facing operational information:
+
+### 1. Removed Developer Roadmap & Phase 1 / Phase 2 Labels
+* **About Project Page** ([AboutProjectPage.tsx](file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/pages/AboutProjectPage.tsx)):
+  - Replaced the developer section *"Development Roadmap & Crop Scope (Phase 1 / Phase 2)"* with **"Operational Coverage & Agronomic Scope"**.
+  - **Primary Paddy (Rice) Belts**: Highlights the 24 monitored districts spanning Konkan (Thane, Raigad, Ratnagiri, Sindhudurg, Palghar) and Eastern Vidarbha (Bhandara, Gondia, Gadchiroli, Chandrapur, Nagpur).
+  - **Comparative Kharif Crops**: Details the multi-crop yield sensitivity and empirical modeling across Maharashtra Kharif staples (Rice, Soybean, Cotton, Bajra, Jowar, and Tur).
+* **Crop Selector** ([CropSelect.tsx](file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/common/CropSelect.tsx)):
+  - Removed the internal developer badges (`"Active Focus"` / `"Phase 2"`) from the dropdown options so all supported crops display cleanly as product-ready options.
+* **Model Diagnostics** ([ModelIntegrityInspector.tsx](file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/ModelIntegrityInspector.tsx)):
+  - Updated *"Academic Prototype Audit"* to **"Model Evaluation & Empirical Generalization Audit"**.
+
+All pages now present authoritative, completed research information without internal dev notes, and the changes are live on GitHub.
+
+---
+
+## User Prompt 78
+
+polish map colors (feel like a green layer is just applied on top) so dark mode and light mode changes the filter applied to map (current filter works better with dark mode but contrasts too heavily with light) ) and ensure colours do NOT feel artificial or jank
+prevent user from accidentaly going past bounds of map
+add the previously mentioned liquid glass transparencyy, and districs names that Dynamically change in size with better font
+
+### Assistant Response
+
+Created At: 2026-10-21T06:35:15+05:30
+Completed At: 2026-10-21T06:35:15+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/map/DistrictChoropleth.tsx`
+Total Lines: 510
+Total Bytes: 18761
+Showing lines 1 to 120
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: import React, { useState, useRef, useEffect, useCallback } from 'react';
+2: import { useDashboard } from '../../context/DashboardContext';
+3: import { useAppTheme } from '../../context/ThemeContext';
+4: import {
+5:   MAHARASHTRA_GEOJSON_POLYGONS,
+6:   MAHARASHTRA_GEOJSON_VIEWBOX,
+7:   GeoDistrictPolygon,
+8: } from '../../data/maharashtraGeoJsonData';
+9: import { MapControls } from './MapControls';
+10: 
+11: interface DistrictChoroplethProps {
+12:   mode?: 'historical' | 'model_pred' | 'yield' | 'rainfall';
+13:   title?: string;
+14:   className?: string;
+15:   heightClass?: string;
+16: }
+17: 
+18: export const DistrictChoropleth: React.FC<DistrictChoroplethProps> = ({
+19:   mode = 'historical',
+20:   title,
+21:   className = '',
+22:   heightClass = 'min-h-[480px] sm:min-h-[520px]',
+23: }) => {
+24:   const {
+25:     selectedDistrictId,
+26:     setSelectedDistrictId,
+27:     currentYearMetrics,
+28:     inSeasonModelPredictions,
+29:     cropYearStr,
+30:     monitoredDistrictsForCrop,
+31:   } = useDashboard();
+32: 
+33:   const [hoveredDistrictId, setHoveredDistrictId] = useState<string | null>(null);
+34:   const [zoomLevel, setZoomLevel] = useState<number>(1);
+35:   const [panOffset, setPanOffset] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+36:   const [isDragging, setIsDragging] = useState<boolean>(false);
+37:   const [isWheeling, setIsWheeling] = useState<boolean>(false);
+38:   const [showLabels, setShowLabels] = useState<boolean>(false);
+39: 
+40:   const containerRef = useRef<HTML
+<truncated 1149 bytes>
+:       const cx = rect.width / 2;
+77:       const cy = rect.height / 2;
+78:       const mx = e.clientX - rect.left - cx;
+79:       const my = e.clientY - rect.top - cy;
+80: 
+81:       const currentZoom = zoomRef.current;
+82:       const currentPan = panRef.current;
+83:       const zoomFactor = e.deltaY < 0 ? 1.15 : 1 / 1.15;
+84:       const nextZoom = Math.min(Math.max(Number((currentZoom * zoomFactor).toFixed(3)), 0.75), 5.0);
+85: 
+86:       if (nextZoom === currentZoom) return;
+87: 
+88:       const ratio = nextZoom / currentZoom;
+89:       const nextPanX = mx - (mx - currentPan.x) * ratio;
+90:       const nextPanY = my - (my - currentPan.y) * ratio;
+91: 
+92:       setIsWheeling(true);
+93:       if (wheelTimeoutRef.current) window.clearTimeout(wheelTimeoutRef.current);
+94:       wheelTimeoutRef.current = window.setTimeout(() => setIsWheeling(false), 120);
+95: 
+96:       setZoomLevel(nextZoom);
+97:       setPanOffset({ x: nextPanX, y: nextPanY });
+98:     };
+99: 
+100:     el.addEventListener('wheel', handleWheel, { passive: false });
+101:     return () => el.removeEventListener('wheel', handleWheel);
+102:   }, []);
+103: 
+104:   // Mouse pan handlers
+105:   const handleMouseDown = (e: React.MouseEvent) => {
+106:     if (e.button !== 0) return;
+107:     const target = e.target as HTMLElement;
+108:     if (target.closest('button') || target.closest('select')) return;
+109: 
+110:     isDraggingRef.current = true;
+111:     hasDraggedRef.current = false;
+112:     dragStartPosRef.current = { x: e.clientX, y: e.clientY };
+113:     dragStartPanRef.current = { ...panRef.current };
+114:   };
+115: 
+116:   useEffect(() => {
+117:     const handleMouseMove = (e: MouseEvent) => {
+118:       if (!isDraggingRef.current) return;
+119:       const dx = e.clientX - dragStartPosRef.current.x;
+120:       const dy = e.clientY - dragStartPosRef.current.y;
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:35:23+05:30
+Completed At: 2026-10-21T06:35:23+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/map/DistrictChoropleth.tsx`
+Total Lines: 510
+Total Bytes: 18761
+Showing lines 121 to 260
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+121: 
+122:       if (!hasDraggedRef.current && Math.hypot(dx, dy) > 6) {
+123:         hasDraggedRef.current = true;
+124:         setIsDragging(true);
+125:       }
+126:       if (hasDraggedRef.current) {
+127:         setPanOffset({
+128:           x: dragStartPanRef.current.x + dx,
+129:           y: dragStartPanRef.current.y + dy,
+130:         });
+131:       }
+132:     };
+133: 
+134:     const handleMouseUp = () => {
+135:       if (!isDraggingRef.current) return;
+136:       isDraggingRef.current = false;
+137:       setIsDragging(false);
+138:       setTimeout(() => {
+139:         hasDraggedRef.current = false;
+140:       }, 80);
+141:     };
+142: 
+143:     window.addEventListener('mousemove', handleMouseMove);
+144:     window.addEventListener('mouseup', handleMouseUp);
+145:     return () => {
+146:       window.removeEventListener('mousemove', handleMouseMove);
+147:       window.removeEventListener('mouseup', handleMouseUp);
+148:     };
+149:   }, []);
+150: 
+151:   const { isDark } = useAppTheme();
+152: 
+153:   // Dynamic Fill matching theme:
+154:   // Dark mode (original 674a9b7): Failure: #EF4444, Resilient: #10B981, Non-monitored: #14221C
+155:   // Light mode: Failure: #D46A64, Resilient: #44A07A, Non-monitored: #525D67
+156:   const getDistrictFill = useCallback(
+157:     (distId: string): string => {
+158:       const isMonitored = monitoredDistrictsForCrop.some(d => d.id === distId);
+159:       if (!isMonitored) return isDark ? '#14221C' : '#525D67';
+160: 
+161:       if (mode === 'model_pre
+<truncated 2496 bytes>
+text: displayName, x: 360, y: 238 };
+215:     }
+216:     return { text: displayName, x: poly.center[0], y: poly.center[1] };
+217:   };
+218: 
+219:   return (
+220:     <div
+221:       className={`rounded-2xl p-3.5 relative overflow-hidden shadow-xs transition-colors ${
+222:         isDark
+223:           ? 'bg-[#091410] border border-[#14261F]'
+224:           : 'bg-[#E2E6DC] border border-[#CCD2C4]'
+225:       } ${className}`}
+226:     >
+227:       {/* Map Header & Legend Row */}
+228:       <div
+229:         className={`flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-2.5 border-b ${
+230:           isDark ? 'border-[#14261F]' : 'border-[#CCD2C4]'
+231:         }`}
+232:       >
+233:         <div>
+234:           <h2
+235:             className={`text-sm font-bold tracking-tight ${
+236:               isDark ? 'text-white' : 'text-[#16221B]'
+237:             }`}
+238:           >
+239:             {title || `Maharashtra District Risk Map (Kharif ${cropYearStr})`}
+240:           </h2>
+241:           <p
+242:             className={`text-[11px] mt-0.5 ${
+243:               isDark ? 'text-[#80978E]' : 'text-[#526458]'
+244:             }`}
+245:           >
+246:             District-wise classification based on &gt;10% yield deficit below historical 5-year baseline
+247:           </p>
+248:         </div>
+249: 
+250:         {/* Legend */}
+251:         <div className="flex items-center gap-3 text-xs font-medium shrink-0 flex-wrap">
+252:           <div className="flex items-center gap-1.5">
+253:             <span
+254:               className={`w-2.5 h-2.5 rounded-full ${isDark ? 'bg-[#EF4444]' : 'bg-[#D46A64]'}`}
+255:             />
+256:             <span
+257:               className={`font-mono text-[10px] font-semibold ${
+258:                 isDark ? 'text-[#F87171]' : 'text-[#D46A64]'
+259:               }`}
+260:             >
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:35:40+05:30
+Completed At: 2026-10-21T06:35:40+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/map/DistrictChoropleth.tsx`
+Total Lines: 510
+Total Bytes: 18761
+Showing lines 260 to 450
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+260:             >
+261:               Failure (Deficit &gt; 10%)
+262:             </span>
+263:           </div>
+264:           <div className="flex items-center gap-1.5">
+265:             <span
+266:               className={`w-2.5 h-2.5 rounded-full ${isDark ? 'bg-[#10B981]' : 'bg-[#44A07A]'}`}
+267:             />
+268:             <span
+269:               className={`font-mono text-[10px] font-semibold ${
+270:                 isDark ? 'text-[#34D399]' : 'text-[#44A07A]'
+271:               }`}
+272:             >
+273:               Resilient (&le; 10%)
+274:             </span>
+275:           </div>
+276:           <div className="flex items-center gap-1.5">
+277:             <span
+278:               className={`w-2.5 h-2.5 rounded-full ${
+279:                 isDark ? 'bg-[#14221C] border border-[#23332A]' : 'bg-[#525D67]'
+280:               }`}
+281:             />
+282:             <span
+283:               className={`font-mono text-[10px] font-semibold ${
+284:                 isDark ? 'text-[#7A9187]' : 'text-[#526458]'
+285:               }`}
+286:             >
+287:               {isDark ? 'Non-Rice District' : 'Non-Target District'}
+288:             </span>
+289:           </div>
+290:           <div
+291:             className={`flex items-center gap-1.5 pl-2 border-l ${
+292:               isDark ? 'border-[#14261F]' : 'border-[#CCD2C4]'
+293:             }`}
+294:           >
+295:             <span className="w-2 h-2 rounded-full bg-[#38BDF8] animate-pulse" />
+296:             <span
+297:     
+<truncated 4905 bytes>
+    : isNonTarget
+407:                   ? 0.40
+408:                   : 0.68
+409:                 : isSelected
+410:                 ? 0.78
+411:                 : isHovered
+412:                 ? 0.75
+413:                 : isNonTarget
+414:                 ? 0.65
+415:                 : 0.72;
+416: 
+417:               let strokeColor = isDark ? 'rgba(5, 18, 12, 0.9)' : 'rgba(15, 23, 20, 0.55)';
+418:               let strokeWidth = isDark ? 0.85 : 0.8;
+419: 
+420:               if (isSelected) {
+421:                 strokeColor = '#38BDF8';
+422:                 strokeWidth = isDark ? 2.5 : 2.4;
+423:               } else if (isHovered) {
+424:                 strokeColor = isDark ? '#4ADE80' : '#FFFFFF';
+425:                 strokeWidth = isDark ? 2.0 : 1.6;
+426:               }
+427: 
+428:               return (
+429:                 <path
+430:                   key={poly.id}
+431:                   d={poly.path}
+432:                   fill={fillColor}
+433:                   fillOpacity={fillOpacity}
+434:                   stroke={strokeColor}
+435:                   strokeWidth={strokeWidth}
+436:                   strokeLinejoin="round"
+437:                   strokeLinecap="round"
+438:                   filter={isSelected ? 'url(#glass-selection-glow)' : undefined}
+439:                   style={{
+440:                     transition: 'fill-opacity 180ms ease, stroke 180ms ease, stroke-width 180ms ease',
+441:                   }}
+442:                   className="cursor-pointer"
+443:                   onClick={e => {
+444:                     e.stopPropagation();
+445:                     if (!hasDraggedRef.current) {
+446:                       setSelectedDistrictId(poly.id);
+447:                     }
+448:                   }}
+449:                   onPointerUp={e => {
+450:                     if (e.button === 0 && !hasDraggedRef.current) {
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:35:46+05:30
+Completed At: 2026-10-21T06:35:46+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/map/DistrictChoropleth.tsx`
+Total Lines: 510
+Total Bytes: 18761
+Showing lines 440 to 510
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+440:                     transition: 'fill-opacity 180ms ease, stroke 180ms ease, stroke-width 180ms ease',
+441:                   }}
+442:                   className="cursor-pointer"
+443:                   onClick={e => {
+444:                     e.stopPropagation();
+445:                     if (!hasDraggedRef.current) {
+446:                       setSelectedDistrictId(poly.id);
+447:                     }
+448:                   }}
+449:                   onPointerUp={e => {
+450:                     if (e.button === 0 && !hasDraggedRef.current) {
+451:                       setSelectedDistrictId(poly.id);
+452:                     }
+453:                   }}
+454:                   onMouseEnter={() => {
+455:                     if (!hasDraggedRef.current) setHoveredDistrictId(poly.id);
+456:                   }}
+457:                   onMouseLeave={() => {
+458:                     if (!hasDraggedRef.current) setHoveredDistrictId(null);
+459:                   }}
+460:                 />
+461:               );
+462:             })}
+463:           </g>
+464: 
+465:           {/* Layer 2: District Text Labels */}
+466:           <g className="map-labels-layer pointer-events-none" style={{ pointerEvents: 'none' }}>
+467:             {MAHARASHTRA_GEOJSON_POLYGONS.map(poly => {
+468:               const isSelected = selectedDistrictId === poly.id;
+469:               const isHovered = hoveredDistrictId === poly.id;
+470: 
+471:               // Only show label if selected, hovered, or labels toggled ON (or zoomed in)
+472:               if (!isSelected && !isHovered && !showLabels && zoomLevel < 1.6) {
+473:                 return null;
+474:               }
+475: 
+476:               const labelInfo = getDistrictLabel(poly, zoomLevel);
+477:               if (!labelInfo) return null;
+478: 
+479:               return (
+480:                 <text
+481:                   key={`label-${poly.id}`}
+482:                   x={labelInfo.x}
+483:                   y={labelInfo.y}
+484:                   fill={isSelected ? '#38BDF8' : isHovered ? (isDark ? '#4ADE80' : '#FFFFFF') : '#FFFFFF'}
+485:                   fontSize={isSelected ? '14' : isHovered ? '13' : '11.5'}
+486:                   fontWeight={isSelected || isHovered ? '800' : '700'}
+487:                   fontFamily="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+488:                   textAnchor="middle"
+489:                   dominantBaseline="middle"
+490:                   pointerEvents="none"
+491:                   stroke="#05120C"
+492:                   strokeWidth={isDark ? '3.2' : '2.8'}
+493:                   strokeLinejoin="round"
+494:                   strokeLinecap="round"
+495:                   style={{
+496:                     paintOrder: 'stroke fill',
+497:                     filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.85))',
+498:                   }}
+499:                 >
+500:                   {labelInfo.text}
+501:                 </text>
+502:               );
+503:             })}
+504:           </g>
+505:         </svg>
+506:       </div>
+507:     </div>
+508:   );
+509: };
+510: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:35:50+05:30
+Completed At: 2026-10-21T06:35:50+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/index.css`
+Total Lines: 273
+Total Bytes: 6544
+Showing lines 1 to 100
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: @import "tailwindcss";
+2: 
+3: @layer base {
+4:   :root {
+5:     --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+6:     --font-serif: 'Playfair Display', 'Newsreader', Georgia, serif;
+7:     --font-mono: 'JetBrains Mono', monospace;
+8:   }
+9: 
+10:   body {
+11:     font-family: var(--font-sans);
+12:     background-color: #EAECE4;
+13:     color: #16221B;
+14:     overflow-x: hidden;
+15:     transition: background-color 0.25s ease, color 0.25s ease;
+16:   }
+17: 
+18:   /* Root dark mode class */
+19:   .dark, [data-theme="dark"] {
+20:     color-scheme: dark;
+21:   }
+22: 
+23:   .dark body,
+24:   [data-theme="dark"] body {
+25:     background-color: #040B08;
+26:     color: #E8EFEB;
+27:   }
+28: }
+29: 
+30: /* ========================================================================= */
+31: /* Comprehensive Original Dark Mode Overrides (Obsidian & Emerald Aesthetic) */
+32: /* ========================================================================= */
+33: 
+34: /* Canvases & Outer Backgrounds */
+35: .dark .bg-\[\#EAECE4\],
+36: .dark .bg-\[\#EAECE4\]\/90,
+37: .dark .bg-\[\#EAECE4\]\/80,
+38: .dark header.bg-\[\#EAECE4\]\/90 {
+39:   background-color: #040B08 !important;
+40: }
+41: 
+42: /* Sidebar Canvas */
+43: .dark .bg-\[\#E0E4D8\] {
+44:   background-color: #08120E !important;
+45:   border-color: #13241C !important;
+46: }
+47: 
+48: /* Primary Card Surfaces - Rich Obsidian Glass */
+49: .dark .bg-\[\#E2E6DC\] {
+50:   background-color: #091410 !important;
+51:   border-color: #14261F !important;
+52:   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px -1px rgba(0, 0, 0, 0.4);
+53: }
+54: 
+55: /* Secondary Tiles & Soft Backgrounds */
+56: .dark .bg-\[\#E5E8DF\],
+57: .dark .bg-\[\#DCE0D4\],
+58: .dark .bg-\[\#D8DED0\],
+59: .dark .bg-\[\#D0D6C6\],
+60: .dark .bg-\[\#D4D9CC\],
+61: .dark .bg-\[\#D9DECFA0\] {
+62:   background-color: #060D0A !important;
+63:   border-color: #14261F !important;
+64: }
+65: 
+66: /* Inner metric boxes & nested tiles */
+67: .dark .bg-\[\#EAECE4\]:not(body):not(header) {
+68:   background-color: #060D0A !important;
+69:   border-color: #14261F !important;
+70: }
+71: 
+72: /* White Tiles, Popovers, Table Containers, Inputs & Opacity Badges */
+73: .dark .bg-white,
+74: .dark .bg-white\/95,
+75: .dark .bg-white\/90,
+76: .dark .bg-white\/80,
+77: .dark .bg-white\/70 {
+78:   background-color: #060D0A !important;
+79:   border-color: #14261F !important;
+80: }
+81: 
+82: /* Hover States */
+83: .dark .hover\:bg-\[\#F4F6F2\]:hover,
+84: .dark .hover\:bg-\[\#F2F4EE\]:hover,
+85: .dark .hover\:bg-\[\#D9DED3\]:hover,
+86: .dark .hover\:bg-\[\#DDE2D6\]:hover,
+87: .dark .hover\:bg-\[\#D4D9CC\]:hover {
+88:   background-color: #0E241C !important;
+89: }
+90: 
+91: /* Borders & Separators */
+92: .dark .border-\[\#CCD2C4\],
+93: .dark .border-\[\#CCD2C4\]\/70,
+94: .dark .border-\[\#CCD2C4\]\/60,
+95: .dark .border-\[\#CCD2C4\]\/50,
+96: .dark .border-\[\#CCD2C4\]\/40,
+97: .dark .border-\[\#CCD2C4\]\/35,
+98: .dark .border-\[\#CCD2C4\]\/30,
+99: .dark .border-\[\#D5D9CE\],
+100: .dark .border-\[\#C5CDC0\],
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:35:55+05:30
+Completed At: 2026-10-21T06:35:55+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/index.css`
+Total Lines: 273
+Total Bytes: 6544
+Showing lines 101 to 200
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+101: .dark .border-\[\#BDC4B4\],
+102: .dark .border-\[\#CCD2C2\],
+103: .dark .border-\[\#B8BFB0\],
+104: .dark .border-\[\#B0B8A6\] {
+105:   border-color: #14261F !important;
+106: }
+107: 
+108: /* Progress bar & status tracks in dark mode */
+109: .dark .bg-\[\#CCD2C4\] {
+110:   background-color: #060D0A !important;
+111: }
+112: 
+113: .dark .divide-\[\#CCD2C4\] > :not([hidden]) ~ :not([hidden]),
+114: .dark .divide-\[\#D5D9CE\] > :not([hidden]) ~ :not([hidden]) {
+115:   border-color: #14261F !important;
+116: }
+117: 
+118: /* Primary Text */
+119: .dark .text-\[\#16221B\],
+120: .dark .text-\[\#1B2A22\] {
+121:   color: #FFFFFF !important;
+122: }
+123: 
+124: /* Secondary & Muted Text - High Legibility in Dark */
+125: .dark .text-\[\#526458\],
+126: .dark .text-\[\#46574D\],
+127: .dark .text-\[\#506257\],
+128: .dark .text-\[\#5C6E64\],
+129: .dark .text-\[\#62756A\],
+130: .dark .text-\[\#2F4238\],
+131: .dark .text-\[\#35483D\],
+132: .dark .text-\[\#607368\] {
+133:   color: #7A9187 !important;
+134: }
+135: 
+136: /* Sidebar Navigation Text */
+137: .dark .text-\[\#3E5146\] {
+138:   color: #849B90 !important;
+139: }
+140: .dark .text-\[\#506659\] {
+141:   color: #647C72 !important;
+142: }
+143: .dark .hover\:text-\[\#16221B\]:hover {
+144:   color: #FFFFFF !important;
+145: }
+146: 
+147: /* Tertiary / Subtle Text */
+148: .dark .text-\[\#718277\],
+149: .dark .text-\[\#889B8F\] {
+150:   color: #586E64 !important;
+151: }
+152: 
+153: /* Green Brand Accents & Icons */
+154: .dark .text-\[\#12382B\],
+155: .dark .text-\[\#1B4D3E\] {
+156:   color: #22C55E !important;
+157: }
+158: 
+159: /* Active Buttons & Navigation Pills */
+160: .dark .bg-\[\#12382B\] {
+161:   background-color: #0E241C !important;
+162:   border-color: #22C55E !important;
+163:   color: #22C55E !important;
+164: }
+165: 
+166: .dark .hover\:bg-\[\#1A4C3B\]:hover {
+167:   background-color: #122A20 !important;
+168: }
+169: 
+170: .dark .bg-\[\#12382B\].text-white,
+171: .dark button.bg-\[\#12382B\] {
+172:   color: #22C55E !important;
+173: }
+174: 
+175: .dark .border-\[\#16221B\] {
+176:   border-color: #22C55E !important;
+177:   color: #22C55E !important;
+178: }
+179: 
+180: /* Selected row in table */
+181: .dark tr.bg-\[\#12382B\].text-white {
+182:   background-color: #0E241B !important;
+183:   color: #FFFFFF !important;
+184: }
+185: 
+186: /* ========================================================================= */
+187: /* Jewel-Tone Badges in Dark Mode (Matching Original 674a9b7 Specification)  */
+188: /* ========================================================================= */
+189: 
+190: .dark .bg-\[\#FEE2E2\] {
+191:   background-color: #281313 !important;
+192:   border-color: #4D1D1D !important;
+193:   color: #D93838 !important;
+194: }
+195: 
+196: .dark .bg-\[\#DCFCE7\] {
+197:   background-color: #0D241B !important;
+198:   border-color: #173D2C !important;
+199:   color: #22C55E !important;
+200: }
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:36:02+05:30
+Completed At: 2026-10-21T06:36:02+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/index.css`
+Total Lines: 273
+Total Bytes: 6544
+Showing lines 201 to 273
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+201: 
+202: .dark .bg-\[\#E0F2FE\] {
+203:   background-color: #0E1F29 !important;
+204:   border-color: #1A3A4D !important;
+205:   color: #38BDF8 !important;
+206: }
+207: 
+208: .dark .bg-\[\#E0E7FF\] {
+209:   background-color: #0D241B !important;
+210:   border-color: #173D2C !important;
+211:   color: #22C55E !important;
+212: }
+213: 
+214: .dark .bg-\[\#FEF3C7\] {
+215:   background-color: rgba(217, 119, 6, 0.20) !important;
+216:   border-color: rgba(217, 119, 6, 0.40) !important;
+217:   color: #FBBF24 !important;
+218: }
+219: 
+220: .dark .bg-\[\#D8DECFC0\] {
+221:   background-color: #0D241B !important;
+222:   border-color: #173D2C !important;
+223:   color: #22C55E !important;
+224: }
+225: 
+226: /* Form selects & options */
+227: .dark select {
+228:   background-color: #060D0A !important;
+229:   color: #FFFFFF !important;
+230:   border-color: #14261F !important;
+231: }
+232: .dark select option {
+233:   background-color: #060D0A !important;
+234:   color: #FFFFFF !important;
+235: }
+236: 
+237: /* Scrollbars */
+238: ::-webkit-scrollbar {
+239:   width: 6px;
+240:   height: 6px;
+241: }
+242: ::-webkit-scrollbar-track {
+243:   background: #EAECE4;
+244: }
+245: ::-webkit-scrollbar-thumb {
+246:   background: #CCD2C4;
+247:   border-radius: 3px;
+248: }
+249: ::-webkit-scrollbar-thumb:hover {
+250:   background: #B5BCAB;
+251: }
+252: 
+253: .dark::-webkit-scrollbar-track,
+254: .dark ::-webkit-scrollbar-track {
+255:   background: #040B08 !important;
+256: }
+257: .dark::-webkit-scrollbar-thumb,
+258: .dark ::-webkit-scrollbar-thumb {
+259:   background: #14261F !important;
+260: }
+261: .dark::-webkit-scrollbar-thumb:hover,
+262: .dark ::-webkit-scrollbar-thumb:hover {
+263:   background: #1E3A2F !important;
+264: }
+265: 
+266: .scrollbar-none::-webkit-scrollbar {
+267:   display: none;
+268: }
+269: .scrollbar-none {
+270:   -ms-overflow-style: none;
+271:   scrollbar-width: none;
+272: }
+273: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:36:09+05:30
+Completed At: 2026-10-21T06:36:09+05:30
+{"name":"analytics_preview.png","sizeBytes":"974838"}
+{"name":"dashboard_preview.png","sizeBytes":"2283141"}
+{"name":"maharashtra_satellite_terrain_sentinel2_dem.png","sizeBytes":"14866783"}
+{"name":"maharashtra_satellite_terrain_sentinel2_dem.webp","sizeBytes":"1536972"}
+
+Summary: This directory contains 0 subdirectories and 4 files.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:36:36+05:30
+Completed At: 2026-10-21T06:36:36+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/data/maharashtraGeoJsonData.ts`
+Total Lines: 341
+Total Bytes: 968854
+Showing lines 1 to 60
+Content truncated: showing bytes 0-46080 of 180465. To see more, call this tool again with the same line range and ContentOffset=46080.
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: // Auto-generated from Maharashtra.Districts.geojson using Mercator projection at 19°N
+2: // ViewBox: 0 0 860 713
+3: 
+4: export interface GeoDistrictPolygon {
+5:   id: string;
+6:   name: string;
+7:   center: [number, number];
+8:   path: string;
+9: }
+10: 
+11: export const MAHARASHTRA_GEOJSON_VIEWBOX = '0 0 860 713';
+12: export const MAHARASHTRA_GEOJSON_WIDTH = 860;
+13: export const MAHARASHTRA_GEOJSON_HEIGHT = 713;
+14: 
+15: export const MAHARASHTRA_GEOJSON_POLYGONS: GeoDistrictPolygon[] = [
+16:   {
+17:     "id": "dhule",
+18:     "name": "Dhule",
+19:     "center": [
+20:       214,
+21:       98
+22:     ],
+23:     "path": "M 214.9 75.8 L 214 75.5 L 213.1 75.4 L 212.3 75.4 L 211.5 75.5 L 210.2 76 L 209.4 75.9 L 209.1 75.7 L 208.5 75.2 L 208.1 74.9 L 207.4 74.6 L 206.8 74.5 L 206.5 74.5 L 206.1 74.5 L 205.8 74.4 L 205.3 74.5 L 204.7 74.8 L 204.1 75.4 L 203.7 75.8 L 203 75.9 L 202.5 75.6 L 202.1 75.1 L 201.6 74.5 L 201.1 74.2 L 200.4 73.9 L 199.7 73.4 L 199.1 73.3 L 198.4 73.1 L 197.7 73 L 197 73 L 196.1 73.2 L 195.3 73.4 L 195.3 73.7 L 195.7 74.2 L 195.8 74.6 L 195.7 75.1 L 195.6 75.6 L 195.6 76 L 195.6 76.3 L 195.2 76.6 L 195 76.8 L 195 77.1 L 195.3 77.1 L 195.7 76.9 L 195.9 76.9 L 196.1 77 L 196.5 77.2 L 196.5 77.5 L 196.3 77.9 L 195.6 78.5 L 194.9 79.2 L 194.8 79.7 L 194.7 80.4 L 194.7 81.5 L 194.7 81.6 L 193.6 81.7 L 193.3 81.8 L 193.5 82.2 L 193.4 83.6 L 193.5
+<truncated 42879 bytes>
+7.1 35.3 L 126.8 35.8 L 126.6 36 L 126.2 36.3 L 126.1 36.8 L 126.1 37.1 L 126.5 37.4 L 127 37.6 L 127.2 37.9 L 127.3 38.3 L 127.7 38.8 L 128.1 39.2 L 128.4 39.5 L 128.6 39.6 L 128.8 39.6 L 129 39.7 L 129.3 40 L 129.5 40.4 L 129.7 40.7 L 130.1 41.1 L 130.4 41.4 L 130.7 41.6 L 131 41.6 L 131.4 41.7 L 131.9 41.9 L 132.2 42.3 L 132.3 42.7 L 132.3 43 L 132.4 43.3 L 132.7 43.5 L 132.9 43.8 L 132.9 44.1 L 133.1 44.6 L 133 44.9 L 133.1 45.2 L 133 45.4 L 133 45.7 L 133.1 45.9 L 133.3 46.1 L 133.2 46.6 L 133.2 46.8 L 132.9 47.3 L 132.8 47.5 L 132.7 47.8 L 132.6 48.6 L 132.2 48.6 L 131.9 48.7 L 131.3 49.2 L 130.7 49.4 L 130.4 49.5 L 129.9 49.7 L 129.6 49.9 L 129.6 49.7 L 129.4 49.6 L 129.2 49.6 L 129.1 49.5 L 129 49.4 L 128.8 49.5 L 128.8 49.7 L 128.8 50 L 128.6 50.2 L 128.4 50.2 L 128.2 50.3 L 128 50.4 L 127.8 50.6 L 127.6 50.7 L 127.5 50.8 L 127.2 50.7 L 127.2 50.5 L 127.3 50.3 L 127.3 50.2 L 127.2 50.1 L 127.1 50.2 L 126.9 50.3 L 126.8 50 L 126.7 49.9 L 126.6 49.9 L 126.5 50 L 126.3 50.1 L 126 50 L 126 49.8 L 125.7 49.7 L 125.4 49.8 L 125.2 49.8 L 125.1 49.6 L 125 49.7 L 125 49.9 L 124.9 50.1 L 124.7 50 L 124.3 50.1 L 123.9 50.3 L 123.4 50.4 L 123.1 50.5 L 122.8 50.6 L 122.3 50.7 L 122 51.1 L 122 51.2 L 121.8 51.3 L 121.5 51.4 L 121.7 51.7 L 121.8 52.1 L 121.9 52.5 L 122.4 52.8 L 123.1 53.7 L 123.6 54 L 124.1 54 L 124.7 54.1 L 125.1 54.3 L 125.2 54.8 L 125.1 55.1 L 125.2 55.6 L 125.3 56.5 L 125.6 57.1 L 125.6 57.7 L 125.8 58.1 L 125.9 58.8 L 126.1 59.2 L 126.3 59.3 L 126.4 59.5 L 126.4 59.9 L 126.4 60.3 L 126.7 60.7 L 127 61.5 L 127.1 61.8 L 127.2 62.5 L 127.2 63 L 127.5 63.4 L 127.6 63.7 L 127.9 63.9 L 128.3 64.3 L 128.7 64.9 L 129 65.5 L 129.2 65.5 L 129.4 65.4 L 129.7 65.4 L 130 65.5 L 130.1 65.5 L 130.1 65.3 L 130.2 65.2 L 130.3 65.1 L 130.5 65.1 L 130.6 65.2 L 130.7 65.2 L 130.8 65 L 131 64.8 L 130.9 64.6 L 130.7 64.6 L 130.5 64.5 L 130.3 64.4 L 130.3 64.1 L 130.4 63.9 L 130.7 63.9 L 130.7 64.1 L 130.9 64
+The above content was truncated because individual lines are very long. Only a portion of the content is shown.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:37:00+05:30
+Completed At: 2026-10-21T06:37:00+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/map/DistrictChoropleth.tsx`
+Total Lines: 510
+Total Bytes: 18761
+Showing lines 1 to 250
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: import React, { useState, useRef, useEffect, useCallback } from 'react';
+2: import { useDashboard } from '../../context/DashboardContext';
+3: import { useAppTheme } from '../../context/ThemeContext';
+4: import {
+5:   MAHARASHTRA_GEOJSON_POLYGONS,
+6:   MAHARASHTRA_GEOJSON_VIEWBOX,
+7:   GeoDistrictPolygon,
+8: } from '../../data/maharashtraGeoJsonData';
+9: import { MapControls } from './MapControls';
+10: 
+11: interface DistrictChoroplethProps {
+12:   mode?: 'historical' | 'model_pred' | 'yield' | 'rainfall';
+13:   title?: string;
+14:   className?: string;
+15:   heightClass?: string;
+16: }
+17: 
+18: export const DistrictChoropleth: React.FC<DistrictChoroplethProps> = ({
+19:   mode = 'historical',
+20:   title,
+21:   className = '',
+22:   heightClass = 'min-h-[480px] sm:min-h-[520px]',
+23: }) => {
+24:   const {
+25:     selectedDistrictId,
+26:     setSelectedDistrictId,
+27:     currentYearMetrics,
+28:     inSeasonModelPredictions,
+29:     cropYearStr,
+30:     monitoredDistrictsForCrop,
+31:   } = useDashboard();
+32: 
+33:   const [hoveredDistrictId, setHoveredDistrictId] = useState<string | null>(null);
+34:   const [zoomLevel, setZoomLevel] = useState<number>(1);
+35:   const [panOffset, setPanOffset] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+36:   const [isDragging, setIsDragging] = useState<boolean>(false);
+37:   const [isWheeling, setIsWheeling] = useState<boolean>(false);
+38:   const [showLabels, setShowLabels] = useState<boolean>(false);
+39: 
+40:   const containerRef = useRef<HTML
+<truncated 6520 bytes>
+: 'Mumbai City', x: poly.center[0], y: poly.center[1] + 4 };
+203:     }
+204:     if (poly.id === 'mumbai_suburban') {
+205:       if (zoom < 1.6) return { text: 'Mumbai', x: 25, y: 332 };
+206:       return { text: 'Mumbai Sub.', x: poly.center[0], y: poly.center[1] - 4 };
+207:     }
+208: 
+209:     let displayName = poly.name;
+210:     if (poly.name === 'Chhatrapati Sambhajinagar') {
+211:       displayName = 'Chh. Sambhajinagar';
+212:     }
+213:     if (poly.id === 'jalna') {
+214:       return { text: displayName, x: 360, y: 238 };
+215:     }
+216:     return { text: displayName, x: poly.center[0], y: poly.center[1] };
+217:   };
+218: 
+219:   return (
+220:     <div
+221:       className={`rounded-2xl p-3.5 relative overflow-hidden shadow-xs transition-colors ${
+222:         isDark
+223:           ? 'bg-[#091410] border border-[#14261F]'
+224:           : 'bg-[#E2E6DC] border border-[#CCD2C4]'
+225:       } ${className}`}
+226:     >
+227:       {/* Map Header & Legend Row */}
+228:       <div
+229:         className={`flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-2.5 border-b ${
+230:           isDark ? 'border-[#14261F]' : 'border-[#CCD2C4]'
+231:         }`}
+232:       >
+233:         <div>
+234:           <h2
+235:             className={`text-sm font-bold tracking-tight ${
+236:               isDark ? 'text-white' : 'text-[#16221B]'
+237:             }`}
+238:           >
+239:             {title || `Maharashtra District Risk Map (Kharif ${cropYearStr})`}
+240:           </h2>
+241:           <p
+242:             className={`text-[11px] mt-0.5 ${
+243:               isDark ? 'text-[#80978E]' : 'text-[#526458]'
+244:             }`}
+245:           >
+246:             District-wise classification based on &gt;10% yield deficit below historical 5-year baseline
+247:           </p>
+248:         </div>
+249: 
+250:         {/* Legend */}
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:37:05+05:30
+Completed At: 2026-10-21T06:37:05+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/map/DistrictChoropleth.tsx`
+Total Lines: 510
+Total Bytes: 18761
+Showing lines 251 to 510
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+251:         <div className="flex items-center gap-3 text-xs font-medium shrink-0 flex-wrap">
+252:           <div className="flex items-center gap-1.5">
+253:             <span
+254:               className={`w-2.5 h-2.5 rounded-full ${isDark ? 'bg-[#EF4444]' : 'bg-[#D46A64]'}`}
+255:             />
+256:             <span
+257:               className={`font-mono text-[10px] font-semibold ${
+258:                 isDark ? 'text-[#F87171]' : 'text-[#D46A64]'
+259:               }`}
+260:             >
+261:               Failure (Deficit &gt; 10%)
+262:             </span>
+263:           </div>
+264:           <div className="flex items-center gap-1.5">
+265:             <span
+266:               className={`w-2.5 h-2.5 rounded-full ${isDark ? 'bg-[#10B981]' : 'bg-[#44A07A]'}`}
+267:             />
+268:             <span
+269:               className={`font-mono text-[10px] font-semibold ${
+270:                 isDark ? 'text-[#34D399]' : 'text-[#44A07A]'
+271:               }`}
+272:             >
+273:               Resilient (&le; 10%)
+274:             </span>
+275:           </div>
+276:           <div className="flex items-center gap-1.5">
+277:             <span
+278:               className={`w-2.5 h-2.5 rounded-full ${
+279:                 isDark ? 'bg-[#14221C] border border-[#23332A]' : 'bg-[#525D67]'
+280:               }`}
+281:             />
+282:             <span
+283:               className={`font-mono text-[10px] font-semibold ${
+284:                 isDark ? 'text-[#7A9187]' : 'text-[#526458]'
+<truncated 7934 bytes>
+HARASHTRA_GEOJSON_POLYGONS.map(poly => {
+468:               const isSelected = selectedDistrictId === poly.id;
+469:               const isHovered = hoveredDistrictId === poly.id;
+470: 
+471:               // Only show label if selected, hovered, or labels toggled ON (or zoomed in)
+472:               if (!isSelected && !isHovered && !showLabels && zoomLevel < 1.6) {
+473:                 return null;
+474:               }
+475: 
+476:               const labelInfo = getDistrictLabel(poly, zoomLevel);
+477:               if (!labelInfo) return null;
+478: 
+479:               return (
+480:                 <text
+481:                   key={`label-${poly.id}`}
+482:                   x={labelInfo.x}
+483:                   y={labelInfo.y}
+484:                   fill={isSelected ? '#38BDF8' : isHovered ? (isDark ? '#4ADE80' : '#FFFFFF') : '#FFFFFF'}
+485:                   fontSize={isSelected ? '14' : isHovered ? '13' : '11.5'}
+486:                   fontWeight={isSelected || isHovered ? '800' : '700'}
+487:                   fontFamily="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+488:                   textAnchor="middle"
+489:                   dominantBaseline="middle"
+490:                   pointerEvents="none"
+491:                   stroke="#05120C"
+492:                   strokeWidth={isDark ? '3.2' : '2.8'}
+493:                   strokeLinejoin="round"
+494:                   strokeLinecap="round"
+495:                   style={{
+496:                     paintOrder: 'stroke fill',
+497:                     filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.85))',
+498:                   }}
+499:                 >
+500:                   {labelInfo.text}
+501:                 </text>
+502:               );
+503:             })}
+504:           </g>
+505:         </svg>
+506:       </div>
+507:     </div>
+508:   );
+509: };
+510: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:37:37+05:30
+Completed At: 2026-10-21T06:37:37+05:30
+{"File":"c:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\src\\pages\\OverviewPage.tsx"}
+{"File":"c:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\src\\pages\\ModelPredictionsPage.tsx"}
+{"File":"c:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\src\\pages\\DistrictRiskMapPage.tsx"}
+{"File":"c:\\Users\\USMAN\\Desktop\\Usman ELNINO Project\\ElninoPBLProject-main\\ElninoPBLProject-main\\src\\components\\map\\DistrictChoropleth.tsx"}
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:37:43+05:30
+Completed At: 2026-10-21T06:37:44+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/pages/DistrictRiskMapPage.tsx`
+Total Lines: 116
+Total Bytes: 4860
+Showing lines 1 to 60
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: import React, { useState } from 'react';
+2: import { DistrictChoropleth } from '../components/map/DistrictChoropleth';
+3: import { YearSelect } from '../components/common/YearSelect';
+4: import { DistrictDetailPanel } from '../components/panels/DistrictDetailPanel';
+5: import { useDashboard } from '../context/DashboardContext';
+6: import { useAppTheme } from '../context/ThemeContext';
+7: import { CloudRain, Sprout, ShieldAlert } from 'lucide-react';
+8: 
+9: export const DistrictRiskMapPage: React.FC = () => {
+10:   const { cropYearStr } = useDashboard();
+11:   const { isDark } = useAppTheme();
+12:   const [mapLayer, setMapLayer] = useState<'historical' | 'rainfall' | 'yield'>('historical');
+13: 
+14:   return (
+15:     <div className={`space-y-4 max-w-[1720px] mx-auto ${isDark ? 'text-[#E8EFEB]' : 'text-[#16221B]'}`}>
+16:       {/* Page Header */}
+17:       <div
+18:         className={`flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b ${
+19:           isDark ? 'border-[#14261F]' : 'border-[#CCD2C4]'
+20:         }`}
+21:       >
+22:         <div>
+23:           <h1
+24:             className={`text-xl sm:text-2xl font-bold tracking-tight font-serif ${
+25:               isDark ? 'text-white' : 'text-[#16221B]'
+26:             }`}
+27:           >
+28:             District Risk &amp; Spatiotemporal Map
+29:           </h1>
+30:           <p className={`text-xs mt-0.5 font-medium ${isDark ? 'text-[#7A9187]' : 'text-[#526458]'}`}>
+31:             Full-state choropleth inspection across Kharif seasons with layer switches for crop failure events, rainfall, and harvest yield
+32:           </p>
+33:         </div>
+34: 
+35:         <div className="flex items-center gap-3 flex-wrap">
+36:           {/* Layer Switcher */}
+37:           <div
+38:             className={`flex items-center p-1 rounded-xl shadow-xs border ${
+39:               isDark ? 'bg-[#091410] border-[#14261F]' : 'bg-white border-[#CCD2C4]'
+40:             }`}
+41:           >
+42:             <button
+43:               onClick={() => setMapLayer('historical')}
+44:               className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-medium rounded-lg transition-all cursor-pointer ${
+45:                 mapLayer === 'historical'
+46:                   ? isDark
+47:                     ? 'bg-[#0E241C] text-[#22C55E] border border-[#22C55E]/40 font-bold shadow-xs'
+48:                     : 'bg-[#12382B] text-white font-bold shadow-xs'
+49:                   : isDark
+50:                   ? 'text-[#7A9187] hover:text-white'
+51:                   : 'text-[#526458] hover:text-[#16221B]'
+52:               }`}
+53:             >
+54:               <ShieldAlert className="w-3.5 h-3.5" />
+55:               <span>Failure Events</span>
+56:             </button>
+57:             <button
+58:               onClick={() => setMapLayer('rainfall')}
+59:               className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-medium rounded-lg transition-all cursor-pointer ${
+60:                 mapLayer === 'rainfall'
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:39:49+05:30
+Completed At: 2026-10-21T06:39:52+05:30
+The following changes were made by the replace_file_content tool to: c:\Users\USMAN\Desktop\Usman ELNINO Project\ElninoPBLProject-main\ElninoPBLProject-main\src\components\map\DistrictChoropleth.tsx. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -54,12 +54,44 @@
+     panRef.current = panOffset;
+   }, [panOffset]);
+ 
++  const { isDark } = useAppTheme();
++
++  // Helper to clamp pan offsets so user can never pan Maharashtra out of view
++  const clampPanOffset = useCallback(
++    (x: number, y: number, zoom: number): { x: number; y: number } => {
++      const el = containerRef.current;
++      const width = el ? el.clientWidth : 750;
++      const height = el ? el.clientHeight : 520;
++
++      // At zoom 1.0, allow elastic navigation without losing the state
++      // As zoom increases, allow proportional panning to reach every corner
++      const maxPanX = Math.max(80, ((zoom - 0.65) / zoom) * (width * 0.75));
++      const maxPanY = Math.max(65, ((zoom - 0.65) / zoom) * (height * 0.75));
++
++      return {
++        x: Math.max(-maxPanX, Math.min(maxPanX, x)),
++        y: Math.max(-maxPanY, Math.min(maxPanY, y)),
++      };
++    },
++    []
++  );
++
+   const handleZoomIn = () => {
+-    setZoomLevel(prev => Math.min(Number((prev * 1.25).toFixed(2)), 5.0));
+-  };
++    setZoomLevel(prev => {
++      const next = Math.min(Number((prev * 1.25).toFixed(2)), 5.0);
++      setPanOffset(currPan => clampPanOffset(currPan.x, currPan.y, next));
++      return next;
++    });
++  };
++
+   const handleZoomOut = () => {
+-    setZoomLevel(prev => Math.max(Number((prev / 1.25).toFixed(2)), 0.75));
+-  };
++    setZoomLevel(prev => {
++      const next = Math.max(Number((prev / 1.25).toFixed(2)), 0.75);
++      setPanOffset(currPan => clampPanOffset(currPan.x, currPan.y, next));
++      return next;
++    });
++  };
++
+   const handleReset = () => {
+     setZoomLevel(1);
+     setPanOffset({ x: 0,
+<truncated 20411 bytes>
+ 2px 4px rgba(0,0,0,0.4))"
++                    />
++                  )}
++                  <text
++                    x={labelInfo.x}
++                    y={labelInfo.y}
++                    fill={
++                      isSelected
++                        ? isDark ? '#38BDF8' : '#0284C7'
++                        : isHovered
++                        ? isDark ? '#4ADE80' : '#16221B'
++                        : isDark ? '#F8FAFC' : '#0F172A'
++                    }
++                    fontSize={dynamicFontSize}
++                    fontWeight={isSelected || isHovered ? '700' : '600'}
++                    fontFamily="'Plus Jakarta Sans', Inter, system-ui, -apple-system, sans-serif"
++                    letterSpacing="0.02em"
++                    textAnchor="middle"
++                    dominantBaseline="central"
++                    pointerEvents="none"
++                    stroke={
++                      isSelected || isHovered
++                        ? 'none'
++                        : isDark ? 'rgba(4, 11, 8, 0.92)' : 'rgba(255, 255, 255, 0.95)'
++                    }
++                    strokeWidth={
++                      isSelected || isHovered
++                        ? 0
++                        : Math.max(1.0, 1.8 / Math.pow(zoomLevel, 0.72))
++                    }
++                    strokeLinejoin="round"
++                    strokeLinecap="round"
++                    style={{
++                      paintOrder: 'stroke fill',
++                      filter: isSelected || isHovered ? undefined : 'drop-shadow(0 1px 2px rgba(0,0,0,0.5))',
++                    }}
++                  >
++                    {labelInfo.text}
++                  </text>
++                </g>
+               );
+             })}
+           </g>
+@@ -486,4 +486,5 @@
+     </div>
+   );
+ };
++};
+ 
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:39:57+05:30
+Completed At: 2026-10-21T06:39:57+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/map/DistrictChoropleth.tsx`
+Total Lines: 669
+Total Bytes: 24941
+Showing lines 515 to 540
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+515:                 stdDeviation="4.5"
+516:                 floodColor={isDark ? '#38BDF8' : '#0284C7'}
+517:                 floodOpacity="0.85"
+518:               />
+519:             </filter>
+520:           </defs>
+521: 
+522:           {/* Layer 0: High-Resolution GEE Sentinel-2 + DEM Satellite Terrain Background */}
+523:           {/* Theme-tuned filter removes artificial tint and balances light mode contrast */}
+524:           <g className="map-terrain-layer pointer-events-none" style={{ pointerEvents: 'none' }}>
+525:             <image
+526:               href="/images/maharashtra_satellite_terrain_sentinel2_dem.webp"
+527:               x="-1091.8"
+528:               y="-859.9"
+529:               width="3089.8"
+530:               height="2394.6"
+531:               preserveAspectRatio="none"
+532:               style={{
+533:                 pointerEvents: 'none',
+534:                 filter: isDark
+535:                   ? 'brightness(0.95) contrast(1.08) saturate(1.06)'
+536:                   : 'brightness(1.08) contrast(0.98) saturate(1.02)',
+537:               }}
+538:             />
+539:           </g>
+540: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:40:01+05:30
+Completed At: 2026-10-21T06:40:01+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/map/DistrictChoropleth.tsx`
+Total Lines: 669
+Total Bytes: 24941
+Showing lines 640 to 669
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+640:                     stroke={
+641:                       isSelected || isHovered
+642:                         ? 'none'
+643:                         : isDark ? 'rgba(4, 11, 8, 0.92)' : 'rgba(255, 255, 255, 0.95)'
+644:                     }
+645:                     strokeWidth={
+646:                       isSelected || isHovered
+647:                         ? 0
+648:                         : Math.max(1.0, 1.8 / Math.pow(zoomLevel, 0.72))
+649:                     }
+650:                     strokeLinejoin="round"
+651:                     strokeLinecap="round"
+652:                     style={{
+653:                       paintOrder: 'stroke fill',
+654:                       filter: isSelected || isHovered ? undefined : 'drop-shadow(0 1px 2px rgba(0,0,0,0.5))',
+655:                     }}
+656:                   >
+657:                     {labelInfo.text}
+658:                   </text>
+659:                 </g>
+660:               );
+661:             })}
+662:           </g>
+663:         </svg>
+664:       </div>
+665:     </div>
+666:   );
+667: };
+668: };
+669: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:40:05+05:30
+Completed At: 2026-10-21T06:40:07+05:30
+The following changes were made by the replace_file_content tool to: c:\Users\USMAN\Desktop\Usman ELNINO Project\ElninoPBLProject-main\ElninoPBLProject-main\src\components\map\DistrictChoropleth.tsx. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -665,5 +665,4 @@
+     </div>
+   );
+ };
+-};
+ 
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:40:11+05:30
+Completed At: 2026-10-21T06:40:13+05:30
+
+				The command exited with code 0.
+				Output:
+				
+> react-example@0.0.0 build
+> vite build
+
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - `__dirname` (vite.config.ts:11:27). Use `import.meta.dirname` instead
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+vite v8.3.2 building client environment for production...
+transforming...
+✓ 1708 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                     1.54 kB │ gzip:   0.72 kB
+dist/assets/index-Dj66gQUi.css     69.07 kB │ gzip:  13.35 kB
+dist/assets/index-iGmIO3eh.js   1,733.58 kB │ gzip: 420.15 kB
+
+✓ built in 435ms
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+
+---
+

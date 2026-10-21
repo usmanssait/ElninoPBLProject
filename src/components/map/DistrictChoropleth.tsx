@@ -54,18 +54,50 @@ export const DistrictChoropleth: React.FC<DistrictChoroplethProps> = ({
     panRef.current = panOffset;
   }, [panOffset]);
 
+  const { isDark } = useAppTheme();
+
+  // Helper to clamp pan offsets so user can never pan Maharashtra out of view
+  const clampPanOffset = useCallback(
+    (x: number, y: number, zoom: number): { x: number; y: number } => {
+      const el = containerRef.current;
+      const width = el ? el.clientWidth : 750;
+      const height = el ? el.clientHeight : 520;
+
+      // At zoom 1.0, allow elastic navigation without losing the state
+      // As zoom increases, allow proportional panning to reach every corner
+      const maxPanX = Math.max(80, ((zoom - 0.65) / zoom) * (width * 0.75));
+      const maxPanY = Math.max(65, ((zoom - 0.65) / zoom) * (height * 0.75));
+
+      return {
+        x: Math.max(-maxPanX, Math.min(maxPanX, x)),
+        y: Math.max(-maxPanY, Math.min(maxPanY, y)),
+      };
+    },
+    []
+  );
+
   const handleZoomIn = () => {
-    setZoomLevel(prev => Math.min(Number((prev * 1.25).toFixed(2)), 5.0));
+    setZoomLevel(prev => {
+      const next = Math.min(Number((prev * 1.25).toFixed(2)), 5.0);
+      setPanOffset(currPan => clampPanOffset(currPan.x, currPan.y, next));
+      return next;
+    });
   };
+
   const handleZoomOut = () => {
-    setZoomLevel(prev => Math.max(Number((prev / 1.25).toFixed(2)), 0.75));
+    setZoomLevel(prev => {
+      const next = Math.max(Number((prev / 1.25).toFixed(2)), 0.75);
+      setPanOffset(currPan => clampPanOffset(currPan.x, currPan.y, next));
+      return next;
+    });
   };
+
   const handleReset = () => {
     setZoomLevel(1);
     setPanOffset({ x: 0, y: 0 });
   };
 
-  // Wheel zoom handler
+  // Wheel zoom handler with boundary clamping
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
@@ -86,22 +118,23 @@ export const DistrictChoropleth: React.FC<DistrictChoroplethProps> = ({
       if (nextZoom === currentZoom) return;
 
       const ratio = nextZoom / currentZoom;
-      const nextPanX = mx - (mx - currentPan.x) * ratio;
-      const nextPanY = my - (my - currentPan.y) * ratio;
+      const rawPanX = mx - (mx - currentPan.x) * ratio;
+      const rawPanY = my - (my - currentPan.y) * ratio;
+      const clampedPan = clampPanOffset(rawPanX, rawPanY, nextZoom);
 
       setIsWheeling(true);
       if (wheelTimeoutRef.current) window.clearTimeout(wheelTimeoutRef.current);
       wheelTimeoutRef.current = window.setTimeout(() => setIsWheeling(false), 120);
 
       setZoomLevel(nextZoom);
-      setPanOffset({ x: nextPanX, y: nextPanY });
+      setPanOffset(clampedPan);
     };
 
     el.addEventListener('wheel', handleWheel, { passive: false });
     return () => el.removeEventListener('wheel', handleWheel);
-  }, []);
+  }, [clampPanOffset]);
 
-  // Mouse pan handlers
+  // Mouse pan handlers with boundary clamping
   const handleMouseDown = (e: React.MouseEvent) => {
     if (e.button !== 0) return;
     const target = e.target as HTMLElement;
@@ -124,10 +157,12 @@ export const DistrictChoropleth: React.FC<DistrictChoroplethProps> = ({
         setIsDragging(true);
       }
       if (hasDraggedRef.current) {
-        setPanOffset({
-          x: dragStartPanRef.current.x + dx,
-          y: dragStartPanRef.current.y + dy,
-        });
+        const clamped = clampPanOffset(
+          dragStartPanRef.current.x + dx,
+          dragStartPanRef.current.y + dy,
+          zoomRef.current
+        );
+        setPanOffset(clamped);
       }
     };
 
@@ -146,52 +181,153 @@ export const DistrictChoropleth: React.FC<DistrictChoroplethProps> = ({
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseup', handleMouseUp);
     };
-  }, []);
+  }, [clampPanOffset]);
 
-  const { isDark } = useAppTheme();
-
-  // Dynamic Fill matching theme:
-  // Dark mode (original 674a9b7): Failure: #EF4444, Resilient: #10B981, Non-monitored: #14221C
-  // Light mode: Failure: #D46A64, Resilient: #44A07A, Non-monitored: #525D67
-  const getDistrictFill = useCallback(
-    (distId: string): string => {
+  // Liquid Glass Styling Engine:
+  // Delivers true Apple-style translucent glass so the underlying 3D Sentinel-2 topography,
+  // rivers, and coastal contours shine through with zero artificial muddy green tint.
+  const getDistrictGlassStyle = useCallback(
+    (distId: string, isSelected: boolean, isHovered: boolean) => {
       const isMonitored = monitoredDistrictsForCrop.some(d => d.id === distId);
-      if (!isMonitored) return isDark ? '#14221C' : '#525D67';
+
+      // Non-monitored districts: neutral translucent smoke glass (no muddy green)
+      if (!isMonitored) {
+        return {
+          fill: isDark
+            ? isHovered ? 'rgba(38, 50, 68, 0.40)' : 'rgba(24, 32, 44, 0.20)'
+            : isHovered ? 'rgba(100, 116, 139, 0.30)' : 'rgba(148, 163, 184, 0.16)',
+          stroke: isSelected
+            ? '#38BDF8'
+            : isHovered
+            ? (isDark ? 'rgba(203, 213, 225, 0.60)' : 'rgba(71, 85, 105, 0.65)')
+            : (isDark ? 'rgba(148, 163, 184, 0.22)' : 'rgba(100, 116, 139, 0.28)'),
+          strokeWidth: isSelected ? 2.4 : isHovered ? 1.4 : 0.75,
+          isMonitored: false,
+        };
+      }
+
+      let category: 'failure' | 'resilient' | 'moderate' | 'high_rain' = 'resilient';
 
       if (mode === 'model_pred') {
         const pred = inSeasonModelPredictions[distId];
-        if (!pred || pred.predictionStatus !== 'READY') return isDark ? '#14221C' : '#525D67';
-        if (pred.riskCategory === 'High' || (pred.failureProbability !== null && pred.failureProbability >= 0.5)) {
-          return isDark ? '#EF4444' : '#D46A64';
+        if (pred && pred.predictionStatus === 'READY') {
+          if (pred.riskCategory === 'High' || (pred.failureProbability !== null && pred.failureProbability >= 0.5)) {
+            category = 'failure';
+          } else if (pred.riskCategory === 'Moderate') {
+            category = 'moderate';
+          }
         }
-        if (pred.riskCategory === 'Moderate') {
-          return isDark ? '#F59E0B' : '#E59858';
+      } else if (mode === 'rainfall') {
+        const m = currentYearMetrics[distId];
+        if (m && m.rainfallMm !== null) {
+          if (m.rainfallMm < 700) category = 'failure';
+          else if (m.rainfallMm < 1100) category = 'moderate';
+          else category = 'high_rain';
         }
-        return isDark ? '#10B981' : '#44A07A';
-      }
-
-      if (mode === 'rainfall') {
+      } else if (mode === 'yield') {
         const m = currentYearMetrics[distId];
-        if (!m || m.rainfallMm === null) return isDark ? '#14221C' : '#525D67';
-        if (m.rainfallMm < 700) return isDark ? '#EF4444' : '#D46A64';
-        if (m.rainfallMm < 1100) return isDark ? '#F59E0B' : '#E59858';
-        return isDark ? '#38BDF8' : '#3895C8';
+        if (m && m.yieldTonnesHa !== null) {
+          if (m.yieldTonnesHa < 1.0) category = 'failure';
+          else if (m.yieldTonnesHa < 1.8) category = 'moderate';
+        }
+      } else {
+        // Historical default
+        const metric = currentYearMetrics[distId];
+        if (metric && metric.failureEvent === 1) {
+          category = 'failure';
+        }
       }
 
-      if (mode === 'yield') {
-        const m = currentYearMetrics[distId];
-        if (!m || m.yieldTonnesHa === null) return isDark ? '#14221C' : '#525D67';
-        if (m.yieldTonnesHa < 1.0) return isDark ? '#EF4444' : '#D46A64';
-        if (m.yieldTonnesHa < 1.8) return isDark ? '#F59E0B' : '#E59858';
-        return isDark ? '#10B981' : '#44A07A';
+      if (category === 'failure') {
+        return {
+          fill: isDark
+            ? isSelected
+              ? 'rgba(239, 68, 68, 0.65)'
+              : isHovered
+              ? 'rgba(239, 68, 68, 0.52)'
+              : 'rgba(239, 68, 68, 0.38)'
+            : isSelected
+            ? 'rgba(220, 38, 38, 0.62)'
+            : isHovered
+            ? 'rgba(220, 38, 38, 0.48)'
+            : 'rgba(220, 38, 38, 0.35)',
+          stroke: isSelected
+            ? '#38BDF8'
+            : isHovered
+            ? (isDark ? '#FCA5A5' : '#DC2626')
+            : (isDark ? 'rgba(248, 113, 113, 0.85)' : 'rgba(220, 38, 38, 0.85)'),
+          strokeWidth: isSelected ? 2.6 : isHovered ? 1.8 : 1.1,
+          isMonitored: true,
+        };
       }
 
-      // Default: historical failure event
-      const metric = currentYearMetrics[distId];
-      if (!metric || metric.failureEvent === null) return isDark ? '#14221C' : '#525D67';
-      return metric.failureEvent === 1
-        ? (isDark ? '#EF4444' : '#D46A64')
-        : (isDark ? '#10B981' : '#44A07A');
+      if (category === 'moderate') {
+        return {
+          fill: isDark
+            ? isSelected
+              ? 'rgba(245, 158, 11, 0.65)'
+              : isHovered
+              ? 'rgba(245, 158, 11, 0.52)'
+              : 'rgba(245, 158, 11, 0.36)'
+            : isSelected
+            ? 'rgba(217, 119, 6, 0.60)'
+            : isHovered
+            ? 'rgba(217, 119, 6, 0.46)'
+            : 'rgba(217, 119, 6, 0.34)',
+          stroke: isSelected
+            ? '#38BDF8'
+            : isHovered
+            ? (isDark ? '#FCD34D' : '#B45309')
+            : (isDark ? 'rgba(251, 191, 36, 0.85)' : 'rgba(217, 119, 6, 0.85)'),
+          strokeWidth: isSelected ? 2.6 : isHovered ? 1.8 : 1.1,
+          isMonitored: true,
+        };
+      }
+
+      if (category === 'high_rain') {
+        return {
+          fill: isDark
+            ? isSelected
+              ? 'rgba(56, 189, 248, 0.65)'
+              : isHovered
+              ? 'rgba(56, 189, 248, 0.52)'
+              : 'rgba(56, 189, 248, 0.36)'
+            : isSelected
+            ? 'rgba(2, 132, 199, 0.60)'
+            : isHovered
+            ? 'rgba(2, 132, 199, 0.46)'
+            : 'rgba(2, 132, 199, 0.34)',
+          stroke: isSelected
+            ? '#38BDF8'
+            : isHovered
+            ? (isDark ? '#7DD3FC' : '#0369A1')
+            : (isDark ? 'rgba(56, 189, 248, 0.85)' : 'rgba(2, 132, 199, 0.85)'),
+          strokeWidth: isSelected ? 2.6 : isHovered ? 1.8 : 1.1,
+          isMonitored: true,
+        };
+      }
+
+      // Default resilient
+      return {
+        fill: isDark
+          ? isSelected
+            ? 'rgba(16, 185, 129, 0.65)'
+            : isHovered
+            ? 'rgba(16, 185, 129, 0.52)'
+            : 'rgba(16, 185, 129, 0.36)'
+          : isSelected
+          ? 'rgba(13, 148, 136, 0.60)'
+          : isHovered
+          ? 'rgba(13, 148, 136, 0.46)'
+          : 'rgba(13, 148, 136, 0.34)',
+        stroke: isSelected
+          ? '#38BDF8'
+          : isHovered
+          ? (isDark ? '#6EE7B7' : '#0F766E')
+          : (isDark ? 'rgba(52, 211, 153, 0.85)' : 'rgba(13, 148, 136, 0.85)'),
+        strokeWidth: isSelected ? 2.6 : isHovered ? 1.8 : 1.1,
+        isMonitored: true,
+      };
     },
     [mode, currentYearMetrics, inSeasonModelPredictions, monitoredDistrictsForCrop, isDark]
   );
@@ -247,15 +383,19 @@ export const DistrictChoropleth: React.FC<DistrictChoroplethProps> = ({
           </p>
         </div>
 
-        {/* Legend */}
+        {/* Legend with Liquid Glass Indicators */}
         <div className="flex items-center gap-3 text-xs font-medium shrink-0 flex-wrap">
           <div className="flex items-center gap-1.5">
             <span
-              className={`w-2.5 h-2.5 rounded-full ${isDark ? 'bg-[#EF4444]' : 'bg-[#D46A64]'}`}
+              className="w-2.5 h-2.5 rounded-full border shadow-xs"
+              style={{
+                backgroundColor: isDark ? 'rgba(239, 68, 68, 0.75)' : 'rgba(220, 38, 38, 0.75)',
+                borderColor: isDark ? '#F87171' : '#DC2626',
+              }}
             />
             <span
               className={`font-mono text-[10px] font-semibold ${
-                isDark ? 'text-[#F87171]' : 'text-[#D46A64]'
+                isDark ? 'text-[#F87171]' : 'text-[#DC2626]'
               }`}
             >
               Failure (Deficit &gt; 10%)
@@ -263,11 +403,15 @@ export const DistrictChoropleth: React.FC<DistrictChoroplethProps> = ({
           </div>
           <div className="flex items-center gap-1.5">
             <span
-              className={`w-2.5 h-2.5 rounded-full ${isDark ? 'bg-[#10B981]' : 'bg-[#44A07A]'}`}
+              className="w-2.5 h-2.5 rounded-full border shadow-xs"
+              style={{
+                backgroundColor: isDark ? 'rgba(16, 185, 129, 0.75)' : 'rgba(13, 148, 136, 0.75)',
+                borderColor: isDark ? '#34D399' : '#0D9488',
+              }}
             />
             <span
               className={`font-mono text-[10px] font-semibold ${
-                isDark ? 'text-[#34D399]' : 'text-[#44A07A]'
+                isDark ? 'text-[#34D399]' : 'text-[#0D9488]'
               }`}
             >
               Resilient (&le; 10%)
@@ -275,16 +419,18 @@ export const DistrictChoropleth: React.FC<DistrictChoroplethProps> = ({
           </div>
           <div className="flex items-center gap-1.5">
             <span
-              className={`w-2.5 h-2.5 rounded-full ${
-                isDark ? 'bg-[#14221C] border border-[#23332A]' : 'bg-[#525D67]'
-              }`}
+              className="w-2.5 h-2.5 rounded-full border shadow-xs"
+              style={{
+                backgroundColor: isDark ? 'rgba(38, 50, 68, 0.50)' : 'rgba(148, 163, 184, 0.35)',
+                borderColor: isDark ? '#475569' : '#94A3B8',
+              }}
             />
             <span
               className={`font-mono text-[10px] font-semibold ${
-                isDark ? 'text-[#7A9187]' : 'text-[#526458]'
+                isDark ? 'text-[#94A3B8]' : 'text-[#64748B]'
               }`}
             >
-              {isDark ? 'Non-Rice District' : 'Non-Target District'}
+              Non-Target District
             </span>
           </div>
           <div
@@ -298,7 +444,7 @@ export const DistrictChoropleth: React.FC<DistrictChoroplethProps> = ({
                 isDark ? 'text-[#67E8F9]' : 'text-[#0284C7]'
               }`}
             >
-              Satellite Terrain Layer
+              Sentinel-2 DEM Layer
             </span>
           </div>
           <div
@@ -325,27 +471,19 @@ export const DistrictChoropleth: React.FC<DistrictChoroplethProps> = ({
         </div>
       </div>
 
-      {/* Map Canvas */}
+      {/* Map Canvas with Theme-Aware Marine Frame */}
       <div
         ref={containerRef}
         onMouseDown={handleMouseDown}
         className={`w-full relative flex items-center justify-center py-1 px-1 overflow-hidden rounded-xl my-1.5 select-none ${heightClass} ${
           isDragging ? 'cursor-grabbing' : 'cursor-grab'
         }`}
-        style={
-          isDark
-            ? {
-                backgroundColor: '#040B08',
-                backgroundImage: `
-                  radial-gradient(ellipse at 80% 45%, rgba(16, 185, 129, 0.05) 0%, transparent 60%),
-                  radial-gradient(ellipse at 20% 70%, rgba(34, 197, 94, 0.04) 0%, transparent 55%),
-                  linear-gradient(to bottom, #040B08 0%, #06120D 100%)
-                `,
-              }
-            : {
-                backgroundColor: '#07100D',
-              }
-        }
+        style={{
+          backgroundColor: isDark ? '#040B0E' : '#0B171D',
+          backgroundImage: isDark
+            ? 'radial-gradient(ellipse at 50% 50%, rgba(14, 165, 233, 0.03) 0%, transparent 70%)'
+            : 'radial-gradient(ellipse at 50% 50%, rgba(56, 189, 248, 0.04) 0%, transparent 75%)',
+        }}
       >
         {/* Controls Overlay */}
         <MapControls
@@ -370,12 +508,19 @@ export const DistrictChoropleth: React.FC<DistrictChoroplethProps> = ({
         >
           {/* SVG Definitions for Selection Glow */}
           <defs>
-            <filter id="glass-selection-glow" x="-25%" y="-25%" width="150%" height="150%">
-              <feDropShadow dx="0" dy="0" stdDeviation="3.5" floodColor="#38BDF8" floodOpacity="0.9" />
+            <filter id="glass-selection-glow" x="-30%" y="-30%" width="160%" height="160%">
+              <feDropShadow
+                dx="0"
+                dy="0"
+                stdDeviation="4.5"
+                floodColor={isDark ? '#38BDF8' : '#0284C7'}
+                floodOpacity="0.85"
+              />
             </filter>
           </defs>
 
           {/* Layer 0: High-Resolution GEE Sentinel-2 + DEM Satellite Terrain Background */}
+          {/* Theme-tuned filter removes artificial tint and balances light mode contrast */}
           <g className="map-terrain-layer pointer-events-none" style={{ pointerEvents: 'none' }}>
             <image
               href="/images/maharashtra_satellite_terrain_sentinel2_dem.webp"
@@ -386,58 +531,32 @@ export const DistrictChoropleth: React.FC<DistrictChoroplethProps> = ({
               preserveAspectRatio="none"
               style={{
                 pointerEvents: 'none',
+                filter: isDark
+                  ? 'brightness(0.95) contrast(1.08) saturate(1.06)'
+                  : 'brightness(1.08) contrast(0.98) saturate(1.02)',
               }}
             />
           </g>
 
-          {/* Layer 1: District Polygons & Boundaries */}
+          {/* Layer 1: District Polygons with Apple Liquid Glass Translucency */}
           <g className="map-polygons-layer">
             {MAHARASHTRA_GEOJSON_POLYGONS.map(poly => {
               const isSelected = selectedDistrictId === poly.id;
               const isHovered = hoveredDistrictId === poly.id;
-              const fillColor = getDistrictFill(poly.id);
-              const isNonTarget = isDark ? fillColor === '#14221C' : fillColor === '#525D67';
-
-              const fillOpacity = isDark
-                ? isSelected
-                  ? 0.84
-                  : isHovered
-                  ? 0.78
-                  : isNonTarget
-                  ? 0.40
-                  : 0.68
-                : isSelected
-                ? 0.78
-                : isHovered
-                ? 0.75
-                : isNonTarget
-                ? 0.65
-                : 0.72;
-
-              let strokeColor = isDark ? 'rgba(5, 18, 12, 0.9)' : 'rgba(15, 23, 20, 0.55)';
-              let strokeWidth = isDark ? 0.85 : 0.8;
-
-              if (isSelected) {
-                strokeColor = '#38BDF8';
-                strokeWidth = isDark ? 2.5 : 2.4;
-              } else if (isHovered) {
-                strokeColor = isDark ? '#4ADE80' : '#FFFFFF';
-                strokeWidth = isDark ? 2.0 : 1.6;
-              }
+              const glassStyle = getDistrictGlassStyle(poly.id, isSelected, isHovered);
 
               return (
                 <path
                   key={poly.id}
                   d={poly.path}
-                  fill={fillColor}
-                  fillOpacity={fillOpacity}
-                  stroke={strokeColor}
-                  strokeWidth={strokeWidth}
+                  fill={glassStyle.fill}
+                  stroke={glassStyle.stroke}
+                  strokeWidth={glassStyle.strokeWidth}
                   strokeLinejoin="round"
                   strokeLinecap="round"
                   filter={isSelected ? 'url(#glass-selection-glow)' : undefined}
                   style={{
-                    transition: 'fill-opacity 180ms ease, stroke 180ms ease, stroke-width 180ms ease',
+                    transition: 'fill 180ms ease, stroke 180ms ease, stroke-width 180ms ease',
                   }}
                   className="cursor-pointer"
                   onClick={e => {
@@ -462,7 +581,7 @@ export const DistrictChoropleth: React.FC<DistrictChoroplethProps> = ({
             })}
           </g>
 
-          {/* Layer 2: District Text Labels */}
+          {/* Layer 2: Dynamic District Text Labels & Glass Pill Badges */}
           <g className="map-labels-layer pointer-events-none" style={{ pointerEvents: 'none' }}>
             {MAHARASHTRA_GEOJSON_POLYGONS.map(poly => {
               const isSelected = selectedDistrictId === poly.id;
@@ -476,29 +595,68 @@ export const DistrictChoropleth: React.FC<DistrictChoroplethProps> = ({
               const labelInfo = getDistrictLabel(poly, zoomLevel);
               if (!labelInfo) return null;
 
+              // Dynamic font size inversely scaled to zoom to keep typography crisp and balanced
+              const baseSize = isSelected ? 13.5 : isHovered ? 12 : 10.5;
+              const dynamicFontSize = Math.max(5.5, Math.min(14, baseSize / Math.pow(zoomLevel, 0.72)));
+
+              // Geometry for Apple-style glass pill badge on hover / selection
+              const textLen = labelInfo.text.length;
+              const badgeWidth = textLen * (dynamicFontSize * 0.58) + dynamicFontSize * 1.0;
+              const badgeHeight = dynamicFontSize * 1.55;
+              const badgeRadius = badgeHeight * 0.35;
+
               return (
-                <text
-                  key={`label-${poly.id}`}
-                  x={labelInfo.x}
-                  y={labelInfo.y}
-                  fill={isSelected ? '#38BDF8' : isHovered ? (isDark ? '#4ADE80' : '#FFFFFF') : '#FFFFFF'}
-                  fontSize={isSelected ? '14' : isHovered ? '13' : '11.5'}
-                  fontWeight={isSelected || isHovered ? '800' : '700'}
-                  fontFamily="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
-                  textAnchor="middle"
-                  dominantBaseline="middle"
-                  pointerEvents="none"
-                  stroke="#05120C"
-                  strokeWidth={isDark ? '3.2' : '2.8'}
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  style={{
-                    paintOrder: 'stroke fill',
-                    filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.85))',
-                  }}
-                >
-                  {labelInfo.text}
-                </text>
+                <g key={`label-${poly.id}`}>
+                  {(isSelected || isHovered) && (
+                    <rect
+                      x={labelInfo.x - badgeWidth / 2}
+                      y={labelInfo.y - badgeHeight / 2}
+                      width={badgeWidth}
+                      height={badgeHeight}
+                      rx={badgeRadius}
+                      fill={isDark ? 'rgba(5, 13, 10, 0.88)' : 'rgba(255, 255, 255, 0.92)'}
+                      stroke={isSelected ? '#38BDF8' : isDark ? '#4ADE80' : '#12382B'}
+                      strokeWidth={Math.max(0.8, 1.2 / Math.pow(zoomLevel, 0.72))}
+                      filter="drop-shadow(0 2px 4px rgba(0,0,0,0.4))"
+                    />
+                  )}
+                  <text
+                    x={labelInfo.x}
+                    y={labelInfo.y}
+                    fill={
+                      isSelected
+                        ? isDark ? '#38BDF8' : '#0284C7'
+                        : isHovered
+                        ? isDark ? '#4ADE80' : '#16221B'
+                        : isDark ? '#F8FAFC' : '#0F172A'
+                    }
+                    fontSize={dynamicFontSize}
+                    fontWeight={isSelected || isHovered ? '700' : '600'}
+                    fontFamily="'Plus Jakarta Sans', Inter, system-ui, -apple-system, sans-serif"
+                    letterSpacing="0.02em"
+                    textAnchor="middle"
+                    dominantBaseline="central"
+                    pointerEvents="none"
+                    stroke={
+                      isSelected || isHovered
+                        ? 'none'
+                        : isDark ? 'rgba(4, 11, 8, 0.92)' : 'rgba(255, 255, 255, 0.95)'
+                    }
+                    strokeWidth={
+                      isSelected || isHovered
+                        ? 0
+                        : Math.max(1.0, 1.8 / Math.pow(zoomLevel, 0.72))
+                    }
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
+                    style={{
+                      paintOrder: 'stroke fill',
+                      filter: isSelected || isHovered ? undefined : 'drop-shadow(0 1px 2px rgba(0,0,0,0.5))',
+                    }}
+                  >
+                    {labelInfo.text}
+                  </text>
+                </g>
               );
             })}
           </g>
