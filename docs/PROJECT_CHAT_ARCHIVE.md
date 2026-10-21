@@ -78192,3 +78192,831 @@ dist/assets/index-iGmIO3eh.js   1,733.58 kB │ gzip: 420.15 kB
 
 ---
 
+### Assistant Response
+
+Created At: 2026-10-21T06:40:17+05:30
+Completed At: 2026-10-21T06:40:17+05:30
+
+				The command exited with code 0.
+				Output:
+				[+] Successfully updated docs\PROJECT_CHAT_ARCHIVE.md with 2074 dialog turns.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:40:22+05:30
+Completed At: 2026-10-21T06:40:23+05:30
+
+				The command exited with code 0.
+				Output:
+				On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   docs/PROJECT_CHAT_ARCHIVE.md
+	modified:   src/components/map/DistrictChoropleth.tsx
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:40:27+05:30
+Completed At: 2026-10-21T06:40:33+05:30
+
+				The command exited with code 0.
+				Output:
+				warning: in the working copy of 'src/components/map/DistrictChoropleth.tsx', LF will be replaced by CRLF the next time Git touches it
+[main e3a038b] feat(map): liquid glass translucency, bounds clamping, dynamic typography, and theme-balanced basemap
+ 2 files changed, 1609 insertions(+), 131 deletions(-)
+To https://github.com/usmanssait/ElninoPBLProject
+   6ea6235..e3a038b  main -> main
+
+---
+
+### Assistant Response
+
+### Map Enhancements & Visual Polish Complete
+
+All requested map refinements in [DistrictChoropleth.tsx](file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/src/components/map/DistrictChoropleth.tsx) have been implemented and verified:
+
+---
+
+### 1. Basemap Colors & Theme-Balanced Raster Filters
+* **Removed the Blanket Green Cast**:
+  * Previously, 24 non-monitored districts (covering ~70% of Maharashtra's landmass) were rendered with a muddy dark-green fill (`#14221C`) at 40% opacity, which overlaid a swampy green film over the central Deccan plateau.
+  * Replaced this with a **neutral translucent smoked glass** (`rgba(24, 32, 44, 0.20)` in dark mode and `rgba(148, 163, 184, 0.16)` in light mode), allowing the authentic satellite terrain (Western Ghats ridges, agricultural fields, river valleys, and coastlines) to be seen naturally without any artificial tint.
+* **Theme-Aware Basemap Filters & Frame**:
+  * **Dark Mode**: Applied `brightness(0.95) contrast(1.08) saturate(1.06)` against a deep midnight oceanic background (`#040B0E`) with soft radial ocean glow.
+  * **Light Mode**: Fixed the harsh pitch-black contrast by applying `brightness(1.08) contrast(0.98) saturate(1.02)` on the satellite raster, framed by a soft marine-slate container (`#0B171D`) so the map looks naturally integrated into the page instead of feeling like an ink-black void.
+
+---
+
+### 2. Boundary Clamping (Prevents Accidental Panning Past Map Bounds)
+* Added a mathematical pan boundary clamp helper (`clampPanOffset`):
+  ```ts
+  const maxPanX = Math.max(80, ((zoom - 0.65) / zoom) * (width * 0.75));
+  const maxPanY = Math.max(65, ((zoom - 0.65) / zoom) * (height * 0.75));
+  ```
+* Clamping is strictly applied in:
+  1. **Mouse dragging** (`handleMouseMove`): smooth resistance stops users from dragging the map off the canvas.
+  2. **Mouse-wheel zooming** (`handleWheel`): keeps focus clamped within the active boundary.
+  3. **Zoom In / Zoom Out controls**: recalculates and bounds pan coordinates at every zoom level.
+
+---
+
+### 3. Apple-Style Liquid Glass Translucency
+* Replaced the heavy, opaque solid vector fills with translucent liquid glass:
+  * **Failure Districts**: Luminous ruby glass (`rgba(239, 68, 68, 0.38)` dark / `rgba(220, 38, 38, 0.35)` light) with crisp illuminated borders (`rgba(248, 113, 113, 0.85)`).
+  * **Resilient Districts**: Luminous emerald glass (`rgba(16, 185, 129, 0.36)` dark / `rgba(13, 148, 136, 0.34)` light) with crisp borders (`rgba(52, 211, 153, 0.85)`).
+  * **Non-Target Districts**: Translucent glass (`rgba(24, 32, 44, 0.20)` / `rgba(148, 163, 184, 0.16)`).
+  * **Hover & Selection**: Vibrant illuminated highlights (`#38BDF8` cyan glow for selected, emerald/coral for hovered).
+* The 3D Sentinel-2 elevation contours and topographical relief now show clearly through every district.
+
+---
+
+### 4. Dynamic Typography & Sleek Glass Pill Badges
+* **Modern Font Family**: Switched from clunky `system-ui` to `'Plus Jakarta Sans', Inter, sans-serif`.
+* **Dynamic Scaling with Zoom**:
+  * Instead of fixed SVG coordinates that balloon into giant blurry text when zooming in, text size is dynamically scaled inversely to zoom:
+    ```ts
+    const dynamicFontSize = Math.max(5.5, Math.min(14, baseSize / Math.pow(zoomLevel, 0.72)));
+    ```
+* **Apple Glass Pill Badges**:
+  * Selected and hovered districts now display an Apple-style frosted glass pill badge (`<rect rx="..." />`) with high-contrast glowing borders and clean typography.
+  * Removed the thick 3.2px black outline for a clean, modern look.
+
+---
+
+### Verification & Push
+* Clean build passed with `npm run build` in 435ms.
+* Dialogue archive synchronized via `sync_chat.py` (2,074 turns).
+* Committed and pushed to `main` (`commit e3a038b`).
+
+---
+
+## User Prompt 79
+
+Push Changes and update git page
+
+### Assistant Response
+
+Created At: 2026-10-21T06:40:50+05:30
+Completed At: 2026-10-21T06:40:51+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/package.json`
+Total Lines: 37
+Total Bytes: 891
+Showing lines 1 to 37
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: {
+2:   "name": "react-example",
+3:   "private": true,
+4:   "version": "0.0.0",
+5:   "type": "module",
+6:   "scripts": {
+7:     "dev": "vite --port=3000 --host=0.0.0.0",
+8:     "build": "vite build",
+9:     "preview": "vite preview",
+10:     "clean": "rm -rf dist server.js",
+11:     "lint": "tsc --noEmit"
+12:   },
+13:   "dependencies": {
+14:     "@tailwindcss/vite": "^4.3.3",
+15:     "@tensorflow/tfjs": "^4.22.0",
+16:     "@vitejs/plugin-react": "^6.1.1",
+17:     "dotenv": "^17.2.3",
+18:     "express": "^4.21.2",
+19:     "lucide-react": "^0.546.0",
+20:     "motion": "^12.23.24",
+21:     "react": "^19.0.1",
+22:     "react-dom": "^19.0.1",
+23:     "vite": "^8.3.0"
+24:   },
+25:   "devDependencies": {
+26:     "@types/node": "^22.14.0",
+27:     "@types/react": "^19.3.0",
+28:     "@types/react-dom": "^19.3.0",
+29:     "autoprefixer": "^10.4.21",
+30:     "esbuild": "^0.25.0",
+31:     "tailwindcss": "^4.3.3",
+32:     "tsx": "^4.21.0",
+33:     "typescript": "^7.0.2",
+34:     "@types/express": "^4.17.21"
+35:   }
+36: }
+37: 
+The above content shows the entire, complete file contents of the requested file.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:40:54+05:30
+Completed At: 2026-10-21T06:40:54+05:30
+{"name":".aistudio","isDir":true}
+{"name":".env.example","sizeBytes":"89"}
+{"name":".git","isDir":true}
+{"name":".gitattributes","sizeBytes":"540"}
+{"name":".gitignore","sizeBytes":"460"}
+{"name":"AGENTS.md","sizeBytes":"4780"}
+{"name":"CNN_LSTM_Training","isDir":true}
+{"name":"FULL_PROJECT_DOCUMENTATION.docx","sizeBytes":"28049613"}
+{"name":"FULL_PROJECT_DOCUMENTATION.md","sizeBytes":"31376"}
+{"name":"README.md","sizeBytes":"31428"}
+{"name":"art","isDir":true}
+{"name":"bun.lock","sizeBytes":"75948"}
+{"name":"data","isDir":true}
+{"name":"dist","isDir":true}
+{"name":"docs","isDir":true}
+{"name":"hf_sync.py","sizeBytes":"4217"}
+{"name":"index.html","sizeBytes":"1448"}
+{"name":"metadata.json","sizeBytes":"311"}
+{"name":"node_modules","isDir":true}
+{"name":"package-lock.json","sizeBytes":"154879"}
+{"name":"package.json","sizeBytes":"891"}
+{"name":"project_inventory.csv","sizeBytes":"1619"}
+{"name":"public","isDir":true}
+{"name":"scratch","isDir":true}
+{"name":"scripts","isDir":true}
+{"name":"src","isDir":true}
+{"name":"sync_chat.py","sizeBytes":"4494"}
+{"name":"tsconfig.json","sizeBytes":"672"}
+{"name":"vite.config.ts","sizeBytes":"705"}
+{"name":"~$LL_PROJECT_DOCUMENTATION.docx","sizeBytes":"162"}
+
+Summary: This directory contains 12 subdirectories and 18 files.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:40:58+05:30
+Completed At: 2026-10-21T06:40:58+05:30
+
+				The command exited with code 0.
+				Output:
+				* main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/main
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:41:02+05:30
+Completed At: 2026-10-21T06:41:03+05:30
+
+				The command exited with code 0.
+				Output:
+				e3a038b feat(map): liquid glass translucency, bounds clamping, dynamic typography, and theme-balanced basemap
+6ea6235 refactor: remove developer roadmap/phase references and present user-facing operational coverage
+e9af3a9 refactor(home): replace AI buzzwords with authentic technical specs and retain single dashboard CTA near main heading
+54cfb51 fix(ui): replace native select popups with custom dropdowns, lock left sidebar, remove duplicate theme toggle, and polish secondary pages
+a9e9206 style: revert dark theme to original vibrant obsidian and emerald palette
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:41:08+05:30
+Completed At: 2026-10-21T06:41:08+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/README.md`
+Total Lines: 538
+Total Bytes: 31428
+Showing lines 1 to 100
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: ---
+2: license: mit
+3: task_categories:
+4: - time-series-forecasting
+5: - tabular-classification
+6: - image-classification
+7: task_ids:
+8: - multivariate-time-series-forecasting
+9: - tabular-multi-class-classification
+10: tags:
+11: - climate-change
+12: - agriculture
+13: - remote-sensing
+14: - sentinel-2
+15: - earth-observation
+16: - el-nino
+17: - crop-failure
+18: - deep-learning
+19: - pytorch
+20: - maharashtra
+21: - india
+22: pretty_name: Spatiotemporal CNN-LSTM Maharashtra Kharif Crop Failure Platform & Dataset
+23: size_categories:
+24: - 1K<n<10K
+25: dataset_info:
+26:   features:
+27:   - name: district
+28:     dtype: string
+29:   - name: crop
+30:     dtype: string
+31:   - name: year
+32:     dtype: int64
+33:   - name: yield_kg_ha
+34:     dtype: float64
+35:   - name: baseline_yield_olympic_kg_ha
+36:     dtype: float64
+37:   - name: yield_anomaly_pct
+38:     dtype: float64
+39:   - name: crop_failure_label_15pct
+40:     dtype: int64
+41: ---
+42: 
+43: <div align="center">
+44: 
+45: # 🛰️ Spatiotemporal CNN–LSTM Framework for Maharashtra Kharif Crop Failure Prediction
+46: 
+47: ### *An Operational Multi-Crop Deep Learning & Geospatial Analytics System for ENSO-Driven Agricultural Shock Early Warning*
+48: 
+49: [![Hugging Face Dataset](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Dataset%20Hub-FFD21E.svg)](https://huggingface.co/datasets/UsmanSait/elnino-crop-failure-pbl)
+50: [![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-181717.svg?logo=github)](https://github.com/usmanssait/ElninoPBLP
+<truncated 2822 bytes>
+lator--policy-implications)
+86: - [11. Hugging Face Hub Dataset & Model Repository](#11-hugging-face-hub-dataset--model-repository)
+87: - [12. Quickstart & Local Reproduction](#12-quickstart--local-reproduction)
+88: - [13. Repository Structure & Code Inventory](#13-repository-structure--code-inventory)
+89: - [14. Academic Citation & Acknowledgments](#14-academic-citation--acknowledgments)
+90: 
+91: ---
+92: 
+93: ## 1. Executive Summary & Problem Statement
+94: 
+95: Maharashtra is one of India's foremost agricultural states, producing a massive portion of the nation's pulses, cotton, oilseeds, and coarse grains. However, **over 70% of Maharashtra's cultivated Kharif acreage is rainfed** and exceptionally sensitive to meteorological anomalies driven by the **El Niño Southern Oscillation (ENSO)** and the **Indian Ocean Dipole (IOD)**.
+96: 
+97: ### The Agronomic Crisis
+98: * **Meteorological Disruption:** Equatorial Pacific sea-surface warming (Niño 3.4 SST anomalies) disrupts the seasonal monsoon trough, causing delayed monsoon onset, extended mid-season dry spells (often lasting 3 to 5 consecutive weeks), and depleted root-zone soil moisture.
+99: * **Severe Crop Yield Collapse:** Drought-sensitive staples suffer catastrophic yield failure—particularly **Rice** in the Konkan coastal belt and eastern Vidarbha, **Soybean** in Marathwada, **Cotton** across Vidarbha, and coarse cereals (**Bajra** and **Jowar**) in rain-shadow western plateau zones.
+100: * **The Legacy CCE Bottleneck:** Current crop insurance settlement under the *Pradhan Mantri Fasal Bima Yojana (PMFBY)* depends on manual Crop Cutting Experiments (CCEs). These manual surveys suffer from administrative delays of **4 to 9 months post-harvest**, human measurement errors, and a total inability to execute proactive, in-season agronomic relief before harvest collapse occurs.
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:41:13+05:30
+Completed At: 2026-10-21T06:41:14+05:30
+
+				The command exited with code 0.
+				Output:
+				On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:41:26+05:30
+Completed At: 2026-10-21T06:41:27+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/vite.config.ts`
+Total Lines: 23
+Total Bytes: 705
+Showing lines 1 to 23
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: import tailwindcss from '@tailwindcss/vite';
+2: import react from '@vitejs/plugin-react';
+3: import path from 'path';
+4: import {defineConfig} from 'vite';
+5: 
+6: export default defineConfig(() => {
+7:   return {
+8:     plugins: [react(), tailwindcss()],
+9:     resolve: {
+10:       alias: {
+11:         '@': path.resolve(__dirname, '.'),
+12:       },
+13:     },
+14:     server: {
+15:       // HMR is disabled in AI Studio via DISABLE_HMR env var.
+16:       // Do not modify—file watching is disabled to prevent flickering during agent edits.
+17:       hmr: process.env.DISABLE_HMR !== 'true',
+18:       // Disable file watching when DISABLE_HMR is true to save CPU during agent edits.
+19:       watch: process.env.DISABLE_HMR === 'true' ? null : {},
+20:     },
+21:   };
+22: });
+23: 
+The above content shows the entire, complete file contents of the requested file.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:41:32+05:30
+Completed At: 2026-10-21T06:41:32+05:30
+{"name":"MODEL_DOCUMENTATION.md","sizeBytes":"15595"}
+{"name":"PROJECT_CHAT_ARCHIVE.md","sizeBytes":"3838657"}
+{"name":"images","isDir":true}
+
+Summary: This directory contains 1 subdirectories and 2 files.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:41:35+05:30
+Completed At: 2026-10-21T06:41:36+05:30
+
+				The command exited with code 0.
+				Output:
+				e3a038b21de0d5ec2616f3ea72671c36958c1f85	refs/heads/main
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:41:44+05:30
+Completed At: 2026-10-21T06:41:44+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/dist/index.html`
+Total Lines: 23
+Total Bytes: 1546
+Showing lines 1 to 23
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: <!doctype html>
+2: <html lang="en">
+3:   <head>
+4:     <meta charset="UTF-8" />
+5:     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+6:     <title>Maharashtra Kharif Crop Failure Early Warning Platform — Spatiotemporal CNN-LSTM</title>
+7:     <meta name="description" content="Spatiotemporal CNN-LSTM Framework for Crop Failure Early Warning using Sentinel-2 Multi-Spectral Imagery, IMD Rainfall, and NOAA ONI Teleconnections across Maharashtra." />
+8:     <meta property="og:title" content="Maharashtra Kharif Crop Failure Early Warning Platform" />
+9:     <meta property="og:description" content="Spatiotemporal CNN-LSTM Deep Learning and GIS Decision Dashboard for Maharashtra Kharif Crops (Rice, Soybean, Cotton, Bajra, Jowar, Tur)." />
+10:     <meta property="og:type" content="website" />
+11:     <meta name="twitter:card" content="summary_large_image" />
+12:     <link rel="preconnect" href="https://fonts.googleapis.com">
+13:     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+14:     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+15:     <script type="module" crossorigin src="/assets/index-iGmIO3eh.js"></script>
+16:     <link rel="stylesheet" crossorigin href="/assets/index-Dj66gQUi.css">
+17:   </head>
+18:   <body>
+19:     <div id="root"></div>
+20:   </body>
+21: </html>
+22: 
+23: 
+The above content shows the entire, complete file contents of the requested file.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:41:50+05:30
+Completed At: 2026-10-21T06:41:52+05:30
+The following changes were made by the replace_file_content tool to: c:\Users\USMAN\Desktop\Usman ELNINO Project\ElninoPBLProject-main\ElninoPBLProject-main\vite.config.ts. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -5,6 +5,7 @@
+ 
+ export default defineConfig(() => {
+   return {
++    base: './',
+     plugins: [react(), tailwindcss()],
+     resolve: {
+       alias: {
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:41:55+05:30
+Completed At: 2026-10-21T06:41:57+05:30
+
+				The command exited with code 0.
+				Output:
+				
+> react-example@0.0.0 build
+> vite build
+
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - `__dirname` (vite.config.ts:12:27). Use `import.meta.dirname` instead
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+vite v8.3.2 building client environment for production...
+transforming...
+✓ 1708 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                     1.54 kB │ gzip:   0.73 kB
+dist/assets/index-Dj66gQUi.css     69.07 kB │ gzip:  13.35 kB
+dist/assets/index-iGmIO3eh.js   1,733.58 kB │ gzip: 420.15 kB
+
+✓ built in 393ms
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:42:03+05:30
+Completed At: 2026-10-21T06:42:03+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/dist/index.html`
+Total Lines: 23
+Total Bytes: 1548
+Showing lines 14 to 22
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+14:     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+15:     <script type="module" crossorigin src="./assets/index-iGmIO3eh.js"></script>
+16:     <link rel="stylesheet" crossorigin href="./assets/index-Dj66gQUi.css">
+17:   </head>
+18:   <body>
+19:     <div id="root"></div>
+20:   </body>
+21: </html>
+22: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:42:20+05:30
+Completed At: 2026-10-21T06:42:20+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/README.md`
+Total Lines: 538
+Total Bytes: 31428
+Showing lines 350 to 450
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+350: 
+351: | KPI Telemetry & Rainfall-Yield Analytics | Interactive District Risk Telemetry |
+352: | :---: | :---: |
+353: | <img src="art/Screenshot%202026-10-21%20020442.png" alt="KPI Cards and Dual-Axis Chart" width="100%" /> | <img src="art/Screenshot%202026-10-21%20014803.png" alt="Interactive District Tooltip" width="100%" /> |
+354: | *Figure 10: 6 KPI summary cards, dual-axis rainfall-yield trends, and historical drought markers.* | *Figure 11: Real-time district risk hover telemetry and choropleth overlay.* |
+355: 
+356: ---
+357: 
+358: ## 10. Future Climate Shock Simulator & Policy Implications
+359: 
+360: The **Future El Niño Scenario Simulator** (`FutureElNinoPage.tsx`) transitions the platform into a forward-looking policy instrument, allowing users to inject synthetic Pacific sea-surface temperature warming shocks (+0.5°C to +2.5°C Niño 3.4 anomalies) and evaluate crop-specific failure probabilities:
+361: 
+362: <div align="center">
+363:   <img src="art/Screenshot%202026-10-21%20020537.png" alt="Future El Niño Simulator" width="85%" />
+364:   <p><em>Figure 12: Future El Niño climate scenario simulation interface modeling failure probabilities under synthetic SST warming.</em></p>
+365: </div>
+366: 
+367: ### Agronomic Policy Recommendations
+368: 1. **Rice (Konkan & Eastern Vidarbha):** Highest sensitivity to dry spells during tillering. A 20% rainfall deficit during July triggers over 85% crop failure probability. *Policy Action: Mandate early nursery sowing and promote Alternate Wetting and Drying (AWD).*
+
+<truncated 1654 bytes>
+): High-resolution national crop classification raster.
+403: * `Maharashtra_Sentinel2_Rice_Patches_2019/` (**~1.8 GB**): Multi-spectral Sentinel-2 GeoTIFF patches.
+404: * `crop_failure_model_all_crops.pt` (**~4.8 MB**): Trained operational PyTorch checkpoint.
+405: * `standardized_maharashtra_kharif_all_crops_1966_2024.csv` (**9,078 records**): 58 years of audited harvest statistics.
+406: * `crop_failure_predictions.csv` (**320 district-crop seasons**): Model inference records ingested by the dashboard.
+407: 
+408: ---
+409: 
+410: ## 12. Quickstart & Local Reproduction
+411: 
+412: ### Prerequisites
+413: * **Node.js** (v18.0+) & **npm**
+414: * **Python** (3.10+ / 3.11 / 3.12)
+415: * **PyTorch** (2.0+) & **CUDA** (optional for GPU training)
+416: 
+417: ### 1. Launch Interactive Dashboard
+418: ```bash
+419: # Clone repository
+420: git clone https://github.com/usmanssait/ElninoPBLProject.git
+421: cd ElninoPBLProject
+422: 
+423: # Install frontend dependencies
+424: npm install
+425: 
+426: # Start development server
+427: npm run dev
+428: # Dashboard launches locally at: http://localhost:3000
+429: ```
+430: 
+431: ### 2. Retrain Multi-Crop CNN–LSTM Model
+432: ```bash
+433: # Execute full multi-crop PyTorch training with LOSO cross-validation
+434: python CNN_LSTM_Training/CropFailureProject/train_all_kharif_crops_cnn_lstm.py
+435: ```
+436: 
+437: ### 3. Re-generate Dual-Resolution Satellite Basemap
+438: ```bash
+439: # Blend regional MODIS 500m canvas with high-res Maharashtra core
+440: python scripts/combine_wide_satellite_terrain.py -i data/regional_seamless_satellite_terrain_500m.tif
+441: ```
+442: 
+443: ### 4. Build Full Word (.docx) Technical Report
+444: ```bash
+445: # Generate 26.75 MB publication-grade Word technical report
+446: python scripts/build_word_documentation.py
+447: ```
+448: 
+449: ### 5. Synchronize with Hugging Face Hub
+450: ```bash
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:42:27+05:30
+Completed At: 2026-10-21T06:42:29+05:30
+Created file file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/.github/workflows/deploy.yml with requested content.
+If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:42:35+05:30
+Completed At: 2026-10-21T06:42:35+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/README.md`
+Total Lines: 538
+Total Bytes: 31428
+Showing lines 40 to 75
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+40:     dtype: int64
+41: ---
+42: 
+43: <div align="center">
+44: 
+45: # 🛰️ Spatiotemporal CNN–LSTM Framework for Maharashtra Kharif Crop Failure Prediction
+46: 
+47: ### *An Operational Multi-Crop Deep Learning & Geospatial Analytics System for ENSO-Driven Agricultural Shock Early Warning*
+48: 
+49: [![Hugging Face Dataset](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Dataset%20Hub-FFD21E.svg)](https://huggingface.co/datasets/UsmanSait/elnino-crop-failure-pbl)
+50: [![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-181717.svg?logo=github)](https://github.com/usmanssait/ElninoPBLProject)
+51: [![Python Version](https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12-3776AB.svg?logo=python)](https://www.python.org/)
+52: [![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-EE4C2C.svg?logo=pytorch)](https://pytorch.org/)
+53: [![React 18](https://img.shields.io/badge/React-18%2F19-61DAFB.svg?logo=react)](https://react.dev/)
+54: [![TypeScript](https://img.shields.io/badge/TypeScript-5.0%2B-3178C6.svg?logo=typescript)](https://www.typescriptlang.org/)
+55: [![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-v4-38B2AC.svg?logo=tailwind-css)](https://tailwindcss.com/)
+56: [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+57: [![Disaster Recall](https://img.shields.io/badge/Disaster%20Recall-98.3%25-success.svg)](#7-rigorous-leave-one-season-out-loso-validation)
+58: [![ROC-AUC](https://img.shields.io/badge/ROC--AUC-0.987-blue.svg)](#7-rigorous-leave-one-season-out-loso-validation)
+59: 
+60: [**Live Production Dashboard**](http://localhost:3000) • [**Full Technical Report (DOCX)**](./FULL_PROJECT_DOCUMENTATION.docx) • [**Hugging Face Hub**](https://huggingface.co/datasets/UsmanSait/elnino-crop-failure-pbl) • [**Documentation Hub**](./docs/PROJECT_CHAT_ARCHIVE.md)
+61: 
+62: </div>
+63: 
+64: ---
+65: 
+66: ## 🌟 Interactive System Showcase
+67: 
+68: <div align="center">
+69:   <img src="art/Screenshot%202026-10-21%20033114.png" alt="Live React GIS Dashboard with Seamless Satellite Terrain" width="95%" />
+70:   <p><em>Figure 1: Production React 18 GIS decision dashboard featuring the gapless dual-resolution Earth Engine satellite terrain basemap, 36-district failure risk choropleth, telemetry summary KPIs, and synchronized crop selector.</em></p>
+71: </div>
+72: 
+73: ---
+74: 
+75: ## 📑 Table of Contents
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:42:39+05:30
+Completed At: 2026-10-21T06:42:39+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/README.md`
+Total Lines: 538
+Total Bytes: 31428
+Showing lines 315 to 355
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+315: 
+316: | Model Architecture | Inputs Used | Overall Recall | Overall Precision | F1-Score | ROC-AUC |
+317: | :--- | :--- | :---: | :---: | :---: | :---: |
+318: | **Majority Class Guessing** | Prior class distribution | 0.0% | 0.0% | 0.000 | 0.500 |
+319: | **Climate-Only Logistic Regression** | Rainfall, departures, ONI SST | 76.7% | 53.5% | 0.621 | 0.833 |
+320: | **Our Spatiotemporal CNN–LSTM** | **Sentinel-2 + Climate + Crop Vector** | **98.3%** | **78.7%** | **0.874** | **0.987** |
+321: 
+322: ---
+323: 
+324: ## 8. Dual-Resolution Earth Engine Geospatial Basemap Engine
+325: 
+326: Standard geospatial GIS setups suffer from coastal "stepping dropouts" because land-only Digital Elevation Models (such as Copernicus DEM GLO-30) abruptly end at the coastline, producing jarring black margins in oceanic waters.
+327: 
+328: We solved this via a three-stage compositing engine:
+329: 1. **Google Earth Engine MODIS Export (`scripts/extract_sentinel2_cropland.js` & `export_satellite_terrain_background.js`):** Composited NASA MODIS 8-day surface reflectance (MOD09A1 500m) across a broad subcontinental bounding box `[62.0°E, 8.0°N, 92.0°E, 30.0°N]`. Because MODIS images ocean and land in a continuous grid, it never terminates at the coast.
+330: 2. **Python Dual-Resolution Blending (`scripts/combine_wide_satellite_terrain.py`):** Blended the 500m MODIS canvas with the high-resolution Maharashtra core (10m Sentinel-2 + Copernicus DEM) using a 20-pixel Gaussian-blurred alpha transition mask and color-ratio balancing.
+331: 3. **SVG Affine Coordinate Mapping:** Projected the combined raster to the React SVG viewBox `(0, 0, 860, 713)` with exact offsets: `x = -1091.8 px, y = -859.9 px, width = 3089.8 px, height = 2394.6 px`.
+332: 
+333: <div align="center">
+334:   <img src="art/Earth%20engine.png" alt="Google Earth Engine Extraction Pipeline" width="85%" />
+335:   <p><em>Figure 8: Google Earth Engine JavaScript code editor running the automated satellite extraction pipeline and task queue.</em></p>
+336: </div>
+337: 
+338: <div align="center">
+339:   <img src="art/Western%20India%20Satellite%20Terrain%20Map.png" alt="Western India Satellite Terrain Reference Map" width="85%" />
+340:   <p><em>Figure 9: Regional Western India satellite terrain reference map covering the Arabian Sea, Western Ghats, and the Deccan Plateau.</em></p>
+341: </div>
+342: 
+343: ---
+344: 
+345: ## 9. Frontend Decision-Support Dashboard & Visual Gallery
+346: 
+347: Built with **React 18, Vite, TypeScript, and TailwindCSS**, the dashboard operates with **sub-35ms interaction latency** by ingesting precomputed model inferences while enabling dynamic filtering:
+348: 
+349: ### Visual Feature Showcase
+350: 
+351: | KPI Telemetry & Rainfall-Yield Analytics | Interactive District Risk Telemetry |
+352: | :---: | :---: |
+353: | <img src="art/Screenshot%202026-10-21%20020442.png" alt="KPI Cards and Dual-Axis Chart" width="100%" /> | <img src="art/Screenshot%202026-10-21%20014803.png" alt="Interactive District Tooltip" width="100%" /> |
+354: | *Figure 10: 6 KPI summary cards, dual-axis rainfall-yield trends, and historical drought markers.* | *Figure 11: Real-time district risk hover telemetry and choropleth overlay.* |
+355: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:42:47+05:30
+Completed At: 2026-10-21T06:42:49+05:30
+The following changes were made by the replace_file_content tool to: c:\Users\USMAN\Desktop\Usman ELNINO Project\ElninoPBLProject-main\ElninoPBLProject-main\README.md. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -57,7 +57,7 @@
+ [![Disaster Recall](https://img.shields.io/badge/Disaster%20Recall-98.3%25-success.svg)](#7-rigorous-leave-one-season-out-loso-validation)
+ [![ROC-AUC](https://img.shields.io/badge/ROC--AUC-0.987-blue.svg)](#7-rigorous-leave-one-season-out-loso-validation)
+ 
+-[**Live Production Dashboard**](http://localhost:3000) • [**Full Technical Report (DOCX)**](./FULL_PROJECT_DOCUMENTATION.docx) • [**Hugging Face Hub**](https://huggingface.co/datasets/UsmanSait/elnino-crop-failure-pbl) • [**Documentation Hub**](./docs/PROJECT_CHAT_ARCHIVE.md)
++[**Live GitHub Pages Dashboard**](https://usmanssait.github.io/ElninoPBLProject/) • [**Full Technical Report (DOCX)**](./FULL_PROJECT_DOCUMENTATION.docx) • [**Hugging Face Hub**](https://huggingface.co/datasets/UsmanSait/elnino-crop-failure-pbl) • [**Documentation Hub**](./docs/PROJECT_CHAT_ARCHIVE.md)
+ 
+ </div>
+ 
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:42:53+05:30
+Completed At: 2026-10-21T06:42:53+05:30
+File Path: `file:///c:/Users/USMAN/Desktop/Usman%20ELNINO%20Project/ElninoPBLProject-main/ElninoPBLProject-main/README.md`
+Total Lines: 538
+Total Bytes: 31455
+Showing lines 345 to 370
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+345: ## 9. Frontend Decision-Support Dashboard & Visual Gallery
+346: 
+347: Built with **React 18, Vite, TypeScript, and TailwindCSS**, the dashboard operates with **sub-35ms interaction latency** by ingesting precomputed model inferences while enabling dynamic filtering:
+348: 
+349: ### Visual Feature Showcase
+350: 
+351: | KPI Telemetry & Rainfall-Yield Analytics | Interactive District Risk Telemetry |
+352: | :---: | :---: |
+353: | <img src="art/Screenshot%202026-10-21%20020442.png" alt="KPI Cards and Dual-Axis Chart" width="100%" /> | <img src="art/Screenshot%202026-10-21%20014803.png" alt="Interactive District Tooltip" width="100%" /> |
+354: | *Figure 10: 6 KPI summary cards, dual-axis rainfall-yield trends, and historical drought markers.* | *Figure 11: Real-time district risk hover telemetry and choropleth overlay.* |
+355: 
+356: ---
+357: 
+358: ## 10. Future Climate Shock Simulator & Policy Implications
+359: 
+360: The **Future El Niño Scenario Simulator** (`FutureElNinoPage.tsx`) transitions the platform into a forward-looking policy instrument, allowing users to inject synthetic Pacific sea-surface temperature warming shocks (+0.5°C to +2.5°C Niño 3.4 anomalies) and evaluate crop-specific failure probabilities:
+361: 
+362: <div align="center">
+363:   <img src="art/Screenshot%202026-10-21%20020537.png" alt="Future El Niño Simulator" width="85%" />
+364:   <p><em>Figure 12: Future El Niño climate scenario simulation interface modeling failure probabilities under synthetic SST warming.</em></p>
+365: </div>
+366: 
+367: ### Agronomic Policy Recommendations
+368: 1. **Rice (Konkan & Eastern Vidarbha):** Highest sensitivity to dry spells during tillering. A 20% rainfall deficit during July triggers over 85% crop failure probability. *Policy Action: Mandate early nursery sowing and promote Alternate Wetting and Drying (AWD).*
+369: 2. **Soybean (Marathwada):** Highly vulnerable to pod-filling moisture stress in August. *Policy Action: Promote Broad Bed Furrow (BBF) planting to manage moisture fluctuations.*
+370: 3. **Cotton (Vidarbha):** Long duration crop vulnerable to extended dry spells causing square and boll shedding. *Policy Action: Subsidize micro-irrigation and short-duration varieties.*
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:43:02+05:30
+Completed At: 2026-10-21T06:43:04+05:30
+The following changes were made by the replace_file_content tool to: c:\Users\USMAN\Desktop\Usman ELNINO Project\ElninoPBLProject-main\ElninoPBLProject-main\README.md. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -346,6 +346,13 @@
+ 
+ Built with **React 18, Vite, TypeScript, and TailwindCSS**, the dashboard operates with **sub-35ms interaction latency** by ingesting precomputed model inferences while enabling dynamic filtering:
+ 
++### Key Frontend Architecture & GIS Capabilities
++* **Apple-Style Liquid Glass Choropleth**: Replaces flat vector colors with translucent tinted glass (`fillOpacity: 0.35–0.38`), allowing underlying 3D Sentinel-2 elevation topography, river courses, and Western Ghats relief to shine through authentically with zero artificial muddy green tint.
++* **Dual Theme Engine**: Instant one-click toggle between the original vibrant Obsidian & Emerald dark theme and a clean, high-contrast light theme with zero style leakage.
++* **Dynamic Typography & Glass Pill Badges**: District names scale inversely with zoom level to maintain ideal optical proportions, paired with floating frosted glass pill badges for hovered and selected districts.
++* **Elastic Pan Boundary Clamping**: Real-time mathematical bounding prevents users from accidentally dragging or zooming the Maharashtra basemap out of the viewport.
++* **Locked-Frame Navigation & Accessible Dropdowns**: Rigid locked sidebar with zero layout shift, paired with custom accessible dropdown select components.
++
+ ### Visual Feature Showcase
+ 
+ | KPI Telemetry & Rainfall-Yield Analytics | Interactive District Risk Telemetry |
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:43:08+05:30
+Completed At: 2026-10-21T06:43:10+05:30
+
+				The command exited with code 0.
+				Output:
+				
+> react-example@0.0.0 build
+> vite build
+
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - `__dirname` (vite.config.ts:12:27). Use `import.meta.dirname` instead
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+vite v8.3.2 building client environment for production...
+transforming...
+✓ 1708 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                     1.54 kB │ gzip:   0.73 kB
+dist/assets/index-Dj66gQUi.css     69.07 kB │ gzip:  13.35 kB
+dist/assets/index-iGmIO3eh.js   1,733.58 kB │ gzip: 420.15 kB
+
+✓ built in 406ms
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+
+---
+
+### Assistant Response
+
+Created At: 2026-10-21T06:43:14+05:30
+Completed At: 2026-10-21T06:43:14+05:30
+
+				The command exited with code 0.
+				Output:
+				On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   README.md
+	modified:   vite.config.ts
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.github/
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+---
+

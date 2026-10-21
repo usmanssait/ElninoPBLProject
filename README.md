@@ -57,7 +57,7 @@ dataset_info:
 [![Disaster Recall](https://img.shields.io/badge/Disaster%20Recall-98.3%25-success.svg)](#7-rigorous-leave-one-season-out-loso-validation)
 [![ROC-AUC](https://img.shields.io/badge/ROC--AUC-0.987-blue.svg)](#7-rigorous-leave-one-season-out-loso-validation)
 
-[**Live Production Dashboard**](http://localhost:3000) • [**Full Technical Report (DOCX)**](./FULL_PROJECT_DOCUMENTATION.docx) • [**Hugging Face Hub**](https://huggingface.co/datasets/UsmanSait/elnino-crop-failure-pbl) • [**Documentation Hub**](./docs/PROJECT_CHAT_ARCHIVE.md)
+[**Live GitHub Pages Dashboard**](https://usmanssait.github.io/ElninoPBLProject/) • [**Full Technical Report (DOCX)**](./FULL_PROJECT_DOCUMENTATION.docx) • [**Hugging Face Hub**](https://huggingface.co/datasets/UsmanSait/elnino-crop-failure-pbl) • [**Documentation Hub**](./docs/PROJECT_CHAT_ARCHIVE.md)
 
 </div>
 
@@ -345,6 +345,13 @@ We solved this via a three-stage compositing engine:
 ## 9. Frontend Decision-Support Dashboard & Visual Gallery
 
 Built with **React 18, Vite, TypeScript, and TailwindCSS**, the dashboard operates with **sub-35ms interaction latency** by ingesting precomputed model inferences while enabling dynamic filtering:
+
+### Key Frontend Architecture & GIS Capabilities
+* **Apple-Style Liquid Glass Choropleth**: Replaces flat vector colors with translucent tinted glass (`fillOpacity: 0.35–0.38`), allowing underlying 3D Sentinel-2 elevation topography, river courses, and Western Ghats relief to shine through authentically with zero artificial muddy green tint.
+* **Dual Theme Engine**: Instant one-click toggle between the original vibrant Obsidian & Emerald dark theme and a clean, high-contrast light theme with zero style leakage.
+* **Dynamic Typography & Glass Pill Badges**: District names scale inversely with zoom level to maintain ideal optical proportions, paired with floating frosted glass pill badges for hovered and selected districts.
+* **Elastic Pan Boundary Clamping**: Real-time mathematical bounding prevents users from accidentally dragging or zooming the Maharashtra basemap out of the viewport.
+* **Locked-Frame Navigation & Accessible Dropdowns**: Rigid locked sidebar with zero layout shift, paired with custom accessible dropdown select components.
 
 ### Visual Feature Showcase
 
